@@ -16,20 +16,11 @@ import { CreationJourFermeComponent } from './jourFerme/creation-jour-ferme/crea
 import { ListerJourFermeComponent } from './jourFerme/lister-jour-ferme/lister-jour-ferme.component';
 import { AccesRefuseComponent } from './erreurNavigation/acces-refuse/acces-refuse.component';
 import { FourOhFourComponent } from './erreurNavigation/four-oh-four/four-oh-four.component';
-import { DemandeAbsenceComponent } from './absence/demande-absence/demande-absence.component';
 import { JourFermeService } from './service/jour-ferme.service';
-import { VisualisationAbsenceComponent } from './absence/visualisation-absence/visualisation-absence.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ModificationAbsenceComponent } from './absence/modification-absence/modification-absence.component';
 import { ModificationJourFermeComponent } from './jourFerme/modification-jour-ferme/modification-jour-ferme.component';
-import { VueSynthetiquesComponent } from './vue-synthetiques/vue-synthetiques.component';
-import { VueParDepartementParJourParCollaborteurComponent } from './vue-synthetiques/vue-par-departement-par-jour-par-collaborteur/vue-par-departement-par-jour-par-collaborteur.component';
-import { HistogrammeParDepartementParJourComponent } from './vue-synthetiques/histogramme-par-departement-par-jour/histogramme-par-departement-par-jour.component';
 import { CollegueService } from './service/collegue.service';
-import { ValidationDemandesComponent } from './validation-demandes/validation-demandes.component';
-import { PlanningAbsenceComponent } from './absence/planning-absence/planning-absence.component';
-import { AbsenceService } from './service/absence.service';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { AccueilComponent } from './accueil/accueil.component';
 import { ListerCollaborateurComponent } from './lister-collaborateur/lister-collaborateur.component';
@@ -37,11 +28,7 @@ import { VisualiserCollaborateurComponent } from './visualiser-collaborateur/vis
 import { MessageComponent } from './message/message.component';
 import { MessageService } from './service/message.service';
 import { MessagePriveComponent } from './message/message-prive/message-prive.component';
-import { ListerCompetenceComponent } from './competence/lister-competence/lister-competence.component';
-import { AjouterCompetenceComponent } from './competence/ajouter-competence/ajouter-competence.component';
 import { CompetenceService } from './service/competence.service';
-import { DetailCompetenceComponent } from './competence/detail-competence/detail-competence.component';
-import { ModifierCompetenceComponent } from './competence/modifier-competence/modifier-competence.component';
 import { ModifierCollaborateurComponent } from './collegue/modifier-collaborateur/modifier-collaborateur.component';
 
 
@@ -56,24 +43,12 @@ import { ModifierCollaborateurComponent } from './collegue/modifier-collaborateu
     ListerJourFermeComponent,
     AccesRefuseComponent,
     FourOhFourComponent,
-    DemandeAbsenceComponent,
-    VisualisationAbsenceComponent,
-    ModificationAbsenceComponent,
     ModificationJourFermeComponent,
-    VueSynthetiquesComponent,
-    VueParDepartementParJourParCollaborteurComponent,
-    HistogrammeParDepartementParJourComponent,
-    PlanningAbsenceComponent,
-    ValidationDemandesComponent,
     AccueilComponent,
     ListerCollaborateurComponent,
     VisualiserCollaborateurComponent,
     MessageComponent,
     MessagePriveComponent,
-    ListerCompetenceComponent,
-    AjouterCompetenceComponent,
-    DetailCompetenceComponent,
-    ModifierCompetenceComponent,
     ModifierCollaborateurComponent
   ],
   imports: [
@@ -88,7 +63,6 @@ import { ModifierCollaborateurComponent } from './collegue/modifier-collaborateu
   ],
   providers: [
     JourFermeService,
-    AbsenceService,
     CollegueService,
     MessageService,
     CompetenceService,

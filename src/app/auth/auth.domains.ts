@@ -1,4 +1,3 @@
-import { Solde } from '../models/solde';
 import { Role } from '../models/role';
 
 /**
@@ -10,7 +9,6 @@ export class Collegue {
   email: string;
   motDePasse: string;
   roles: Role[];
-  solde: Solde[];
 
   constructor(params: any) {
     Object.assign(this, params);

@@ -8,25 +8,13 @@ import { StatutConnecteService } from './service/statut-connecte.service';
 import { StatutAdministrateurService } from './service/statut-administrateur.service';
 import { FourOhFourComponent } from './erreurNavigation/four-oh-four/four-oh-four.component';
 import { AccesRefuseComponent } from './erreurNavigation/acces-refuse/acces-refuse.component';
-import { DemandeAbsenceComponent } from './absence/demande-absence/demande-absence.component';
-import { VisualisationAbsenceComponent } from './absence/visualisation-absence/visualisation-absence.component';
-import { ModificationAbsenceComponent } from './absence/modification-absence/modification-absence.component';
 import { ModificationJourFermeComponent } from './jourFerme/modification-jour-ferme/modification-jour-ferme.component';
-import { VueSynthetiquesComponent } from './vue-synthetiques/vue-synthetiques.component';
 import { StatutManagerService } from './service/statut-manager.service';
-import { VueParDepartementParJourParCollaborteurComponent } from './vue-synthetiques/vue-par-departement-par-jour-par-collaborteur/vue-par-departement-par-jour-par-collaborteur.component';
-import { HistogrammeParDepartementParJourComponent } from './vue-synthetiques/histogramme-par-departement-par-jour/histogramme-par-departement-par-jour.component';
-import { ValidationDemandesComponent } from './validation-demandes/validation-demandes.component';
-import { PlanningAbsenceComponent } from './absence/planning-absence/planning-absence.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import {ListerCollaborateurComponent} from './lister-collaborateur/lister-collaborateur.component';
 import {VisualiserCollaborateurComponent} from './visualiser-collaborateur/visualiser-collaborateur.component';
 import {MessageComponent} from './message/message.component';
 import { MessagePriveComponent } from './message/message-prive/message-prive.component';
-import { ListerCompetenceComponent } from './competence/lister-competence/lister-competence.component';
-import { AjouterCompetenceComponent } from './competence/ajouter-competence/ajouter-competence.component';
-import { DetailCompetenceComponent } from './competence/detail-competence/detail-competence.component';
-import { ModifierCompetenceComponent } from './competence/modifier-competence/modifier-competence.component';
 import { ModifierCollaborateurComponent } from './collegue/modifier-collaborateur/modifier-collaborateur.component';
 
 const routes: Routes = [
@@ -41,23 +29,10 @@ const routes: Routes = [
   { path: 'listerCollaborateurs', component: ListerCollaborateurComponent, canActivate: [StatutConnecteService] },
   { path: 'creationJourFerme', component: CreationJourFermeComponent, canActivate: [StatutConnecteService, StatutAdministrateurService] },
 
-  { path: 'demandeAbsence', component: DemandeAbsenceComponent, canActivate: [StatutConnecteService] },
-  { path: 'visualisationAbsence', component: VisualisationAbsenceComponent, canActivate: [StatutConnecteService] },
-  { path: 'modificationAbsence/:id', component: ModificationAbsenceComponent, canActivate: [StatutConnecteService] },
   { path: 'visualisationCollaborateur/:email', component: VisualiserCollaborateurComponent, canActivate: [StatutConnecteService] },
   { path: 'modifierCollaborateur/:email', component : ModifierCollaborateurComponent, canActivate: [StatutConnecteService, StatutAdministrateurService]},
 
   { path: 'modificationJourFerme/:id', component: ModificationJourFermeComponent, canActivate: [StatutConnecteService, StatutAdministrateurService] },
-  { path: 'planningAbsence', component: PlanningAbsenceComponent, canActivate: [StatutConnecteService] },
-  { path: 'vueSynthetiques', component: VueSynthetiquesComponent, canActivate: [StatutConnecteService, StatutManagerService] },
-  { path: 'vueParDepartementParJourParCollaborateur', component: VueParDepartementParJourParCollaborteurComponent, canActivate: [StatutConnecteService, StatutManagerService] },
-  { path: 'histogrammeParDepartementParJour', component: HistogrammeParDepartementParJourComponent, canActivate: [StatutConnecteService, StatutManagerService] },
-  { path: 'validationDemandes', component: ValidationDemandesComponent, canActivate: [StatutConnecteService, StatutManagerService] },
-  { path: 'listerCompetence', component: ListerCompetenceComponent, canActivate: [StatutConnecteService] },
-  { path: 'detailCompetence/:id', component: DetailCompetenceComponent, canActivate: [StatutConnecteService] },
-
-  { path: 'ajouterCompetence', component: AjouterCompetenceComponent, canActivate: [StatutConnecteService, StatutAdministrateurService] },
-  { path: 'modifierCompetence/:id', component: ModifierCompetenceComponent, canActivate: [StatutConnecteService, StatutAdministrateurService] },
   { path: 'message', component: MessageComponent, canActivate: [StatutConnecteService] },
   { path: 'messagePrive/:email', component: MessagePriveComponent, canActivate: [StatutConnecteService] },
   
