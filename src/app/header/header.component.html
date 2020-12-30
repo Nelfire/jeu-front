@@ -4,59 +4,56 @@
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <img src="https://media.discordapp.net/attachments/705412798665982013/706796752291889172/CONGES-ET-PREUVES.png"
+        <img src="https://media.discordapp.net/attachments/649978115199860766/793975291994964028/72399-icons-crown-prodigy-game-computer-math-icon.png"
             alt="" style="width: 40px;height: 40px;" />
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <a class="navbar-brand ml-2" routerLink="/accueil">Accueil</a>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li routerLinkActive="active" class="nav-item">
+                    <a class="nav-link" routerLink="visualisationAbsence">Bâtiments</a>
+                </li>
+                <li routerLinkActive="active" class="nav-item">
+                    <a class="nav-link" routerLink="planningAbsence">Unitées</a>
+                </li>
+                <li routerLinkActive="active" class="nav-item">
+                    <a class="nav-link" routerLink="validationDemandes">Ma base</a>
+                </li>
+                <li routerLinkActive="active" class="nav-item">
+                    <a class="nav-link" routerLink="vueSynthetiques">Mon armée</a>
+                </li>
+
+                <li routerLinkActive="active" class="nav-item">
+                    <a class="nav-link" routerLink="listerJoueurs">Guilde</a>
+                </li>
+
+                <li routerLinkActive="active" class="nav-item">
+                    <a class="nav-link" routerLink="listerJoueurs">Classement</a>
+                </li>
+
+                <li routerLinkActive="active" class="nav-item">
+                    <a class="nav-link" routerLink="message">Discussion</a>
+                </li>
+
                 <li routerLinkActive="active" class="nav-item"
                     *ngIf="col.roles[0] == roleEnum.RoleManager || col.roles[0] == roleEnum.RoleAdmin || col.roles[0] == roleEnum.RoleEmploye">
-                    <a class="nav-link" routerLink="visualisationAbsence">Gestion des absences</a>
+                    <a class="nav-link" routerLink="listerJourFerme">Administration</a>
                 </li>
-                <li routerLinkActive="active" class="nav-item"
-                    *ngIf="col.roles[0] == roleEnum.RoleManager || col.roles[0] == roleEnum.RoleAdmin || col.roles[0] == roleEnum.RoleEmploye">
-                    <a class="nav-link" routerLink="planningAbsence">Planning des absences</a>
-                </li>
-                <li routerLinkActive="active" class="nav-item" *ngIf="col.roles[0] == roleEnum.RoleManager">
-                    <a class="nav-link" routerLink="validationDemandes">Validation demandes</a>
-                </li>
-                <li routerLinkActive="active" class="nav-item" *ngIf="col.roles[0] == roleEnum.RoleManager">
-                    <a class="nav-link" routerLink="vueSynthetiques">Vue synthétique</a>
-                </li>
-                <li routerLinkActive="active" class="nav-item"
-                    *ngIf="col.roles[0] == roleEnum.RoleManager || col.roles[0] == roleEnum.RoleAdmin || col.roles[0] == roleEnum.RoleEmploye">
-                    <a class="nav-link" routerLink="listerJourFerme">Jours ferm&eacute;s</a>
-                </li>
-
-              <li routerLinkActive="active" class="nav-item">
-                <a class="nav-link" routerLink="listerJoueurs">Liste des joueurs</a>
-              </li>
-
-
-              <li routerLinkActive="active" class="nav-item">
-                <a class="nav-link" routerLink="message">Discussion</a>
-              </li>
-
-              <li routerLinkActive="active" class="nav-item">
-                <a class="nav-link" routerLink="listerCompetence">Competence</a>
-              </li>
             </ul>
-
-            <!-- <div class="mx-2 p-1 col-sm-4 col-4 col-md-auto" style="border: 1px solid #ced4da;background-color: #e9ecef; border-radius: 5px; ">
-                <fa-icon [icon]="iconeStopWatch"></fa-icon> En ligne depuis <b>{{secondes}}</b> secondes.
-            </div>
-            <div class="mx-2 p-1 col-sm-4 col-4 col-md-auto" style="border: 1px solid #ced4da;background-color: #e9ecef; border-radius: 5px; ">
-                <fa-icon [icon]="faUser"></fa-icon> Bonjour <b>{{col.nom | uppercase}} {{col.prenom }}</b>
-            </div>
-            <button class="btn btn-outline-danger my-2 my-sm-0" (click)="seDeconnecter()">Deconnexion</button> -->
-
-
             <div class="row">
                 <div class="mx-2 p-1 col-4 col-lg-auto" style="border: 1px solid #ced4da;background-color: #e9ecef; border-radius: 5px; ">
-                    <fa-icon [icon]="iconeStopWatch"></fa-icon> En ligne depuis <b>{{secondes}}</b> secondes.
+                    <fa-icon [icon]="iconeStopWatch"></fa-icon> Pierre :  <b>{{infosJoueur.pierrePossession}}</b>
                 </div>
                 <div class="mx-2 p-1 col-4 col-lg-auto" style="border: 1px solid #ced4da;background-color: #e9ecef; border-radius: 5px; ">
-                    <fa-icon [icon]="faUser"></fa-icon> Bonjour <b>{{col.nom | uppercase}} {{col.prenom }}</b>
+                    <fa-icon [icon]="iconeArbre"></fa-icon> Bois :  <b>{{infosJoueur.boisPossession}}</b>
+                </div>
+                <div class="mx-2 p-1 col-4 col-lg-auto" style="border: 1px solid #ced4da;background-color: #e9ecef; border-radius: 5px; ">
+                    <fa-icon [icon]="iconeStopWatch"></fa-icon> Or :  <b>{{infosJoueur.orPossession}}</b>
+                </div>
+                <div class="mx-2 p-1 col-4 col-lg-auto" style="border: 1px solid #ced4da;background-color: #e9ecef; border-radius: 5px; ">
+                    <fa-icon [icon]="iconeStopWatch"></fa-icon> Nourriture :  <b>{{infosJoueur.nourriturePossession}}</b>
+                </div>
+                <div class="mx-2 p-1 col-4 col-lg-auto" style="border: 1px solid #ced4da;background-color: #e9ecef; border-radius: 5px; ">
+                    <fa-icon [icon]="faUser"></fa-icon> Bonjour <b>{{infosJoueur.pseudo}}</b>
                 </div>
                 <div class="col-2">
                     <button class="btn btn-outline-danger" (click)="seDeconnecter()">Deconnexion</button>

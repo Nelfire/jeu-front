@@ -3,12 +3,14 @@ import { Router } from '@angular/router';
 import { Joueur } from '../auth/auth.domains';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../service/auth.service';
-import { faUser, faStopwatch } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faStopwatch, faTree } from '@fortawesome/free-solid-svg-icons';
 import { Role } from 'src/app/models/role';
 import 'rxjs/Rx';
 
 
 import { Observable } from 'rxjs/Observable';
+import { JoueurService } from '../service/joueur.service';
+import { JoueurInfos } from '../models/joueur-infos';
 
 
 @Component({
@@ -24,30 +26,44 @@ export class HeaderComponent implements OnInit, OnDestroy {
   // Icones
   faUser = faUser;
   iconeStopWatch = faStopwatch;
-
+  iconeArbre = faTree;
+  
+  infosJoueur: JoueurInfos;
   // Initialisations
   counterSubscription: Subscription;
   secondes = 0;
   utilisateurConnecte: Joueur;
 
-  // Mise en place de l'observable pour récupérer le role du collègue, pour l'affichage des onglets de navigation appropriés
+  // Mise en place de l'observable pour rï¿½cupï¿½rer le role du joueur, pour l'affichage des onglets de navigation appropriï¿½s
   joueurConnecte: Observable<Joueur>;
 
-  constructor(private authSrv: AuthService, private router: Router) { }
+  constructor(private authSrv: AuthService, private router: Router, private joueurService: JoueurService) { }
 
   ngOnInit() {
-    // ** timer debut ** */
+
+
+    // ** Actualisation chaques secondes ** */
     const compteur = Observable.interval(1000);
     this.counterSubscription = compteur.subscribe(
       (valeur: number) => {
-        this.secondes = valeur;
+        this.authSrv.verifierAuthentification().subscribe(
+          (etatConnexion) => {
+            this.utilisateurConnecte = etatConnexion;
+            // J'actualise les informations du joueur (Ressources, ...)
+            this.joueurService.informationJoueurByEmail(etatConnexion.email).subscribe(
+              (value) => {
+                this.infosJoueur = value;
+              }
+            )
+          }
+        );
       }
     );
     // ** timer fin ** */
 
     this.joueurConnecte = this.authSrv.joueurConnecteObs;
 
-    // On vérifie si l'utilisateur est bien connecté
+    // On vï¿½rifie si l'utilisateur est bien connectï¿½
     this.authSrv.verifierAuthentification().subscribe(
       (etatConnexion) => {
         this.utilisateurConnecte = etatConnexion;

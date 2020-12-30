@@ -63,11 +63,11 @@ export class ModifierJoueurComponent implements OnInit {
   }
 
   initForm() {
-    this.formModificationJoueur = this.formBuilder.group({
+    this.formModificationJoueur = this.formBuilder.group({/*
       urlPhoto : [this.joueur.urlPhoto, Validators.required],
       email : [this.joueur.email, Validators.required],
       nom : [this.joueur.nom, Validators.required],
-      prenom : [this.joueur.prenom, Validators.required]
+      prenom : [this.joueur.prenom, Validators.required]*/
     });
   }
 

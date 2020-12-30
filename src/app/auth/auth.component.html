@@ -2,23 +2,18 @@
   <div id="formContent">
     <!-- Logo -->
     <div class="fadeIn first">
-      <img src="https://media.discordapp.net/attachments/705412798665982013/706796752291889172/CONGES-ET-PREUVES.png"
-        alt="" style="width: 130px;height: 130px;" class="rounded img-fluid" />
-      <h1 class="text-center">GDA</h1>
-      <h3 class="text-center">Gestion des Absences</h3>
+      <img src="https://media.discordapp.net/attachments/649978115199860766/793975291994964028/72399-icons-crown-prodigy-game-computer-math-icon.png"
+        alt="" style="width: 130px;height: 130px;margin-top: 20px;" class="rounded img-fluid" />
+      <h1 class="text-center">Nelfire's Game</h1>
     </div>
 
     <form>
       <!-- email -->
       <input type="email" name="email" [(ngModel)]="joueur.email" class="fadeIn second" id="exampleInputEmail1"
         aria-describedby="emailHelp">
-      <small id="emailHelp" class="form-text text-muted">
-        <b>admin@dev.fr</b> ou <b>manager@dev.fr</b> ou <b>user@dev.fr</b>
-      </small>
       <!-- password -->
       <input type="password" name="pass" [(ngModel)]="joueur.motDePasse" class="fadeIn third"
         id="exampleInputPassword1" aria-describedby="passwordHelp">
-      <small id="passwordHelp" class="form-text text-muted">mot de passe : <b>superpass</b></small>
       <!-- bouton de connexion -->
       <input type="submit" class="fadeIn fourth" (click)="connecter()" value="Se connecter">
     </form>
