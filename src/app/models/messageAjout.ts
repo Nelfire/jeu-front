@@ -1,8 +1,8 @@
 import { TypeAbsence } from './type-absence';
-import { Collegue } from '../auth/auth.domains';
+import { Joueur } from '../auth/auth.domains';
 
 export class MessageAjout {
-  constructor(public datePublication: Date, public collegue: Collegue, public contenu: string) {
+  constructor(public datePublication: Date, public joueur: Joueur, public contenu: string) {
   }
 
 }

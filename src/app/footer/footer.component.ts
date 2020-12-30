@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../service/auth.service';
-import { Collegue } from '../auth/auth.domains';
+import { Joueur } from '../auth/auth.domains';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,15 +11,15 @@ import { Router } from '@angular/router';
 export class FooterComponent implements OnInit {
 
   // Initialisation
-  collegue: Collegue;
+  joueur: Joueur;
 
   // Constructeur
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
 
-    this.authService.collegueConnecteObs
-      .subscribe(col => this.collegue = col,
+    this.authService.joueurConnecteObs
+      .subscribe(col => this.joueur = col,
         err => console.log('oops'));
   }
 }

@@ -3,7 +3,7 @@ import { Role } from '../models/role';
 /**
  * Collègue utilisateur de l'application.
  */
-export class Collegue {
+export class Joueur {
   nom: string;
   prenom: string;
   email: string;

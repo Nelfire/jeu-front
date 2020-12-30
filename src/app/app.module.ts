@@ -20,16 +20,16 @@ import { JourFermeService } from './service/jour-ferme.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModificationJourFermeComponent } from './jourFerme/modification-jour-ferme/modification-jour-ferme.component';
-import { CollegueService } from './service/collegue.service';
+import { JoueurService } from './service/joueur.service';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { AccueilComponent } from './accueil/accueil.component';
-import { ListerCollaborateurComponent } from './lister-collaborateur/lister-collaborateur.component';
-import { VisualiserCollaborateurComponent } from './visualiser-collaborateur/visualiser-collaborateur.component';
+import { ListerJoueurComponent } from './lister-joueur/lister-joueur.component';
+import { VisualiserJoueurComponent } from './visualiser-joueur/visualiser-joueur.component';
 import { MessageComponent } from './message/message.component';
 import { MessageService } from './service/message.service';
 import { MessagePriveComponent } from './message/message-prive/message-prive.component';
 import { CompetenceService } from './service/competence.service';
-import { ModifierCollaborateurComponent } from './collegue/modifier-collaborateur/modifier-collaborateur.component';
+import { ModifierJoueurComponent } from './joueur/modifier-joueur/modifier-joueur.component';
 
 
 @NgModule({
@@ -45,11 +45,11 @@ import { ModifierCollaborateurComponent } from './collegue/modifier-collaborateu
     FourOhFourComponent,
     ModificationJourFermeComponent,
     AccueilComponent,
-    ListerCollaborateurComponent,
-    VisualiserCollaborateurComponent,
+    ListerJoueurComponent,
+    VisualiserJoueurComponent,
     MessageComponent,
     MessagePriveComponent,
-    ModifierCollaborateurComponent
+    ModifierJoueurComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +63,7 @@ import { ModifierCollaborateurComponent } from './collegue/modifier-collaborateu
   ],
   providers: [
     JourFermeService,
-    CollegueService,
+    JoueurService,
     MessageService,
     CompetenceService,
     {

@@ -11,13 +11,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MessagePriveComponent implements OnInit {
 
-  emailCollegueContacte: string = '';
+  emailJoueurContacte: string = '';
 
   constructor(private messageService: MessageService, private formBuilder: FormBuilder, private authService: AuthService, private routerLinkActive: ActivatedRoute ) { }
 
   ngOnInit(): void {
 
-    this.emailCollegueContacte = this.routerLinkActive.snapshot.params['email'];
+    this.emailJoueurContacte = this.routerLinkActive.snapshot.params['email'];
   }
 
 }

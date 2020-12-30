@@ -22,15 +22,15 @@ export class MessageService {
     return this.http.get<Message[]>(`${URL_BACKEND}`);
   }
 
-  ajouterMessage(datePublication: Date, emailCollegue: string, contenu: string): Observable<Message> {
+  ajouterMessage(datePublication: Date, emailJoueur: string, contenu: string): Observable<Message> {
     console.log(datePublication); // Donnée correctement récupérée
-    console.log(emailCollegue); // Donnée correctement récupérée
+    console.log(emailJoueur); // Donnée correctement récupérée
     console.log(contenu); // Donnée correctement récupérée
     
     return this.http.post<Message>(`${URL_BACKEND}`,
       {
         datePublication: `${datePublication}`,
-        emailCollegue: `${emailCollegue}`,
+        emailJoueur: `${emailJoueur}`,
         contenu: `${contenu}`
       });
   }

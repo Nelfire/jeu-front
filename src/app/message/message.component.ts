@@ -4,7 +4,7 @@ import {Message} from '../models/message';
 import {Observable, Subscription} from 'rxjs';
 import 'rxjs/Rx';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Collegue} from "../auth/auth.domains";
+import {Joueur} from "../auth/auth.domains";
 import {AuthService} from "../service/auth.service";
 import {formatDate} from "@angular/common";
 
@@ -21,7 +21,7 @@ export class MessageComponent implements OnInit {
 
   // Initialisations
   formAjouterMessage: FormGroup;
-  collegue: Collegue;
+  joueur: Joueur;
 
   constructor(private messageService: MessageService, private formBuilder: FormBuilder, private authService: AuthService) { }
 
@@ -29,9 +29,9 @@ export class MessageComponent implements OnInit {
 
     this.initialiserFormulaire();
 
-    this.authService.collegueConnecteObs.subscribe(
+    this.authService.joueurConnecteObs.subscribe(
       (col) => {
-        this.collegue = col;
+        this.joueur = col;
       }, (error) => {
         this.message = error.error.message;
       }
@@ -61,13 +61,13 @@ export class MessageComponent implements OnInit {
   validerMessage() {
     // R�cup�ration des donn�es du formulaire
     // Date
-    // Collegue
-    const emailCollegue = this.collegue.email;
+    // Joueur
+    const emailJoueur = this.joueur.email;
     // Contenue
     const datePublication = this.formAjouterMessage.get('dateMessage').value;
     const contenu = this.formAjouterMessage.get('contenu').value;
 
-    this.messageService.ajouterMessage(datePublication, emailCollegue, contenu).subscribe();
+    this.messageService.ajouterMessage(datePublication, emailJoueur, contenu).subscribe();
     this.message = "Message validé !";
     this.formAjouterMessage.get('contenu').reset();
   }

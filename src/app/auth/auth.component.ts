@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Collegue} from './auth.domains';
+import {Joueur} from './auth.domains';
 import {Router} from '@angular/router';
 import { AuthService } from '../service/auth.service';
 
@@ -14,7 +14,7 @@ import { AuthService } from '../service/auth.service';
 export class AuthComponent implements OnInit {
 
   // Initisalisations
-  collegue: Collegue = new Collegue({});
+  joueur: Joueur = new Joueur({});
   err: boolean;
 
   // Constructeur
@@ -24,7 +24,7 @@ export class AuthComponent implements OnInit {
   }
 
   connecter() {
-    this.authSrv.connecter(this.collegue.email, this.collegue.motDePasse)
+    this.authSrv.connecter(this.joueur.email, this.joueur.motDePasse)
       .subscribe(
         // en cas de succès, redirection vers la page /tech
         col => this.router.navigate(['/accueil']),

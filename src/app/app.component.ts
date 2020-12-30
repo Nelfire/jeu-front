@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Collegue } from './auth/auth.domains';
+import { Joueur } from './auth/auth.domains';
 import { AuthService } from './service/auth.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { AuthService } from './service/auth.service';
 export class AppComponent {
 
   // Initialisations
-  collegueConnecte: Observable<Collegue>;
+  joueurConnecte: Observable<Joueur>;
 
   // Constructeur
   constructor(private authSrv: AuthService, private router: Router) {
@@ -25,6 +25,6 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
-    this.collegueConnecte = this.authSrv.collegueConnecteObs;
+    this.joueurConnecte = this.authSrv.joueurConnecteObs;
   }
 }

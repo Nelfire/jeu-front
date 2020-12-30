@@ -11,26 +11,26 @@ import { AccesRefuseComponent } from './erreurNavigation/acces-refuse/acces-refu
 import { ModificationJourFermeComponent } from './jourFerme/modification-jour-ferme/modification-jour-ferme.component';
 import { StatutManagerService } from './service/statut-manager.service';
 import { AccueilComponent } from './accueil/accueil.component';
-import {ListerCollaborateurComponent} from './lister-collaborateur/lister-collaborateur.component';
-import {VisualiserCollaborateurComponent} from './visualiser-collaborateur/visualiser-collaborateur.component';
+import {ListerJoueurComponent} from './lister-joueur/lister-joueur.component';
+import {VisualiserJoueurComponent} from './visualiser-joueur/visualiser-joueur.component';
 import {MessageComponent} from './message/message.component';
 import { MessagePriveComponent } from './message/message-prive/message-prive.component';
-import { ModifierCollaborateurComponent } from './collegue/modifier-collaborateur/modifier-collaborateur.component';
+import { ModifierJoueurComponent } from './joueur/modifier-joueur/modifier-joueur.component';
 
 const routes: Routes = [
   // canActivate: [StatutConnecteService] ==> Permet de verifier si l'utilisateur est connecte
-  // canActivate: [StatutAdministrateurService] ==> PevisualisationCollaborateurrmet de verifier si l'utilisateur connecte est bien un administrateur
+  // canActivate: [StatutAdministrateurService] ==> PevisualisationJoueurrmet de verifier si l'utilisateur connecte est bien un administrateur
   // canActivate: [StatutManagerService] ==> Permet de verifier si l'utilisateur connecte est bien un manager
   // canActivate: [StatutEmployeService] ==> Permet de verifier si l'utilisateur connecte est bien un employe
   { path: 'accueil', component: AccueilComponent, canActivate: [StatutConnecteService]}, //  tech accessible uniquement si connecte
   { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService] }, //  tech accessible uniquement si connecte
   { path: 'auth', component: AuthComponent },
   { path: 'listerJourFerme', component: ListerJourFermeComponent, canActivate: [StatutConnecteService] },
-  { path: 'listerCollaborateurs', component: ListerCollaborateurComponent, canActivate: [StatutConnecteService] },
+  { path: 'listerJoueurs', component: ListerJoueurComponent, canActivate: [StatutConnecteService] },
   { path: 'creationJourFerme', component: CreationJourFermeComponent, canActivate: [StatutConnecteService, StatutAdministrateurService] },
 
-  { path: 'visualisationCollaborateur/:email', component: VisualiserCollaborateurComponent, canActivate: [StatutConnecteService] },
-  { path: 'modifierCollaborateur/:email', component : ModifierCollaborateurComponent, canActivate: [StatutConnecteService, StatutAdministrateurService]},
+  { path: 'visualisationJoueur/:email', component: VisualiserJoueurComponent, canActivate: [StatutConnecteService] },
+  { path: 'modifierJoueur/:email', component : ModifierJoueurComponent, canActivate: [StatutConnecteService, StatutAdministrateurService]},
 
   { path: 'modificationJourFerme/:id', component: ModificationJourFermeComponent, canActivate: [StatutConnecteService, StatutAdministrateurService] },
   { path: 'message', component: MessageComponent, canActivate: [StatutConnecteService] },

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { JourFermeService } from 'src/app/service/jour-ferme.service';
 import { Observable } from 'rxjs';
-import { Collegue } from 'src/app/auth/auth.domains';
+import { Joueur } from 'src/app/auth/auth.domains';
 import { AuthService } from 'src/app/service/auth.service';
 import { faTrash, faPlus, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -29,8 +29,8 @@ export class ListerJourFermeComponent implements OnInit {
   // Initialisations
   listeJourFerme: JourFermeVisualisation[] = new Array();
   currentListJourFerme: JourFermeVisualisation[] = new Array();
-  utilisateurConnecte: Collegue;
-  collegueConnecte: Observable<Collegue>;
+  utilisateurConnecte: Joueur;
+  joueurConnecte: Observable<Joueur>;
   messageErreur = '';
   yearSelect;
 
@@ -52,7 +52,7 @@ export class ListerJourFermeComponent implements OnInit {
     )
     this.getAllYear();
 
-    this.collegueConnecte = this.authSrv.collegueConnecteObs;
+    this.joueurConnecte = this.authSrv.joueurConnecteObs;
 
     // On v�rifie si l'utilisateur est bien connect�
     this.authSrv.verifierAuthentification().subscribe(

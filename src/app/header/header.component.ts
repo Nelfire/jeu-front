@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { Collegue } from '../auth/auth.domains';
+import { Joueur } from '../auth/auth.domains';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../service/auth.service';
 import { faUser, faStopwatch } from '@fortawesome/free-solid-svg-icons';
@@ -28,10 +28,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   // Initialisations
   counterSubscription: Subscription;
   secondes = 0;
-  utilisateurConnecte: Collegue;
+  utilisateurConnecte: Joueur;
 
   // Mise en place de l'observable pour récupérer le role du collègue, pour l'affichage des onglets de navigation appropriés
-  collegueConnecte: Observable<Collegue>;
+  joueurConnecte: Observable<Joueur>;
 
   constructor(private authSrv: AuthService, private router: Router) { }
 
@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     );
     // ** timer fin ** */
 
-    this.collegueConnecte = this.authSrv.collegueConnecteObs;
+    this.joueurConnecte = this.authSrv.joueurConnecteObs;
 
     // On vérifie si l'utilisateur est bien connecté
     this.authSrv.verifierAuthentification().subscribe(
