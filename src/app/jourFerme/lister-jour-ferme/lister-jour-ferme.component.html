@@ -1,0 +1,80 @@
+<div class="row justify-content-center">
+    <div class="col-auto" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
+        <h2>Jours feri&eacute;s et RTT employeurs</h2>
+    </div>
+</div>
+<div class="row mt-3 mb-3">
+    <label class="col-lg-3">
+        <h4>Selection par ann&eacute;e : </h4>
+    </label>
+    <select class="form-control col-lg-2" [ngModel]='yearSelect' (ngModelChange)="filterYear($event)">
+        <option *ngFor="let year of listYears" [value]="year">{{year}}</option>
+    </select>
+</div>
+
+<table class="table table-striped">
+    <thead class="bg-secondary">
+        <tr>
+            <th scope="col" class="border border-dark">Date</th>
+            <th scope="col" class="border border-dark">Type</th>
+            <th scope="col" class="border border-dark">Jour</th>
+            <th scope="col" class="border border-dark">Commentaires</th>
+            <th *ngIf="utilisateurConnecte.roles[0] == roleEnum.RoleAdmin" scope="col" class="border border-dark text-center">
+                Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let jour of listeJourFerme;">
+            <td class="border border-dark">{{jour.date | date:'dd-MM-yyyy'}}</td>
+            <td class="border border-dark">{{jour.type}}</td>
+            <td class="border border-dark">{{jour.date | date:'EEEE'}}</td>
+            <td class="border border-dark">{{jour.commentaire}}</td>
+            <td *ngIf="utilisateurConnecte.roles[0] == roleEnum.RoleAdmin" class="border border-dark w-10 text-center">
+                <button class="btn" routerLink="../modificationJourFerme/{{jour.id}}" *ngIf="jour.statut != statutEnum.VALIDEE">
+                    <fa-icon [icon]="faPencil"></fa-icon>
+                </button>
+                <button class="btn" (click)="open(mymodal, jour.id)" *ngIf="jour.statut != statutEnum.VALIDEE">
+                    <fa-icon [icon]="faTrash"></fa-icon>
+                </button>
+            </td>
+            <!-- moddal choix suppression -->
+            <ng-template #mymodal let-modal>
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">Suppression jour feri&eacute; / RTT </h4>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                        <span aria-hidden="true">X</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5>&Ecirc;tes vous s&ucirc;r de vouloir supprimer : <br></h5>
+                    <ul>
+                        <li><b>Date : </b>{{jour.date}}</li>
+                        <li><b>Type : </b>{{jour.type}}</li>
+                        <li><b>Jour : </b>{{jour.date | date:'EEEE'}}</li>
+                        <li><b>Commentaire : </b>{{jour.commentaire}}</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <div class="alert alert-success" role="success" *ngIf="message">
+                        <b>{{message}}</b>
+                    </div>
+                    <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Je suis sur
+                        !</button>
+                </div>
+            </ng-template>
+        </tr>
+    </tbody>
+</table>
+
+<div class="row justify-content-center">
+    <div class="col-auto">
+        <a routerLink="../creationJourFerme" [hidden]="utilisateurConnecte.roles[0]!=roleEnum.RoleAdmin"><button
+                class="btn btn-success">
+                <fa-icon [icon]="faPlus"></fa-icon> Ajouter jour ferm&eacute;
+            </button></a>
+    </div>
+</div>
+
+<div class="alert alert-danger" role="danger" *ngIf="messageErreur">
+    <b>{{messageErreur}}</b>
+</div>

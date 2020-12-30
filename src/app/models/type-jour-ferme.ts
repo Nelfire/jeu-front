@@ -1,0 +1,4 @@
+export enum TypeJourFerme {
+  RTT_EMPLOYEUR = 'RTT_EMPLOYEUR',
+  JOURS_FERIES = 'JOURS_FERIES'
+}

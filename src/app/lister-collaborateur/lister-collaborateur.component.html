@@ -1,0 +1,17 @@
+<div class="row justify-content-center mb-3">
+  <div class="col-auto" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
+      <h2>Liste des collaborateurs</h2>
+  </div>
+</div>
+<div class="row no-gutters">
+  <div class="col-md-4" *ngFor="let collaborateur of listeCollaborateurs">
+    <a routerLink='../visualisationCollaborateur/{{collaborateur.email}}'
+       class="border d-flex justify-content-center align-items-center">
+      <img src="{{collaborateur.urlPhoto}}" alt="" class="rounded img-fluid" style="width: 150px;height: 150px;" />
+      <div class="overlay"></div>
+      <div class="text text-center">
+        <h3>{{collaborateur.email}}</h3>
+      </div>
+    </a>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<div class=" wrapper fadeInDown align-items-center">
+  <div id="formContent">
+    <!-- Logo -->
+    <div class="fadeIn first">
+      <img src="https://media.discordapp.net/attachments/705412798665982013/706796752291889172/CONGES-ET-PREUVES.png"
+        alt="" style="width: 130px;height: 130px;" class="rounded img-fluid" />
+      <h1 class="text-center">GDA</h1>
+      <h3 class="text-center">Gestion des Absences</h3>
+    </div>
+
+    <form>
+      <!-- email -->
+      <input type="email" name="email" [(ngModel)]="collegue.email" class="fadeIn second" id="exampleInputEmail1"
+        aria-describedby="emailHelp">
+      <small id="emailHelp" class="form-text text-muted">
+        <b>admin@dev.fr</b> ou <b>manager@dev.fr</b> ou <b>user@dev.fr</b>
+      </small>
+      <!-- password -->
+      <input type="password" name="pass" [(ngModel)]="collegue.motDePasse" class="fadeIn third"
+        id="exampleInputPassword1" aria-describedby="passwordHelp">
+      <small id="passwordHelp" class="form-text text-muted">mot de passe : <b>superpass</b></small>
+      <!-- bouton de connexion -->
+      <input type="submit" class="fadeIn fourth" (click)="connecter()" value="Se connecter">
+    </form>
+
+    <!-- Message erreurs -->
+    <div id="formFooter">
+      <div *ngIf="err" class="alert alert-danger mt-1" role="alert">
+        Vos informations d'authentification sont invalides.
+      </div>
+    </div>
+
+  </div>
+</div>
