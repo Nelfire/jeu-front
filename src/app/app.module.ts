@@ -30,6 +30,12 @@ import { MessageService } from './service/message.service';
 import { MessagePriveComponent } from './message/message-prive/message-prive.component';
 import { CompetenceService } from './service/competence.service';
 import { ModifierJoueurComponent } from './joueur/modifier-joueur/modifier-joueur.component';
+import { MonCampementComponent } from './campement/mon-campement/mon-campement.component';
+import { MonArmeeComponent } from './armee/mon-armee/mon-armee.component';
+import { GuildeComponent } from './social/guilde/guilde.component';
+import { ClassementJoueursComponent } from './social/classement-joueurs/classement-joueurs.component';
+import { CampementService } from './service/campement.service';
+import { BatimentService } from './service/batiment.service';
 
 
 @NgModule({
@@ -49,7 +55,11 @@ import { ModifierJoueurComponent } from './joueur/modifier-joueur/modifier-joueu
     VisualiserJoueurComponent,
     MessageComponent,
     MessagePriveComponent,
-    ModifierJoueurComponent
+    ModifierJoueurComponent,
+    MonCampementComponent,
+    MonArmeeComponent,
+    GuildeComponent,
+    ClassementJoueursComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +76,8 @@ import { ModifierJoueurComponent } from './joueur/modifier-joueur/modifier-joueu
     JoueurService,
     MessageService,
     CompetenceService,
+    CampementService,
+    BatimentService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

@@ -16,6 +16,10 @@ import {VisualiserJoueurComponent} from './visualiser-joueur/visualiser-joueur.c
 import {MessageComponent} from './message/message.component';
 import { MessagePriveComponent } from './message/message-prive/message-prive.component';
 import { ModifierJoueurComponent } from './joueur/modifier-joueur/modifier-joueur.component';
+import { MonCampementComponent } from './campement/mon-campement/mon-campement.component';
+import { MonArmeeComponent } from './armee/mon-armee/mon-armee.component';
+import { GuildeComponent } from './social/guilde/guilde.component';
+import { ClassementJoueursComponent } from './social/classement-joueurs/classement-joueurs.component';
 
 const routes: Routes = [
   // canActivate: [StatutConnecteService] ==> Permet de verifier si l'utilisateur est connecte
@@ -35,7 +39,10 @@ const routes: Routes = [
   { path: 'modificationJourFerme/:id', component: ModificationJourFermeComponent, canActivate: [StatutConnecteService, StatutAdministrateurService] },
   { path: 'message', component: MessageComponent, canActivate: [StatutConnecteService] },
   { path: 'messagePrive/:email', component: MessagePriveComponent, canActivate: [StatutConnecteService] },
-  
+  { path: 'campement', component: MonCampementComponent, canActivate: [StatutConnecteService] },
+  { path: 'armee', component: MonArmeeComponent, canActivate: [StatutConnecteService] },
+  { path: 'guilde', component: GuildeComponent, canActivate: [StatutConnecteService] },
+  { path: 'classement-joueurs', component: ClassementJoueursComponent, canActivate: [StatutConnecteService] },
   
   { path: '', redirectTo: '/accueil', pathMatch: 'full' },
   { path: 'accesRefuse', component: AccesRefuseComponent, canActivate: [StatutConnecteService] },
