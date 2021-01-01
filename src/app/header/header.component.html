@@ -35,20 +35,23 @@
             </ul>
             <div class="row">
                 <div class="mx-2 p-1 col-4 col-lg-auto" style="border: 1px solid #ced4da;background-color: #e9ecef; border-radius: 5px; ">
-                    <fa-icon [icon]="iconeStopWatch"></fa-icon> Pierre :  <b>{{infosJoueur.pierrePossession}}</b>
+                    <fa-icon [icon]="iconeStopWatch"></fa-icon> Pierre :  <b>{{infosJoueur.pierrePossession}}/{{infosJoueur.pierreMaximum}}</b>
                 </div>
                 <div class="mx-2 p-1 col-4 col-lg-auto" style="border: 1px solid #ced4da;background-color: #e9ecef; border-radius: 5px; ">
-                    <fa-icon [icon]="iconeArbre"></fa-icon> Bois :  <b>{{infosJoueur.boisPossession}}</b>
+                    <fa-icon [icon]="iconeArbre"></fa-icon> Bois :  <b>{{infosJoueur.boisPossession}}/{{infosJoueur.boisMaximum}}</b>
                 </div>
                 <div class="mx-2 p-1 col-4 col-lg-auto" style="border: 1px solid #ced4da;background-color: #e9ecef; border-radius: 5px; ">
-                    <fa-icon [icon]="iconeStopWatch"></fa-icon> Or :  <b>{{infosJoueur.orPossession}}</b>
+                    <fa-icon [icon]="iconeStopWatch"></fa-icon> Or :  <b>{{infosJoueur.orPossession}}/{{infosJoueur.orMaximum}}</b>
                 </div>
                 <div class="mx-2 p-1 col-4 col-lg-auto" style="border: 1px solid #ced4da;background-color: #e9ecef; border-radius: 5px; ">
-                    <fa-icon [icon]="iconeStopWatch"></fa-icon> Nourriture :  <b>{{infosJoueur.nourriturePossession}}</b>
+                    <fa-icon [icon]="iconeStopWatch"></fa-icon> Nourriture :  <b>{{infosJoueur.nourriturePossession}}/{{infosJoueur.nourritureMaximum}}</b>
                 </div>
+                <!--
                 <div class="mx-2 p-1 col-4 col-lg-auto" style="border: 1px solid #ced4da;background-color: #e9ecef; border-radius: 5px; ">
                     <fa-icon [icon]="faUser"></fa-icon> Bonjour <b>{{infosJoueur.pseudo}}</b>
                 </div>
+            -->
+
                 <div class="col-2">
                     <button class="btn btn-outline-danger" (click)="seDeconnecter()">Deconnexion</button>
                 </div>

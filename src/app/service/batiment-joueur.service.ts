@@ -15,7 +15,9 @@ export class BatimentJoueurService {
 
   constructor(private http: HttpClient) { }
 
-  listerMesBatiments(joueur: Joueur): Observable<MesBatiments[]> {
-    return this.http.get<MesBatiments[]>(`${URL_BACKEND}/joueur=`+joueur);
+  listerMesBatiments(idJoueur: number): Observable<MesBatiments[]> {
+    return this.http.get<MesBatiments[]>(`${URL_BACKEND}/idJoueur?idJoueur=`+idJoueur);
   }
+
+  
 }

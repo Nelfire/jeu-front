@@ -32,9 +32,10 @@ export class MonCampementComponent implements OnInit {
     this.authSrv.verifierAuthentification().subscribe(
       (etatConnexion) => {
         // Récupération liste des batiments du joueur
-        this.batimentJoueurService.listerMesBatiments(etatConnexion).subscribe(
+        this.batimentJoueurService.listerMesBatiments(etatConnexion.id).subscribe(
           (mesBatiments) => {
             this.listeMesBatiments = mesBatiments;
+            console.log("Coucou : "+etatConnexion.id)
           }
         )
       }
