@@ -6,6 +6,9 @@ import { Role } from '../models/role';
 export class Joueur {
 
   /** icone du joueur **/
+  id: number;
+  
+  /** icone du joueur **/
   icone: string;
 
   /** pseudo du joueur **/

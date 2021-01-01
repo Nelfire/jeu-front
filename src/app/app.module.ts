@@ -36,6 +36,7 @@ import { GuildeComponent } from './social/guilde/guilde.component';
 import { ClassementJoueursComponent } from './social/classement-joueurs/classement-joueurs.component';
 import { CampementService } from './service/campement.service';
 import { BatimentService } from './service/batiment.service';
+import { BatimentJoueurService } from './service/batiment-joueur.service';
 
 
 @NgModule({
@@ -78,6 +79,7 @@ import { BatimentService } from './service/batiment.service';
     CompetenceService,
     CampementService,
     BatimentService,
+    BatimentJoueurService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

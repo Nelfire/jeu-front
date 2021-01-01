@@ -1,2 +1,35 @@
-batiments : <p>{{listeBatiments|json}}</p>
-batiments : <p>{{listeBatiments}}</p>
+
+<h3>
+    LISTE BATIMENTS
+</h3>
+<div class="row no-gutters">
+	<div class="col-md-4" *ngFor="let batiment of listeBatiments">
+		<a href='detailCollegue/{{batiment.libelle}}'
+			class="border d-flex justify-content-center align-items-center">
+			<img src="{{batiment.logo}}" alt="" class="rounded img-fluid" style="width: 150px;height: 150px;" />
+			<div class="overlay"></div>
+			<div class="text text-center">
+				<h3>{{batiment.libelle}}</h3>
+				<span class="tag">{{batiment.descriptif}}</span>
+			</div>
+		</a>
+	</div>
+</div>
+
+{{listeMesBatiments|json}}
+<h3>
+    MES BATIMENTS
+</h3>
+<div class="row no-gutters">
+	<div class="col-md-4" *ngFor="let mesBatiments of listeMesBatiments">
+		<a href='detailCollegue/{{mesBatiments.libelle}}'
+			class="border d-flex justify-content-center align-items-center">
+			<img src="{{mesBatiments.logo}}" alt="" class="rounded img-fluid" style="width: 150px;height: 150px;" />
+			<div class="overlay"></div>
+			<div class="text text-center">
+				<h3>{{mesBatiments.libelle}}</h3>
+				<span class="tag">{{mesBatiments.descriptif}}</span>
+			</div>
+		</a>
+	</div>
+</div>
