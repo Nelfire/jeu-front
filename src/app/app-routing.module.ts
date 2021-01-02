@@ -20,6 +20,7 @@ import { MonCampementComponent } from './campement/mon-campement/mon-campement.c
 import { MonArmeeComponent } from './armee/mon-armee/mon-armee.component';
 import { GuildeComponent } from './social/guilde/guilde.component';
 import { ClassementJoueursComponent } from './social/classement-joueurs/classement-joueurs.component';
+import { DetailBatimentComponent } from './batiment/detail-batiment/detail-batiment.component';
 
 const routes: Routes = [
   // canActivate: [StatutConnecteService] ==> Permet de verifier si l'utilisateur est connecte
@@ -43,6 +44,9 @@ const routes: Routes = [
   { path: 'armee', component: MonArmeeComponent, canActivate: [StatutConnecteService] },
   { path: 'guilde', component: GuildeComponent, canActivate: [StatutConnecteService] },
   { path: 'classement-joueurs', component: ClassementJoueursComponent, canActivate: [StatutConnecteService] },
+  
+  // ------------ BATIMENTS --------------
+  { path: 'batiment/detail-batiment/:idTypeBatiment', component: DetailBatimentComponent, canActivate: [StatutConnecteService] },
   
   { path: '', redirectTo: '/accueil', pathMatch: 'full' },
   { path: 'accesRefuse', component: AccesRefuseComponent, canActivate: [StatutConnecteService] },

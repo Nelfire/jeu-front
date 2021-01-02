@@ -1,30 +1,37 @@
-
-<h3>
-    LISTE BATIMENTS
-</h3>
+<div class="row justify-content-center">
+    <div class="col-auto mb-4" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
+        <h2>Liste Bâtiments</h2>
+    </div>
+</div>
 <div class="row no-gutters">
 	<div class="col-md-4" *ngFor="let batiment of listeBatiments">
-		<a href='detailCollegue/{{batiment.libelle}}'
+		<a 
 			class="border d-flex justify-content-center align-items-center">
 			<img src="{{batiment.icone}}" alt="" class="rounded img-fluid" style="width: 150px;height: 150px;" />
 			<div class="overlay"></div>
 			<div class="text text-center">
 				<h3>{{batiment.libelle}}</h3>
-				<span class="tag">{{batiment.descriptif}}</span>
+				<span class="tag">{{batiment.descriptif}}</span><br>
+				
+				<a routerLink="../batiment/detail-batiment/{{batiment.idTypeBatiment}}"><button class="btn btn-info">
+					 Détails
+				</button>
+			</a>
 			</div>
 		</a>
 	</div>
 </div>
 
-{{listeMesBatiments|json}}
-<h3>
-    MES BATIMENTS
-</h3>
+<div class="row justify-content-center">
+    <div class="col-auto mb-4" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
+        <h2>Mes Bâtiments</h2>
+    </div>
+</div>
 <div class="row no-gutters">
 	<div class="col-md-4" *ngFor="let mesBatiments of listeMesBatiments">
-		<a href='detailCollegue/{{mesBatiments.libelle}}'
+		<a href='#'
 			class="border d-flex justify-content-center align-items-center">
-			<img src="../../../images/{{mesBatiments['batiment'].icone}}" alt="" class="rounded img-fluid" style="width: 150px;height: 150px;" />
+			<img src="{{mesBatiments['batiment'].icone}}" alt="" class="rounded img-fluid" style="width: 150px;height: 150px;" />
 			<div class="overlay"></div>
 			<div class="text text-center">
 				<h3>{{mesBatiments["batiment"].libelle}}</h3>
@@ -36,7 +43,8 @@
 				<span class="tag">Cout Or : {{mesBatiments["coutOrAmelioration"]}}</span><br>
 				<span class="tag">Cout Nourriture : {{mesBatiments["coutNourritureAmelioration"]}}</span><br>
 				<span class="tag">Ouvriers Necessaire : {{mesBatiments["ouvrierNecessaireAmelioration"]}}</span><br>
-
+				<button class="btn btn-success mr-2">Améliorer</button> 
+				<button class="btn btn-info">Détails</button>
 			</div>
 		</a>
 	</div>

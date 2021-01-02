@@ -16,4 +16,8 @@ export class BatimentService {
   listerBatiments(): Observable<Batiment[]> {
     return this.http.get<Batiment[]>(`${URL_BACKEND}`);
   }
+  
+  detailsBatiment(idTypeBatiment: Number): Observable<Batiment> {
+    return this.http.get<Batiment>(`${URL_BACKEND}/idTypeBatiment?idTypeBatiment=`+idTypeBatiment);
+  }
 }

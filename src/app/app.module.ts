@@ -37,6 +37,7 @@ import { ClassementJoueursComponent } from './social/classement-joueurs/classeme
 import { CampementService } from './service/campement.service';
 import { BatimentService } from './service/batiment.service';
 import { BatimentJoueurService } from './service/batiment-joueur.service';
+import { DetailBatimentComponent } from './batiment/detail-batiment/detail-batiment.component';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import { BatimentJoueurService } from './service/batiment-joueur.service';
     MonCampementComponent,
     MonArmeeComponent,
     GuildeComponent,
-    ClassementJoueursComponent
+    ClassementJoueursComponent,
+    DetailBatimentComponent
   ],
   imports: [
     BrowserModule,

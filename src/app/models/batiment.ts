@@ -1,6 +1,7 @@
 export class Batiment {
     constructor(public id: number,
       public icone: string, 
+      public idTypeBatiment: number, 
       public libelle: string, 
       public descriptif: string, 
       public ouvrierNecessaireConstruction: number, 
