@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Joueur } from '../auth/auth.domains';
 import { Batiment } from '../models/batiment';
+import { BatimentCreation } from '../models/batiment-creation';
 import { MesBatiments } from '../models/mes-batiments';
 
 
@@ -17,16 +18,27 @@ export class BatimentJoueurService {
   constructor(private http: HttpClient) { }
 
   listerMesBatiments(idJoueur: number): Observable<MesBatiments[]> {
-    return this.http.get<MesBatiments[]>(`${URL_BACKEND}/idJoueur?idJoueur=`+idJoueur);
+    return this.http.get<MesBatiments[]>(`${URL_BACKEND}/idJoueur?idJoueur=` + idJoueur);
   }
 
-  creerBatiment(idTypeBatiment: number, idJoueur: number) {
-    return this.http.post(`${URL_BACKEND}`,
+  /*
+  creerAmeliorerBatiment(batiment: Batiment): Observable<BatimentCreation> {
+
+    console.log("Detail batiment : "+batiment);
+    return this.http.post<BatimentCreation>(`${URL_BACKEND}`,
     {
-      idTypeBatiment: `${idTypeBatiment}`,
-      idJoueur: `${idJoueur}`
+      batiment: `${batiment}`
     });
   }
+*/
+  creerBatimentJoueur(idBatiment: number): Observable<BatimentCreation> {
 
-  
+    console.log("Detail batiment : " + idBatiment);
+    return this.http.post<BatimentCreation>(`${URL_BACKEND}`,
+      {
+        idBatiment: `${idBatiment}`
+      });
+  }
+
+
 }
