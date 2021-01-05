@@ -27,16 +27,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
   faUser = faUser;
   iconeStopWatch = faStopwatch;
   iconeArbre = faTree;
-  
-  infosJoueur: JoueurInfos;
+
+
   // Initialisations
   counterSubscription: Subscription;
   secondes = 0;
   utilisateurConnecte: Joueur;
+  infosJoueur: JoueurInfos;
 
-  // Mise en place de l'observable pour r�cup�rer le role du joueur, pour l'affichage des onglets de navigation appropri�s
+  // Mise en place de l'observable pour récupérer le role du joueur, pour l'affichage des onglets de navigation appropriés
   joueurConnecte: Observable<Joueur>;
 
+  // Constructeur
   constructor(private authSrv: AuthService, private router: Router, private joueurService: JoueurService) { }
 
   ngOnInit() {
@@ -63,7 +65,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     this.joueurConnecte = this.authSrv.joueurConnecteObs;
 
-    // On v�rifie si l'utilisateur est bien connect�
+    // On vérifie si l'utilisateur est bien connecté
     this.authSrv.verifierAuthentification().subscribe(
       (etatConnexion) => {
         this.utilisateurConnecte = etatConnexion;
@@ -71,6 +73,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     );
   }
 
+  // Déconnexion
   seDeconnecter() {
     this.authSrv.seDeconnecter().subscribe(
       () => this.router.navigate(['/auth'])

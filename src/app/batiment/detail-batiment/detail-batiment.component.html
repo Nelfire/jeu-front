@@ -1,22 +1,49 @@
-<div class="text-center py-3">
-    <img src="{{batiment['icone']}}" alt=""
-         style="width: 20%;" />
+<div class="row justify-content-center">
+  <div class="col-auto mb-2" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
+    <h2>{{batiment['libelle']}}</h2>
+    <div *ngIf="modeConstructionAmelioration=='amelioration'" class="text-center">
+      <h4>Niveau <b>{{batimentJoueurPossede['niveau']}}</b></h4>
+    </div>
   </div>
-  <div>
-    <p class="lead card-header text-center py-3 mt-3"
-       style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px;">
+</div>
 
-      <b>Libelle : </b> {{batiment['libelle']}} <br>
-      <b>Descriptif : </b> {{batiment['descriptif']}} <br>
-      <b>Ouvrier necessaire pour la Construction : </b> {{batiment['ouvrierNecessaireConstruction']}}<br>
-      <b>Temps de Construction : </b> {{batiment['tempsDeConstruction']}}<br>
-      <b>Cout Pierre Construction : </b> {{batiment['coutPierreConstruction']}}<br>
-      <b>Cout Bois Construction : </b> {{batiment['coutBoisConstruction']}}<br>
-      <b>Cout Or Construction : </b> {{batiment['coutOrConstruction']}}<br>
-      <b>Cout Nourriture Construction : </b> {{batiment['coutNourritureConstruction']}}<br>
-      <b>Niveau HDV Necessaire pour la Construction : </b> {{batiment['niveauHotelDeVilleNecessaireConstruction']}}<br>
-      <button routerLink="../../modifierCollaborateur/{{batiment['libelle']}}" class="btn btn-success mt-3 mr-2" (click)="construire()">Construire</button>
-      <button routerLink="../../modifierCollaborateur/{{batiment['libelle']}}" class="btn btn-info mt-3 mr-2">Améliorer</button>
-      <button routerLink="../../../campement" class="btn btn-danger mt-3">Retour</button>
-    </p>
+<div *ngIf="modeConstructionAmelioration=='construction'">
+  <div class="text-center py-3">
+    <img src="{{batiment['icone']}}" alt="" style="width: 20%;" />
   </div>
+  <p class="lead card-header text-center py-3 mt-3"
+    style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px;">
+    <b>Descriptif : </b> {{batiment['descriptif']}}<br>
+    <b>Ouvrier necessaire pour la construction : </b> {{batiment['ouvrierNecessaireConstruction']}}<br>
+    <b>Temps de construction : </b> {{batiment['tempsDeConstruction']}} secondes<br>
+    <b>Coût <b>Pierre</b> construction : </b> {{batiment['coutPierreConstruction']}}<br>
+    <b>Coût <b>Bois</b> construction : </b> {{batiment['coutBoisConstruction']}}<br>
+    <b>Coût <b>Or</b> construction : </b> {{batiment['coutOrConstruction']}}<br>
+    <b>Coût <b>Nourriture</b> construction : </b> {{batiment['coutNourritureConstruction']}}<br>
+    <b>Niveau HDV Necessaire pour la Construction : </b> {{batiment['niveauHotelDeVilleNecessaireConstruction']}}<br>
+    <button routerLink="../../modifierCollaborateur/{{batiment['libelle']}}" class="btn btn-success mt-3 mr-2"
+      (click)="construire()">Construire</button>
+    <button routerLink="../../../campement" class="btn btn-danger mt-3">Retour</button>
+  </p>
+</div>
+
+<div *ngIf="modeConstructionAmelioration=='amelioration'">
+
+
+  <div class="text-center py-3">
+    <img src="{{batiment['icone']}}" alt="" style="width: 20%;" />
+  </div>
+  <p class="lead card-header text-center py-3 mt-3"
+    style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px;">
+    <b>Descriptif : </b> {{batiment['descriptif']}}<br>
+    <b>Ouvrier necessaire amélioration : </b> {{batiment['ouvrierNecessaireConstruction']}}<br>
+    <b>Temps d'amélioration : </b> {{batiment['tempsDeConstruction']}} secondes<br>
+    <b>Coût <b>Pierre</b> amélioration : </b> {{batiment['coutPierreConstruction']}}<br>
+    <b>Coût <b>Bois</b> amélioration : </b> {{batiment['coutBoisConstruction']}}<br>
+    <b>Coût <b>Or</b> amélioration : </b> {{batiment['coutOrConstruction']}}<br>
+    <b>Coût <b>Nourriture</b> amélioration : </b> {{batiment['coutNourritureConstruction']}}<br>
+    <button routerLink="../../modifierCollaborateur/{{batiment['libelle']}}" class="btn btn-info mt-3 mr-2"
+      (click)="ameliorer()">Améliorer</button>
+    <button routerLink="../../../campement" class="btn btn-danger mt-3">Retour</button>
+  </p>
+</div>

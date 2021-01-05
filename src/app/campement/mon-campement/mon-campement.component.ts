@@ -14,10 +14,13 @@ import { CampementService } from 'src/app/service/campement.service';
 })
 export class MonCampementComponent implements OnInit {
 
-  listeBatiments : Batiment[];
-  listeMesBatiments : MesBatiments[];
-  utilisateurConnecte : Joueur;
+  // Initialisations
+  listeBatiments: Batiment[];
+  listeMesBatiments: MesBatiments[];
+  utilisateurConnecte: Joueur;
+  niveauHdvJoueur: number;
 
+  // Constructeur
   constructor(private authSrv: AuthService, private batimentService: BatimentService, private batimentJoueurService: BatimentJoueurService) { }
 
   ngOnInit(): void {
@@ -26,18 +29,23 @@ export class MonCampementComponent implements OnInit {
       (value) => {
         this.listeBatiments = value;
       }
-    )
-    
-    // On v�rifie si l'utilisateur est bien connect�
+    );
+
+
+    // On vérifie si l'utilisateur est bien connecté
     this.authSrv.verifierAuthentification().subscribe(
       (etatConnexion) => {
         // Récupération liste des batiments du joueur
         this.batimentJoueurService.listerMesBatiments(etatConnexion.id).subscribe(
           (mesBatiments) => {
             this.listeMesBatiments = mesBatiments;
-            console.log("Coucou : "+etatConnexion.id)
+            this.listeMesBatiments.forEach(data => {
+              if(data.batiment.idTypeBatiment==1) {
+                this.niveauHdvJoueur = data.niveau;
+              }
+            });
           }
-        )
+        );
       }
     );
 
