@@ -9,7 +9,7 @@ export class MesBatiments {
       public tempsAmelioration: number, 
       public coutPierreAmelioration: number, 
       public coutBoisAmelioration: number, 
-      public coutOrAmelioration: number, 
+      public coutOreAmelioration: number, 
       public coutNourritureAmelioration: number, 
       public quantiteeStockagePierre: number, 
       public quantiteeStockageBois: number, 
@@ -17,7 +17,10 @@ export class MesBatiments {
       public quantiteeStockageNourriture: number, 
       public nombreExploitantsAutorise: number, 
       public nombreExploitantsActif: number,  
-      public apportRessourceHeure: number
+      public apportPierreHeure: number,  
+      public apportBoisHeure: number,  
+      public apportOreHeure: number,  
+      public apportNourritureHeure: number
       ) {
     }
   

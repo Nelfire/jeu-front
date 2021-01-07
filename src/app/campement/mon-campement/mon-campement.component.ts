@@ -19,6 +19,7 @@ export class MonCampementComponent implements OnInit {
   listeMesBatiments: MesBatiments[];
   utilisateurConnecte: Joueur;
   niveauHdvJoueur: number;
+  i: number;
 
   // Constructeur
   constructor(private authSrv: AuthService, private batimentService: BatimentService, private batimentJoueurService: BatimentJoueurService) { }
@@ -48,7 +49,6 @@ export class MonCampementComponent implements OnInit {
         );
       }
     );
-
   }
 
 }

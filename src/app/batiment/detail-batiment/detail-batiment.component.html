@@ -36,12 +36,25 @@
   <p class="lead card-header text-center py-3 mt-3"
     style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px;">
     <b>Descriptif : </b> {{batiment['descriptif']}}<br>
-    <b>Ouvrier necessaire amélioration : </b> {{batiment['ouvrierNecessaireConstruction']}}<br>
-    <b>Temps d'amélioration : </b> {{batiment['tempsDeConstruction']}} secondes<br>
-    <b>Coût <b>Pierre</b> amélioration : </b> {{batiment['coutPierreConstruction']}}<br>
-    <b>Coût <b>Bois</b> amélioration : </b> {{batiment['coutBoisConstruction']}}<br>
-    <b>Coût <b>Or</b> amélioration : </b> {{batiment['coutOrConstruction']}}<br>
-    <b>Coût <b>Nourriture</b> amélioration : </b> {{batiment['coutNourritureConstruction']}}<br>
+    <b>Ouvrier necessaire amélioration : </b> {{batimentJoueurPossede['ouvrierNecessaireAmelioration']}}<br>
+    <b>Temps d'amélioration : </b> {{batimentJoueurPossede['tempsAmelioration']}} secondes<br>
+    <b>Coût <b>Pierre</b> amélioration : </b> {{batimentJoueurPossede['coutPierreAmelioration']}}<br>
+    <b>Coût <b>Bois</b> amélioration : </b> {{batimentJoueurPossede['coutBoisAmelioration']}}<br>
+    <b>Coût <b>Or</b> amélioration : </b> {{batimentJoueurPossede['coutOreAmelioration']}}<br>
+    <b>Coût <b>Nourriture</b> amélioration : </b> {{batimentJoueurPossede['coutNourritureAmelioration']}}<br>
+    <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==3)">
+      <b>Apport <b>Pierre</b> actuel : </b> {{batimentJoueurPossede['apportPierreHeure']}}<br>
+      <b>Apport <b>Pierre</b> niveau suivant : </b> {{batimentJoueurPossede['apportPierreHeure']}}<br>
+    </ng-template>
+    <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==4)">
+      <b>Apport <b>Bois</b> niveau suivant : </b> {{batimentJoueurPossede['apportBoisHeure']}}<br>
+    </ng-template>
+    <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==5)">
+      <b>Apport <b>Or</b> niveau suivant : </b> {{batimentJoueurPossede['apportOreHeure']}}<br>
+    </ng-template>
+    <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==6)">
+      <b>Apport <b>Nourriture</b> niveau suivant : </b> {{batimentJoueurPossede['apportNourritureHeure']}}<br>
+    </ng-template>
     <button routerLink="../../modifierCollaborateur/{{batiment['libelle']}}" class="btn btn-info mt-3 mr-2"
       (click)="ameliorer()">Améliorer</button>
     <button routerLink="../../../campement" class="btn btn-danger mt-3">Retour</button>

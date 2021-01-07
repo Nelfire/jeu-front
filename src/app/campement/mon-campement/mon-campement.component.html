@@ -1,5 +1,28 @@
 Niveau hdv du joueur : {{niveauHdvJoueur}}
 <div class="row justify-content-center">
+	<div class="col-auto mb-4" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
+		<h2>Liste Bâtiments</h2>
+	</div>
+</div>
+
+<!-- Je boucle sur tous les batiments existants -->
+Tous les bâtiments :<br>
+<div *ngFor="let batiments of listeBatiments">
+	[x] - {{batiments.idTypeBatiment}}
+</div>
+<br>
+
+
+Bâtiments du joueur :<br>
+<div *ngFor="let mesBatiments of listeMesBatiments">
+	[v] - {{mesBatiments['batiment'].idTypeBatiment}}
+</div>
+<br>
+
+
+<!--
+Niveau hdv du joueur : {{niveauHdvJoueur}}
+<div class="row justify-content-center">
     <div class="col-auto mb-4" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
         <h2>Liste Bâtiments</h2>
     </div>
@@ -29,7 +52,7 @@ Niveau hdv du joueur : {{niveauHdvJoueur}}
 </div>
 <div class="row no-gutters">
 	<div class="col-md-4" *ngFor="let mesBatiments of listeMesBatiments">
-		<a href='#'
+		<a 
 			class="border d-flex justify-content-center align-items-center">
 			<img src="{{mesBatiments['batiment'].icone}}" alt="" class="rounded img-fluid" style="width: 150px;height: 150px;" />
 			<div class="overlay"></div>
@@ -37,12 +60,6 @@ Niveau hdv du joueur : {{niveauHdvJoueur}}
 				
 				<h3>{{mesBatiments["batiment"].libelle}}</h3>
 				<h4>{{mesBatiments["batiment"].descriptif}}</h4>
-				<span class="tag">Niveau : {{mesBatiments["niveau"]}}</span><br>
-				<span class="tag">Cout Pierre : {{mesBatiments["coutPierreAmelioration"]}}</span><br>
-				<span class="tag">Cout Bois : {{mesBatiments["coutBoisAmelioration"]}}</span><br>
-				<span class="tag">Cout Or : {{mesBatiments["coutOrAmelioration"]}}</span><br>
-				<span class="tag">Cout Nourriture : {{mesBatiments["coutNourritureAmelioration"]}}</span><br>
-				<span class="tag">Ouvriers Necessaire : {{mesBatiments["ouvrierNecessaireAmelioration"]}}</span><br>
 				<a routerLink="../batiment/detail-batiment/{{mesBatiments['batiment'].idTypeBatiment}}"><button class="btn btn-info">
 					Détails
 			   </button>
@@ -51,3 +68,4 @@ Niveau hdv du joueur : {{niveauHdvJoueur}}
 		</a>
 	</div>
 </div>
+-->
