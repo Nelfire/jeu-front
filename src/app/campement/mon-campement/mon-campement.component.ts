@@ -19,7 +19,9 @@ export class MonCampementComponent implements OnInit {
   listeMesBatiments: MesBatiments[];
   utilisateurConnecte: Joueur;
   niveauHdvJoueur: number;
+  lesBatiments = [];
   i: number;
+  flag:boolean;
 
   // Constructeur
   constructor(private authSrv: AuthService, private batimentService: BatimentService, private batimentJoueurService: BatimentJoueurService) { }
@@ -28,7 +30,8 @@ export class MonCampementComponent implements OnInit {
     // Récupération liste des tous les batiments existants
     this.batimentService.listerBatiments().subscribe(
       (value) => {
-        this.listeBatiments = value;
+        this.lesBatiments = value;
+       // this.listeBatiments = value;
       }
     );
 
@@ -39,6 +42,18 @@ export class MonCampementComponent implements OnInit {
         // Récupération liste des batiments du joueur
         this.batimentJoueurService.listerMesBatiments(etatConnexion.id).subscribe(
           (mesBatiments) => {
+            mesBatiments.forEach((monBatiment) => {
+
+              this.lesBatiments.forEach((unBatiment) => {
+                if(monBatiment.batiment.idTypeBatiment === unBatiment.idTypeBatiment) {
+                  unBatiment.joueur = true;
+                  console.log(unBatiment);
+                  this.flag = true;
+
+                }
+              });
+
+            });
             this.listeMesBatiments = mesBatiments;
             this.listeMesBatiments.forEach(data => {
               if(data.batiment.idTypeBatiment==1) {

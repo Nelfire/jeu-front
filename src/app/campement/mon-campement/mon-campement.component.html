@@ -1,3 +1,4 @@
+
 Niveau hdv du joueur : {{niveauHdvJoueur}}
 <div class="row justify-content-center">
 	<div class="col-auto mb-4" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
@@ -5,19 +6,25 @@ Niveau hdv du joueur : {{niveauHdvJoueur}}
 	</div>
 </div>
 
-<!-- Je boucle sur tous les batiments existants -->
+
 Tous les bâtiments :<br>
 <div *ngFor="let batiments of listeBatiments">
 	[x] - {{batiments.idTypeBatiment}}
 </div>
 <br>
-
+ 
 
 Bâtiments du joueur :<br>
 <div *ngFor="let mesBatiments of listeMesBatiments">
 	[v] - {{mesBatiments['batiment'].idTypeBatiment}}
 </div>
 <br>
+
+<div *ngIf="flag">
+	<div *ngFor="let list of lesBatiments" >
+		{{list.idTypeBatiment}} {{list.libelle}} - {{list.joueur}}
+	</div>
+</div>
 
 
 <!--
