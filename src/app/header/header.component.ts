@@ -52,7 +52,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
           (etatConnexion) => {
             this.utilisateurConnecte = etatConnexion;
             // J'actualise les informations du joueur (Ressources, ...)
-            this.joueurService.informationJoueurByEmail(etatConnexion.email).subscribe(
+            this.joueurService.informationJoueurByEmail().subscribe(
               (value) => {
                 this.infosJoueur = value;
               }

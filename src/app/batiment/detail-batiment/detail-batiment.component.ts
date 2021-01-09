@@ -56,7 +56,7 @@ export class DetailBatimentComponent implements OnInit {
         // Petite vérification.
         // Cas 1 : Le joueur ne possède pas le bâtiment
         // Cas 2 : Le joueur possède déjà le bâtiment
-        if(value.id==null) {
+        if (value.id == null) {
           this.modeConstructionAmelioration = "construction";
           this.etatBoutonConstruire = "disabled";
           this.etatBoutonAmeliorer = "";
@@ -76,23 +76,30 @@ export class DetailBatimentComponent implements OnInit {
       () => {
 
       }, (error) => {
-        this.messageErreur = "Il semble y avoir une erreur";
+        this.messageErreur = error.error.message;
       }, () => {
-        this.messageValidation = "Tout est ok";
+        this.messageValidation = "Construction lancée";
+        setTimeout(() => {
+          // Redirection au bout de 1,5 secondes
+          this.router.navigate(['campement']);
+        }, 1500);
       }
     );
   }
 
-    // Lancement construction du bâtiment
-    ameliorer() {
-      this.batimentJoueurService.ameliorerBatimentJoueur(this.batimentJoueurPossede.id).subscribe(
-        () => {
-        }, (error) => {
-          this.messageErreur = "Il semble y avoir une erreur";
-        }, () => {
-          this.messageValidation = "Tout est ok";
-        }
-      );
-      this.router.navigate(['campement']);
-    }
+  // Lancement construction du bâtiment
+  ameliorer() {
+    this.batimentJoueurService.ameliorerBatimentJoueur(this.batimentJoueurPossede.id).subscribe(
+      () => {
+      }, (error) => {
+        this.messageErreur = error.error.message;
+      }, () => {
+        this.messageValidation = "Amélioration lancée";
+        setTimeout(() => {
+          // Redirection au bout de 1,5 secondes
+          this.router.navigate(['campement']);
+        }, 1500);
+      }
+    );
+  }
 }

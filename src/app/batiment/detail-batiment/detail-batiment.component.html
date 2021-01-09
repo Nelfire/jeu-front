@@ -21,10 +21,15 @@
     <b>Coût <b>Or</b> construction : </b> {{batiment['coutOrConstruction']}}<br>
     <b>Coût <b>Nourriture</b> construction : </b> {{batiment['coutNourritureConstruction']}}<br>
     <b>Niveau HDV Necessaire pour la Construction : </b> {{batiment['niveauHotelDeVilleNecessaireConstruction']}}<br>
-    <button routerLink="../../modifierCollaborateur/{{batiment['libelle']}}" class="btn btn-success mt-3 mr-2"
-      (click)="construire()">Construire</button>
+    <button class="btn btn-success mt-3 mr-2" (click)="construire()">Construire</button>
     <button routerLink="../../../campement" class="btn btn-danger mt-3">Retour</button>
   </p>
+  <div class="alert alert-danger divCenter mt-3" style="text-align: center;" role="danger" *ngIf="messageErreur">
+    <b>{{messageErreur}}</b>
+  </div>
+  <div class="alert alert-success divCenter mt-3" role="success" *ngIf="messageValidation">
+    <b>{{messageValidation}}</b>
+  </div>
 </div>
 
 <div *ngIf="modeConstructionAmelioration=='amelioration'">
@@ -55,8 +60,13 @@
     <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==6)">
       <b>Apport <b>Nourriture</b> niveau suivant : </b> {{batimentJoueurPossede['apportNourritureHeure']}}<br>
     </ng-template>
-    <button routerLink="../../modifierCollaborateur/{{batiment['libelle']}}" class="btn btn-info mt-3 mr-2"
-      (click)="ameliorer()">Améliorer</button>
+    <button class="btn btn-info mt-3 mr-2" (click)="ameliorer()">Améliorer</button>
     <button routerLink="../../../campement" class="btn btn-danger mt-3">Retour</button>
   </p>
+  <div class="alert alert-danger divCenter mt-3" style="text-align: center;" role="danger" *ngIf="messageErreur">
+    <b>{{messageErreur}}</b>
+  </div>
+  <div class="alert alert-success divCenter mt-3" role="success" *ngIf="messageValidation">
+    <b>{{messageValidation}}</b>
+  </div>
 </div>

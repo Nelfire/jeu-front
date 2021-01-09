@@ -46,8 +46,8 @@ export class MonCampementComponent implements OnInit {
 
               this.lesBatiments.forEach((unBatiment) => {
                 if(monBatiment.batiment.idTypeBatiment === unBatiment.idTypeBatiment) {
-                  unBatiment.joueur = true;
-                  console.log(unBatiment);
+                  unBatiment.joueurLePossede = true;
+                  unBatiment.niveauBatimentDuJoueur = monBatiment.niveau;
                   this.flag = true;
 
                 }

@@ -17,7 +17,7 @@ export class VisualiserJoueurComponent implements OnInit {
   ngOnInit(): void {
     this.email = this.routerLinkActive.snapshot.params['email'];
 
-    this.joueurService.informationJoueurByEmail(this.routerLinkActive.snapshot.params['email']).subscribe(
+    this.joueurService.informationJoueurByEmail().subscribe(
       (joueurRecupere) => {
         this.joueur = joueurRecupere;
       }, (error) => {

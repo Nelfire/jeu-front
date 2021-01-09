@@ -1,78 +1,82 @@
+<!-- https://codemyui.com/responsive-honeycomb-grid-layout-in-pure-css/ -->
+<div class="row justify-content-center">
+	<div class="col-auto mb-4" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
+		<h2>Bâtiments</h2>
+	</div>
+</div>
+<div>
+	<ul class="honeycomb" lang="es">
+		<li class="honeycomb-cell" *ngFor="let batiment of lesBatiments">
+			<!-- CAS JOUEUR POSSEDE LE BATIMENT -->
+			<div *ngIf="batiment.joueurLePossede; else nePossedePas;">
+				<a routerLink="../batiment/detail-batiment/{{batiment.idTypeBatiment}}">
+					<div class="niveau"><u>Niveau {{batiment.niveauBatimentDuJoueur}}</u></div>
+					<img class="honeycomb-cell__image" src="{{batiment.icone}}">
+					<div class="honeycomb-cell__title">{{batiment.libelle}}</div>
+					<br>
+					<button class="btn btn-info">
+						Améliorer
+					</button>
+				</a>
+			</div>
+			<!-- CAS JOUEUR NE POSSEDE PAS LE BATIMENT -->
+			<ng-template #nePossedePas>
+				<div>
+					<img class="honeycomb-cell__image" src="{{batiment.icone}}">
+					<div class="honeycomb-cell__title">{{batiment.libelle}}</div>
+					<br>
+					<!-- CAS CONSTRUCTION IMPOSSIBLE -->
+					<div
+						*ngIf="batiment.niveauHotelDeVilleNecessaireConstruction>niveauHdvJoueur;else constructionPossible">
+						<button class="btn btn-danger">
+							Hdv {{batiment.niveauHotelDeVilleNecessaireConstruction}} necessaire
+						</button>
+					</div>
+					<!-- CAS CONSTRUCTION POSSIBLE -->
+					<ng-template #constructionPossible>
+						<a routerLink="../batiment/detail-batiment/{{batiment.idTypeBatiment}}">
+							<button class="btn btn-success">Construire</button>
+						</a>
+					</ng-template>
+				</div>
+			</ng-template>
+		</li>
+	</ul>
+</div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- https://codemyui.com/responsive-honeycomb-grid-layout-in-pure-css/ 
 Niveau hdv du joueur : {{niveauHdvJoueur}}
 <div class="row justify-content-center">
 	<div class="col-auto mb-4" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
 		<h2>Liste Bâtiments</h2>
 	</div>
 </div>
+<div>
+	<ul class="honeycomb" lang="es">
+		<li class="honeycomb-cell" *ngFor="let batiment of lesBatiments">
+			<img class="honeycomb-cell__image" src="{{batiment.icone}}">
+			<div class="honeycomb-cell__title">{{batiment.libelle}}</div>
+		</li>
 
-
-Tous les bâtiments :<br>
-<div *ngFor="let batiments of listeBatiments">
-	[x] - {{batiments.idTypeBatiment}}
-</div>
-<br>
- 
-
-Bâtiments du joueur :<br>
-<div *ngFor="let mesBatiments of listeMesBatiments">
-	[v] - {{mesBatiments['batiment'].idTypeBatiment}}
-</div>
-<br>
-
-<div *ngIf="flag">
-	<div *ngFor="let list of lesBatiments" >
-		{{list.idTypeBatiment}} {{list.libelle}} - {{list.joueur}}
-	</div>
+		<li class="honeycomb-cell honeycomb__placeholder"></li>
+	</ul>
 </div>
 
-
-<!--
-Niveau hdv du joueur : {{niveauHdvJoueur}}
-<div class="row justify-content-center">
-    <div class="col-auto mb-4" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
-        <h2>Liste Bâtiments</h2>
-    </div>
-</div>
-<div class="row no-gutters">
-	<div class="col-md-4" *ngFor="let batiment of listeBatiments">
-		<a 
-			class="border d-flex justify-content-center align-items-center">
-			<img src="{{batiment.icone}}" alt="" class="rounded img-fluid" style="width: 150px;height: 150px;" />
-			<div class="overlay"></div>
-			<div class="text text-center">
-				<h3>{{batiment.libelle}}</h3>
-				<span class="tag">{{batiment.descriptif}}</span><br>
-				<a routerLink="../batiment/detail-batiment/{{batiment.idTypeBatiment}}"><button class="btn btn-info">
-					 Détails
-				</button>
-			</a>
-			</div>
-		</a>
-	</div>
-</div>
-
-<div class="row justify-content-center">
-    <div class="col-auto mb-4" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
-        <h2>Mes Bâtiments</h2>
-    </div>
-</div>
-<div class="row no-gutters">
-	<div class="col-md-4" *ngFor="let mesBatiments of listeMesBatiments">
-		<a 
-			class="border d-flex justify-content-center align-items-center">
-			<img src="{{mesBatiments['batiment'].icone}}" alt="" class="rounded img-fluid" style="width: 150px;height: 150px;" />
-			<div class="overlay"></div>
-			<div class="text text-center">
-				
-				<h3>{{mesBatiments["batiment"].libelle}}</h3>
-				<h4>{{mesBatiments["batiment"].descriptif}}</h4>
-				<a routerLink="../batiment/detail-batiment/{{mesBatiments['batiment'].idTypeBatiment}}"><button class="btn btn-info">
-					Détails
-			   </button>
-			   </a>
-			</div>
-		</a>
-	</div>
-</div>
 -->

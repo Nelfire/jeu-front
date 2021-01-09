@@ -41,7 +41,7 @@ export class ModifierJoueurComponent implements OnInit {
 
     // Données Joueur
     this.email = this.activatedRoute.snapshot.params['email'];
-    this.joueurService.informationJoueurByEmail(this.activatedRoute.snapshot.params['email']).subscribe(
+    this.joueurService.informationJoueurByEmail().subscribe(
       (donnees) => {
         this.joueur = donnees;
         this.initForm();

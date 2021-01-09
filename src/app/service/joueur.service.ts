@@ -24,7 +24,7 @@ export class JoueurService {
     return this.http.get<JoueurInfos[]>(`${URL_BACKEND}/all`);
   }
 
-  informationJoueurByEmail(email: string) {
-    return this.http.get<JoueurInfos>(`${URL_BACKEND}/email?email=` + email);
+  informationJoueurByEmail() {
+    return this.http.get<JoueurInfos>(`${URL_BACKEND}/infosJoueur`);
   }
 }
