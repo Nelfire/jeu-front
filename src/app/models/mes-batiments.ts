@@ -20,7 +20,9 @@ export class MesBatiments {
       public apportPierreHeure: number,  
       public apportBoisHeure: number,  
       public apportOreHeure: number,  
-      public apportNourritureHeure: number
+      public apportNourritureHeure: number,
+      public dateDebutConstruction: number,
+      public dateFinConstruction: number
       ) {
     }
   

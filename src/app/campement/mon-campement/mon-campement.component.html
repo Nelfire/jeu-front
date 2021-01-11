@@ -10,13 +10,23 @@
 			<!-- CAS JOUEUR POSSEDE LE BATIMENT -->
 			<div *ngIf="batiment.joueurLePossede; else nePossedePas;">
 				<a routerLink="../batiment/detail-batiment/{{batiment.idTypeBatiment}}">
-					<div class="niveau"><u>Niveau {{batiment.niveauBatimentDuJoueur}}</u></div>
+					<div class="niveau">
+						<u>Niveau {{batiment.niveauBatimentDuJoueur}}</u>
+					</div>
 					<img class="honeycomb-cell__image" src="{{batiment.icone}}">
 					<div class="honeycomb-cell__title">{{batiment.libelle}}</div>
 					<br>
-					<button class="btn btn-info">
-						Améliorer
-					</button>
+					<div *ngIf="batiment.flagEnCoursDeTravail; else boutonLibre;">
+						<button class="btn btn-info">
+							Amélioration en cours<br>
+							<span *ngIf="batiment.date">Restant : {{batiment.date}}</span>
+						</button>
+					</div>
+					<ng-template #boutonLibre>
+						<button class="btn btn-info">
+							Améliorer
+						</button>
+					</ng-template>
 				</a>
 			</div>
 			<!-- CAS JOUEUR NE POSSEDE PAS LE BATIMENT -->
