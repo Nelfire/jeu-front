@@ -104,7 +104,8 @@ export class DetailBatimentComponent implements OnInit {
 
           // ** Actualisation chaques secondes ** */
           // Timer temps amélioration restant
-          if (this.secondesRestantesAmelioration > 0) {
+          if (this.secondesRestantesAmelioration > 1) {
+            console.log(this.secondesRestantesAmelioration);
             // Définis l'interval de l'appel à 1000 ms (1 seconde)
             const compteur = Observable.interval(1000);
             this.counterSubscription = compteur.subscribe(
@@ -115,12 +116,15 @@ export class DetailBatimentComponent implements OnInit {
                 var date = new Date(null);
                 date.setSeconds(this.secondesRestantesAmelioration);
                 this.result = date.toISOString().substr(11, 8);
+                console.log(this.secondesRestantesAmelioration);
+                if(this.secondesRestantesAmelioration < 1) {
+                  setTimeout(() => {
+                    // Redirection au bout de 1,5 secondes
+                    this.router.navigate(['campement']);
+                  }, 2000);
+                }
               }
             );
-          }
-          else // Construction terminée
-          {
-
           }
         }
       }
@@ -221,6 +225,12 @@ export class DetailBatimentComponent implements OnInit {
       } else {
         return 'green';
       }
+    }
+
+    ngOnDestroy():void {
+      if(this.counterSubscription){
+        this.counterSubscription.unsubscribe();
+       } 
     }
 
 }

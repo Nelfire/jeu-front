@@ -97,4 +97,10 @@ export class MonCampementComponent implements OnInit {
     );
   }
 
+  ngOnDestroy():void {
+    if(this.counterSubscription){
+      this.counterSubscription.unsubscribe();
+     } 
+  }
+
 }

@@ -9,6 +9,7 @@
 		<li class="honeycomb-cell" *ngFor="let batiment of lesBatiments">
 			<!-- CAS JOUEUR POSSEDE LE BATIMENT -->
 			<div *ngIf="batiment.joueurLePossede; else nePossedePas;">
+				<!-- Données du bâtiment -->
 				<a routerLink="../batiment/detail-batiment/{{batiment.idTypeBatiment}}">
 					<div class="niveau">
 						<u>Niveau {{batiment.niveauBatimentDuJoueur}}</u>
@@ -16,13 +17,25 @@
 					<img class="honeycomb-cell__image" src="{{batiment.icone}}">
 					<div class="honeycomb-cell__title">{{batiment.libelle}}</div>
 					<br>
-					<div *ngIf="batiment.flagEnCoursDeTravail; else boutonLibre;">
-						<button class="btn btn-info">
-							Amélioration en cours<br>
-							<span *ngIf="batiment.date">Restant : {{batiment.date}}</span>
-						</button>
+					<!-- Batiment en cours de construction / amélioration -->
+					<div *ngIf="batiment.flagEnCoursDeTravail; else pasDeTravailEnCours;">
+						<!-- Si bâtiment en cours d'amélioration + pas encore terminé -->
+						<div *ngIf="batiment.secondesRestantesAmelioration > 1; else travailTermine;">
+							<button class="btn btn-info">
+								Amélioration en cours<br>
+								<span *ngIf="batiment.date">Restant : {{batiment.date}}</span>
+
+							</button>
+						</div>
+						<!-- Si bâtiment en cours d'amélioration + travail terminé -->
+						<ng-template #travailTermine>
+							<button class="btn btn-info">
+								Amélioration terminée
+							</button>
+						</ng-template>
 					</div>
-					<ng-template #boutonLibre>
+					<!-- Si bâtiment n'est pas en cours d'amélioration -->
+					<ng-template #pasDeTravailEnCours>
 						<button class="btn btn-info">
 							Améliorer
 						</button>
@@ -53,40 +66,3 @@
 		</li>
 	</ul>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- https://codemyui.com/responsive-honeycomb-grid-layout-in-pure-css/ 
-Niveau hdv du joueur : {{niveauHdvJoueur}}
-<div class="row justify-content-center">
-	<div class="col-auto mb-4" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
-		<h2>Liste Bâtiments</h2>
-	</div>
-</div>
-<div>
-	<ul class="honeycomb" lang="es">
-		<li class="honeycomb-cell" *ngFor="let batiment of lesBatiments">
-			<img class="honeycomb-cell__image" src="{{batiment.icone}}">
-			<div class="honeycomb-cell__title">{{batiment.libelle}}</div>
-		</li>
-
-		<li class="honeycomb-cell honeycomb__placeholder"></li>
-	</ul>
-</div>
-
--->
