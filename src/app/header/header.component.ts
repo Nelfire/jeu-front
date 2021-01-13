@@ -11,6 +11,7 @@ import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 import { JoueurService } from '../service/joueur.service';
 import { JoueurInfos } from '../models/joueur-infos';
+import { BatimentJoueurService } from '../service/batiment-joueur.service';
 
 
 @Component({
@@ -30,20 +31,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
 
   // Initialisations
+  populationMaximaleJoueur: Number;
   counterSubscription: Subscription;
   secondes = 0;
   utilisateurConnecte: Joueur;
   infosJoueur: JoueurInfos;
 
+
   // Mise en place de l'observable pour récupérer le role du joueur, pour l'affichage des onglets de navigation appropriés
   joueurConnecte: Observable<Joueur>;
 
   // Constructeur
-  constructor(private authSrv: AuthService, private router: Router, private joueurService: JoueurService) { }
+  constructor(private batimentJoueurService: BatimentJoueurService, private authSrv: AuthService, private router: Router, private joueurService: JoueurService) { }
 
   ngOnInit() {
-
-
     // ** Actualisation chaques secondes ** */
     const compteur = Observable.interval(1000);
     this.counterSubscription = compteur.subscribe(
@@ -71,6 +72,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.utilisateurConnecte = etatConnexion;
       }
     );
+
+    // Récupération populations maximale joueur
+    this.batimentJoueurService.populationJoueur().subscribe(
+      (value) => {
+        this.populationMaximaleJoueur = value;
+      }, (error) => {
+        console.log(error);
+      }
+    )
   }
 
   // Déconnexion
@@ -84,4 +94,71 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.counterSubscription.unsubscribe();
   }
 
+  // Colorisation approche limite ressource (Pierre)
+  getColorApprocheLimitePierre() {
+    if ((this.infosJoueur.pierrePossession / this.infosJoueur.pierreMaximum) < 0.5) {
+      // Vert
+      return '#43CF01';
+    } else if ((this.infosJoueur.pierrePossession / this.infosJoueur.pierreMaximum) >= 0.5 && (this.infosJoueur.pierrePossession / this.infosJoueur.pierreMaximum) < 0.7) {
+      // Jaune
+      return '#D2CB04';
+    } else if ((this.infosJoueur.pierrePossession / this.infosJoueur.pierreMaximum) >= 0.7 && (this.infosJoueur.pierrePossession / this.infosJoueur.pierreMaximum) < 0.9) {
+      // Orange
+      return '#FF8B00';
+    } else {
+      // Rouge
+      return '#FF3600';
+    }
+  }
+
+  // Colorisation approche limite ressource (Bois)
+  getColorApprocheLimiteBois() {
+    if ((this.infosJoueur.boisPossession / this.infosJoueur.boisMaximum) < 0.5) {
+      // Vert
+      return '#43CF01';
+    } else if ((this.infosJoueur.boisPossession / this.infosJoueur.boisMaximum) >= 0.5 && (this.infosJoueur.boisPossession / this.infosJoueur.boisMaximum) < 0.7) {
+      // Jaune
+      return '#D2CB04';
+    } else if ((this.infosJoueur.boisPossession / this.infosJoueur.boisMaximum) >= 0.7 && (this.infosJoueur.boisPossession / this.infosJoueur.boisMaximum) < 0.9) {
+      // Orange
+      return '#FF8B00';
+    } else {
+      // Rouge
+      return '#FF3600';
+    }
+  }
+
+  // Colorisation approche limite ressource (Or)
+  getColorApprocheLimiteOr() {
+    if ((this.infosJoueur.orPossession / this.infosJoueur.orMaximum) < 0.5) {
+      // Vert
+      return '#43CF01';
+    } else if ((this.infosJoueur.orPossession / this.infosJoueur.orMaximum) >= 0.5 && (this.infosJoueur.orPossession / this.infosJoueur.orMaximum) < 0.7) {
+      // Jaune
+      return '#D2CB04';
+    } else if ((this.infosJoueur.orPossession / this.infosJoueur.orMaximum) >= 0.7 && (this.infosJoueur.orPossession / this.infosJoueur.orMaximum) < 0.9) {
+      // Orange
+      return '#FF8B00';
+    } else {
+      // Rouge
+      return '#FF3600';
+    }
+  }
+
+  // Colorisation approche limite ressource (Nourriture)
+  getColorApprocheLimiteNourriture() {
+    if ((this.infosJoueur.nourriturePossession / this.infosJoueur.nourritureMaximum) < 0.5) {
+      // Vert
+      return '#43CF01';
+    } else if ((this.infosJoueur.nourriturePossession / this.infosJoueur.nourritureMaximum) >= 0.5 && (this.infosJoueur.nourriturePossession / this.infosJoueur.nourritureMaximum) < 0.7) {
+      // Jaune
+      return '#D2CB04';
+    } else if ((this.infosJoueur.nourriturePossession / this.infosJoueur.nourritureMaximum) >= 0.7 && (this.infosJoueur.nourriturePossession / this.infosJoueur.nourritureMaximum) < 0.9) {
+      // Orange
+      return '#FF8B00';
+    } else {
+      // Rouge
+      return '#FF3600';
+    }
+  }
 }

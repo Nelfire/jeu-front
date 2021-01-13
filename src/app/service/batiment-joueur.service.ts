@@ -18,6 +18,11 @@ export class BatimentJoueurService {
 
   constructor(private http: HttpClient) { }
 
+  // Recherche la population maximale du joueur (Recherche du bâtiment chaumiere)
+  populationJoueur():Observable<Number> {
+    return this.http.get<Number>(`${URL_BACKEND}/popultationMaximale`);
+  }
+
   // Lister les bâtiments que possède le joueur
   listerMesBatiments(idJoueur: number): Observable<MesBatiments[]> {
     return this.http.get<MesBatiments[]>(`${URL_BACKEND}/idJoueur?idJoueur=` + idJoueur);
