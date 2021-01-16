@@ -24,6 +24,7 @@ import { DetailBatimentComponent } from './batiment/detail-batiment/detail-batim
 import { CreationUniteeComponent } from './administration/creation-unitee/creation-unitee.component';
 import { MenuAdministrationComponent } from './administration/menu-administration/menu-administration.component';
 import { ModificationUniteeComponent } from './administration/modification-unitee/modification-unitee.component';
+import { DetailUniteeComponent } from './unitee/detail-unitee/detail-unitee.component';
 
 const routes: Routes = [
   // canActivate: [StatutConnecteService] ==> Permet de verifier si l'utilisateur est connecte
@@ -58,6 +59,10 @@ const routes: Routes = [
   { path: 'menuAdministration', component: MenuAdministrationComponent, canActivate: [StatutAdministrateurService]},
   { path: 'creationUnitee', component: CreationUniteeComponent, canActivate: [StatutAdministrateurService]},
   { path: 'modificationUnitee/:id', component: ModificationUniteeComponent, canActivate: [StatutAdministrateurService]},
+
+  // ------------- UNITEE ---------------
+  
+  { path: 'unitee/detail-unitee/:id', component: DetailUniteeComponent, canActivate: [StatutConnecteService] },
 
   // Cas url inexistant
   { path: 'not-found', component: FourOhFourComponent , canActivate: [StatutConnecteService]},

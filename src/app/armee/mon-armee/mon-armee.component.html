@@ -1,1 +1,20 @@
-<p>mon-armee works!</p>
+<div class="row justify-content-center">
+    <div class="col-auto mb-4" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
+        <h2>Unitées</h2>
+    </div>
+</div>
+<div>
+    <ul class="honeycomb" lang="es">
+        <li class="honeycomb-cell" *ngFor="let unitee of listeUnitees">
+            <a routerLink="../unitee/detail-unitee/{{unitee.id}}">
+                <div>
+                    <img class="honeycomb-cell__image" src="{{unitee.icone}}">
+                    <div class="honeycomb-cell__title">{{unitee.libelle}}</div>
+                    <br>
+                </div>
+
+                <button class="btn btn-info">Créer</button>
+            </a>
+        </li>
+    </ul>
+</div>

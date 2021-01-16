@@ -1,0 +1,81 @@
+<div class="row justify-content-center">
+    <div class="col-auto mb-2" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
+        <div class="text-center">
+            <h4>Quantitée : <b>XXXXX</b></h4>
+        </div>
+    </div>
+</div>
+<!-- Affichage mode construction -->
+<div>
+    <div class="text-center py-3">
+        <img src="{{unitee['icone']}}" alt="" style="width: 20%;" />
+    </div>
+    <div class="lead card-header text-center py-3 mt-3"
+        style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px;">
+        <b>Descriptif : </b> {{unitee['descriptif']}}<br>
+
+        <!-- Coût de la construction -->
+        <b>Coût <b>Pierre</b> : </b>
+        <span>
+            <b>{{unitee['coutPierreFormation']}}</b>
+        </span><br>
+
+        <b>Coût <b>Bois</b> : </b>
+        <span>
+            <b>{{unitee['coutBoisFormation']}}</b>
+        </span><br>
+
+        <b>Coût <b>Or</b> : </b>
+        <span>
+            <b>{{unitee['coutOrFormation']}}</b>
+        </span><br>
+
+        <b>Coût <b>Nourriture</b> : </b>
+        <span>
+            <b>{{unitee['coutNourritureFormation']}}</b>
+        </span><br>
+
+        <b>Coût <b>Humain</b> : </b>
+        <span>
+            <b>{{unitee['coutHumain']}}</b>
+        </span><br>
+
+        <b>Temps <b>Formation</b> : </b>
+        <span>
+            <b>{{unitee['tempsFormation']}} secondes</b>
+        </span><br>
+
+        <b><b>Vie</b> : </b>
+        <span>
+            <b>{{unitee['vie']}}</b>
+        </span><br>
+
+        <b><b>Attaque</b> : </b>
+        <span>
+            <b>{{unitee['attaque']}}</b>
+        </span><br>
+
+        <b><b>Portée</b> : </b>
+        <span>
+            <b>{{unitee['portee']}}</b>
+        </span><br>
+
+        <b><b>Armure</b> : </b>
+        <span>
+            <b>{{unitee['armure']}}</b>
+        </span><br>
+
+        <button class="btn btn-success mt-3 mr-2" (click)="produireUnitee()">
+            Entrainer
+        </button>
+        <button routerLink="../../../armee" class="btn btn-danger mt-3">
+            Retour
+        </button>
+    </div>
+    <div class="alert alert-danger divCenter mt-3" style="text-align: center;" role="danger" *ngIf="messageErreur">
+        <b>{{messageErreur}}</b>
+    </div>
+    <div class="alert alert-success divCenter mt-3" role="success" *ngIf="messageValidation">
+        <b>{{messageValidation}}</b>
+    </div>
+</div>

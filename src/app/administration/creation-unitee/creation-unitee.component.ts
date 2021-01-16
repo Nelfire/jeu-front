@@ -24,7 +24,7 @@ export class CreationUniteeComponent implements OnInit {
       (value) => {
         this.listeUnitees = value;
       }
-    )
+    );
   }
 
   initForm () {

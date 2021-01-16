@@ -11,6 +11,9 @@ import { UniteeService } from 'src/app/service/unitee.service';
 })
 export class ModificationUniteeComponent implements OnInit {
 
+  // Initialisations
+  messageValidation: string;
+  messageErreur: string;
   id: number;
   unitee: Unitee;
   formModificationUnitee: FormGroup;
@@ -52,7 +55,7 @@ export class ModificationUniteeComponent implements OnInit {
         this.unitee = value;
         this.initialiserFormulaire();
       }
-    )
+    );
   }
 
 

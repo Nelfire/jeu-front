@@ -42,6 +42,7 @@ import { CreationUniteeComponent } from './administration/creation-unitee/creati
 import { UniteeService } from './service/unitee.service';
 import { MenuAdministrationComponent } from './administration/menu-administration/menu-administration.component';
 import { ModificationUniteeComponent } from './administration/modification-unitee/modification-unitee.component';
+import { DetailUniteeComponent } from './unitee/detail-unitee/detail-unitee.component';
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import { ModificationUniteeComponent } from './administration/modification-unite
     DetailBatimentComponent,
     CreationUniteeComponent,
     MenuAdministrationComponent,
-    ModificationUniteeComponent
+    ModificationUniteeComponent,
+    DetailUniteeComponent
   ],
   imports: [
     BrowserModule,
