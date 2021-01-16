@@ -18,7 +18,7 @@ export class BatimentJoueurService {
 
   constructor(private http: HttpClient) { }
 
-  // Recherche la population maximale du joueur (Recherche du bâtiment chaumiere)
+  // Recherche la population maximale du joueur (Recherche du bâtiment chaumiere, hdv)
   populationJoueur():Observable<Number> {
     return this.http.get<Number>(`${URL_BACKEND}/popultationMaximale`);
   }
@@ -43,7 +43,6 @@ export class BatimentJoueurService {
 
   // Création d'une ligne "BatimentJoueur"
   ameliorerBatimentJoueur(idBatimentJoueur: number): Observable<BatimentAmelioration> {
-    console.log("Id du batiment qui va être amélioré : "+idBatimentJoueur);
     return this.http.put<BatimentAmelioration>(`${URL_BACKEND}/modification?id=` + idBatimentJoueur,
       {
         idBatimentJoueur: `${idBatimentJoueur}`

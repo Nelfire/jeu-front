@@ -38,6 +38,10 @@ import { CampementService } from './service/campement.service';
 import { BatimentService } from './service/batiment.service';
 import { BatimentJoueurService } from './service/batiment-joueur.service';
 import { DetailBatimentComponent } from './batiment/detail-batiment/detail-batiment.component';
+import { CreationUniteeComponent } from './administration/creation-unitee/creation-unitee.component';
+import { UniteeService } from './service/unitee.service';
+import { MenuAdministrationComponent } from './administration/menu-administration/menu-administration.component';
+import { ModificationUniteeComponent } from './administration/modification-unitee/modification-unitee.component';
 
 
 @NgModule({
@@ -62,7 +66,10 @@ import { DetailBatimentComponent } from './batiment/detail-batiment/detail-batim
     MonArmeeComponent,
     GuildeComponent,
     ClassementJoueursComponent,
-    DetailBatimentComponent
+    DetailBatimentComponent,
+    CreationUniteeComponent,
+    MenuAdministrationComponent,
+    ModificationUniteeComponent
   ],
   imports: [
     BrowserModule,
@@ -82,6 +89,7 @@ import { DetailBatimentComponent } from './batiment/detail-batiment/detail-batim
     CampementService,
     BatimentService,
     BatimentJoueurService,
+    UniteeService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

@@ -72,4 +72,8 @@ export class MessageComponent implements OnInit {
     this.formAjouterMessage.get('contenu').reset();
   }
 
+  ngOnDestroy() {
+    this.counterSubscription.unsubscribe();
+  }
+
 }

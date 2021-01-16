@@ -21,6 +21,9 @@ import { MonArmeeComponent } from './armee/mon-armee/mon-armee.component';
 import { GuildeComponent } from './social/guilde/guilde.component';
 import { ClassementJoueursComponent } from './social/classement-joueurs/classement-joueurs.component';
 import { DetailBatimentComponent } from './batiment/detail-batiment/detail-batiment.component';
+import { CreationUniteeComponent } from './administration/creation-unitee/creation-unitee.component';
+import { MenuAdministrationComponent } from './administration/menu-administration/menu-administration.component';
+import { ModificationUniteeComponent } from './administration/modification-unitee/modification-unitee.component';
 
 const routes: Routes = [
   // canActivate: [StatutConnecteService] ==> Permet de verifier si l'utilisateur est connecte
@@ -50,6 +53,12 @@ const routes: Routes = [
   
   { path: '', redirectTo: '/accueil', pathMatch: 'full' },
   { path: 'accesRefuse', component: AccesRefuseComponent, canActivate: [StatutConnecteService] },
+  
+  // ------------ ADMINISTRATION --------------
+  { path: 'menuAdministration', component: MenuAdministrationComponent, canActivate: [StatutAdministrateurService]},
+  { path: 'creationUnitee', component: CreationUniteeComponent, canActivate: [StatutAdministrateurService]},
+  { path: 'modificationUnitee/:id', component: ModificationUniteeComponent, canActivate: [StatutAdministrateurService]},
+
   // Cas url inexistant
   { path: 'not-found', component: FourOhFourComponent , canActivate: [StatutConnecteService]},
   
