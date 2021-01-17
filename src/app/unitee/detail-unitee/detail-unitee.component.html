@@ -65,9 +65,15 @@
             <b>{{unitee['armure']}}</b>
         </span><br>
 
-        <button class="btn btn-success mt-3 mr-2" (click)="produireUnitee()">
-            Entrainer
-        </button>
+        <form [formGroup]="formCreationUnitee" (ngSubmit)="produireUnitee()">
+            <div class="col-sm-10 center">
+                <input type="text" class="form-control" class="quantitee" id="quantitee" rows="3"
+                    formControlName="quantitee" />
+            </div>
+            <button class="btn btn-success mt-3 mr-2" [disabled]="formCreationUnitee.invalid">
+                Entrainer
+            </button>
+        </form>
         <button routerLink="../../../armee" class="btn btn-danger mt-3">
             Retour
         </button>

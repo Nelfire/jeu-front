@@ -43,6 +43,7 @@ import { UniteeService } from './service/unitee.service';
 import { MenuAdministrationComponent } from './administration/menu-administration/menu-administration.component';
 import { ModificationUniteeComponent } from './administration/modification-unitee/modification-unitee.component';
 import { DetailUniteeComponent } from './unitee/detail-unitee/detail-unitee.component';
+import { ArmeeService } from './service/armee-joueur.service';
 
 
 @NgModule({
@@ -92,6 +93,7 @@ import { DetailUniteeComponent } from './unitee/detail-unitee/detail-unitee.comp
     BatimentService,
     BatimentJoueurService,
     UniteeService,
+    ArmeeService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Unitee } from 'src/app/models/unitee';
+import { ArmeeService } from 'src/app/service/armee-joueur.service';
 import { JoueurService } from 'src/app/service/joueur.service';
 import { UniteeService } from 'src/app/service/unitee.service';
 
@@ -16,13 +18,17 @@ export class DetailUniteeComponent implements OnInit {
   unitee: Unitee;
   messageErreur: string;
   messageValidation: string;
+  formCreationUnitee: FormGroup;
 
   // Constructeur
   constructor(private routerLinkActive: ActivatedRoute,
+    private formBuilder: FormBuilder,
     private uniteeService: UniteeService,
-    private joueurService: JoueurService) { }
+    private armeeService: ArmeeService,
+    private router: Router) { }
 
   ngOnInit(): void {
+    this.initForm();
     // Snapshot pour rï¿½cupï¿½rer l'id passï¿½ via l'url
     this.id = this.routerLinkActive.snapshot.params['id'];
 
@@ -33,8 +39,21 @@ export class DetailUniteeComponent implements OnInit {
     );
   }
 
+  initForm () {
+    this.formCreationUnitee = this.formBuilder.group({
+      quantitee: ['', Validators.required],
+    });
+  }
+
   produireUnitee() {
-    this.uniteeService.produireUnitee(this.id).subscribe();
+    console.log(this.id);
+    const quantite = this.formCreationUnitee.get('quantitee').value;
+    this.armeeService.produireUnitee(this.id,quantite).subscribe();
+    this.messageValidation = "Production lancée"
+    setTimeout(() => {
+      // Redirection au bout de 1,5 secondes
+      this.router.navigate(['armee']);
+    }, 2000);
   }
 
 }

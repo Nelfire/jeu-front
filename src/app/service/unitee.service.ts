@@ -80,10 +80,4 @@ export class UniteeService {
     return this.http.get<Unitee>(`${URL_BACKEND}/detailsUnitee?id=`+id);
   }
 
-  produireUnitee(id: number): Observable<number> {
-    return this.http.post<number>(`${URL_BACKEND}/production`,{
-      id: `${id}`
-    });
-  }
-
 }

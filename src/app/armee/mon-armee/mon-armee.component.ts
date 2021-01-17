@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Armee } from 'src/app/models/armee';
 import { Unitee } from 'src/app/models/unitee';
+import { ArmeeService } from 'src/app/service/armee-joueur.service';
 import { UniteeService } from 'src/app/service/unitee.service';
 
 @Component({
@@ -10,12 +12,22 @@ import { UniteeService } from 'src/app/service/unitee.service';
 export class MonArmeeComponent implements OnInit {
 
   listeUnitees: Unitee[];
-  constructor(private uniteeService: UniteeService) { }
+  armeesDuJoueur: Armee[];
+  constructor(private uniteeService: UniteeService, private armeeService: ArmeeService) { }
 
   ngOnInit(): void {
+
+    // Lister les différentes unitées existantes
     this.uniteeService.listerDifferentesUnitees().subscribe(
       (value) => {
         this.listeUnitees = value;
+      }
+    );
+
+    // Lister des différentes armées du joueurs
+    this.armeeService.listerArmeesDuJoueur().subscribe(
+      (value) => {
+        this.armeesDuJoueur = value;
       }
     );
   }
