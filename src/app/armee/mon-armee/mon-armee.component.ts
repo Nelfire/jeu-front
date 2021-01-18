@@ -26,17 +26,16 @@ export class MonArmeeComponent implements OnInit {
   constructor(private uniteeService: UniteeService, private armeeService: ArmeeService, private batimentJoueurService: BatimentJoueurService) { }
 
   ngOnInit(): void {
-
-
-
     // Scan des bâtiments que possède le joueur, pour indiquer un bâtiment manquant/niveau insufisant
-
     this.batimentJoueurService.listerMesBatiments().subscribe(
       (value) => {
         this.lesBatimentsDuJoueur = value;
+        this.listerDifferentesUniteesExistantes();
       }
-    )
-
+    );
+  }
+  
+  listerDifferentesUniteesExistantes() {
     // Lister les différentes unitées existantes
     this.uniteeService.listerDifferentesUnitees().subscribe(
       (value) => {
@@ -53,10 +52,13 @@ export class MonArmeeComponent implements OnInit {
               }
             }
           });
-
         });
+        this.listerArmeeJoueur();
       }
     );
+  }
+
+  listerArmeeJoueur() {
     // Lister des différentes armées du joueurs
     this.armeeService.listerArmeesDuJoueur().subscribe(
       (armeesDuJoueur) => {
@@ -75,7 +77,6 @@ export class MonArmeeComponent implements OnInit {
               this.messagePossession = "Possède";
             }
           });
-
         });
       }
     );

@@ -31,26 +31,34 @@
                 <li routerLinkActive="active" class="nav-item">
                     <a class="nav-link" routerLink="menuAdministration">Administration</a>
                 </li>
-                
+
                 <div class="col-2">
                     <button class="btn btn-outline-danger" (click)="seDeconnecter()">Deconnexion</button>
                 </div>
             </ul>
             <div class="row">
-                <div class="mx-2 p-1 col-2 col-lg-auto" style="border: 1px solid #ced4da;background-color: #e9ecef; border-radius: 5px; ">
+                <!--                 <div class="mx-2 p-1 col-2 col-lg-auto" style="border: 1px solid #ced4da;background-color: #e9ecef; border-radius: 5px; ">
                     <fa-icon [icon]="iconeStopWatch"></fa-icon> Population :  <b>0/{{populationMaximaleJoueur}}</b>
+                </div> -->
+                <div class="mx-2 p-1 col-2 col-lg-auto"
+                    style="border: 1px solid #ced4da;background-color: #e9ecef; border-radius: 5px; ">
+                    <fa-icon [icon]="iconeStopWatch"></fa-icon> Pierre : <b
+                        [ngStyle]="{color:getColorApprocheLimitePierre()}">{{infosJoueur?.pierrePossession}}/{{infosJoueur?.pierreMaximum}}</b>
                 </div>
-                <div class="mx-2 p-1 col-2 col-lg-auto" style="border: 1px solid #ced4da;background-color: #e9ecef; border-radius: 5px; ">
-                    <fa-icon [icon]="iconeStopWatch"></fa-icon> Pierre :  <b [ngStyle]="{color:getColorApprocheLimitePierre()}">{{infosJoueur?.pierrePossession}}/{{infosJoueur?.pierreMaximum}}</b>
+                <div class="mx-2 p-1 col-2 col-lg-auto"
+                    style="border: 1px solid #ced4da;background-color: #e9ecef; border-radius: 5px; ">
+                    <fa-icon [icon]="iconeArbre"></fa-icon> Bois : <b
+                        [ngStyle]="{color:getColorApprocheLimiteBois()}">{{infosJoueur?.boisPossession}}/{{infosJoueur?.boisMaximum}}</b>
                 </div>
-                <div class="mx-2 p-1 col-2 col-lg-auto" style="border: 1px solid #ced4da;background-color: #e9ecef; border-radius: 5px; ">
-                    <fa-icon [icon]="iconeArbre"></fa-icon> Bois :  <b [ngStyle]="{color:getColorApprocheLimiteBois()}">{{infosJoueur?.boisPossession}}/{{infosJoueur?.boisMaximum}}</b>
+                <div class="mx-2 p-1 col-2 col-lg-auto"
+                    style="border: 1px solid #ced4da;background-color: #e9ecef; border-radius: 5px; ">
+                    <fa-icon [icon]="iconeStopWatch"></fa-icon> Or : <b
+                        [ngStyle]="{color:getColorApprocheLimiteOr()}">{{infosJoueur?.orPossession}}/{{infosJoueur?.orMaximum}}</b>
                 </div>
-                <div class="mx-2 p-1 col-2 col-lg-auto" style="border: 1px solid #ced4da;background-color: #e9ecef; border-radius: 5px; ">
-                    <fa-icon [icon]="iconeStopWatch"></fa-icon> Or :  <b [ngStyle]="{color:getColorApprocheLimiteOr()}">{{infosJoueur?.orPossession}}/{{infosJoueur?.orMaximum}}</b>
-                </div>
-                <div class="mx-2 p-1 col-2 col-lg-auto" style="border: 1px solid #ced4da;background-color: #e9ecef; border-radius: 5px; ">
-                    <fa-icon [icon]="iconeStopWatch"></fa-icon> Nourriture :  <b [ngStyle]="{color:getColorApprocheLimiteNourriture()}">{{infosJoueur?.nourriturePossession}}/{{infosJoueur?.nourritureMaximum}}</b>
+                <div class="mx-2 p-1 col-2 col-lg-auto"
+                    style="border: 1px solid #ced4da;background-color: #e9ecef; border-radius: 5px; ">
+                    <fa-icon [icon]="iconeStopWatch"></fa-icon> Nourriture : <b
+                        [ngStyle]="{color:getColorApprocheLimiteNourriture()}">{{infosJoueur?.nourriturePossession}}/{{infosJoueur?.nourritureMaximum}}</b>
                 </div>
                 <!--
                 <div class="mx-2 p-1 col-4 col-lg-auto" style="border: 1px solid #ced4da;background-color: #e9ecef; border-radius: 5px; ">
