@@ -3,25 +3,57 @@
         <h2>Unitées</h2>
     </div>
 </div>
-Armées du joueur : {{armeesDuJoueur | json}}
-
 <div>
     <ul class="honeycomb" lang="es">
-        <li class="honeycomb-cell" *ngFor="let unitee of listeUnitees">
-            <a routerLink="../unitee/detail-unitee/{{unitee.id}}">
-                <div>
-                    <!-- Quantitée d'unitées -->
-                    <div style="text-align:center;"><input disabled type="text" name="texte" class="quantite" value="tdjd" /></div>
-                    <!-- Icone -->
-                    <img class="honeycomb-cell__image" src="{{unitee.icone}}">
-                    <!-- Libelle -->
-                    <div class="honeycomb-cell__title">{{unitee.libelle}}</div>
-                    <br>
-                </div>
-                <!-- Bouton -->
-                <button class="btn btn-info">Créer</button>
-            </a>
+        <li class="honeycomb-cell" *ngFor="let unitee of lesUnitees">
+            <div *ngIf="unitee.joueurLaPossede; else nePossedePas;">
+                <a routerLink="../unitee/detail-unitee/{{unitee.id}}">
+                    <div>
+                        <!-- Quantitée d'unitées -->
+                        <div style="text-align:center;">
+                            <input disabled type="text" name="texte" class="quantite"
+                                value="Possède : {{unitee.quantiteePossession}}" />
+                        </div>
+                        <!-- Icone -->
+                        <img class="honeycomb-cell__image" src="{{unitee.icone}}">
+                        <!-- Libelle -->
+                        <div class="honeycomb-cell__title">{{unitee.libelle}}</div>
+                        <br>
+                    </div>
+                    <!-- Bouton -->
+                    <span>
+                        <button class="btn btn-info">Créer</button>
+                    </span>
+                </a>
+            </div>
+            <ng-template #nePossedePas>
+                <a routerLink="../unitee/detail-unitee/{{unitee.id}}">
+                    <div>
+                        {{unitee.messagePossession}}
+
+                        <!-- Icone -->
+                        <img class="honeycomb-cell__image" src="{{unitee.icone}}">
+                        <!-- Libelle -->
+                        <div class="honeycomb-cell__title">{{unitee.libelle}}</div>
+                        <br>
+                    </div>
+                    <!-- Bouton -->
+                    <span *ngIf="unitee.flagNiveauBatimentNecessaireFormationUniteeAssezEleve">
+                        <button class="btn btn-info">Créer</button>
+                    </span>
+                    <span
+                        *ngIf="unitee.flagPossedeBatimentNecessaireFormationUnitee && !unitee.flagNiveauBatimentNecessaireFormationUniteeAssezEleve">
+                        <a routerLink="../batiment/detail-batiment/{{unitee.idBatimentProvenance}}">
+                            <button class="btn btn-warning">Niveau bâtiment insufisant</button>
+                        </a>
+                    </span>
+                    <span *ngIf="!unitee.flagPossedeBatimentNecessaireFormationUnitee">
+                        <a routerLink="../batiment/detail-batiment/{{unitee.idBatimentProvenance}}">
+                            <button class="btn btn-danger">Bâtiment manquant</button>
+                        </a>
+                    </span>
+                </a>
+            </ng-template>
         </li>
     </ul>
 </div>
-

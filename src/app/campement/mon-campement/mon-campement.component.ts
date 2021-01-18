@@ -46,12 +46,12 @@ export class MonCampementComponent implements OnInit {
     this.authSrv.verifierAuthentification().subscribe(
       (etatConnexion) => {
         // Récupération liste des batiments du joueur
-        this.batimentJoueurService.listerMesBatiments(etatConnexion.id).subscribe(
+        this.batimentJoueurService.listerMesBatiments().subscribe(
           (mesBatiments) => {
             // Boucle sur les bâtiments du joueur
             mesBatiments.forEach((monBatiment) => {
 
-              // Boucle sur tous les bâtiments existents
+              // Boucle sur tous les bâtiments existants
               this.lesBatiments.forEach((unBatiment) => {
                 // Si l'id du batiment en cours d'analyse = a l'id du bâtiment du joueur , alors je considère qu'il le possède
                 if(monBatiment.batiment.idTypeBatiment === unBatiment.idTypeBatiment) {

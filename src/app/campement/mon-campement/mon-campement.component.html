@@ -11,12 +11,17 @@
 			<div *ngIf="batiment.joueurLePossede; else nePossedePas;">
 				<!-- Données du bâtiment -->
 				<a routerLink="../batiment/detail-batiment/{{batiment.idTypeBatiment}}">
-					<div class="niveau">
-						<u>Niveau {{batiment.niveauBatimentDuJoueur}}</u>
+					<div>
+
+
+						<div style="text-align:center;">
+							<input disabled type="text" name="texte" class="level"
+								value="Niveau {{batiment.niveauBatimentDuJoueur}}" />
+						</div>
+						<img class="honeycomb-cell__image" src="{{batiment.icone}}">
+						<div class="honeycomb-cell__title">{{batiment.libelle}}</div>
+						<br>
 					</div>
-					<img class="honeycomb-cell__image" src="{{batiment.icone}}">
-					<div class="honeycomb-cell__title">{{batiment.libelle}}</div>
-					<br>
 					<!-- Batiment en cours de construction / amélioration -->
 					<div *ngIf="batiment.flagEnCoursDeTravail; else pasDeTravailEnCours;">
 						<!-- Si bâtiment en cours d'amélioration + pas encore terminé -->

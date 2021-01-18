@@ -26,7 +26,7 @@ export class DetailBatimentComponent implements OnInit {
 
   joueur: JoueurInfos;
 
-  // Initialisations+
+  // Initialisations
   counterSubscription: Subscription;
   secondesRestantesAmelioration: number;
   idTypeBatiment: number;
@@ -74,8 +74,6 @@ export class DetailBatimentComponent implements OnInit {
     this.batimentJoueurService.rechercheBatimentJoueur(this.routerLinkActive.snapshot.params['idTypeBatiment']).subscribe(
       (value) => {
         this.batimentJoueurPossede = value;
-        console.log("Ligne 58 " + value.dateDebutConstruction);
-        console.log("Ligne 59 " + value.dateFinConstruction);
         // Petite vérification.
         // Cas 1 : Le joueur ne possède pas le bâtiment
         // Cas 2 : Le joueur possède déjà le bâtiment
@@ -117,7 +115,7 @@ export class DetailBatimentComponent implements OnInit {
                 date.setSeconds(this.secondesRestantesAmelioration);
                 this.result = date.toISOString().substr(11, 8);
                 console.log(this.secondesRestantesAmelioration);
-                if(this.secondesRestantesAmelioration < 1) {
+                if (this.secondesRestantesAmelioration < 1) {
                   setTimeout(() => {
                     // Redirection au bout de 1,5 secondes
                     this.router.navigate(['campement']);
@@ -197,40 +195,40 @@ export class DetailBatimentComponent implements OnInit {
       return 'green';
     }
   }
-    // Batiments Construction Colorisation ressources
-    getColorRessourceManquantePierreBatiment() {
-      if (this.joueur.pierrePossession < this.batiment.coutPierreConstruction) {
-        return 'red';
-      } else {
-        return 'green';
-      }
+  // Batiments Construction Colorisation ressources
+  getColorRessourceManquantePierreBatiment() {
+    if (this.joueur.pierrePossession < this.batiment.coutPierreConstruction) {
+      return 'red';
+    } else {
+      return 'green';
     }
-    getColorRessourceManquanteBoisBatiment() {
-      if (this.joueur.boisPossession < this.batiment.coutBoisConstruction) {
-        return 'red';
-      } else {
-        return 'green';
-      }
+  }
+  getColorRessourceManquanteBoisBatiment() {
+    if (this.joueur.boisPossession < this.batiment.coutBoisConstruction) {
+      return 'red';
+    } else {
+      return 'green';
     }
-    getColorRessourceManquanteOrBatiment() {
-      if (this.joueur.orPossession < this.batiment.coutOrConstruction) {
-        return 'red';
-      } else {
-        return 'green';
-      }
+  }
+  getColorRessourceManquanteOrBatiment() {
+    if (this.joueur.orPossession < this.batiment.coutOrConstruction) {
+      return 'red';
+    } else {
+      return 'green';
     }
-    getColorRessourceManquanteNourritureBatiment() {
-      if (this.joueur.nourriturePossession < this.batiment.coutNourritureConstruction) {
-        return 'red';
-      } else {
-        return 'green';
-      }
+  }
+  getColorRessourceManquanteNourritureBatiment() {
+    if (this.joueur.nourriturePossession < this.batiment.coutNourritureConstruction) {
+      return 'red';
+    } else {
+      return 'green';
     }
+  }
 
-    ngOnDestroy():void {
-      if(this.counterSubscription){
-        this.counterSubscription.unsubscribe();
-       } 
+  ngOnDestroy(): void {
+    if (this.counterSubscription) {
+      this.counterSubscription.unsubscribe();
     }
+  }
 
 }

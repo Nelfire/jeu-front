@@ -24,8 +24,8 @@ export class BatimentJoueurService {
   }
 
   // Lister les bâtiments que possède le joueur
-  listerMesBatiments(idJoueur: number): Observable<MesBatiments[]> {
-    return this.http.get<MesBatiments[]>(`${URL_BACKEND}/idJoueur?idJoueur=` + idJoueur);
+  listerMesBatiments(): Observable<MesBatiments[]> {
+    return this.http.get<MesBatiments[]>(`${URL_BACKEND}`);
   }
 
   // Recherche d'un batiment joueur spécifique

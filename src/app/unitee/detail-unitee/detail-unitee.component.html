@@ -1,12 +1,6 @@
-<div class="row justify-content-center">
-    <div class="col-auto mb-2" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
-        <div class="text-center">
-            <h4>Quantitée : <b>XXXXX</b></h4>
-        </div>
-    </div>
-</div>
 <!-- Affichage mode construction -->
 <div>
+
     <div class="text-center py-3">
         <img src="{{unitee['icone']}}" alt="" style="width: 20%;" />
     </div>
@@ -16,23 +10,23 @@
 
         <!-- Coût de la construction -->
         <b>Coût <b>Pierre</b> : </b>
-        <span>
-            <b>{{unitee['coutPierreFormation']}}</b>
+        <span [ngStyle]="{color:getColorRessourceManquantePierre()}">
+            <b>{{coutPierreFormation}}</b>
         </span><br>
 
         <b>Coût <b>Bois</b> : </b>
-        <span>
-            <b>{{unitee['coutBoisFormation']}}</b>
+        <span [ngStyle]="{color:getColorRessourceManquanteBois()}">
+            <b>{{coutBoisFormation}}</b>
         </span><br>
 
         <b>Coût <b>Or</b> : </b>
-        <span>
-            <b>{{unitee['coutOrFormation']}}</b>
+        <span [ngStyle]="{color:getColorRessourceManquanteOr()}">
+            <b>{{coutOrFormation}}</b>
         </span><br>
 
         <b>Coût <b>Nourriture</b> : </b>
-        <span>
-            <b>{{unitee['coutNourritureFormation']}}</b>
+        <span [ngStyle]="{color:getColorRessourceManquanteNourriture()}">
+            <b>{{coutNourritureFormation}}</b>
         </span><br>
 
         <b>Coût <b>Humain</b> : </b>
@@ -64,17 +58,36 @@
         <span>
             <b>{{unitee['armure']}}</b>
         </span><br>
+        <!-- Si le joueur possède la bâtiment -->
 
-        <form [formGroup]="formCreationUnitee" (ngSubmit)="produireUnitee()">
-            <div class="col-sm-10 center">
-                <input type="text" class="form-control" class="quantitee" id="quantitee" rows="3"
-                    formControlName="quantitee" />
-            </div>
-            <button class="btn btn-success mt-3 mr-2" [disabled]="formCreationUnitee.invalid">
-                Entrainer
-            </button>
-        </form>
-        <button routerLink="../../../armee" class="btn btn-danger mt-3">
+        <span *ngIf="joueurPossedeBatiment; else possedePas">
+            <span *ngIf="niveauBatimentAssezEleveFormation; else niveauBatimentPasAssezEleve">
+                <div class="divformulaireCreation">
+                    <form [formGroup]="formCreationUnitee" (ngSubmit)="produireUnitee()">
+                        <div class="col-sm-10 center">
+                            <input type="text" pattern="[0-9]*" class="form-control" class="quantite" id="quantite"
+                                rows="3" formControlName="quantite" [(ngModel)]="quantite"
+                                (keyup)="recalculPrix(quantite)" />
+                        </div>
+
+                        <button class="btn btn-success m3" [disabled]="formCreationUnitee.invalid">
+                            Entrainer
+                        </button>
+                        <button type="button" class="btn btn-info m-3" (click)="maximum()">Maximum</button>
+                    </form>
+                </div>
+            </span>
+        </span>
+        <ng-template #niveauBatimentPasAssezEleve>
+            <a routerLink="../../../batiment/detail-batiment/{{unitee.idBatimentProvenance}}"><button
+                    class="btn btn-warning">Niveau bâtiment insufisant</button></a>
+        </ng-template>
+        <ng-template #possedePas>
+            <a routerLink="../../../batiment/detail-batiment/{{unitee.idBatimentProvenance}}"><button
+                    class="btn btn-danger">Bâtiment manquant</button></a>
+        </ng-template>
+
+        <button routerLink="../../../armee" class="btn btn-danger m-3">
             Retour
         </button>
     </div>
