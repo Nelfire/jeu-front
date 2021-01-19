@@ -1,183 +1,186 @@
-<div class="card">
-    <h2 class="card-header text-center py-3" style="background-color: #e3f2fd;">
-        Nouveau jour feri&eacute; / RTT employeur
-    </h2>
+<div class="modificationUnitee">
+    <div class="card">
+        <h2 class="card-header text-center py-3" style="background-color: #e3f2fd;">
+            Modification unitée
+        </h2>
 
-    <div class="card-body ">
-        <form [formGroup]="formModificationUnitee" (ngSubmit)="modificationUnitee()">
-            <div class="form-group row">
-                <label for="idTypeUnitee" class="col-sm-2 col-form-label">Type d'unitée</label>
-                <div class="col-sm-10">
-                    <select class="custom-select" id="idTypeUnitee" formControlName="idTypeUnitee" required>
-                        <option selected value="null">- Choix -</option>
-                        <option value="1">Divers</option>
-                        <option value="2">Infanterie</option>
-                        <option value="3">Cavalerie</option>
-                        <option value="4">Siège</option>
-                        <option value="5">Navale</option>
-                    </select>
+        <div class="card-body ">
+            <form [formGroup]="formModificationUnitee" (ngSubmit)="modificationUnitee()">
+                <div class="form-group row">
+                    <label for="idTypeUnitee" class="col-sm-2 col-form-label">Type d'unitée</label>
+                    <div class="col-sm-10">
+                        <select class="custom-select" id="idTypeUnitee" formControlName="idTypeUnitee" required>
+                            <option selected value="null">- Choix -</option>
+                            <option value="1">Divers</option>
+                            <option value="2">Infanterie</option>
+                            <option value="3">Cavalerie</option>
+                            <option value="4">Siège</option>
+                            <option value="5">Navale</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="idBatimentProvenance" class="col-sm-2 col-form-label">Bâtiment de provenance</label>
-                <div class="col-sm-10">
-                    <select class="custom-select" id="idBatimentProvenance" formControlName="idBatimentProvenance"
-                        required>
-                        <option selected value="null">- Choix -</option>
-                        <option value="1">Hotel de ville</option>
-                        <option value="11">Caserne Militaire</option>
-                        <option value="12">Ecurie</option>
-                        <option value="13">Port</option>
-                        <option value="14">Atelier de siege</option>
-                        <option value="16">Universite</option>
-                        <option value="17">Marché</option>
-                    </select>
+                <div class="form-group row">
+                    <label for="idBatimentProvenance" class="col-sm-2 col-form-label">Bâtiment de provenance</label>
+                    <div class="col-sm-10">
+                        <select class="custom-select" id="idBatimentProvenance" formControlName="idBatimentProvenance"
+                            required>
+                            <option selected value="null">- Choix -</option>
+                            <option value="1">Hotel de ville</option>
+                            <option value="11">Caserne Militaire</option>
+                            <option value="12">Ecurie</option>
+                            <option value="13">Port</option>
+                            <option value="14">Atelier de siege</option>
+                            <option value="16">Universite</option>
+                            <option value="17">Marché</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="icone" class="col-sm-2 col-form-label">Icone</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="icone" rows="3" formControlName="icone" />
+                <div class="form-group row">
+                    <label for="icone" class="col-sm-2 col-form-label">Icone</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="icone" rows="3" formControlName="icone" />
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="libelle" class="col-sm-2 col-form-label">Libelle</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="libelle" rows="3" formControlName="libelle" />
+                <div class="form-group row">
+                    <label for="libelle" class="col-sm-2 col-form-label">Libelle</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="libelle" rows="3" formControlName="libelle" />
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="descriptif" class="col-sm-2 col-form-label">Descriptif</label>
-                <div class="col-sm-10">
-                    <textarea class="form-control" id="descriptif" rows="3" formControlName="descriptif"></textarea>
+                <div class="form-group row">
+                    <label for="descriptif" class="col-sm-2 col-form-label">Descriptif</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" id="descriptif" rows="3" formControlName="descriptif"></textarea>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="coutPierreFormation" class="col-sm-2 col-form-label">Coût pierre</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="coutPierreFormation" rows="3"
-                        formControlName="coutPierreFormation" />
+                <div class="form-group row">
+                    <label for="coutPierreFormation" class="col-sm-2 col-form-label">Coût pierre</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="coutPierreFormation" rows="3"
+                            formControlName="coutPierreFormation" />
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="coutBoisFormation" class="col-sm-2 col-form-label">Coût bois</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="coutBoisFormation" rows="3"
-                        formControlName="coutBoisFormation" />
+                <div class="form-group row">
+                    <label for="coutBoisFormation" class="col-sm-2 col-form-label">Coût bois</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="coutBoisFormation" rows="3"
+                            formControlName="coutBoisFormation" />
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="coutOrFormation" class="col-sm-2 col-form-label">Coût or</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="coutOrFormation" rows="3"
-                        formControlName="coutOrFormation" />
+                <div class="form-group row">
+                    <label for="coutOrFormation" class="col-sm-2 col-form-label">Coût or</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="coutOrFormation" rows="3"
+                            formControlName="coutOrFormation" />
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="coutNourritureFormation" class="col-sm-2 col-form-label">Coût nourriture</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="coutNourritureFormation" rows="3"
-                        formControlName="coutNourritureFormation" />
+                <div class="form-group row">
+                    <label for="coutNourritureFormation" class="col-sm-2 col-form-label">Coût nourriture</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="coutNourritureFormation" rows="3"
+                            formControlName="coutNourritureFormation" />
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="coutHumain" class="col-sm-2 col-form-label">Coût humain</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="coutHumain" rows="3" formControlName="coutHumain" />
+                <div class="form-group row">
+                    <label for="coutHumain" class="col-sm-2 col-form-label">Coût humain</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="coutHumain" rows="3" formControlName="coutHumain" />
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="tempsFormation" class="col-sm-2 col-form-label">Temps de formation (En secondes)</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="tempsFormation" rows="3"
-                        formControlName="tempsFormation" />
+                <div class="form-group row">
+                    <label for="tempsFormation" class="col-sm-2 col-form-label">Temps de formation (En secondes)</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="tempsFormation" rows="3"
+                            formControlName="tempsFormation" />
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="vie" class="col-sm-2 col-form-label">Vie</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="vie" rows="3" formControlName="vie" />
+                <div class="form-group row">
+                    <label for="vie" class="col-sm-2 col-form-label">Vie</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="vie" rows="3" formControlName="vie" />
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="attaque" class="col-sm-2 col-form-label">Attaque</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="attaque" rows="3" formControlName="attaque" />
+                <div class="form-group row">
+                    <label for="attaque" class="col-sm-2 col-form-label">Attaque</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="attaque" rows="3" formControlName="attaque" />
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="portee" class="col-sm-2 col-form-label">portée</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="portee" rows="3" formControlName="portee" />
+                <div class="form-group row">
+                    <label for="portee" class="col-sm-2 col-form-label">portée</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="portee" rows="3" formControlName="portee" />
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="armure" class="col-sm-2 col-form-label">Armure</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="armure" rows="3" formControlName="armure" />
+                <div class="form-group row">
+                    <label for="armure" class="col-sm-2 col-form-label">Armure</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="armure" rows="3" formControlName="armure" />
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="niveauBatimentNecessaireFormation" class="col-sm-2 col-form-label">Niveau bâtiment
-                    necessaire</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="niveauBatimentNecessaireFormation" rows="3"
-                        formControlName="niveauBatimentNecessaireFormation" />
+                <div class="form-group row">
+                    <label for="niveauBatimentNecessaireFormation" class="col-sm-2 col-form-label">Niveau bâtiment
+                        necessaire</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="niveauBatimentNecessaireFormation" rows="3"
+                            formControlName="niveauBatimentNecessaireFormation" />
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="apportRessourcePierreHeure" class="col-sm-2 col-form-label">Apport ressource
-                    (Pierre)</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="apportRessourcePierreHeure" rows="3"
-                        formControlName="apportRessourcePierreHeure" />
+                <div class="form-group row">
+                    <label for="apportRessourcePierreHeure" class="col-sm-2 col-form-label">Apport ressource
+                        (Pierre)</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="apportRessourcePierreHeure" rows="3"
+                            formControlName="apportRessourcePierreHeure" />
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="apportRessourceBoisHeure" class="col-sm-2 col-form-label">Apport ressource (Bois)</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="apportRessourceBoisHeure" rows="3"
-                        formControlName="apportRessourceBoisHeure" />
+                <div class="form-group row">
+                    <label for="apportRessourceBoisHeure" class="col-sm-2 col-form-label">Apport ressource
+                        (Bois)</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="apportRessourceBoisHeure" rows="3"
+                            formControlName="apportRessourceBoisHeure" />
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="apportRessourceOrHeure" class="col-sm-2 col-form-label">Apport ressource (Or)</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="apportRessourceOrHeure" rows="3"
-                        formControlName="apportRessourceOrHeure" />
+                <div class="form-group row">
+                    <label for="apportRessourceOrHeure" class="col-sm-2 col-form-label">Apport ressource (Or)</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="apportRessourceOrHeure" rows="3"
+                            formControlName="apportRessourceOrHeure" />
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="apportRessourceNourritureHeure" class="col-sm-2 col-form-label">Apport ressource
-                    (Nourriture)</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="apportRessourceNourritureHeure" rows="3"
-                        formControlName="apportRessourceNourritureHeure" />
+                <div class="form-group row">
+                    <label for="apportRessourceNourritureHeure" class="col-sm-2 col-form-label">Apport ressource
+                        (Nourriture)</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="apportRessourceNourritureHeure" rows="3"
+                            formControlName="apportRessourceNourritureHeure" />
+                    </div>
                 </div>
-            </div>
 
-            <div class="alert alert-danger" role="danger" *ngIf="messageErreur">
-                <b>{{messageErreur}}</b>
-            </div>
-            <div class="alert alert-success" role="success" *ngIf="messageValidation">
-                <b>{{messageValidation}}</b>
-            </div>
+                <div class="alert alert-danger" role="danger" *ngIf="messageErreur">
+                    <b>{{messageErreur}}</b>
+                </div>
+                <div class="alert alert-success" role="success" *ngIf="messageValidation">
+                    <b>{{messageValidation}}</b>
+                </div>
 
-            <div class="row justify-content-md-center">
-                <div class="col-md-auto">
-                    <!-- bouton valider formulaire -->
-                    <button class="btn btn-success mr-2" [disabled]="formModificationUnitee.invalid">
-                        Modifier
-                    </button>
-
-                    <!-- bouton annuler formulaire -->
-                    <a routerLink="../../creationUnitee">
-                        <button class="btn btn-danger">
-                            Annuler
+                <div class="row justify-content-md-center">
+                    <div class="col-md-auto">
+                        <!-- bouton valider formulaire -->
+                        <button class="btn btn-success mr-2" [disabled]="formModificationUnitee.invalid">
+                            Modifier
                         </button>
-                    </a>
+
+                        <!-- bouton annuler formulaire -->
+                        <a routerLink="../../creationUnitee">
+                            <button class="btn btn-danger">
+                                Annuler
+                            </button>
+                        </a>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>

@@ -1,73 +1,75 @@
 <!-- https://codemyui.com/responsive-honeycomb-grid-layout-in-pure-css/ -->
-<div class="row justify-content-center">
-	<div class="col-auto mb-4" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
-		<h2>Bâtiments</h2>
+<div class="campement">
+	<div class="row justify-content-center">
+		<div class="col-auto mb-4" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
+			<h2>Bâtiments</h2>
+		</div>
 	</div>
-</div>
-<div>
-	<ul class="honeycomb" lang="es">
-		<li class="honeycomb-cell" *ngFor="let batiment of lesBatiments">
-			<!-- CAS JOUEUR POSSEDE LE BATIMENT -->
-			<div *ngIf="batiment.joueurLePossede; else nePossedePas;">
-				<!-- Données du bâtiment -->
-				<a routerLink="../batiment/detail-batiment/{{batiment.idTypeBatiment}}">
-					<div>
+	<div>
+		<ul class="honeycomb" lang="es">
+			<li class="honeycomb-cell" *ngFor="let batiment of lesBatiments">
+				<!-- CAS JOUEUR POSSEDE LE BATIMENT -->
+				<div *ngIf="batiment.joueurLePossede; else nePossedePas;">
+					<!-- Données du bâtiment -->
+					<a routerLink="../batiment/detail-batiment/{{batiment.idTypeBatiment}}">
+						<div>
 
 
-						<div style="text-align:center;">
-							<input disabled type="text" name="texte" class="level"
-								value="Niveau {{batiment.niveauBatimentDuJoueur}}" />
+							<div style="text-align:center;">
+								<input disabled type="text" name="texte" class="level"
+									value="Niveau {{batiment.niveauBatimentDuJoueur}}" />
+							</div>
+							<img class="honeycomb-cell__image" src="{{batiment.icone}}">
+							<div class="honeycomb-cell__title">{{batiment.libelle}}</div>
+							<br>
 						</div>
+						<!-- Batiment en cours de construction / amélioration -->
+						<div *ngIf="batiment.flagEnCoursDeTravail; else pasDeTravailEnCours;">
+							<!-- Si bâtiment en cours d'amélioration + pas encore terminé -->
+							<div *ngIf="batiment.secondesRestantesAmelioration > 1; else travailTermine;">
+								<button class="btn btn-info">
+									Amélioration en cours<br>
+									<span *ngIf="batiment.date">Restant : {{batiment.date}}</span>
+
+								</button>
+							</div>
+							<!-- Si bâtiment en cours d'amélioration + travail terminé -->
+							<ng-template #travailTermine>
+								<button class="btn btn-info">
+									Amélioration terminée
+								</button>
+							</ng-template>
+						</div>
+						<!-- Si bâtiment n'est pas en cours d'amélioration -->
+						<ng-template #pasDeTravailEnCours>
+							<button class="btn btn-info">
+								Améliorer
+							</button>
+						</ng-template>
+					</a>
+				</div>
+				<!-- CAS JOUEUR NE POSSEDE PAS LE BATIMENT -->
+				<ng-template #nePossedePas>
+					<div>
 						<img class="honeycomb-cell__image" src="{{batiment.icone}}">
 						<div class="honeycomb-cell__title">{{batiment.libelle}}</div>
 						<br>
-					</div>
-					<!-- Batiment en cours de construction / amélioration -->
-					<div *ngIf="batiment.flagEnCoursDeTravail; else pasDeTravailEnCours;">
-						<!-- Si bâtiment en cours d'amélioration + pas encore terminé -->
-						<div *ngIf="batiment.secondesRestantesAmelioration > 1; else travailTermine;">
-							<button class="btn btn-info">
-								Amélioration en cours<br>
-								<span *ngIf="batiment.date">Restant : {{batiment.date}}</span>
-
+						<!-- CAS CONSTRUCTION IMPOSSIBLE -->
+						<div
+							*ngIf="batiment.niveauHotelDeVilleNecessaireConstruction>niveauHdvJoueur;else constructionPossible">
+							<button class="btn btn-danger">
+								Hdv {{batiment.niveauHotelDeVilleNecessaireConstruction}} necessaire
 							</button>
 						</div>
-						<!-- Si bâtiment en cours d'amélioration + travail terminé -->
-						<ng-template #travailTermine>
-							<button class="btn btn-info">
-								Amélioration terminée
-							</button>
+						<!-- CAS CONSTRUCTION POSSIBLE -->
+						<ng-template #constructionPossible>
+							<a routerLink="../batiment/detail-batiment/{{batiment.idTypeBatiment}}">
+								<button class="btn btn-success">Construire</button>
+							</a>
 						</ng-template>
 					</div>
-					<!-- Si bâtiment n'est pas en cours d'amélioration -->
-					<ng-template #pasDeTravailEnCours>
-						<button class="btn btn-info">
-							Améliorer
-						</button>
-					</ng-template>
-				</a>
-			</div>
-			<!-- CAS JOUEUR NE POSSEDE PAS LE BATIMENT -->
-			<ng-template #nePossedePas>
-				<div>
-					<img class="honeycomb-cell__image" src="{{batiment.icone}}">
-					<div class="honeycomb-cell__title">{{batiment.libelle}}</div>
-					<br>
-					<!-- CAS CONSTRUCTION IMPOSSIBLE -->
-					<div
-						*ngIf="batiment.niveauHotelDeVilleNecessaireConstruction>niveauHdvJoueur;else constructionPossible">
-						<button class="btn btn-danger">
-							Hdv {{batiment.niveauHotelDeVilleNecessaireConstruction}} necessaire
-						</button>
-					</div>
-					<!-- CAS CONSTRUCTION POSSIBLE -->
-					<ng-template #constructionPossible>
-						<a routerLink="../batiment/detail-batiment/{{batiment.idTypeBatiment}}">
-							<button class="btn btn-success">Construire</button>
-						</a>
-					</ng-template>
-				</div>
-			</ng-template>
-		</li>
-	</ul>
+				</ng-template>
+			</li>
+		</ul>
+	</div>
 </div>

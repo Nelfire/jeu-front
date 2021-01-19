@@ -127,7 +127,19 @@ export class ModificationUniteeComponent implements OnInit {
       apportRessourcePierreHeure,
       apportRessourceBoisHeure,
       apportRessourceOrHeure,apportRessourceNourritureHeure,
-      ).subscribe();
+      ).subscribe(
+        () => {
+
+        }, (error) => {
+          this.messageErreur = error.error.message;
+        }, () => {
+          this.messageValidation = "Modification réalisée";
+          setTimeout(() => {
+            // Redirection au bout de 1,5 secondes
+            this.router.navigate(['creationUnitee']);
+          }, 1500);
+        }
+      );
   }
 
 }

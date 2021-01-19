@@ -11,7 +11,6 @@ import { UniteeService } from 'src/app/service/unitee.service';
 export class CreationUniteeComponent implements OnInit {
 
   // Initialisations 
-  unitee: Unitee;
   messageErreur: string;
   messageValidation: string;
   formCreationUnitee: FormGroup;

@@ -44,6 +44,9 @@ import { MenuAdministrationComponent } from './administration/menu-administratio
 import { ModificationUniteeComponent } from './administration/modification-unitee/modification-unitee.component';
 import { DetailUniteeComponent } from './unitee/detail-unitee/detail-unitee.component';
 import { ArmeeService } from './service/armee-joueur.service';
+import { ListeExpeditionsComponent } from './expedition/liste-expeditions/liste-expeditions.component';
+import { ExpeditionService } from './service/expedition.service';
+import { ExpeditionJoueurService } from './service/expedition-joueur.service';
 
 
 @NgModule({
@@ -72,7 +75,8 @@ import { ArmeeService } from './service/armee-joueur.service';
     CreationUniteeComponent,
     MenuAdministrationComponent,
     ModificationUniteeComponent,
-    DetailUniteeComponent
+    DetailUniteeComponent,
+    ListeExpeditionsComponent
   ],
   imports: [
     BrowserModule,
@@ -94,6 +98,8 @@ import { ArmeeService } from './service/armee-joueur.service';
     BatimentJoueurService,
     UniteeService,
     ArmeeService,
+    ExpeditionService,
+    ExpeditionJoueurService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

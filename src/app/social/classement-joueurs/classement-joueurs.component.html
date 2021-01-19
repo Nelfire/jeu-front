@@ -1,1 +1,24 @@
-<p>classement-joueurs works!</p>
+<div class="classementJoueur">
+    <div class="table-wrapper">
+        <table class="fl-table">
+            <thead>
+                <tr>
+                    <th>Icone</th>
+                    <th>Pseudo</th>
+                    <th>Niveau</th>
+                    <th>Nombre d'unitées</th>
+                    <th>Temps de jeu (sc)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let joueur of listeJoueurs">
+                    <td><img src="{{joueur.icone}}" alt="" style="width: 30px;" /></td>
+                    <td>{{joueur.pseudo}}</td>
+                    <td>{{joueur.niveau}}</td>
+                    <td>XXXXXX</td>
+                    <td>{{joueur.tempsDeJeu}}</td>
+                </tr>
+            <tbody>
+        </table>
+    </div>
+</div>

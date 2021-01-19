@@ -11,9 +11,9 @@ import { AccesRefuseComponent } from './erreurNavigation/acces-refuse/acces-refu
 import { ModificationJourFermeComponent } from './jourFerme/modification-jour-ferme/modification-jour-ferme.component';
 import { StatutManagerService } from './service/statut-manager.service';
 import { AccueilComponent } from './accueil/accueil.component';
-import {ListerJoueurComponent} from './lister-joueur/lister-joueur.component';
-import {VisualiserJoueurComponent} from './visualiser-joueur/visualiser-joueur.component';
-import {MessageComponent} from './message/message.component';
+import { ListerJoueurComponent } from './lister-joueur/lister-joueur.component';
+import { VisualiserJoueurComponent } from './visualiser-joueur/visualiser-joueur.component';
+import { MessageComponent } from './message/message.component';
 import { MessagePriveComponent } from './message/message-prive/message-prive.component';
 import { ModifierJoueurComponent } from './joueur/modifier-joueur/modifier-joueur.component';
 import { MonCampementComponent } from './campement/mon-campement/mon-campement.component';
@@ -25,13 +25,14 @@ import { CreationUniteeComponent } from './administration/creation-unitee/creati
 import { MenuAdministrationComponent } from './administration/menu-administration/menu-administration.component';
 import { ModificationUniteeComponent } from './administration/modification-unitee/modification-unitee.component';
 import { DetailUniteeComponent } from './unitee/detail-unitee/detail-unitee.component';
+import { ListeExpeditionsComponent } from './expedition/liste-expeditions/liste-expeditions.component';
 
 const routes: Routes = [
   // canActivate: [StatutConnecteService] ==> Permet de verifier si l'utilisateur est connecte
   // canActivate: [StatutAdministrateurService] ==> PevisualisationJoueurrmet de verifier si l'utilisateur connecte est bien un administrateur
   // canActivate: [StatutManagerService] ==> Permet de verifier si l'utilisateur connecte est bien un manager
   // canActivate: [StatutEmployeService] ==> Permet de verifier si l'utilisateur connecte est bien un employe
-  { path: 'accueil', component: AccueilComponent, canActivate: [StatutConnecteService]}, //  tech accessible uniquement si connecte
+  { path: 'accueil', component: AccueilComponent, canActivate: [StatutConnecteService] }, //  tech accessible uniquement si connecte
   { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService] }, //  tech accessible uniquement si connecte
   { path: 'auth', component: AuthComponent },
   { path: 'listerJourFerme', component: ListerJourFermeComponent, canActivate: [StatutConnecteService] },
@@ -39,7 +40,7 @@ const routes: Routes = [
   { path: 'creationJourFerme', component: CreationJourFermeComponent, canActivate: [StatutConnecteService, StatutAdministrateurService] },
 
   { path: 'visualisationJoueur/:email', component: VisualiserJoueurComponent, canActivate: [StatutConnecteService] },
-  { path: 'modifierJoueur/:email', component : ModifierJoueurComponent, canActivate: [StatutConnecteService, StatutAdministrateurService]},
+  { path: 'modifierJoueur/:email', component: ModifierJoueurComponent, canActivate: [StatutConnecteService, StatutAdministrateurService] },
 
   { path: 'modificationJourFerme/:id', component: ModificationJourFermeComponent, canActivate: [StatutConnecteService, StatutAdministrateurService] },
   { path: 'message', component: MessageComponent, canActivate: [StatutConnecteService] },
@@ -48,25 +49,30 @@ const routes: Routes = [
   { path: 'armee', component: MonArmeeComponent, canActivate: [StatutConnecteService] },
   { path: 'guilde', component: GuildeComponent, canActivate: [StatutConnecteService] },
   { path: 'classement-joueurs', component: ClassementJoueursComponent, canActivate: [StatutConnecteService] },
-  
+
   // ------------ BATIMENTS --------------
   { path: 'batiment/detail-batiment/:idTypeBatiment', component: DetailBatimentComponent, canActivate: [StatutConnecteService] },
-  
+
   { path: '', redirectTo: '/accueil', pathMatch: 'full' },
   { path: 'accesRefuse', component: AccesRefuseComponent, canActivate: [StatutConnecteService] },
-  
+
   // ------------ ADMINISTRATION --------------
-  { path: 'menuAdministration', component: MenuAdministrationComponent, canActivate: [StatutAdministrateurService]},
-  { path: 'creationUnitee', component: CreationUniteeComponent, canActivate: [StatutAdministrateurService]},
-  { path: 'modificationUnitee/:id', component: ModificationUniteeComponent, canActivate: [StatutAdministrateurService]},
+  { path: 'menuAdministration', component: MenuAdministrationComponent, canActivate: [StatutAdministrateurService] },
+  { path: 'creationUnitee', component: CreationUniteeComponent, canActivate: [StatutAdministrateurService] },
+  { path: 'modificationUnitee/:id', component: ModificationUniteeComponent, canActivate: [StatutAdministrateurService] },
 
   // ------------- UNITEE ---------------
-  
+
   { path: 'unitee/detail-unitee/:id', component: DetailUniteeComponent, canActivate: [StatutConnecteService] },
 
+  // ------------- EXPEDITIONS ---------------
+
+  { path: 'expedition', component: ListeExpeditionsComponent, canActivate: [StatutConnecteService] },
+
+
   // Cas url inexistant
-  { path: 'not-found', component: FourOhFourComponent , canActivate: [StatutConnecteService]},
-  
+  { path: 'not-found', component: FourOhFourComponent, canActivate: [StatutConnecteService] },
+
   // Bien faire attention de laisser ce path en fin de liste, mettre les votres avant.
   { path: '**', redirectTo: '/not-found' }
 ];
