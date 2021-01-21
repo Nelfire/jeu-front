@@ -1,3 +1,49 @@
 <div class="expedition">
-    <p>{{listeExpedition|json}}</p>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row justify-content-center">
+                <div class="col-auto mb-4"
+                    style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
+                    <h2>Nouvelles expeditions disponnibles dans 00:00:00</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4" *ngFor="let expedition of listeExpedition">
+                    
+                        <div class="card h-100">
+                            <img class="card-img-top" src="{{expedition.icone}}" alt="">
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <a routerLink="detail-expedition/{{expedition.id}}">{{expedition.libelle}}</a>
+                                    <!-- <p class="card-text">{{expedition.description}}</p> -->
+                                </h4>
+                                <hr>
+                                <h2>Coût :</h2>
+                                <h5>- Pierre : {{expedition.coutPierre}}</h5>
+                                <h5>- Bois : {{expedition.coutPierre}}</h5>
+                                <h5>- Or : {{expedition.coutPierre}}</h5>
+                                <h5>- Nourriture : {{expedition.coutPierre}}</h5>
+                                <hr>
+                                <h2>Récompense :</h2>
+                                <h5>- Pierre : {{expedition.recompensePierre}}</h5>
+                                <h5>- Bois : {{expedition.recompenseBois}}</h5>
+                                <h5>- Or : {{expedition.recompenseOr}}</h5>
+                                <h5>- Nourriture : {{expedition.recompenseNourriture}}</h5>
+                                <h5>- Gemme : {{expedition.recompenseGemme}}</h5>
+                                <hr>
+                                <h2>Infos :</h2>
+                                <h5>- Vie : {{expedition.vie}}</h5>
+                                <h5>- Degats : {{expedition.degats}}</h5>
+                                <h5>- Armure : {{expedition.armure}}</h5>
+                                <h5>- Durée : {{expedition.dureeExpedition}} secondes</h5>
+                            </div>
+                            <div class="card-footer">
+                                Difficultée : <small class="text-muted">&#9733; &#9733; &#9733; &#9733;
+                                    &#9734;</small><a routerLink="detail-expedition/{{expedition.id}}"><button class="btn btn-info">Détails</button></a>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

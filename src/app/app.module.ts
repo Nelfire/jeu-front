@@ -47,6 +47,8 @@ import { ArmeeService } from './service/armee-joueur.service';
 import { ListeExpeditionsComponent } from './expedition/liste-expeditions/liste-expeditions.component';
 import { ExpeditionService } from './service/expedition.service';
 import { ExpeditionJoueurService } from './service/expedition-joueur.service';
+import { DetailExpeditionComponent } from './expedition/detail-expedition/detail-expedition.component';
+import { ListeExpeditionsJoueurComponent } from './expedition/liste-expeditions-joueur/liste-expeditions-joueur.component';
 
 
 @NgModule({
@@ -76,7 +78,9 @@ import { ExpeditionJoueurService } from './service/expedition-joueur.service';
     MenuAdministrationComponent,
     ModificationUniteeComponent,
     DetailUniteeComponent,
-    ListeExpeditionsComponent
+    ListeExpeditionsComponent,
+    DetailExpeditionComponent,
+    ListeExpeditionsJoueurComponent
   ],
   imports: [
     BrowserModule,

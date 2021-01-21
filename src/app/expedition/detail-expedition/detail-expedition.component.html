@@ -1,0 +1,130 @@
+<div class="detailExpedition" *ngIf="expedition">
+    <div class="row justify-content-center">
+        <div class="col-auto mb-4" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
+            <h2>{{expedition['libelle']}}</h2>
+        </div>
+    </div>
+    <div class="text-center py-3">
+        <img src="{{expedition['icone']}}" alt="" style="width: 20%;" />
+    </div>
+    <div class="lead card-header text-center py-3 mt-3"
+        style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px;">
+        <b>Descriptif : </b> {{expedition['description']}}<br>
+
+        <!-- Coût de la construction -->
+        <hr>
+
+        <b>Coût <b>Pierre</b> : </b>
+        <span [ngStyle]="{color:getColorRessourceManquantePierre()}">
+            <b>{{expedition['coutPierre']}}</b>
+        </span><br>
+
+        <b>Coût <b>Bois</b> : </b>
+        <span [ngStyle]="{color:getColorRessourceManquanteBois()}">
+            <b>{{expedition['coutBois']}}</b>
+        </span><br>
+
+        <b>Coût <b>Or</b> : </b>
+        <span [ngStyle]="{color:getColorRessourceManquanteOr()}">
+            <b>{{expedition['coutOr']}}</b>
+        </span><br>
+
+        <b>Coût <b>Nourriture</b> : </b>
+        <span [ngStyle]="{color:getColorRessourceManquanteNourriture()}">
+            <b>{{expedition['coutNourriture']}}</b>
+        </span><br>
+
+        <hr>
+
+        <b>Récompense <b>Pierre</b> : </b>
+        <span>
+            <b>{{expedition['recompensePierre']}}</b>
+        </span><br>
+
+        <b>Récompense <b>Bois</b> : </b>
+        <span>
+            <b>{{expedition['recompenseBois']}}</b>
+        </span><br>
+
+        <b>Récompense <b>Or</b> : </b>
+        <span>
+            <b>{{expedition['recompenseOr']}}</b>
+        </span><br>
+
+        <b>Récompense <b>Nourriture</b> : </b>
+        <span>
+            <b>{{expedition['recompenseNourriture']}}</b>
+        </span><br>
+
+        <b>Récompense <b>Gemme</b> : </b>
+        <span>
+            <b>{{expedition['recompenseGemme']}}</b>
+        </span><br>
+
+        <hr>
+
+        <b>Temps <b>Expédition</b> : </b>
+        <span>
+            <b>{{expedition['dureeExpedition']}} secondes</b>
+        </span><br>
+
+        <hr>
+
+        <b><b>Vie</b> : </b>
+        <span>
+            <b>{{vieExpedition}}</b>
+        </span><br>
+
+        <b><b>Degats</b> : </b>
+        <span>
+            <b>{{armureExpedition}}</b>
+        </span><br>
+
+        <b><b>Armure</b> : </b>
+        <span>
+            <b>{{degatsExpedition}}</b>
+        </span><br>
+
+        <b><b>Réussite</b> : </b>
+        <span>
+            <b>{{reussitePourcentage}} %</b>
+        </span><br>
+    </div>
+    <div class="alert alert-danger divCenter mt-3" style="text-align: center;" role="danger" *ngIf="messageErreur">
+        <b>{{messageErreur}}</b>
+    </div>
+    <div class="alert alert-success divCenter mt-3" role="success" *ngIf="messageValidation">
+        <b>{{messageValidation}}</b>
+    </div>
+
+    <!-- DIfférentes unitées du joueur -->
+    <form [formGroup]="formEnvoiUniteesEnExpedition" (ngSubmit)="envoiExpedition()">
+        <div>
+            <ul class="honeycomb" lang="es">
+                <li class="honeycomb-cell" *ngFor="let unitee of armeesDuJoueur">
+                    <div>
+                        <div>
+                            <!-- Quantitée d'unitées -->
+                            <div style="text-align:center;">
+                                <input disabled type="text" name="texte" class="quantite"
+                                    value="Possède : {{unitee.quantitee}}" />
+                            </div>
+                            <!-- Icone -->
+                            <img class="honeycomb-cell__image" src="{{unitee.unitee.icone}}">
+                            <!-- Libelle -->
+                            <div class="honeycomb-cell__title">{{unitee.unitee.libelle}}</div>
+                            <br>
+                        </div>
+                        <!-- Selection du nombre d'unitées à envoyer -->
+                        <div style="text-align:center;">
+                            <input type="number" name="unitee{{unitee.unitee.id}}" value="0" 
+                                formControlName="unitee{{unitee.unitee.id}}" (keyup)="calculVieRestanteExpedition(unitee.unitee.id)"
+                                [(ngModel)]="unitee.unitee.id">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <button class="btn btn-success" [disabled]="formEnvoiUniteesEnExpedition.invalid">Envoyer les unitées en expéditions</button>
+    </form>
+</div>

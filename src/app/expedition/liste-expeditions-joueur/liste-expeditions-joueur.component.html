@@ -1,0 +1,72 @@
+<div class="expeditionJoueur" *ngIf="listeExpeditionJoueur">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row justify-content-center">
+                <div class="col-auto mb-4"
+                    style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
+                    <h2>Nouvelles expeditions disponnibles dans 00:00:00</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4" *ngFor="let uneExpeditionJoueur of listeExpeditionJoueur">
+
+                    <div class="card h-100">
+                        <img class="card-img-top" src="{{uneExpeditionJoueur.expedition.icone}}" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a routerLink="">{{uneExpeditionJoueur.expedition.libelle}}</a>
+                                <!-- <p class="card-text">{{expedition.description}}</p> -->
+                            </h4>
+                            <hr>
+                            <h2>Récompense :</h2>
+                            <h5>- Pierre : {{uneExpeditionJoueur.expedition.recompensePierre}}</h5>
+                            <h5>- Bois : {{uneExpeditionJoueur.expedition.recompenseBois}}</h5>
+                            <h5>- Or : {{uneExpeditionJoueur.expedition.recompenseOr}}</h5>
+                            <h5>- Nourriture : {{uneExpeditionJoueur.expedition.recompenseNourriture}}</h5>
+                            <h5>- Gemme : {{uneExpeditionJoueur.expedition.recompenseGemme}}</h5>
+                            <hr>
+                            <h2>Infos :</h2>
+                            <h5>- Vie : {{uneExpeditionJoueur.expedition.vie}}</h5>
+                            <h5>- Degats : {{uneExpeditionJoueur.expedition.degats}}</h5>
+                            <h5>- Armure : {{uneExpeditionJoueur.expedition.armure}}</h5>
+                            <h5>- Durée : {{uneExpeditionJoueur.expedition.dureeExpedition}} secondes</h5>
+                            <hr>
+                            <div *ngIf="uneExpeditionJoueur.date; else expeditionTerminee">
+                                <h2>Temps restant : {{uneExpeditionJoueur.date}}</h2>
+                            </div>
+                            <ng-template #expeditionTerminee>
+                                <h2>Expédition terminée</h2>
+                            </ng-template>
+
+                        </div>
+                        <div class="card-footer">
+                            Difficultée : <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                            <!-- Récompense pas encore dispo, expédition pas terminée-->
+                            <div *ngIf="uneExpeditionJoueur.date; else boutonsExpeditionDejaTerminee">
+                                <button class="btn btn-warning" disabled>
+                                    Expédition en cours
+                                </button>
+                            </div>
+                            <!-- Expédition terminée -->
+                            <ng-template #boutonsExpeditionDejaTerminee>
+                                <!-- Récompense pas encore récupérée, bouton adéquat -->
+                                <div *ngIf="uneExpeditionJoueur.recompenseRecuperee == false; else dejaRecuperee;">
+                                    <button class="btn btn-success"
+                                        (click)="recupererRecompense(uneExpeditionJoueur.id)">
+                                        Récupérer récompense
+                                    </button>
+                                </div>
+                                <!-- Récompense déjà récupérée, bouton adéquat -->
+                                <ng-template #dejaRecuperee>
+                                    <button class="btn btn-danger" disabled>
+                                        Récompense déjà récupérée
+                                    </button>
+                                </ng-template>
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

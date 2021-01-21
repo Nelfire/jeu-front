@@ -16,4 +16,8 @@ export class ExpeditionService {
   listerExpedition(): Observable<Expedition[]> {
     return this.http.get<Expedition[]>(`${URL_BACKEND}`);
   }
+
+  detailExpedition(id: number): Observable<Expedition> {
+    return this.http.get<Expedition>(`${URL_BACKEND}/detailsExpedition?id=`+id);
+  }
 }

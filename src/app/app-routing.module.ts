@@ -26,6 +26,8 @@ import { MenuAdministrationComponent } from './administration/menu-administratio
 import { ModificationUniteeComponent } from './administration/modification-unitee/modification-unitee.component';
 import { DetailUniteeComponent } from './unitee/detail-unitee/detail-unitee.component';
 import { ListeExpeditionsComponent } from './expedition/liste-expeditions/liste-expeditions.component';
+import { DetailExpeditionComponent } from './expedition/detail-expedition/detail-expedition.component';
+import { ListeExpeditionsJoueurComponent } from './expedition/liste-expeditions-joueur/liste-expeditions-joueur.component';
 
 const routes: Routes = [
   // canActivate: [StatutConnecteService] ==> Permet de verifier si l'utilisateur est connecte
@@ -67,8 +69,12 @@ const routes: Routes = [
 
   // ------------- EXPEDITIONS ---------------
 
+  // - Liste expéditions
   { path: 'expedition', component: ListeExpeditionsComponent, canActivate: [StatutConnecteService] },
-
+  // - Detail expédition
+  { path: 'expedition/detail-expedition/:id', component: DetailExpeditionComponent, canActivate: [StatutConnecteService]},
+  // - Liste expéditions joueur
+  { path: 'mesExpeditions', component: ListeExpeditionsJoueurComponent, canActivate: [StatutConnecteService]},
 
   // Cas url inexistant
   { path: 'not-found', component: FourOhFourComponent, canActivate: [StatutConnecteService] },

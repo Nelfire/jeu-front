@@ -3,9 +3,12 @@ import { Expedition } from "./expedition";
 import { Unitee } from "./unitee";
 
 export class ExpeditionJoueur {
-    constructor(public joueur: Joueur,
+    constructor(
+        public id: number,
+        public joueur: Joueur,
         public expedition: Expedition, 
         public dateDebutExpedition: number, 
         public dateFinExpedition: number, 
-        public uniteeEnvoiJoueur: Unitee[]) {}
+        public uniteeEnvoiJoueur: Unitee[],
+        public recompenseRecuperee: Boolean) {}
 }
