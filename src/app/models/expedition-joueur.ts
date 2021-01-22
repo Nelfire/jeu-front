@@ -10,5 +10,7 @@ export class ExpeditionJoueur {
         public dateDebutExpedition: number, 
         public dateFinExpedition: number, 
         public uniteeEnvoiJoueur: Unitee[],
-        public recompenseRecuperee: Boolean) {}
+        public recompenseRecuperee: Boolean,
+        public pourcentageReussite: number,
+        public etatExpedition: number) {}
 }

@@ -125,6 +125,8 @@
                 </li>
             </ul>
         </div>
-        <button class="btn btn-success" [disabled]="formEnvoiUniteesEnExpedition.invalid">Envoyer les unitées en expéditions</button>
+        <div class="divCenter">
+            <button class="btn btn-success" [disabled]="formEnvoiUniteesEnExpedition.invalid ||clicked">{{messageBoutonEnvoiEnExpedition}}</button>
+        </div>
     </form>
 </div>

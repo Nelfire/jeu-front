@@ -27,8 +27,10 @@ export class DetailExpeditionComponent implements OnInit {
   armeesDuJoueur: Armee[];
   formEnvoiUniteesEnExpedition: FormGroup;
   toutesLesUnitees: Unitee[];
-  degatsEmis: number  = 0;
+  degatsEmis: number = 0;
   reussitePourcentage: number = 0;
+  messageBoutonEnvoiEnExpedition: string = "Envoyer les unitées en expéditions";
+  clicked = false;
 
   // Données de l'expedition
   // vie
@@ -207,11 +209,22 @@ export class DetailExpeditionComponent implements OnInit {
       nombreCatapulte,
       nombreElephantDeCombat,
       nombrePretre
-    ).subscribe();
+    ).subscribe(() => {
+    }, (error) => {
+      this.messageErreur = error.error.message;
+    }, () => {
+      this.messageValidation = "Expédition lancée";
+      this.clicked = true;
+      this.messageBoutonEnvoiEnExpedition = "Envoi en cours...";
+      setTimeout(() => {
+        // Redirection au bout de 1,5 secondes
+        this.router.navigate(['mesExpeditions']);
+      }, 1500);
+    });
   }
 
   calculVieRestanteExpedition(quantite: number) {
-    
+
     //1 villageois 
     const nombreVillageois = this.formEnvoiUniteesEnExpedition.get('unitee1').value;
     //2 archer 
@@ -259,55 +272,55 @@ export class DetailExpeditionComponent implements OnInit {
     //23 pretre
     const nombrePretre = this.formEnvoiUniteesEnExpedition.get('unitee23').value;
 
-    
+
     this.toutesLesUnitees.forEach(unitee => {
       // Villageois
-      if(unitee.id == 1) {
-        this.degatsEmis = unitee.attaque*nombreVillageois;
+      if (unitee.id == 1) {
+        this.degatsEmis = unitee.attaque * nombreVillageois;
       } else if (unitee.id == 2) {
-        this.degatsEmis = this.degatsEmis + unitee.attaque*nombreArcher;
+        this.degatsEmis = this.degatsEmis + unitee.attaque * nombreArcher;
       } else if (unitee.id == 3) {
-        this.degatsEmis = this.degatsEmis + unitee.attaque*nombreArcherComposite;
+        this.degatsEmis = this.degatsEmis + unitee.attaque * nombreArcherComposite;
       } else if (unitee.id == 4) {
-        this.degatsEmis = this.degatsEmis + unitee.attaque*nombreFantassinEpee;
+        this.degatsEmis = this.degatsEmis + unitee.attaque * nombreFantassinEpee;
       } else if (unitee.id == 5) {
-        this.degatsEmis = this.degatsEmis + unitee.attaque*nombreHommeDArme;
+        this.degatsEmis = this.degatsEmis + unitee.attaque * nombreHommeDArme;
       } else if (unitee.id == 6) {
-        this.degatsEmis = this.degatsEmis + unitee.attaque*nombreLanceurDeHache;
+        this.degatsEmis = this.degatsEmis + unitee.attaque * nombreLanceurDeHache;
       } else if (unitee.id == 7) {
-        this.degatsEmis = this.degatsEmis + unitee.attaque*nombreMilicien;
+        this.degatsEmis = this.degatsEmis + unitee.attaque * nombreMilicien;
       } else if (unitee.id == 8) {
-        this.degatsEmis = this.degatsEmis + unitee.attaque*nombrePiquier;
+        this.degatsEmis = this.degatsEmis + unitee.attaque * nombrePiquier;
       } else if (unitee.id == 9) {
-        this.degatsEmis = this.degatsEmis + unitee.attaque*nombreCavalierArcher;
+        this.degatsEmis = this.degatsEmis + unitee.attaque * nombreCavalierArcher;
       } else if (unitee.id == 10) {
-        this.degatsEmis = this.degatsEmis + unitee.attaque*nombreCavalier;
+        this.degatsEmis = this.degatsEmis + unitee.attaque * nombreCavalier;
       } else if (unitee.id == 11) {
-        this.degatsEmis = this.degatsEmis + unitee.attaque*nombreChampion;
+        this.degatsEmis = this.degatsEmis + unitee.attaque * nombreChampion;
       } else if (unitee.id == 12) {
-        this.degatsEmis = this.degatsEmis + unitee.attaque*nombreBateauDePeche;
+        this.degatsEmis = this.degatsEmis + unitee.attaque * nombreBateauDePeche;
       } else if (unitee.id == 13) {
-        this.degatsEmis = this.degatsEmis + unitee.attaque*nombreBateauIncendiaire;
+        this.degatsEmis = this.degatsEmis + unitee.attaque * nombreBateauIncendiaire;
       } else if (unitee.id == 14) {
-        this.degatsEmis = this.degatsEmis + unitee.attaque*nombreBateauDeDestruction;
+        this.degatsEmis = this.degatsEmis + unitee.attaque * nombreBateauDeDestruction;
       } else if (unitee.id == 15) {
-        this.degatsEmis = this.degatsEmis + unitee.attaque*nombreGalionACanon;
+        this.degatsEmis = this.degatsEmis + unitee.attaque * nombreGalionACanon;
       } else if (unitee.id == 16) {
-        this.degatsEmis = this.degatsEmis + unitee.attaque*nombreGalion;
+        this.degatsEmis = this.degatsEmis + unitee.attaque * nombreGalion;
       } else if (unitee.id == 17) {
-        this.degatsEmis = this.degatsEmis + unitee.attaque*nombreGuerrierElite;
+        this.degatsEmis = this.degatsEmis + unitee.attaque * nombreGuerrierElite;
       } else if (unitee.id == 18) {
-        this.degatsEmis = this.degatsEmis + unitee.attaque*nombrePhalange;
+        this.degatsEmis = this.degatsEmis + unitee.attaque * nombrePhalange;
       } else if (unitee.id == 19) {
-        this.degatsEmis = this.degatsEmis + unitee.attaque*nombreSamourail;
+        this.degatsEmis = this.degatsEmis + unitee.attaque * nombreSamourail;
       } else if (unitee.id == 20) {
-        this.degatsEmis = this.degatsEmis + unitee.attaque*nombreTemplier;
+        this.degatsEmis = this.degatsEmis + unitee.attaque * nombreTemplier;
       } else if (unitee.id == 21) {
-        this.degatsEmis = this.degatsEmis + unitee.attaque*nombreCatapulte;
+        this.degatsEmis = this.degatsEmis + unitee.attaque * nombreCatapulte;
       } else if (unitee.id == 22) {
-        this.degatsEmis = this.degatsEmis + unitee.attaque*nombreElephantDeCombat;
+        this.degatsEmis = this.degatsEmis + unitee.attaque * nombreElephantDeCombat;
       } else if (unitee.id == 23) {
-        this.degatsEmis = this.degatsEmis + unitee.attaque*nombrePretre;
+        this.degatsEmis = this.degatsEmis + unitee.attaque * nombrePretre;
       }
     });
     // Calcul dégats
@@ -316,12 +329,12 @@ export class DetailExpeditionComponent implements OnInit {
     // --------POURCENTAGE REUSSI ----------- //
     this.reussitePourcentage = 100 - (((this.vieExpedition * 100) / this.expedition.vie));
     // ------------------- //
-    if(this.vieExpedition < 0 ) {
+    if (this.vieExpedition < 0) {
       this.vieExpedition = 0;
       this.reussitePourcentage = 100;
     }
-    console.log("Vie expedition : "+this.vieExpedition)
-    console.log("Degats emis : "+this.degatsEmis)
+    console.log("Vie expedition : " + this.vieExpedition)
+    console.log("Degats emis : " + this.degatsEmis)
   }
 
   // Batiments Joueur Amélioration Colorisation ressources
