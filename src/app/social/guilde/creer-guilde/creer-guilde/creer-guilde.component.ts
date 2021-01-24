@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { GuildeService } from 'src/app/service/guilde.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class CreerGuildeComponent implements OnInit {
   messageValidation: string;
   formCreationGuilde: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private guildeService: GuildeService) { }
+  constructor(private formBuilder: FormBuilder, private guildeService: GuildeService,private router: Router) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -29,6 +30,17 @@ export class CreerGuildeComponent implements OnInit {
   creationGuilde() {
     const icone = this.formCreationGuilde.get('icone').value;
     const libelle = this.formCreationGuilde.get('libelle').value;
-    this.guildeService.creerGuilde(icone,libelle).subscribe();
+    this.guildeService.creerGuilde(icone,libelle).subscribe(
+      () => {
+      }, (error) => {
+        this.messageErreur = error.error.message;
+      }, () => {
+        this.messageValidation = "Guilde créée";
+        setTimeout(() => {
+          // Redirection au bout de 1,5 secondes
+          this.router.navigate(['listeGuildes']);
+        }, 1500);
+      }
+    );
   }
 }

@@ -1,4 +1,14 @@
 <div class="liste-guildes">
+    <a routerLink="/creerGuilde">
+        <button class="btn btn-success">Créer guilde</button>
+    </a>
+    <a routerLink="/listeGuildes">
+        <button class="btn btn-success">Lister guildes</button>
+    </a>    
+    <a routerLink="/rechercheGuilde">
+        <button class="btn btn-success">Rechercher guilde</button>
+    </a>
+    
     <ul *ngFor="let guilde of listeGuildes">
         <li> {{guilde.libelle}}</li>
     </ul>
