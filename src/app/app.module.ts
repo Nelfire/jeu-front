@@ -32,7 +32,6 @@ import { CompetenceService } from './service/competence.service';
 import { ModifierJoueurComponent } from './joueur/modifier-joueur/modifier-joueur.component';
 import { MonCampementComponent } from './campement/mon-campement/mon-campement.component';
 import { MonArmeeComponent } from './armee/mon-armee/mon-armee.component';
-import { GuildeComponent } from './social/guilde/guilde.component';
 import { ClassementJoueursComponent } from './social/classement-joueurs/classement-joueurs.component';
 import { CampementService } from './service/campement.service';
 import { BatimentService } from './service/batiment.service';
@@ -49,6 +48,11 @@ import { ExpeditionService } from './service/expedition.service';
 import { ExpeditionJoueurService } from './service/expedition-joueur.service';
 import { DetailExpeditionComponent } from './expedition/detail-expedition/detail-expedition.component';
 import { ListeExpeditionsJoueurComponent } from './expedition/liste-expeditions-joueur/liste-expeditions-joueur.component';
+import { ListeGuildesComponent } from './social/guilde/liste-guildes/liste-guildes/liste-guildes.component';
+import { CreerGuildeComponent } from './social/guilde/creer-guilde/creer-guilde/creer-guilde.component';
+import { RechercherGuildeComponent } from './social/guilde/rechercher-guilde/rechercher-guilde/rechercher-guilde.component';
+import { MaGuildeComponent } from './social/guilde/ma-guilde/ma-guilde/ma-guilde.component';
+import { GuildeService } from './service/guilde.service';
 
 
 @NgModule({
@@ -71,7 +75,6 @@ import { ListeExpeditionsJoueurComponent } from './expedition/liste-expeditions-
     ModifierJoueurComponent,
     MonCampementComponent,
     MonArmeeComponent,
-    GuildeComponent,
     ClassementJoueursComponent,
     DetailBatimentComponent,
     CreationUniteeComponent,
@@ -80,7 +83,11 @@ import { ListeExpeditionsJoueurComponent } from './expedition/liste-expeditions-
     DetailUniteeComponent,
     ListeExpeditionsComponent,
     DetailExpeditionComponent,
-    ListeExpeditionsJoueurComponent
+    ListeExpeditionsJoueurComponent,
+    ListeGuildesComponent,
+    CreerGuildeComponent,
+    RechercherGuildeComponent,
+    MaGuildeComponent
   ],
   imports: [
     BrowserModule,
@@ -104,6 +111,7 @@ import { ListeExpeditionsJoueurComponent } from './expedition/liste-expeditions-
     ArmeeService,
     ExpeditionService,
     ExpeditionJoueurService,
+    GuildeService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

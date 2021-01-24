@@ -101,6 +101,11 @@
             <div class="col-auto mb-2 mt-3"
               style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
               <h2>Temps restant : {{result}}</h2>
+              <!-- <div class="progress-bar progress-bar-striped progress-bar-animated" [ngStyle]="{width:getTempsRestant()}"></div> -->
+              
+              <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" [ngStyle]="{width:getTempsRestant()}"></div>
+              </div>
             </div>
           </div>
           <!-- Si bâtiment en cours d'amélioration + travail terminé -->

@@ -14,6 +14,7 @@ import { formatDate } from '@angular/common';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { Observable, Subscription } from 'rxjs';
+import { windowTime } from 'rxjs/operators';
 // the second parameter 'fr' is optional
 registerLocaleData(localeFr, 'fr');
 
@@ -114,7 +115,7 @@ export class DetailBatimentComponent implements OnInit {
                 var date = new Date(null);
                 date.setSeconds(this.secondesRestantesAmelioration);
                 this.result = date.toISOString().substr(11, 8);
-                console.log(this.secondesRestantesAmelioration);
+                //console.log(this.secondesRestantesAmelioration);
                 if (this.secondesRestantesAmelioration < 1) {
                   setTimeout(() => {
                     // Redirection au bout de 1,5 secondes
@@ -223,6 +224,13 @@ export class DetailBatimentComponent implements OnInit {
     } else {
       return 'green';
     }
+  }
+
+  getTempsRestant() {
+    // Temps du niveau suivant
+    let tempsMax = ((this.batiment.tempsDeConstruction) * (this.batimentJoueurPossede.niveau-1) * (this.batimentJoueurPossede.niveau-1)) * 2;
+    let pourcentageRestant = 100 - ((this.secondesRestantesAmelioration * 100) / tempsMax);
+    return pourcentageRestant+'%';
   }
 
   ngOnDestroy(): void {

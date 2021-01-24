@@ -29,9 +29,10 @@
 							<div *ngIf="batiment.secondesRestantesAmelioration > 1; else travailTermine;">
 								<button class="btn btn-info">
 									Amélioration en cours<br>
-									<span *ngIf="batiment.date">Restant : {{batiment.date}}</span>
+									<span *ngIf="batiment.date"><span class="spinner-border spinner-border-sm"></span> Restant : {{batiment.date}}</span>
 
 								</button>
+								
 							</div>
 							<!-- Si bâtiment en cours d'amélioration + travail terminé -->
 							<ng-template #travailTermine>
