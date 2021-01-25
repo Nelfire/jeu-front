@@ -31,6 +31,7 @@ import { CreerGuildeComponent } from './social/guilde/creer-guilde/creer-guilde/
 import { ListeGuildesComponent } from './social/guilde/liste-guildes/liste-guildes/liste-guildes.component';
 import { MaGuildeComponent } from './social/guilde/ma-guilde/ma-guilde/ma-guilde.component';
 import { RechercherGuildeComponent } from './social/guilde/rechercher-guilde/rechercher-guilde/rechercher-guilde.component';
+import { BoutiqueComponent } from './boutique/boutique.component';
 
 const routes: Routes = [
   // canActivate: [StatutConnecteService] ==> Permet de verifier si l'utilisateur est connecte
@@ -82,6 +83,9 @@ const routes: Routes = [
   { path: 'expedition/detail-expedition/:id', component: DetailExpeditionComponent, canActivate: [StatutConnecteService]},
   // - Liste expéditions joueur
   { path: 'mesExpeditions', component: ListeExpeditionsJoueurComponent, canActivate: [StatutConnecteService]},
+
+  // ------------- BOUTIQUE -------------
+  { path: 'boutique', component: BoutiqueComponent, canActivate: [StatutConnecteService]},
 
   // Cas url inexistant
   { path: 'not-found', component: FourOhFourComponent, canActivate: [StatutConnecteService] },

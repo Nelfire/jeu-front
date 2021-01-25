@@ -19,7 +19,8 @@ export class JoueurInfos {
     public boisBoostProduction: number,
     public orBoostProduction: number,
     public nourritureBoostProduction: number,
-    public tempsDeJeu: number
+    public tempsDeJeu: number,
+    public derniereConnexion: Date
     ) {
 
   }

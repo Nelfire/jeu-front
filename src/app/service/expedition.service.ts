@@ -11,13 +11,18 @@ const URL_BACKEND = environment.baseUrl + 'expedition';
 })
 export class ExpeditionService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   listerExpedition(): Observable<Expedition[]> {
     return this.http.get<Expedition[]>(`${URL_BACKEND}`);
   }
 
   detailExpedition(id: number): Observable<Expedition> {
-    return this.http.get<Expedition>(`${URL_BACKEND}/detailsExpedition?id=`+id);
+    return this.http.get<Expedition>(`${URL_BACKEND}/detailsExpedition?id=` + id);
+  }
+
+  // Traitement de nuit
+  refeshExpedition(): Observable<void> {
+    return this.http.post<void>(`${URL_BACKEND}/refeshExpedition`, {});
   }
 }

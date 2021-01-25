@@ -4,7 +4,8 @@
             <div class="row justify-content-center">
                 <div class="col-auto mb-4"
                     style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
-                    <h2>Nouvelles expeditions disponnibles dans 00:00:00</h2>
+                    <h2 *ngIf="tempsRestant">10 Nouvelles expeditions disponnibles dans {{tempsRestant}}<button
+                            class="btn btn-success" (click)="refeshExpedition()">Refresh (Cron à minuit)</button></h2>
                 </div>
             </div>
             <div class="row">
@@ -37,8 +38,18 @@
                             <h5>- Durée : {{expedition.dureeExpedition}} secondes</h5>
                         </div>
                         <div class="card-footer">
-                            Difficultée : <small class="text-muted">&#9733; &#9733; &#9733; &#9733;
-                                &#9734;</small><button class="btn btn-warning">Déjà réalisée</button>
+                            Difficultée :
+                            <small class="text-muted" *ngIf="expedition.difficultee == 5">&#9733; &#9733; &#9733;
+                                &#9733; &#9733;</small>
+                            <small class="text-muted" *ngIf="expedition.difficultee == 4">&#9733; &#9733; &#9733;
+                                &#9733; &#9734;</small>
+                            <small class="text-muted" *ngIf="expedition.difficultee == 3">&#9733; &#9733; &#9733;
+                                &#9734; &#9734;</small>
+                            <small class="text-muted" *ngIf="expedition.difficultee == 2">&#9733; &#9733; &#9734;
+                                &#9734; &#9734;</small>
+                            <small class="text-muted" *ngIf="expedition.difficultee == 1">&#9733; &#9734; &#9734;
+                                &#9734; &#9734;</small>
+                            <button class="btn btn-warning">Déjà réalisée</button>
                         </div>
                     </div>
                     <ng-template #disponnible>
@@ -70,9 +81,20 @@
                                 <h5>- Durée : {{expedition.dureeExpedition}} secondes</h5>
                             </div>
                             <div class="card-footer">
-                                Difficultée : <small class="text-muted">&#9733; &#9733; &#9733; &#9733;
-                                    &#9734;</small><a routerLink="detail-expedition/{{expedition.id}}"><button
-                                        class="btn btn-info">Détails</button></a>
+                                Difficultée :
+                                <small class="text-muted" *ngIf="expedition.difficultee == 5">&#9733; &#9733; &#9733;
+                                    &#9733; &#9733;</small>
+                                <small class="text-muted" *ngIf="expedition.difficultee == 4">&#9733; &#9733; &#9733;
+                                    &#9733; &#9734;</small>
+                                <small class="text-muted" *ngIf="expedition.difficultee == 3">&#9733; &#9733; &#9733;
+                                    &#9734; &#9734;</small>
+                                <small class="text-muted" *ngIf="expedition.difficultee == 2">&#9733; &#9733; &#9734;
+                                    &#9734; &#9734;</small>
+                                <small class="text-muted" *ngIf="expedition.difficultee == 1">&#9733; &#9734; &#9734;
+                                    &#9734; &#9734;</small>
+                                <a routerLink="detail-expedition/{{expedition.id}}">
+                                    <button class="btn btn-info">Détails</button>
+                                </a>
                             </div>
                         </div>
                     </ng-template>

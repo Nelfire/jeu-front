@@ -29,6 +29,11 @@
                         [ngStyle]="{color:getColorApprocheLimiteNourriture()}">{{infosJoueur?.nourriturePossession}}/{{infosJoueur?.nourritureMaximum}}</b>
                 </a>
             </li>
+            <li class="gemme">
+                <a class="btn">
+                    <fa-icon [icon]="iconeStopWatch"></fa-icon> Gemmes : <b>{{infosJoueur?.gemmePossession}}</b>
+                </a>
+            </li>
         </ul>
     </div>
 </header>
@@ -90,6 +95,14 @@
                     <i class="fa fa-bar-chart-o fa-2x"></i>
                     <span class="nav-text">
                         Administration
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="boutique">
+                    <i class="fa fa-bar-chart-o fa-2x"></i>
+                    <span class="nav-text">
+                        Boutique
                     </span>
                 </a>
             </li>

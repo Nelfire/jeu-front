@@ -19,7 +19,8 @@ export class Expedition {
         public recompenseBois: number,
         public recompenseOr: number,
         public recompenseNourriture: number,
-        public recompenseGemme: number
+        public recompenseGemme: number,
+        public dateParution: Date
     ) {
 
     }

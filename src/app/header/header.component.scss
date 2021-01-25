@@ -62,7 +62,7 @@ header .menu ul li .btn {
     font-family: "proxima-nova-alt-condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
     background-repeat: repeat-x;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff424242', endColorstr='#ff343432', GradientType=0);
-    width: 300px;
+    width: auto;
 }
 
 header .menu ul li.pierre .btn {
@@ -80,6 +80,10 @@ header .menu ul li.or .btn {
 header .menu ul li.nourriture .btn {
     background-image: linear-gradient(to bottom, #7e0d0dd5 0%, #7e0d0dbb 100%);
     border: 1px solid #a01818;
+}
+header .menu ul li.gemme .btn {
+    background-image: linear-gradient(to bottom, #247e0dd5 0%, #117e0dbb 100%);
+    border: 1px solid #18a03a;
 }
 
 header .menu ul li a {

@@ -53,6 +53,7 @@ import { CreerGuildeComponent } from './social/guilde/creer-guilde/creer-guilde/
 import { RechercherGuildeComponent } from './social/guilde/rechercher-guilde/rechercher-guilde/rechercher-guilde.component';
 import { MaGuildeComponent } from './social/guilde/ma-guilde/ma-guilde/ma-guilde.component';
 import { GuildeService } from './service/guilde.service';
+import { BoutiqueService } from './service/boutique.service';
 
 
 @NgModule({
@@ -112,6 +113,7 @@ import { GuildeService } from './service/guilde.service';
     ExpeditionService,
     ExpeditionJoueurService,
     GuildeService,
+    BoutiqueService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
