@@ -54,6 +54,8 @@ import { RechercherGuildeComponent } from './social/guilde/rechercher-guilde/rec
 import { MaGuildeComponent } from './social/guilde/ma-guilde/ma-guilde/ma-guilde.component';
 import { GuildeService } from './service/guilde.service';
 import { BoutiqueService } from './service/boutique.service';
+import { ExpeditionsTermineesComponent } from './expedition/liste-expeditions-joueur/expeditions-terminees/expeditions-terminees.component';
+import { ExpeditionsEnCoursComponent } from './expedition/liste-expeditions-joueur/expeditions-en-cours/expeditions-en-cours.component';
 
 
 @NgModule({
@@ -88,7 +90,9 @@ import { BoutiqueService } from './service/boutique.service';
     ListeGuildesComponent,
     CreerGuildeComponent,
     RechercherGuildeComponent,
-    MaGuildeComponent
+    MaGuildeComponent,
+    ExpeditionsTermineesComponent,
+    ExpeditionsEnCoursComponent
   ],
   imports: [
     BrowserModule,

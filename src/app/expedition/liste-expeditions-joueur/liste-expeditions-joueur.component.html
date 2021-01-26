@@ -1,9 +1,15 @@
 <div class="expeditionJoueur" *ngIf="listeExpeditionJoueur">
     <div class="row">
         <div class="col-lg-12">
+            
+            <button class="btn btn-success m-2" (click)="listerToutesLesExpeditionsJoueur()">Toutes mes expéditions</button>
+            <button class="btn btn-success m-2" (click)="listerExpeditionJoueurTermineesEchec()">Mes expéditions terminées Echec</button>
+            <button class="btn btn-success m-2" (click)="listerExpeditionJoueurRecompenseEnAttente()">Mes expédition récompense en attente</button>
+            <button class="btn btn-success m-2" (click)="listerExpeditionJoueurTermineesVictoire()">Mes expéditions terminées Victorieuse</button>
+            <button class="btn btn-success m-2" (click)="listerExpeditionJoueurEnCours()">Mes expéditions en cours</button>
             <div class="row">
                 <div class="col-lg-4 col-md-6 mb-4" *ngFor="let uneExpeditionJoueur of listeExpeditionJoueur">
-                    <div class="card h-100 enCours " *ngIf="uneExpeditionJoueur.date; else terminee;">
+                    <div class="card h-100 enCours " *ngIf="uneExpeditionJoueur.etatExpedition == 0; else terminee;">
                         <img class="card-img-top" src="{{uneExpeditionJoueur.expedition.icone}}" alt="">
                         <div class="card-body">
                             <h4 class="card-title">
@@ -40,7 +46,7 @@
                     </div>
                     <ng-template #terminee>
                         <div class="card h-100"
-                            [ngStyle]="{'background-color':uneExpeditionJoueur.etatExpedition == 0 ? '#4bff001a' : (uneExpeditionJoueur.etatExpedition  == 1 ? '#4bff001a' : '#ff00001a') }">
+                            [ngStyle]="{'background-color':uneExpeditionJoueur.etatExpedition == 1 ? '#4bff001a' : (uneExpeditionJoueur.etatExpedition  == 2 ? '#4bff001a' : '#ff00001a') }">
                             <img class="card-img-top" src="{{uneExpeditionJoueur.expedition.icone}}" alt="">
                             <div class="card-body">
                                 <h4 class="card-title">
@@ -69,19 +75,19 @@
                                 <!-- Expédition terminée -->
 
                                 <!-- Récompense pas encore récupérée, bouton adéquat -->
-                                <div *ngIf="uneExpeditionJoueur.etatExpedition == 0">
+                                <div *ngIf="uneExpeditionJoueur.etatExpedition == 1">
                                     <button class="btn btn-success" [disabled]="clickRecuperer"
                                         (click)="recupererRecompense(uneExpeditionJoueur.id)">
                                         Récupérer récompense
                                     </button>
                                 </div>
-                                <div *ngIf="uneExpeditionJoueur.etatExpedition == 1">
+                                <div *ngIf="uneExpeditionJoueur.etatExpedition == 2">
                                     <button class="btn btn-success" disabled>
                                         Récompensé déjà récupérée
                                     </button>
                                 </div>
                                 <!-- Récompense déjà récupérée, bouton adéquat -->
-                                <div *ngIf="uneExpeditionJoueur.etatExpedition == 2">
+                                <div *ngIf="uneExpeditionJoueur.etatExpedition == 3">
                                     <button class="btn btn-danger" disabled>
                                         Expédition échouée
                                     </button>

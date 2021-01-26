@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Expedition } from 'src/app/models/expedition';
 import { ExpeditionJoueur } from 'src/app/models/expedition-joueur';
@@ -10,7 +10,7 @@ import { ExpeditionService } from 'src/app/service/expedition.service';
   templateUrl: './liste-expeditions.component.html',
   styleUrls: ['./liste-expeditions.component.scss']
 })
-export class ListeExpeditionsComponent implements OnInit {
+export class ListeExpeditionsComponent implements OnInit, OnDestroy {
 
   // Initialisations 
   listeExpedition = [];
@@ -64,6 +64,7 @@ export class ListeExpeditionsComponent implements OnInit {
           demain.setDate(demain.getDate() + 1);
           // Secondes restantes avant demain
           var secondesRestantesAvantRefresh = (demain.getTime() - aujourdhui.getTime()) / 1000;
+          console.log(secondesRestantesAvantRefresh);
           // Mise au bon format (hh:mm:ss)
           var date = new Date(null);
           date.setSeconds(secondesRestantesAvantRefresh);
@@ -75,6 +76,13 @@ export class ListeExpeditionsComponent implements OnInit {
   // Cron back 00h00
   refeshExpedition(): void {
     this.expeditionService.refeshExpedition().subscribe();
+  }
+
+  ngOnDestroy() {
+    if(this.counterSubscription) {
+      this.counterSubscription.unsubscribe();
+
+    }
   }
 
 }

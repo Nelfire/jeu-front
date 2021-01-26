@@ -73,7 +73,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 this.nourriturePossession = value.nourriturePossession;
                 this.nourritureMaximum = value.nourritureMaximum; */
               }
-            )
+            );
           }
         );
       }

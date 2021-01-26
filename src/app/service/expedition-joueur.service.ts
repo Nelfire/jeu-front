@@ -12,11 +12,35 @@ const URL_BACKEND = environment.baseUrl + 'expeditionJoueur';
 })
 export class ExpeditionJoueurService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
+  // LISTER TOUTES LES EXPEDITIONS DU JOUEUR, TOUT CONFONDU
   listerExpeditionJoueur(): Observable<ExpeditionJoueur[]> {
     return this.http.get<ExpeditionJoueur[]>(`${URL_BACKEND}`);
   }
+  
+  // LISTER UNIQUEMENT LES EXPEDITIONS JOUEUR VICTORIEUSE + RECOMPENSE DEJA RECUPEREE = 2
+  listerExpeditionJoueurTermineesVictoire(): Observable<ExpeditionJoueur[]> {
+    return this.http.get<ExpeditionJoueur[]>(`${URL_BACKEND}/listerExpeditionJoueurTermineesVictoire`);
+  }
+
+  // LISTER UNIQUEMENT LES EXPEDITIONS JOUEUR TERMINEES EN ECHEC = 3
+  listerExpeditionJoueurTermineesEchec(): Observable<ExpeditionJoueur[]> {
+    return this.http.get<ExpeditionJoueur[]>(`${URL_BACKEND}/listerExpeditionJoueurTermineesEchec`);
+  }
+
+  // LISTER UNIQUEMENT LES EXPEDITIONS JOUEUR VICTORIEUSE + RECOMPENSE EN ATTENTE DE RECUPERATION = 1
+  listerExpeditionJoueurRecompenseEnAttente(): Observable<ExpeditionJoueur[]> {
+    return this.http.get<ExpeditionJoueur[]>(`${URL_BACKEND}/listerExpeditionJoueurRecompenseEnAttente`);
+  }
+
+  // LISTER UNIQUEMENT LES EXPEDITIONS JOUEUR EN COURS = 0
+  listerExpeditionJoueurEnCours(): Observable<ExpeditionJoueur[]> {
+    return this.http.get<ExpeditionJoueur[]>(`${URL_BACKEND}/listerExpeditionJoueurEnCours`);
+  }
+  
+
+  
 
   envoiUniteeEnExpedition(
     idExpedition: number,
@@ -43,37 +67,37 @@ export class ExpeditionJoueurService {
     nombreCatapulte: number,
     nombreElephantDeCombat: number,
     nombrePretre: number
-    ):Observable<number> {
+  ): Observable<number> {
     return this.http.post<number>(`${URL_BACKEND}`,
-    {
-      idExpedition: `${idExpedition}`,
-      nombreVillageois: `${nombreVillageois}`,
-      nombreArcher: `${nombreArcher}`,
-      nombreArcherComposite: `${nombreArcherComposite}`,
-      nombreFantassinEpee: `${nombreFantassinEpee}`,
-      nombreHommeDArme: `${nombreHommeDArme}`,
-      nombreLanceurDeHache: `${nombreLanceurDeHache}`,
-      nombreMilicien: `${nombreMilicien}`,
-      nombrePiquier: `${nombrePiquier}`,
-      nombreCavalierArcher: `${nombreCavalierArcher}`,
-      nombreCavalier: `${nombreCavalier}`,
-      nombreChampion: `${nombreChampion}`,
-      nombreBateauDePeche: `${nombreBateauDePeche}`,
-      nombreBateauIncendiaire: `${nombreBateauIncendiaire}`,
-      nombreBateauDeDestruction: `${nombreBateauDeDestruction}`,
-      nombreGalionACanon: `${nombreGalionACanon}`,
-      nombreGalion: `${nombreGalion}`,
-      nombreGuerrierElite: `${nombreGuerrierElite}`,
-      nombrePhalange: `${nombrePhalange}`,
-      nombreSamourail: `${nombreSamourail}`,
-      nombreTemplier: `${nombreTemplier}`,
-      nombreCatapulte: `${nombreCatapulte}`,
-      nombreElephantDeCombat: `${nombreElephantDeCombat}`,
-      nombrePretre: `${nombrePretre}`
-    });
+      {
+        idExpedition: `${idExpedition}`,
+        nombreVillageois: `${nombreVillageois}`,
+        nombreArcher: `${nombreArcher}`,
+        nombreArcherComposite: `${nombreArcherComposite}`,
+        nombreFantassinEpee: `${nombreFantassinEpee}`,
+        nombreHommeDArme: `${nombreHommeDArme}`,
+        nombreLanceurDeHache: `${nombreLanceurDeHache}`,
+        nombreMilicien: `${nombreMilicien}`,
+        nombrePiquier: `${nombrePiquier}`,
+        nombreCavalierArcher: `${nombreCavalierArcher}`,
+        nombreCavalier: `${nombreCavalier}`,
+        nombreChampion: `${nombreChampion}`,
+        nombreBateauDePeche: `${nombreBateauDePeche}`,
+        nombreBateauIncendiaire: `${nombreBateauIncendiaire}`,
+        nombreBateauDeDestruction: `${nombreBateauDeDestruction}`,
+        nombreGalionACanon: `${nombreGalionACanon}`,
+        nombreGalion: `${nombreGalion}`,
+        nombreGuerrierElite: `${nombreGuerrierElite}`,
+        nombrePhalange: `${nombrePhalange}`,
+        nombreSamourail: `${nombreSamourail}`,
+        nombreTemplier: `${nombreTemplier}`,
+        nombreCatapulte: `${nombreCatapulte}`,
+        nombreElephantDeCombat: `${nombreElephantDeCombat}`,
+        nombrePretre: `${nombrePretre}`
+      });
   }
 
-  recupererRecompense(idExpedition: number):Observable<String> {
-    return this.http.get<String>(`${URL_BACKEND}/recupererRecompense?idExpedition=`+idExpedition);
+  recupererRecompense(idExpedition: number): Observable<String> {
+    return this.http.get<String>(`${URL_BACKEND}/recupererRecompense?idExpedition=` + idExpedition);
   }
 }
