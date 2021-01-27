@@ -42,6 +42,7 @@ export class DetailBatimentComponent implements OnInit {
   etatBoutonConstruire: String;
   etatBoutonAmeliorer: String;
   flagEnCoursDeTravail: Boolean;
+  niveauHdvJoueur: number = 0;
 
   result: string;
 
@@ -54,6 +55,8 @@ export class DetailBatimentComponent implements OnInit {
     private joueurService: JoueurService) { }
 
   ngOnInit(): void {
+    // Détection niveau HDV
+    this.verifierNiveauHdvJoueur();
 
     // Récupération des informations du joueur, pour indiquer le manque de ressources (colorisation)
     this.joueurService.informationJoueurByEmail().subscribe(
@@ -126,6 +129,35 @@ export class DetailBatimentComponent implements OnInit {
             );
           }
         }
+      }
+    );
+  }
+
+
+
+  verifierNiveauHdvJoueur() {
+    // Récupération liste des batiments
+    this.batimentService.listerBatiments().subscribe(
+      () => {
+        // Récupération liste des batiments du joueur
+        this.batimentJoueurService.listerMesBatiments().subscribe(
+          (mesBatiments) => {
+            // Boucle sur les bâtiments du joueur
+            mesBatiments.forEach((monBatiment) => {
+              // SI LE JOUER POSSEDE UN HDV, RECUPERATION DU NIVEAU
+              if (monBatiment.batiment.idTypeBatiment == 1) {
+                // MAINTENANT
+                var maintenant = new Date().getTime();
+                // SI HDV N'EST PAS EN CONSTRUCTION
+                if (monBatiment.dateFinConstruction < maintenant) {
+                  this.niveauHdvJoueur = monBatiment.niveau;
+                } else {
+                  this.niveauHdvJoueur = monBatiment.niveau - 1;
+                }
+              }
+            });
+          }
+        );
       }
     );
   }
@@ -228,9 +260,13 @@ export class DetailBatimentComponent implements OnInit {
 
   getTempsRestant() {
     // Temps du niveau suivant
-    let tempsMax = ((this.batiment.tempsDeConstruction) * (this.batimentJoueurPossede.niveau-1) * (this.batimentJoueurPossede.niveau-1)) * 2;
+    let tempsMax = ((this.batiment.tempsDeConstruction) * (this.batimentJoueurPossede.niveau - 1) * (this.batimentJoueurPossede.niveau - 1)) * 2;
+    console.log("this.batiment.tempsDeConstruction : "+this.batiment.tempsDeConstruction)
+
+    console.log("this.batimentJoueurPossede.niveau : "+this.batimentJoueurPossede.niveau)
     let pourcentageRestant = 100 - ((this.secondesRestantesAmelioration * 100) / tempsMax);
-    return pourcentageRestant+'%';
+    console.log("pourcentageRestant : "+pourcentageRestant)
+    return pourcentageRestant + '%';
   }
 
   ngOnDestroy(): void {

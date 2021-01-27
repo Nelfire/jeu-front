@@ -1,52 +1,30 @@
 <div class="expeditionJoueur" *ngIf="listeExpeditionJoueur">
     <div class="row">
-        <div class="col-lg-12">
-            
-            <button class="btn btn-success m-2" (click)="listerToutesLesExpeditionsJoueur()">Toutes mes expéditions</button>
-            <button class="btn btn-success m-2" (click)="listerExpeditionJoueurTermineesEchec()">Mes expéditions terminées Echec</button>
-            <button class="btn btn-success m-2" (click)="listerExpeditionJoueurRecompenseEnAttente()">Mes expédition récompense en attente</button>
-            <button class="btn btn-success m-2" (click)="listerExpeditionJoueurTermineesVictoire()">Mes expéditions terminées Victorieuse</button>
-            <button class="btn btn-success m-2" (click)="listerExpeditionJoueurEnCours()">Mes expéditions en cours</button>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4" *ngFor="let uneExpeditionJoueur of listeExpeditionJoueur">
-                    <div class="card h-100 enCours " *ngIf="uneExpeditionJoueur.etatExpedition == 0; else terminee;">
-                        <img class="card-img-top" src="{{uneExpeditionJoueur.expedition.icone}}" alt="">
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                {{uneExpeditionJoueur.expedition.libelle}}
-                                <!-- <p class="card-text">{{expedition.description}}</p> -->
-                            </h4>
-                            <hr>
-                            <h2>Récompense :</h2>
-                            <h5>- Pierre : {{uneExpeditionJoueur.expedition.recompensePierre}}</h5>
-                            <h5>- Bois : {{uneExpeditionJoueur.expedition.recompenseBois}}</h5>
-                            <h5>- Or : {{uneExpeditionJoueur.expedition.recompenseOr}}</h5>
-                            <h5>- Nourriture : {{uneExpeditionJoueur.expedition.recompenseNourriture}}</h5>
-                            <h5>- Gemme : {{uneExpeditionJoueur.expedition.recompenseGemme}}</h5>
-                            <hr>
-                            <h2>Infos :</h2>
-                            <h5>- Vie : {{uneExpeditionJoueur.expedition.vie}}</h5>
-                            <h5>- Degats : {{uneExpeditionJoueur.expedition.degats}}</h5>
-                            <h5>- Armure : {{uneExpeditionJoueur.expedition.armure}}</h5>
-                            <h5>- Durée : {{uneExpeditionJoueur.expedition.dureeExpedition}} secondes</h5>
-                            <hr>
-                            <div *ngIf="uneExpeditionJoueur.date">
-                                <h2>Temps restant : {{uneExpeditionJoueur.date}}</h2>
-                            </div>
-
-                        </div>
-                        <div class="card-footer">
-                            Pourcentage réussite : <b>{{uneExpeditionJoueur.pourcentageReussite}} %</b>
-                            <!-- Récompense pas encore dispo, expédition pas terminée-->
-                            <button class="btn btn-warning" disabled>
-                                <span class="spinner-border spinner-border-sm"></span>
-                                Expédition en cours
-                            </button>
-                        </div>
-                    </div>
-                    <ng-template #terminee>
-                        <div class="card h-100"
-                            [ngStyle]="{'background-color':uneExpeditionJoueur.etatExpedition == 1 ? '#4bff001a' : (uneExpeditionJoueur.etatExpedition  == 2 ? '#4bff001a' : '#ff00001a') }">
+        {{niveauTableExpedition}}
+        <div *ngIf="niveauTableExpedition==0; else possedeTableExpedition;">
+            <div class="row justify-content-center">
+                <div class="col-auto mb-4"
+                    style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
+                    <h2>Vous devez construire une table d'expédition</h2>
+                </div>
+            </div>
+        </div>
+        <ng-template #possedeTableExpedition>
+            <div class="col-lg-12">
+                <button class="btn btn-success m-2" (click)="listerToutesLesExpeditionsJoueur()">Toutes mes
+                    expéditions</button>
+                <button class="btn btn-success m-2" (click)="listerExpeditionJoueurTermineesEchec()">Mes expéditions
+                    terminées Echec</button>
+                <button class="btn btn-success m-2" (click)="listerExpeditionJoueurRecompenseEnAttente()">Mes expédition
+                    récompense en attente</button>
+                <button class="btn btn-success m-2" (click)="listerExpeditionJoueurTermineesVictoire()">Mes expéditions
+                    terminées Victorieuse</button>
+                <button class="btn btn-success m-2" (click)="listerExpeditionJoueurEnCours()">Mes expéditions en
+                    cours</button>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 mb-4" *ngFor="let uneExpeditionJoueur of listeExpeditionJoueur">
+                        <div class="card h-100 enCours "
+                            *ngIf="uneExpeditionJoueur.etatExpedition == 0; else terminee;">
                             <img class="card-img-top" src="{{uneExpeditionJoueur.expedition.icone}}" alt="">
                             <div class="card-body">
                                 <h4 class="card-title">
@@ -67,36 +45,74 @@
                                 <h5>- Armure : {{uneExpeditionJoueur.expedition.armure}}</h5>
                                 <h5>- Durée : {{uneExpeditionJoueur.expedition.dureeExpedition}} secondes</h5>
                                 <hr>
-                                <h2>Expédition terminée</h2>
+                                <div *ngIf="uneExpeditionJoueur.date">
+                                    <h2>Temps restant : {{uneExpeditionJoueur.date}}</h2>
+                                </div>
+
                             </div>
                             <div class="card-footer">
                                 Pourcentage réussite : <b>{{uneExpeditionJoueur.pourcentageReussite}} %</b>
                                 <!-- Récompense pas encore dispo, expédition pas terminée-->
-                                <!-- Expédition terminée -->
-
-                                <!-- Récompense pas encore récupérée, bouton adéquat -->
-                                <div *ngIf="uneExpeditionJoueur.etatExpedition == 1">
-                                    <button class="btn btn-success" [disabled]="clickRecuperer"
-                                        (click)="recupererRecompense(uneExpeditionJoueur.id)">
-                                        Récupérer récompense
-                                    </button>
-                                </div>
-                                <div *ngIf="uneExpeditionJoueur.etatExpedition == 2">
-                                    <button class="btn btn-success" disabled>
-                                        Récompensé déjà récupérée
-                                    </button>
-                                </div>
-                                <!-- Récompense déjà récupérée, bouton adéquat -->
-                                <div *ngIf="uneExpeditionJoueur.etatExpedition == 3">
-                                    <button class="btn btn-danger" disabled>
-                                        Expédition échouée
-                                    </button>
-                                </div>
+                                <button class="btn btn-warning" disabled>
+                                    <span class="spinner-border spinner-border-sm"></span>
+                                    Expédition en cours
+                                </button>
                             </div>
                         </div>
-                    </ng-template>
+                        <ng-template #terminee>
+                            <div class="card h-100"
+                                [ngStyle]="{'background-color':uneExpeditionJoueur.etatExpedition == 1 ? '#4bff001a' : (uneExpeditionJoueur.etatExpedition  == 2 ? '#4bff001a' : '#ff00001a') }">
+                                <img class="card-img-top" src="{{uneExpeditionJoueur.expedition.icone}}" alt="">
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        {{uneExpeditionJoueur.expedition.libelle}}
+                                        <!-- <p class="card-text">{{expedition.description}}</p> -->
+                                    </h4>
+                                    <hr>
+                                    <h2>Récompense :</h2>
+                                    <h5>- Pierre : {{uneExpeditionJoueur.expedition.recompensePierre}}</h5>
+                                    <h5>- Bois : {{uneExpeditionJoueur.expedition.recompenseBois}}</h5>
+                                    <h5>- Or : {{uneExpeditionJoueur.expedition.recompenseOr}}</h5>
+                                    <h5>- Nourriture : {{uneExpeditionJoueur.expedition.recompenseNourriture}}</h5>
+                                    <h5>- Gemme : {{uneExpeditionJoueur.expedition.recompenseGemme}}</h5>
+                                    <hr>
+                                    <h2>Infos :</h2>
+                                    <h5>- Vie : {{uneExpeditionJoueur.expedition.vie}}</h5>
+                                    <h5>- Degats : {{uneExpeditionJoueur.expedition.degats}}</h5>
+                                    <h5>- Armure : {{uneExpeditionJoueur.expedition.armure}}</h5>
+                                    <h5>- Durée : {{uneExpeditionJoueur.expedition.dureeExpedition}} secondes</h5>
+                                    <hr>
+                                    <h2>Expédition terminée</h2>
+                                </div>
+                                <div class="card-footer">
+                                    Pourcentage réussite : <b>{{uneExpeditionJoueur.pourcentageReussite}} %</b>
+                                    <!-- Récompense pas encore dispo, expédition pas terminée-->
+                                    <!-- Expédition terminée -->
+
+                                    <!-- Récompense pas encore récupérée, bouton adéquat -->
+                                    <div *ngIf="uneExpeditionJoueur.etatExpedition == 1">
+                                        <button class="btn btn-success" [disabled]="clickRecuperer"
+                                            (click)="recupererRecompense(uneExpeditionJoueur.id)">
+                                            Récupérer récompense
+                                        </button>
+                                    </div>
+                                    <div *ngIf="uneExpeditionJoueur.etatExpedition == 2">
+                                        <button class="btn btn-success" disabled>
+                                            Récompensé déjà récupérée
+                                        </button>
+                                    </div>
+                                    <!-- Récompense déjà récupérée, bouton adéquat -->
+                                    <div *ngIf="uneExpeditionJoueur.etatExpedition == 3">
+                                        <button class="btn btn-danger" disabled>
+                                            Expédition échouée
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </div>
                 </div>
             </div>
-        </div>
+        </ng-template>
     </div>
 </div>

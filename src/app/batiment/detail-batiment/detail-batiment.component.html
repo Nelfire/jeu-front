@@ -7,6 +7,7 @@
       </div>
     </div>
   </div>
+  HDV : {{niveauHdvJoueur}}
   <!-- Affichage mode construction -->
   <div *ngIf="modeConstructionAmelioration=='construction'">
     <div class="text-center py-3">
@@ -57,11 +58,19 @@
       <b><b>Ouvrier</b> necessaire : </b> {{batiment['ouvrierNecessaireConstruction']}}<br>
       <b><b>Temps</b> de construction : </b> {{batiment['tempsDeConstruction']}} secondes<br>
 
+      <div *ngIf="batiment['niveauHotelDeVilleNecessaireConstruction']>niveauHdvJoueur; else constructionPossible;"> 
+        <a routerLink="/campement">
+          <button class="btn btn-danger mt-3 mr-2">
+            HDV niveau {{batiment['niveauHotelDeVilleNecessaireConstruction']}} necessaire
+          </button>
+        </a>
+      </div>
+      <ng-template #constructionPossible>
+        <button class="btn btn-success mt-3 mr-2" (click)="construire()">
+          Construire
+        </button>
+      </ng-template>
 
-
-      <button class="btn btn-success mt-3 mr-2" (click)="construire()">
-        Construire
-      </button>
       <button routerLink="../../../campement" class="btn btn-danger mt-3">
         Retour
       </button>

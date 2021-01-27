@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { ExpeditionJoueur } from 'src/app/models/expedition-joueur';
+import { BatimentJoueurService } from 'src/app/service/batiment-joueur.service';
+import { BatimentService } from 'src/app/service/batiment.service';
 import { ExpeditionJoueurService } from 'src/app/service/expedition-joueur.service';
 
 @Component({
@@ -17,13 +19,18 @@ export class ListeExpeditionsJoueurComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = []
   listeExpeditionJoueur = [];
   secondesRestantesExpedition: number;
+  niveauTableExpedition: number = 0;
+
   // Pour désactiver le bouton une fois que le joueur à cliqué sur "Récupérer récompense"
   clickRecuperer = false;
   messageBoutonRecuperationRecompense: string = "Récupérer récompense";
 
-  constructor(private expeditionJoueurService: ExpeditionJoueurService) { }
+  constructor(private expeditionJoueurService: ExpeditionJoueurService, 
+    private batimentService: BatimentService, 
+    private batimentJoueurService: BatimentJoueurService) { }
 
   ngOnInit(): void {
+    this.verifierNiveauTableExpedition();
     this.listerToutesLesExpeditionsJoueur();
   }
 
@@ -66,6 +73,34 @@ export class ListeExpeditionsJoueurComponent implements OnInit, OnDestroy {
       }
     );
   }
+
+    // Verification possession bâtiment de type "Table d'expédition"
+    verifierNiveauTableExpedition() {
+      // Récupération liste des batiments
+      this.batimentService.listerBatiments().subscribe(
+        () => {
+          // Récupération liste des batiments du joueur
+          this.batimentJoueurService.listerMesBatiments().subscribe(
+            (mesBatiments) => {
+              // Boucle sur les bâtiments du joueur
+              mesBatiments.forEach((monBatiment) => {
+                // SI LE JOUER POSSEDE UNE TABLE D'EXPEDITION (id:18), RECUPERATION DU NIVEAU
+                if (monBatiment.batiment.idTypeBatiment == 18) {
+                  // MAINTENANT
+                  var maintenant = new Date().getTime();
+                  // SI TABLE D'EXPEDITION N'EST PAS EN CONSTRUCTION
+                  if (monBatiment.dateFinConstruction < maintenant) {
+                    this.niveauTableExpedition = monBatiment.niveau;
+                  } else {
+                    this.niveauTableExpedition = monBatiment.niveau - 1;
+                  }
+                }
+              });
+            }
+          );
+        }
+      );
+    }
 
   // LISTER UNIQUEMENT LES EXPEDITIONS JOUEUR VICTORIEUSE + RECOMPENSE DEJA RECUPEREE = 2
   listerExpeditionJoueurTermineesVictoire() {
