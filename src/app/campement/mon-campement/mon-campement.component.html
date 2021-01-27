@@ -5,6 +5,13 @@
 			<h2>Bâtiments</h2>
 		</div>
 	</div>
+	<div class="boutons">
+		<button class="btn btn-success m-3" (click)="listerBatimentsJoueur()">Tous</button>
+		<button class="btn btn-success m-3" (click)="batimentsDivers()">Divers</button>
+		<button class="btn btn-success m-3" (click)="batimentsRecolte()">Récolte</button>
+		<button class="btn btn-success m-3" (click)="batimentsStockage()">Stockage</button>
+		<button class="btn btn-success m-3" (click)="batimentsMillitaire()">Millitaire</button>
+	</div>
 	<div>
 		<ul class="honeycomb" lang="es">
 			<li class="honeycomb-cell" *ngFor="let batiment of lesBatiments">
@@ -13,8 +20,6 @@
 					<!-- Données du bâtiment -->
 					<a routerLink="../batiment/detail-batiment/{{batiment.idTypeBatiment}}">
 						<div>
-
-
 							<div style="text-align:center;">
 								<input disabled type="text" name="texte" class="level"
 									value="Niveau {{batiment.niveauBatimentDuJoueur}}" />
