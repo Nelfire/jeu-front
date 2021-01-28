@@ -1,17 +1,25 @@
-<div class="armee">
+<div class="armee" *ngIf="lesUnitees">
     <div class="row justify-content-center">
         <div class="col-auto mb-4" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
             <h2>Unitées</h2>
         </div>
     </div>
+    <div class="boutons divCenter">
+		<button class="btn btn-success m-3" (click)="uniteesToutes()">Toutes</button>
+		<button class="btn btn-success m-3" (click)="uniteesDivers()">Divers</button>
+		<button class="btn btn-success m-3" (click)="uniteesInfanterie()">Infanterie</button>
+		<button class="btn btn-success m-3" (click)="uniteesCavalerie()">Cavalerie</button>
+		<button class="btn btn-success m-3" (click)="uniteesSiege()">Siège</button>
+		<button class="btn btn-success m-3" (click)="uniteesNavale()">Navale</button>
+	</div>
     <div>
         <ul class="honeycomb" lang="es">
             <li class="honeycomb-cell" *ngFor="let unitee of lesUnitees">
-                <div *ngIf="unitee.joueurLaPossede; else nePossedePas;">
+                <div>
                     <a routerLink="../unitee/detail-unitee/{{unitee.id}}">
                         <div>
-                            <!-- Quantitée d'unitées -->
-                            <div style="text-align:center;">
+                            <!-- Quantitée d'unitées affichée si le joueur en possède -->
+                            <div style="text-align:center;" *ngIf="unitee.joueurLaPossede">
                                 <input disabled type="text" name="texte" class="quantite"
                                     value="Possède : {{unitee.quantiteePossession}}" />
                             </div>
@@ -21,40 +29,36 @@
                             <div class="honeycomb-cell__title">{{unitee.libelle}}</div>
                             <br>
                         </div>
-                        <!-- Bouton -->
-                        <span>
-                            <button class="btn btn-info">Créer</button>
+                        <!-- Boutons -->
+                        <!---->
+                        <span *ngIf="unitee.flagPossedeBatimentNecessaireFormationUnitee">
+                            <span *ngIf="unitee.flagBatimentUniteeEnCoursDeConstruction; else suite;">
+                                <a routerLink="../batiment/detail-batiment/{{unitee.idBatimentProvenance}}">
+                                    <button class="btn btn-warning">Bâtiment en cours de travail</button>
+                                </a>
+                            </span>
+                            <ng-template #suite>
+                                <span *ngIf="!unitee.flagNiveauBatimentNecessaireFormationUniteeAssezEleve">
+                                    <a routerLink="../batiment/detail-batiment/{{unitee.idBatimentProvenance}}">
+                                        <button class="btn btn-warning">Niveau bâtiment insuffisant</button>
+                                    </a>
+                                </span>
+                            </ng-template>
                         </span>
-                    </a>
-                </div>
-                <ng-template #nePossedePas>
-                    <a routerLink="../unitee/detail-unitee/{{unitee.id}}">
-                        <div>
-                            {{unitee.messagePossession}}
+                        <!-- SI NIVEAU BÂTIMENT DE PROVENCANT INSUFFISANT-->
 
-                            <!-- Icone -->
-                            <img class="honeycomb-cell__image" src="{{unitee.icone}}">
-                            <!-- Libelle -->
-                            <div class="honeycomb-cell__title">{{unitee.libelle}}</div>
-                            <br>
-                        </div>
-                        <!-- Bouton -->
-                        <span *ngIf="unitee.flagNiveauBatimentNecessaireFormationUniteeAssezEleve">
-                            <button class="btn btn-info">Créer</button>
-                        </span>
-                        <span
-                            *ngIf="unitee.flagPossedeBatimentNecessaireFormationUnitee && !unitee.flagNiveauBatimentNecessaireFormationUniteeAssezEleve">
-                            <a routerLink="../batiment/detail-batiment/{{unitee.idBatimentProvenance}}">
-                                <button class="btn btn-warning">Niveau bâtiment insufisant</button>
-                            </a>
-                        </span>
+                        <!-- SI BÂTIMENT PAS ENCORS ACQUIS-->
                         <span *ngIf="!unitee.flagPossedeBatimentNecessaireFormationUnitee">
                             <a routerLink="../batiment/detail-batiment/{{unitee.idBatimentProvenance}}">
                                 <button class="btn btn-danger">Bâtiment manquant</button>
                             </a>
                         </span>
+                        <span
+                            *ngIf="unitee.flagPossedeBatimentNecessaireFormationUnitee && unitee.flagNiveauBatimentNecessaireFormationUniteeAssezEleve && !unitee.flagBatimentUniteeEnCoursDeConstruction">
+                            <button class="btn btn-info">Créer</button>
+                        </span>
                     </a>
-                </ng-template>
+                </div>
             </li>
         </ul>
     </div>

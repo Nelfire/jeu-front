@@ -20,26 +20,26 @@ export class BatimentService {
   /**
  * LISTER QUE LES BATIMENTS DE TYPE DIVERS = 0
  */
-  listerbatimentsDivers(): Observable<Batiment[]> {
-    return this.http.get<Batiment[]>(`${URL_BACKEND}/listerbatimentsDivers`);
+  listerBatimentsDivers(): Observable<Batiment[]> {
+    return this.http.get<Batiment[]>(`${URL_BACKEND}/listerBatimentsDivers`);
   }
   /**
 * LISTER QUE LES BATIMENTS DE TYPE RECOLTE = 1
 */
-  listerbatimentsRecolte(): Observable<Batiment[]> {
-    return this.http.get<Batiment[]>(`${URL_BACKEND}/listerbatimentsRecolte`);
+  listerBatimentsRecolte(): Observable<Batiment[]> {
+    return this.http.get<Batiment[]>(`${URL_BACKEND}/listerBatimentsRecolte`);
   }
   /**
  * LISTER QUE LES BATIMENTS DE TYPE STOCKAGE = 2
  */
-  listerbatimentsStockage(): Observable<Batiment[]> {
-    return this.http.get<Batiment[]>(`${URL_BACKEND}/listerbatimentsStockage`);
+  listerBatimentsStockage(): Observable<Batiment[]> {
+    return this.http.get<Batiment[]>(`${URL_BACKEND}/listerBatimentsStockage`);
   }
   /**
  * LISTER QUE LES BATIMENTS DE TYPE MILLITAIRE = 3
  */
-  listerbatimentsMillitaire(): Observable<Batiment[]> {
-    return this.http.get<Batiment[]>(`${URL_BACKEND}/listerbatimentsMillitaire`);
+  listerBatimentsMillitaire(): Observable<Batiment[]> {
+    return this.http.get<Batiment[]>(`${URL_BACKEND}/listerBatimentsMillitaire`);
   }
   detailsBatiment(idTypeBatiment: Number): Observable<Batiment> {
     return this.http.get<Batiment>(`${URL_BACKEND}/idTypeBatiment?idTypeBatiment=` + idTypeBatiment);

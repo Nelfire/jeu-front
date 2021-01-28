@@ -1,6 +1,6 @@
 <!-- Affichage mode construction -->
 <div class="detailUnitee" *ngIf="unitee && joueur">
-    <div class="text-center py-3" >
+    <div class="text-center py-3">
         <img src="{{unitee['icone']}}" alt="" style="width: 20%;" />
     </div>
     <div class="lead card-header text-center py-3 mt-3"
@@ -57,39 +57,58 @@
         <span>
             <b>{{unitee['armure']}}</b>
         </span><br>
-        <!-- Si le joueur possède la bâtiment -->
 
+        <!-- Si le joueur possède l bâtiment -->
         <span *ngIf="joueurPossedeBatiment; else possedePas">
+            <!-- Si le niveau du bâtiment est assez élevé -->
             <span *ngIf="niveauBatimentAssezEleveFormation; else niveauBatimentPasAssezEleve">
-                <div class="divformulaireCreation">
-                    <form [formGroup]="formCreationUnitee" (ngSubmit)="produireUnitee()">
-                        <div class="col-sm-10 center">
-                            <input type="text" pattern="[0-9]*" class="form-control" class="quantite" id="quantite"
-                                rows="3" formControlName="quantite" [(ngModel)]="quantite"
-                                (keyup)="recalculPrix(quantite)" required/>
-                        </div>
-                        <!-- Désactivation du bouton si quantitée incorrecte ou vide -->
-                        <button class="btn btn-success m3" [disabled]="formCreationUnitee.invalid || quantite==0">
-                            Entrainer
-                        </button>
-                        <button type="button" class="btn btn-info m-3" (click)="maximum()">Maximum</button>
-                    </form>
-                </div>
+                <!-- Si le bâtiment n'est pas occupé [Construction/Amélioration]-->
+                <span *ngIf="!batimentEnCoursDeTravail; else batimentOccupe">
+                    <div class="divformulaireCreation">
+                        <form [formGroup]="formCreationUnitee" (ngSubmit)="produireUnitee()">
+                            <div class="col-sm-10 center">
+                                <!-- Choix quantité -->
+                                <input type="text" pattern="[0-9]*" class="form-control" class="quantite" id="quantite"
+                                    rows="3" formControlName="quantite" [(ngModel)]="quantite"
+                                    (keyup)="recalculPrix(quantite)" required />
+                            </div>
+                            <!-- Désactivation du bouton si quantitée incorrecte ou vide -->
+                            <button class="btn btn-success m3" [disabled]="formCreationUnitee.invalid || quantite==0">
+                                Entrainer
+                            </button>
+                            <!-- Quantité maximale -->
+                            <button type="button" class="btn btn-info m-3" (click)="maximum()">Maximum</button>
+                        </form>
+                    </div>
+                </span>
             </span>
         </span>
+
+        <!-- Niveau du bâtiment pas assez élevé pour produire l'unitée -->
         <ng-template #niveauBatimentPasAssezEleve>
             <a routerLink="../../../batiment/detail-batiment/{{unitee.idBatimentProvenance}}"><button
                     class="btn btn-warning">Niveau bâtiment insufisant</button></a>
         </ng-template>
+
+        <!-- Le joueur ne possède pas encore le bâtiment -->
         <ng-template #possedePas>
             <a routerLink="../../../batiment/detail-batiment/{{unitee.idBatimentProvenance}}"><button
                     class="btn btn-danger">Bâtiment manquant</button></a>
         </ng-template>
 
+        <!-- Bâtiment en cours de construction / d'amélioration -->
+        <ng-template #batimentOccupe>
+            <a routerLink="../../../batiment/detail-batiment/{{unitee.idBatimentProvenance}}"><button
+                    class="btn btn-warning">Bâtiment en cours de travail</button></a>
+        </ng-template>
+
+        <!-- Retour -->
         <button routerLink="../../../armee" class="btn btn-danger m-3">
             Retour
         </button>
     </div>
+
+    <!-- Messages -->
     <div class="alert alert-danger divCenter mt-3" style="text-align: center;" role="danger" *ngIf="messageErreur">
         <b>{{messageErreur}}</b>
     </div>

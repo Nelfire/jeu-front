@@ -32,6 +32,7 @@ import { ListeGuildesComponent } from './social/guilde/liste-guildes/liste-guild
 import { MaGuildeComponent } from './social/guilde/ma-guilde/ma-guilde/ma-guilde.component';
 import { RechercherGuildeComponent } from './social/guilde/rechercher-guilde/rechercher-guilde/rechercher-guilde.component';
 import { BoutiqueComponent } from './boutique/boutique.component';
+import { DiscussionComponent } from './social/discussion/discussion.component';
 
 const routes: Routes = [
   // canActivate: [StatutConnecteService] ==> Permet de verifier si l'utilisateur est connecte
@@ -86,6 +87,9 @@ const routes: Routes = [
 
   // ------------- BOUTIQUE -------------
   { path: 'boutique', component: BoutiqueComponent, canActivate: [StatutConnecteService]},
+
+  // ------------- DISCUSSION -------------
+  { path: 'discussion', component: DiscussionComponent, canActivate: [StatutConnecteService]},
 
   // Cas url inexistant
   { path: 'not-found', component: FourOhFourComponent, canActivate: [StatutConnecteService] },

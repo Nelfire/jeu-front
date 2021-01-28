@@ -54,6 +54,8 @@ import { RechercherGuildeComponent } from './social/guilde/rechercher-guilde/rec
 import { MaGuildeComponent } from './social/guilde/ma-guilde/ma-guilde/ma-guilde.component';
 import { GuildeService } from './service/guilde.service';
 import { BoutiqueService } from './service/boutique.service';
+import { DiscussionComponent } from './social/discussion/discussion.component';
+import { DiscussionService } from './service/discussion.service';
 
 
 @NgModule({
@@ -88,7 +90,8 @@ import { BoutiqueService } from './service/boutique.service';
     ListeGuildesComponent,
     CreerGuildeComponent,
     RechercherGuildeComponent,
-    MaGuildeComponent
+    MaGuildeComponent,
+    DiscussionComponent
   ],
   imports: [
     BrowserModule,
@@ -114,6 +117,7 @@ import { BoutiqueService } from './service/boutique.service';
     ExpeditionJoueurService,
     GuildeService,
     BoutiqueService,
+    DiscussionService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

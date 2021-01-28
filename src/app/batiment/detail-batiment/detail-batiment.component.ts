@@ -259,12 +259,20 @@ export class DetailBatimentComponent implements OnInit {
   }
 
   getTempsRestant() {
-    // Temps du niveau suivant
-    let tempsMax = ((this.batiment.tempsDeConstruction) * (this.batimentJoueurPossede.niveau - 1) * (this.batimentJoueurPossede.niveau - 1)) * 2;
+    // Temps du niveau suivantle
+    let tempsMax;
+    let pourcentageRestant;
+    if(this.batimentJoueurPossede.niveau==1) {
+      tempsMax = this.batiment.tempsDeConstruction;
+    }
+    else {
+      tempsMax = this.batimentJoueurPossede.tempsAmelioration;
+    }
+    pourcentageRestant = 100 - (this.secondesRestantesAmelioration * 100) / tempsMax;
+    console.log("secondesRestantesAmelioration : "+this.secondesRestantesAmelioration);
+    console.log("tempsMax : "+tempsMax);
     console.log("this.batiment.tempsDeConstruction : "+this.batiment.tempsDeConstruction)
-
     console.log("this.batimentJoueurPossede.niveau : "+this.batimentJoueurPossede.niveau)
-    let pourcentageRestant = 100 - ((this.secondesRestantesAmelioration * 100) / tempsMax);
     console.log("pourcentageRestant : "+pourcentageRestant)
     return pourcentageRestant + '%';
   }

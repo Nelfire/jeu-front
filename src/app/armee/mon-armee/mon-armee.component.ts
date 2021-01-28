@@ -21,25 +21,92 @@ export class MonArmeeComponent implements OnInit {
   lesBatimentsDuJoueur: MesBatiments[];
   flagPossedeBatimentNecessaireFormationUnitee: boolean = false;
   flagNiveauBatimentNecessaireFormationUniteeAssezEleve: boolean = false;
-  messagePossession: string;
 
   constructor(private uniteeService: UniteeService, private armeeService: ArmeeService, private batimentJoueurService: BatimentJoueurService) { }
 
   ngOnInit(): void {
     // Scan des bâtiments que possède le joueur, pour indiquer un bâtiment manquant/niveau insufisant
-    this.batimentJoueurService.listerMesBatiments().subscribe(
-      (value) => {
-        this.lesBatimentsDuJoueur = value;
-        this.listerDifferentesUniteesExistantes();
-      }
-    );
+    this.uniteesToutes();
   }
-  
-  listerDifferentesUniteesExistantes() {
-    // Lister les différentes unitées existantes
+
+  /*
+   * LISTER TOUTES UNITEES
+   */
+  uniteesToutes() {
+    // Récupération liste des unitees (Type:Toutes)
     this.uniteeService.listerDifferentesUnitees().subscribe(
       (value) => {
         this.lesUnitees = value;
+      }
+    );
+    this.listeDesUnitees();
+  }
+
+  /*
+   * LISTER QUE LES UNITEES DE TYPE DIVERS = 1
+   */
+  uniteesDivers() {
+    // Récupération liste des unitees (Type:Divers)
+    this.uniteeService.listerUniteeDivers().subscribe(
+      (value) => {
+        this.lesUnitees = value;
+      }
+    );
+    this.listeDesUnitees();
+  }
+  /*
+   * LISTER QUE LES UNITEES DE TYPE INFANTERIE = 2
+   */
+  uniteesInfanterie() {
+    // Récupération liste des unitees (Type:Infanterie)
+    this.uniteeService.listerUniteeInfanterie().subscribe(
+      (value) => {
+        this.lesUnitees = value;
+      }
+    );
+    this.listeDesUnitees();
+  }
+  /*
+   * LISTER QUE LES UNITEES DE TYPE CAVALERIE = 3
+   */
+  uniteesCavalerie() {
+    // Récupération liste des unitees (Type:Cavalerie)
+    this.uniteeService.listerUniteeCavalerie().subscribe(
+      (value) => {
+        this.lesUnitees = value;
+      }
+    );
+    this.listeDesUnitees();
+  }
+  /*
+   * LISTER QUE LES UNITEES DE TYPE SIEGE = 4
+   */
+  uniteesSiege() {
+    // Récupération liste des unitees (Type:Siege)
+    this.uniteeService.listerUniteeSiege().subscribe(
+      (value) => {
+        this.lesUnitees = value;
+      }
+    );
+    this.listeDesUnitees();
+  }
+  /**
+   * LISTER QUE LES UNITEES DE TYPE NAVALE = 5
+   */
+  uniteesNavale() {
+    // Récupération liste des unitees (Type:Navale)
+    this.uniteeService.listerUniteeNavale().subscribe(
+      (value) => {
+        this.lesUnitees = value;
+      }
+    );
+    this.listeDesUnitees();
+  }
+
+  listeDesUnitees() {
+    this.batimentJoueurService.listerMesBatiments().subscribe(
+      (mesBatiments) => {
+        this.lesBatimentsDuJoueur = mesBatiments;
         this.lesUnitees.forEach(unitasse => {
           // Parcourir les bâtiments que possède le joueur
           this.lesBatimentsDuJoueur.forEach(unBatimentJoueur => {
@@ -50,34 +117,32 @@ export class MonArmeeComponent implements OnInit {
               if (unBatimentJoueur.niveau >= unitasse.niveauBatimentNecessaireFormation) {
                 unitasse.flagNiveauBatimentNecessaireFormationUniteeAssezEleve = true;
               }
+              // Vérification si bâtiment pas en cours de travail
+              // MAINTENANT
+              var maintenant = new Date().getTime();
+              if (unBatimentJoueur.dateFinConstruction > maintenant) {
+                unitasse.flagBatimentUniteeEnCoursDeConstruction = true;
+              }
             }
           });
         });
-        this.listerArmeeJoueur();
-      }
-    );
-  }
-
-  listerArmeeJoueur() {
-    // Lister des différentes armées du joueurs
-    this.armeeService.listerArmeesDuJoueur().subscribe(
-      (armeesDuJoueur) => {
-        this.armeesDuJoueur = armeesDuJoueur;
-        // Parcourir les armées du joueur
-        armeesDuJoueur.forEach((larmee) => {
-          console.log("Ligne 48");
-          // Parcourir toutes les unitées qu'il existe
-          this.lesUnitees.forEach(uneUnitee => {
-            console.log("Ligne 50");
-            // Si l'unitées en cours d'analyse = Unitée de l'armée du joueur, alors, il la possède
-            if (larmee.unitee.id === uneUnitee.id) {
-              uneUnitee.joueurLaPossede = true;
-              uneUnitee.quantiteePossession = larmee.quantitee;
-              this.flag = true;
-              this.messagePossession = "Possède";
-            }
-          });
-        });
+        this.armeeService.listerArmeesDuJoueur().subscribe(
+          (armeesDuJoueur) => {
+            this.armeesDuJoueur = armeesDuJoueur;
+            // Parcourir les armées du joueur
+            armeesDuJoueur.forEach((larmee) => {
+              // Parcourir toutes les unitées qu'il existe
+              this.lesUnitees.forEach(uneUnitee => {
+                // Si l'unitées en cours d'analyse = Unitée de l'armée du joueur, alors, il la possède
+                if (larmee.unitee.id === uneUnitee.id) {
+                  uneUnitee.joueurLaPossede = true;
+                  uneUnitee.quantiteePossession = larmee.quantitee;
+                  this.flag = true;
+                }
+              });
+            });
+          }
+        );
       }
     );
   }

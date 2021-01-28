@@ -7,7 +7,6 @@
       </div>
     </div>
   </div>
-  HDV : {{niveauHdvJoueur}}
   <!-- Affichage mode construction -->
   <div *ngIf="modeConstructionAmelioration=='construction'">
     <div class="text-center py-3">
@@ -129,49 +128,49 @@
       <ng-template #pasDeTravailEnCours>
         <!-- Apport de ressources  -->
         <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==3)">
-          <b>Apport <b>Pierre</b></b> : {{batimentJoueurPossede['apportPierreHeure']/2}} ->
-          {{batimentJoueurPossede['apportPierreHeure']}}<br>
+          <b>Apport <b>Pierre</b></b> : {{batimentJoueurPossede['apportPierreHeure']}} ->
+          {{batimentJoueurPossede['apportPierreHeure']*2}}<br>
         </ng-template>
 
         <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==4)">
           <b>Apport <b>Bois</b></b> : {{batimentJoueurPossede['apportBoisHeure']}} ->
-          {{batimentJoueurPossede['apportBoisHeure']}}<br>
+          {{batimentJoueurPossede['apportBoisHeure']*2}}<br>
         </ng-template>
 
         <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==5)">
           <b>Apport <b>Or</b></b> : {{batimentJoueurPossede['apportOreHeure']}} ->
-          {{batimentJoueurPossede['apportOreHeure']}}<br>
+          {{batimentJoueurPossede['apportOreHeure']*2}}<br>
         </ng-template>
 
         <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==6)">
           <b>Apport <b>Nourriture</b></b> : {{batimentJoueurPossede['apportNourritureHeure']}} ->
-          {{batimentJoueurPossede['apportNourritureHeure']}}<br>
+          {{batimentJoueurPossede['apportNourritureHeure']*2}}<br>
         </ng-template>
 
         <div class="m-3"><u>Niveau suivant</u></div>
         <!-- Coût de l'amélioration -->
         <b>Coût <b>Pierre</b> : </b>
         <span [ngStyle]="{color:getColorRessourceManquantePierreBatimentJoueur()}">
-          <b>{{batimentJoueurPossede['coutPierreAmelioration']}}</b>
+          <b>{{batimentJoueurPossede['coutPierreAmelioration']*2}}</b>
         </span><br>
 
         <b>Coût <b>Bois</b> : </b>
         <span [ngStyle]="{color:getColorRessourceManquanteBoisBatimentJoueur()}">
-          <b>{{batimentJoueurPossede['coutBoisAmelioration']}}</b>
+          <b>{{batimentJoueurPossede['coutBoisAmelioration']*2}}</b>
         </span><br>
 
         <b>Coût <b>Or</b> : </b>
         <span [ngStyle]="{color:getColorRessourceManquanteOrBatimentJoueur()}">
-          <b>{{batimentJoueurPossede['coutOreAmelioration']}}</b>
+          <b>{{batimentJoueurPossede['coutOreAmelioration']*2}}</b>
         </span><br>
 
         <b>Coût <b>Nourriture</b> : </b>
         <span [ngStyle]="{color:getColorRessourceManquanteNourritureBatimentJoueur()}">
-          <b>{{batimentJoueurPossede['coutNourritureAmelioration']}}</b>
+          <b>{{batimentJoueurPossede['coutNourritureAmelioration']*2}}</b>
         </span><br>
 
-        <b><b>Ouvrier</b> necessaire : </b> {{batimentJoueurPossede['ouvrierNecessaireAmelioration']}}<br>
-        <b><b>Temps</b> d'amélioration : </b> {{batimentJoueurPossede['tempsAmelioration']}} secondes<br>
+        <b><b>Ouvrier</b> necessaire : </b> {{batimentJoueurPossede['ouvrierNecessaireAmelioration']*2}}<br>
+        <b><b>Temps</b> d'amélioration : </b> {{batimentJoueurPossede['tempsAmelioration']*2}} secondes<br>
         <div>
           <button class="btn btn-info mt-3 mr-2" (click)="ameliorer()">
             Améliorer

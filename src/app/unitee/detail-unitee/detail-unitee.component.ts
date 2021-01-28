@@ -35,6 +35,7 @@ export class DetailUniteeComponent implements OnInit {
   batimentJoueur: MesBatiments;
   joueurPossedeBatiment: boolean;
   niveauBatimentAssezEleveFormation: boolean;
+  batimentEnCoursDeTravail: boolean;
 
 
   // Constructeur
@@ -73,11 +74,18 @@ export class DetailUniteeComponent implements OnInit {
           (batimentJoueur) => {
             batimentJoueur.forEach((unBatiment) => {
               // Si le joueur possède le bâtiment
-              if(unBatiment.batiment.id===value.idBatimentProvenance) {
+              if (unBatiment.batiment.id === value.idBatimentProvenance) {
                 this.joueurPossedeBatiment = true;
                 // Si le niveau du bâtiment est suffisement élevé pour la formation de l'unitée
-                if(unBatiment.niveau>=value.niveauBatimentNecessaireFormation) {
+                if (unBatiment.niveau >= value.niveauBatimentNecessaireFormation) {
                   this.niveauBatimentAssezEleveFormation = true;
+                }
+
+                // Vérification si bâtiment pas en cours de travail
+                // MAINTENANT
+                var maintenant = new Date().getTime();
+                if (unBatiment.dateFinConstruction > maintenant) {
+                  this.batimentEnCoursDeTravail = true;
                 }
               }
             });

@@ -1,12 +1,12 @@
 <!-- https://codemyui.com/responsive-honeycomb-grid-layout-in-pure-css/ -->
-<div class="campement">
+<div class="campement" *ngIf="lesBatiments">
 	<div class="row justify-content-center">
 		<div class="col-auto mb-4" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
 			<h2>Bâtiments</h2>
 		</div>
 	</div>
 	<div class="boutons divCenter">
-		<button class="btn btn-success m-3" (click)="listerBatimentsJoueur()">Tous</button>
+		<button class="btn btn-success m-3" (click)="batimentsTous()">Tous</button>
 		<button class="btn btn-success m-3" (click)="batimentsDivers()">Divers</button>
 		<button class="btn btn-success m-3" (click)="batimentsRecolte()">Récolte</button>
 		<button class="btn btn-success m-3" (click)="batimentsStockage()">Stockage</button>
