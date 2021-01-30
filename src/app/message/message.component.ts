@@ -23,7 +23,9 @@ export class MessageComponent implements OnInit {
   formAjouterMessage: FormGroup;
   joueur: Joueur;
 
-  constructor(private messageService: MessageService, private formBuilder: FormBuilder, private authService: AuthService) { }
+  constructor(private messageService: MessageService, 
+    private formBuilder: FormBuilder, 
+    private authService: AuthService) { }
 
   ngOnInit(): void {
 
@@ -59,16 +61,8 @@ export class MessageComponent implements OnInit {
   }
 
   validerMessage() {
-    // R�cup�ration des donn�es du formulaire
-    // Date
-    // Joueur
-    const emailJoueur = this.joueur.email;
-    // Contenue
-    const datePublication = this.formAjouterMessage.get('dateMessage').value;
     const contenu = this.formAjouterMessage.get('contenu').value;
-
-    this.messageService.ajouterMessage(datePublication, emailJoueur, contenu).subscribe();
-    this.message = "Message validé !";
+    this.messageService.ajouterMessage(contenu).subscribe();
     this.formAjouterMessage.get('contenu').reset();
   }
 

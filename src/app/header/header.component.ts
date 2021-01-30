@@ -89,14 +89,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       }
     );
 
-    // Récupération populations maximale joueur
-    this.batimentJoueurService.populationJoueur().subscribe(
-      (value) => {
-        this.populationMaximaleJoueur = value;
-      }, (error) => {
-        console.log(error);
-      }
-    )
   }
 
   // Déconnexion

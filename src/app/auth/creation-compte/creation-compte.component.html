@@ -1,0 +1,44 @@
+<div class=" wrapper fadeInDown align-items-center">
+    <div id="formContent">
+        <!-- Logo -->
+        <div class="fadeIn first">
+            <img src="https://media.discordapp.net/attachments/649978115199860766/793975291994964028/72399-icons-crown-prodigy-game-computer-math-icon.png"
+                alt="" style="width: 130px;height: 130px;margin-top: 20px;" class="rounded img-fluid" />
+            <h1 class="text-center">Nelfire's Game</h1>
+            <h5 class="text-center">Création de compte</h5>
+        </div>
+
+        <form [formGroup]="formCreationCompte" (ngSubmit)="creationCompte()">
+            <!-- pseudo -->
+            <input type="pseudo" name="pseudo" class="fadeIn second" id="pseudo" placeholder="Pseudo"
+                formControlName="pseudo">
+            <!-- email -->
+            <input type="email" name="email" class="fadeIn second" placeholder="Email" formControlName="email">
+            <!-- password -->
+            <input type="password" name="pass" class="fadeIn third" placeholder="Mot de passe"
+            formControlName="password">
+            <input type="password" name="repeatPassword" class="fadeIn third" placeholder="Répétez le mot de passe"
+                formControlName="repeatPassword">
+            <!-- bouton de connexion -->
+            <input type="submit" class="fadeIn fourth mb-3" [disabled]="formCreationCompte.invalid" value="Créer compte"><br>
+            <!-- bouton création de compte -->
+            <a routerLink="/auth" class="fadeIn fourth mb-3">
+                <button type="button" class="btn btn-outline-primary">Retour</button>
+            </a>
+        </form>
+
+        <!-- Message erreurs -->
+        <div id="formFooter">
+            <div class="alert alert-danger" role="danger" *ngIf="messageErreur">
+                <b>{{messageErreur}}</b>
+            </div>
+        </div>        
+        <!-- Message validation -->
+        <div id="formFooter">
+            <div class="alert alert-success" role="success" *ngIf="messageValidation">
+                <b>{{messageValidation}}</b>
+            </div>
+        </div>
+
+    </div>
+</div>

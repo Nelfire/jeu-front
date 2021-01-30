@@ -2,9 +2,11 @@
   <div id="formContent">
     <!-- Logo -->
     <div class="fadeIn first">
-      <img src="https://media.discordapp.net/attachments/649978115199860766/793975291994964028/72399-icons-crown-prodigy-game-computer-math-icon.png"
+      <img
+        src="https://media.discordapp.net/attachments/649978115199860766/793975291994964028/72399-icons-crown-prodigy-game-computer-math-icon.png"
         alt="" style="width: 130px;height: 130px;margin-top: 20px;" class="rounded img-fluid" />
       <h1 class="text-center">Nelfire's Game</h1>
+      <h5 class="text-center">Connexion</h5>
     </div>
 
     <form>
@@ -12,15 +14,19 @@
       <input type="email" name="email" [(ngModel)]="joueur.email" class="fadeIn second" id="exampleInputEmail1"
         aria-describedby="emailHelp">
       <!-- password -->
-      <input type="password" name="pass" [(ngModel)]="joueur.motDePasse" class="fadeIn third"
-        id="exampleInputPassword1" aria-describedby="passwordHelp">
+      <input type="password" name="pass" [(ngModel)]="joueur.motDePasse" class="fadeIn third" id="exampleInputPassword1"
+        aria-describedby="passwordHelp">
       <!-- bouton de connexion -->
-      <input type="submit" class="fadeIn fourth" (click)="connecter()" value="Se connecter">
+      <input type="submit" class="fadeIn fourth mb-3" (click)="connecter()" value="Se connecter">
+      <!-- bouton création de compte -->
+      <a routerLink="/creationCompte" class="fadeIn fourth mb-3">
+        <button type="button" class="btn btn-outline-primary">Je me créer un compte</button>
+      </a>
     </form>
 
     <!-- Message erreurs -->
     <div id="formFooter">
-      <div *ngIf="err" class="alert alert-danger mt-1" role="alert">
+      <div *ngIf="messageErreur" class="alert alert-danger mt-1" role="alert">
         Vos informations d'authentification sont invalides.
       </div>
     </div>

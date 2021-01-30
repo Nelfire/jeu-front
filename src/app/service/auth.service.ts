@@ -9,6 +9,7 @@ import { Joueur } from '../auth/auth.domains';
  * Collègue anonyme.
  *
  */
+const URL_BACKEND = environment.baseUrl + 'auth';
 const COLLEGUE_ANONYME = new Joueur({});
 
 /**
@@ -95,5 +96,14 @@ export class AuthService {
       .pipe(
         tap(col => this.joueurConnecteSub.next(COLLEGUE_ANONYME))
       );
+  }
+
+  creationCompte(pseudo: string, email: string, password: string) {
+    console.log("auth.service.ts ligne 101");
+    return this.http.post(`${URL_BACKEND}`,{
+      pseudo: `${pseudo}`,
+      email: `${email}`,
+      password: `${password}`
+    })
   }
 }

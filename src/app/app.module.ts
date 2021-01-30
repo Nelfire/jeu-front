@@ -56,6 +56,8 @@ import { GuildeService } from './service/guilde.service';
 import { BoutiqueService } from './service/boutique.service';
 import { DiscussionComponent } from './social/discussion/discussion.component';
 import { DiscussionService } from './service/discussion.service';
+import { CreationCompteComponent } from './auth/creation-compte/creation-compte.component';
+import { DetailCompteComponent } from './social/detail-compte/detail-compte.component';
 
 
 @NgModule({
@@ -91,7 +93,9 @@ import { DiscussionService } from './service/discussion.service';
     CreerGuildeComponent,
     RechercherGuildeComponent,
     MaGuildeComponent,
-    DiscussionComponent
+    DiscussionComponent,
+    CreationCompteComponent,
+    DetailCompteComponent
   ],
   imports: [
     BrowserModule,

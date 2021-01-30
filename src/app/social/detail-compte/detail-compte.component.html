@@ -1,0 +1,26 @@
+<!-- https://codepen.io/blackellis/pen/jObGbeG -->
+<div class="monCompte" *ngIf="joueur">
+    <div class="container">
+        <div class="card">
+            <img src="{{joueur.icone}}"
+                alt="Person" class="card__image">
+            <p class="card__name">{{joueur.pseudo}}</p>
+            <div class="form-group">
+                <div >
+                    <textarea cols="40" rows="6" type="text" class="form-control" disabled>{{joueur.descriptif}}</textarea>
+                </div>
+            </div>
+            <p class="card__niveau">Niveau : {{joueur.niveau}}</p>
+            <p class="card__experience">Experience : {{joueur.experience}}</p>
+            <p class="card__tempsDeJeu">Temps de jeu : {{joueur.tempsDeJeu}} sc</p>
+
+            <div *ngIf="joueurConnecte.id == joueur.id">
+                <a routerLink="/modificationJoueur">
+                    <button class="btn draw-border">Modifier mes données</button>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</div>

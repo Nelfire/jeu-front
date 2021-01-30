@@ -33,6 +33,7 @@ header {
     border-bottom: 1px solid #cbeaff00;
     -webkit-box-shadow: 0px 2px 2px rgba(135, 147, 250, 0.486);
     box-shadow: 0px 2px 2px rgba(135, 146, 250, 0.144);
+    opacity: 65%;
 }
 header .logo {
     float: left;
@@ -106,8 +107,8 @@ width:60px;
 overflow:hidden;
 -webkit-transition:width .05s linear;
 transition:width .05s linear;
--webkit-transform:translateZ(0) scale(1,1);
 z-index:1000;
+opacity: 65%;
 }
 
 .main-menu>ul {
@@ -129,7 +130,6 @@ color:rgb(0, 0, 0);
  font-family: arial;
 font-size: 14px;
 text-decoration:none;
--webkit-transform:translateZ(0) scale(1,1);
 -webkit-transition:all .1s linear;
 transition:all .1s linear;
   

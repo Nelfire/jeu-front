@@ -4,6 +4,7 @@ import { Joueur } from '../auth/auth.domains';
 import { environment } from 'src/environments/environment';
 import {JoueurInfos} from '../models/joueur-infos';
 import { Observable } from 'rxjs';
+import { ObserveOnSubscriber } from 'rxjs/internal/operators/observeOn';
 
 const URL_BACKEND = environment.baseUrl + 'joueur';
 
@@ -26,5 +27,16 @@ export class JoueurService {
 
   informationJoueurByEmail() {
     return this.http.get<JoueurInfos>(`${URL_BACKEND}/infosJoueur`);
+  }
+  informationJoueurById(id:number) {
+    return this.http.get<JoueurInfos>(`${URL_BACKEND}/informationJoueurById?id=`+id);
+  }
+
+  modifierInformationsJoueur(icone:string,email:string,descriptif:string): Observable<any> {
+    return this.http.put<any>(`${URL_BACKEND}/modifierInformationsJoueur`, {
+      icone: `${icone}`,
+      email: `${email}`,
+      descriptif: `${descriptif}`,
+    })
   }
 }

@@ -33,6 +33,8 @@ import { MaGuildeComponent } from './social/guilde/ma-guilde/ma-guilde/ma-guilde
 import { RechercherGuildeComponent } from './social/guilde/rechercher-guilde/rechercher-guilde/rechercher-guilde.component';
 import { BoutiqueComponent } from './boutique/boutique.component';
 import { DiscussionComponent } from './social/discussion/discussion.component';
+import { CreationCompteComponent } from './auth/creation-compte/creation-compte.component';
+import { DetailCompteComponent } from './social/detail-compte/detail-compte.component';
 
 const routes: Routes = [
   // canActivate: [StatutConnecteService] ==> Permet de verifier si l'utilisateur est connecte
@@ -41,7 +43,11 @@ const routes: Routes = [
   // canActivate: [StatutEmployeService] ==> Permet de verifier si l'utilisateur connecte est bien un employe
   { path: 'accueil', component: AccueilComponent, canActivate: [StatutConnecteService] }, //  tech accessible uniquement si connecte
   { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService] }, //  tech accessible uniquement si connecte
+
+  // ------------ AUTHENTIFICATION ----------------
   { path: 'auth', component: AuthComponent },
+  // ------------ CREATION DE COMPTE ----------------
+  { path: 'creationCompte', component: CreationCompteComponent},
   { path: 'listerJourFerme', component: ListerJourFermeComponent, canActivate: [StatutConnecteService] },
   { path: 'listerJoueurs', component: ListerJoueurComponent, canActivate: [StatutConnecteService] },
   { path: 'creationJourFerme', component: CreationJourFermeComponent, canActivate: [StatutConnecteService, StatutAdministrateurService] },
@@ -90,6 +96,10 @@ const routes: Routes = [
 
   // ------------- DISCUSSION -------------
   { path: 'discussion', component: DiscussionComponent, canActivate: [StatutConnecteService]},
+
+  // ------------- JOUEUR -------------
+  { path: 'detailJoueur/:id', component: DetailCompteComponent, canActivate: [StatutConnecteService]},
+  { path: 'modificationJoueur', component: ModifierJoueurComponent, canActivate: [StatutConnecteService]},
 
   // Cas url inexistant
   { path: 'not-found', component: FourOhFourComponent, canActivate: [StatutConnecteService] },

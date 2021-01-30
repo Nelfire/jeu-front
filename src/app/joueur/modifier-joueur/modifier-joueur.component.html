@@ -1,66 +1,50 @@
-  <div class="card">
-    
-    <h2 class="card-header text-center py-3" style="background-color: #e3f2fd;">
-        Modifier un joueur {{email}}
-    </h2>
+<div class="modificationUnitee">
+    <div class="container">
+        <div class="card">
+            <form [formGroup]="formModificationJoueur" (ngSubmit)="validerFormulaire()">
 
-    <div class="card-body ">
-        <form [formGroup]="formModificationJoueur" (ngSubmit)="validerFormulaire()">
-            <div class="form-group row">
-                <label for="urlPhoto" class="col-sm-2 col-form-label">Photo de profil</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="urlPhoto" formControlName="urlPhoto" required>
+                <img src="{{joueur.icone}}" alt="Person" class="card__image">
+                <p class="card__name">{{joueur.pseudo}}</p>
+                <label for="icone" class="col-form-label">Photo de profil</label><br>
+                <div class="form-group">
+                    <div>
+                        <input type="text" class="form-control" id="icone" formControlName="icone" required>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="email" class="col-sm-2 col-form-label">Email</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="email" formControlName="email" required>
+                <label for="email" class="col-form-label">Email</label><br>
+                <div class="form-group">
+                    <div>
+                        <input type="text" class="form-control" id="email" formControlName="email" required />
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="nom" class="col-sm-2 col-form-label">Nom</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="nom" formControlName="nom" required>
+                <label for="descriptif" class="col-form-label">Descriptif</label><br>
+                <div class="form-group">
+                    <div>
+                        <textarea cols="40" rows="10" type="text" class="form-control" id="descriptif"
+                            formControlName="descriptif" required> </textarea>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="prenom" class="col-sm-2 col-form-label">Prenom</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="prenom" formControlName="prenom" required>
+                <!--             <div class="grid-container">
+                <div class="grid-child-posts">
+                    Descriptif : {{joueur.descriptif}}
                 </div>
-            </div>
-
-            <b>Competences joueur : </b><i *ngFor="let competence of joueur['competences']"> <img src="{{competence['adresseIcone']}}" alt="{{competence['libelle']}}" style="width: 5%;" /></i><br>
-
-
-            <div class="alert alert-danger" role="danger" *ngIf="messageErreur">
-                <b>{{messageErreur}}</b>
-            </div>
-            <div class="alert alert-success" role="success" *ngIf="messageValidation">
-                <b>{{messageValidation}}</b>
-            </div>
-
-            <div class="row justify-content-center">
-                <div class="col-auto">
-                    <!-- bouton valider formulaire -->
-                    <button class="btn btn-success mr-2" [disabled]="">
-                        <fa-icon [icon]="faCheck"></fa-icon> Valider
-                    </button>
-
-                    <!-- bouton annuler formulaire -->
-                    <a routerLink="../../visualisationJoueur/{{email}}"><button class="btn btn-danger">
-                            <fa-icon [icon]="faTimes"></fa-icon> Annuler
-                        </button>
-                    </a>
+                <div class="grid-child-posts">
+                    Niveau : {{joueur.niveau}}
                 </div>
-            </div>
-        </form>
+                <div class="grid-child-posts">
+                    Experience : {{joueur.experience}}
+                </div>
+            </div> -->
+                <div class="alert alert-danger divCenter mt-3" style="text-align: center;" role="danger"
+                    *ngIf="messageErreur">
+                    <b>{{messageErreur}}</b>
+                </div>
+                <div class="alert alert-success divCenter mt-3" role="success" *ngIf="messageValidation">
+                    <b>{{messageValidation}}</b>
+                </div>
+                <button class="btn draw-border" [disabled]="formModificationJoueur.invalid">Valider</button>
+
+            </form>
+        </div>
     </div>
 </div>
-
-<ul>
-    <li *ngFor="let comp of listeCompetencesDisponnibles">
-        {{comp.libelle}}
-    </li>
-</ul>

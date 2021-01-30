@@ -15,10 +15,11 @@ export class AuthComponent implements OnInit {
 
   // Initisalisations
   joueur: Joueur = new Joueur({});
-  err: boolean;
+  messageErreur: boolean;
 
   // Constructeur
-  constructor(private authSrv: AuthService, private router: Router) { }
+  constructor(private authSrv: AuthService, 
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -26,11 +27,13 @@ export class AuthComponent implements OnInit {
   connecter() {
     this.authSrv.connecter(this.joueur.email, this.joueur.motDePasse)
       .subscribe(
-        // en cas de succès, redirection vers la page /tech
-        col => this.router.navigate(['/accueil']),
-
-        // en cas d'erreur, affichage d'un message d'erreur
-        err => this.err = true
+        // en cas de succès, redirection vers la page d'accueil
+        (col) => {
+          this.router.navigate(['/accueil'])
+        }, (messageErreur) => {
+          // en cas d'erreur, affichage d'un message d'erreur
+          this.messageErreur = true
+        }
       );
   }
 
