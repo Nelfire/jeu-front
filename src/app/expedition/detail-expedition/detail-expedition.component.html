@@ -1,102 +1,159 @@
 <div class="detailExpedition" *ngIf="expedition">
-    <div class="row justify-content-center">
-        <div class="col-auto mb-4" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
-            <h2>{{expedition['libelle']}}</h2>
+    <div class="container">
+        <div class="card">
+            <!-- ICONE -->
+            <img src="{{expedition['icone']}}" class="card__image">
+            <p class="card__name">{{expedition['libelle']}}</p>
+
+            <!-- DESCRIPTION -->
+            <p class="card__description">
+                {{expedition['descriptif']}}
+            </p>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <p class="card__categorie">
+                        Récompense
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <p class="card__apport__ressource">
+                        Pierre : {{expedition['recompensePierre']}}
+                    </p>
+                </div>
+                <div class="col-sm-6">
+                    <p class="card__apport__ressource">
+                        Bois : {{expedition['recompenseBois']}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <p class="card__apport__ressource">
+                        Or : {{expedition['recompenseOr']}}
+                    </p>
+                </div>
+                <div class="col-sm-6">
+                    <p class="card__apport__ressource">
+                        Nourriture : {{expedition['recompenseNourriture']}}
+                    </p>
+                </div>
+            </div>
+            <p class="card__apport__ressource">
+                Gemme : {{expedition['recompenseGemme']}}
+            </p>
+
+            <hr class="style-seven">
+
+
+
+
+
+
+            <!-- COUT -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <p class="card__categorie">
+                        Coût
+                    </p>
+                </div>
+            </div>
+            <!-- PIERRE -->
+            <div class="row">
+                <div class="col-sm-6">
+                    <p class="card__cout__ressource">
+                        Pierre :
+                        <span [ngStyle]="{color:getColorRessourceManquantePierre()}">
+                            <b>{{expedition['coutPierre']}}</b>
+                        </span>
+                    </p>
+                </div>
+                <!-- BOIS -->
+                <div class="col-sm-6">
+                    <p class="card__cout__ressource">
+                        Bois :
+                        <span [ngStyle]="{color:getColorRessourceManquanteBois()}">
+                            <b>{{expedition['coutBois']}}</b>
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <!-- OR -->
+            <div class="row">
+                <div class="col-sm-6">
+                    <p class="card__cout__ressource">
+                        Or :
+                        <span [ngStyle]="{color:getColorRessourceManquanteOr()}">
+                            <b>{{expedition['coutOr']}}</b>
+                        </span>
+                    </p>
+                </div>
+                <!-- NOURRITURE -->
+                <div class="col-sm-6">
+                    <p class="card__cout__ressource">
+                        Nourriture :
+                        <span [ngStyle]="{color:getColorRessourceManquanteNourriture()}">
+                            <b>{{expedition['coutNourriture']}}</b>
+                        </span>
+                    </p>
+                </div>
+            </div>
+
+
+            <hr class="style-seven">
+
+            <!-- STATISTIQUES DE L'EXPEDITION -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <p class="card__categorie">
+                        Statistiques de l'expédition
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <p class="card__statistique">
+                        Vie : {{vieExpedition}}
+                    </p>
+                </div>
+                <div class="col-sm-6">
+                    <p class="card__statistique">
+                        Attaque : {{degatsExpedition}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <p class="card__statistique">
+                        Armure : {{armureExpedition}}
+                    </p>
+                </div>
+                <div class="col-sm-6">
+                    <p class="card__statistique">
+                        Réussite : {{reussitePourcentage | number : '.0-2' }} %
+                    </p>
+                </div>
+            </div>
+
+            <!-- TEMPS DE L'EXPEDITION -->
+            <p class="card__temps__travail">
+                Temps Expédition : {{expedition['dureeExpedition']}} secondes
+            </p>
+
+            <!-- MESSAGES D'INFORMATION -->
+            <!-- ERREUR-->
+            <div class="alert alert-danger divCenter mt-3" style="text-align: center;" role="danger"
+                *ngIf="messageErreur">
+                <b>{{messageErreur}}</b>
+            </div>
+            <!-- OK-->
+            <div class="alert alert-success divCenter mt-3" role="success" *ngIf="messageValidation">
+                <b>{{messageValidation}}</b>
+            </div>
         </div>
     </div>
-    <div class="text-center py-3">
-        <img src="{{expedition['icone']}}" alt="" style="width: 20%;" />
-    </div>
-    <div class="lead card-header text-center py-3 mt-3"
-        style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px;">
-        <b>Descriptif : </b> {{expedition['description']}}<br>
-
-        <!-- Coût de la construction -->
-        <hr>
-
-        <b>Coût <b>Pierre</b> : </b>
-        <span [ngStyle]="{color:getColorRessourceManquantePierre()}">
-            <b>{{expedition['coutPierre']}}</b>
-        </span><br>
-
-        <b>Coût <b>Bois</b> : </b>
-        <span [ngStyle]="{color:getColorRessourceManquanteBois()}">
-            <b>{{expedition['coutBois']}}</b>
-        </span><br>
-
-        <b>Coût <b>Or</b> : </b>
-        <span [ngStyle]="{color:getColorRessourceManquanteOr()}">
-            <b>{{expedition['coutOr']}}</b>
-        </span><br>
-
-        <b>Coût <b>Nourriture</b> : </b>
-        <span [ngStyle]="{color:getColorRessourceManquanteNourriture()}">
-            <b>{{expedition['coutNourriture']}}</b>
-        </span><br>
-
-        <hr>
-
-        <b>Récompense <b>Pierre</b> : </b>
-        <span>
-            <b>{{expedition['recompensePierre']}}</b>
-        </span><br>
-
-        <b>Récompense <b>Bois</b> : </b>
-        <span>
-            <b>{{expedition['recompenseBois']}}</b>
-        </span><br>
-
-        <b>Récompense <b>Or</b> : </b>
-        <span>
-            <b>{{expedition['recompenseOr']}}</b>
-        </span><br>
-
-        <b>Récompense <b>Nourriture</b> : </b>
-        <span>
-            <b>{{expedition['recompenseNourriture']}}</b>
-        </span><br>
-
-        <b>Récompense <b>Gemme</b> : </b>
-        <span>
-            <b>{{expedition['recompenseGemme']}}</b>
-        </span><br>
-
-        <hr>
-
-        <b>Temps <b>Expédition</b> : </b>
-        <span>
-            <b>{{expedition['dureeExpedition']}} secondes</b>
-        </span><br>
-
-        <hr>
-
-        <b><b>Vie</b> : </b>
-        <span>
-            <b>{{vieExpedition}}</b>
-        </span><br>
-
-        <b><b>Degats</b> : </b>
-        <span>
-            <b>{{armureExpedition}}</b>
-        </span><br>
-
-        <b><b>Armure</b> : </b>
-        <span>
-            <b>{{degatsExpedition}}</b>
-        </span><br>
-
-        <b><b>Réussite</b> : </b>
-        <span>
-            <b>{{reussitePourcentage}} %</b>
-        </span><br>
-    </div>
-    <div class="alert alert-danger divCenter mt-3" style="text-align: center;" role="danger" *ngIf="messageErreur">
-        <b>{{messageErreur}}</b>
-    </div>
-    <div class="alert alert-success divCenter mt-3" role="success" *ngIf="messageValidation">
-        <b>{{messageValidation}}</b>
-    </div>
-
     <!-- DIfférentes unitées du joueur -->
     <form [formGroup]="formEnvoiUniteesEnExpedition" (ngSubmit)="envoiExpedition()">
         <div>
@@ -117,15 +174,17 @@
                         </div>
                         <!-- Selection du nombre d'unitées à envoyer -->
                         <div style="text-align:center;">
-                            <input type="number" name="unitee{{unitee.unitee.id}}" value="" 
-                                formControlName="unitee{{unitee.unitee.id}}" (keyup)="calculVieRestanteExpedition(unitee.unitee.id)">
+                            <input type="number" name="unitee{{unitee.unitee.id}}" value=""
+                                formControlName="unitee{{unitee.unitee.id}}"
+                                (keyup)="calculVieRestanteExpedition(unitee.unitee.id)">
                         </div>
                     </div>
                 </li>
             </ul>
         </div>
         <div class="divCenter">
-            <button class="btn btn-success" [disabled]="formEnvoiUniteesEnExpedition.invalid ||clicked">{{messageBoutonEnvoiEnExpedition}}</button>
+            <button class="btn draw-border"
+                [disabled]="formEnvoiUniteesEnExpedition.invalid ||clicked">{{messageBoutonEnvoiEnExpedition}}</button>
         </div>
     </form>
 </div>

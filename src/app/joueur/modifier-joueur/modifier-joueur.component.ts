@@ -79,7 +79,7 @@ export class ModifierJoueurComponent implements OnInit {
       this.messageValidation = "Informations modifiées"
       setTimeout(() => {
         // Redirection au bout de 1,5 secondes
-        this.router.navigate(['monCompte']);
+        this.router.navigate(['/detailJoueur/'+this.joueur.id]);
       }, 2000);
     });
   }

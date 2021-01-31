@@ -1,194 +1,363 @@
 <div class="detailBatiment" *ngIf="batiment && joueur">
-  <div class="row justify-content-center">
-    <div class="col-auto mb-2" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
-      <h2>{{batiment['libelle']}}</h2>
-      <div *ngIf="modeConstructionAmelioration=='amelioration'" class="text-center">
-        <h4>Niveau <b>{{batimentJoueurPossede['niveau']}}</b></h4>
-      </div>
-    </div>
-  </div>
   <!-- Affichage mode construction -->
   <div *ngIf="modeConstructionAmelioration=='construction'">
-    <div class="text-center py-3">
-      <img src="{{batiment['icone']}}" alt="" style="width: 20%;" />
-    </div>
-    <div class="lead card-header text-center py-3 mt-3"
-      style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px;">
-      <b>Descriptif : </b> {{batiment['descriptif']}}<br>
+    <div class="container">
+      <div class="card">
+        <!-- ICONE -->
+        <img src="{{batiment['icone']}}" alt="Person" class="card__image">
+        <p class="card__name">{{batiment['libelle']}}</p>
 
-      <!-- Apport de ressources  -->
-      <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==3)">
-        <b>Apport <b>Pierre</b></b> /heure : {{batiment['apportPierreHeure']}}<br>
-      </ng-template>
+        <!-- NIVEAU (Si possède) -->
+        <div *ngIf="modeConstructionAmelioration=='amelioration'" class="text-center">
+          <h4>Niveau <b>{{batimentJoueurPossede['niveau']}}</b></h4>
+        </div>
 
-      <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==4)">
-        <b>Apport <b>Bois</b></b> /heure : {{batiment['apportBoisHeure']}}<br>
-      </ng-template>
+        <!-- DESCRIPTION -->
+        <p class="card__description">
+          {{batiment['descriptif']}}
+        </p>
 
-      <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==5)">
-        <b>Apport <b>Or</b></b> /heure : {{batiment['apportOreHeure']}}<br>
-      </ng-template>
+        <!-- SI BATIMENT RAPPORTE DE LA RESSOURCE -->
+        <ng-template
+          [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==3)||(idTypeBatiment==4)||(idTypeBatiment==5)||(idTypeBatiment==6)">
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="card__categorie">
+                Apport
+              </p>
+            </div>
+          </div>
+        </ng-template>
+        <!-- APPORT DE RESSOURCES  -->
+        <!-- PIERRE -->
+        <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==3)">
+          <p class="card__apport__ressource">
+            <b><b>Pierre</b></b> /heure : {{batiment['apportPierreHeure']}}<br>
+          </p>
+        </ng-template>
 
-      <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==6)">
-        <b>Apport <b>Nourriture</b></b> /heure : {{batiment['apportNourritureHeure']}}<br>
-      </ng-template>
+        <!-- BOIS -->
+        <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==4)">
+          <p class="card__apport__ressource">
+            <b><b>Bois</b></b> /heure : {{batiment['apportBoisHeure']}}<br>
+          </p>
+        </ng-template>
 
-      <!-- Coût de la construction -->
-      <b>Coût <b>Pierre</b> : </b>
-      <span [ngStyle]="{color:getColorRessourceManquantePierreBatiment()}">
-        <b>{{batiment['coutPierreConstruction']}}</b>
-      </span><br>
+        <!-- OR -->
+        <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==5)">
+          <p class="card__apport__ressource">
+            <b><b>Or</b></b> /heure : {{batiment['apportOreHeure']}}<br>
+          </p>
+        </ng-template>
 
-      <b>Coût <b>Bois</b> : </b>
-      <span [ngStyle]="{color:getColorRessourceManquanteBoisBatiment()}">
-        <b>{{batiment['coutBoisConstruction']}}</b>
-      </span><br>
+        <!-- NOURRITURE -->
+        <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==6)">
+          <p class="card__apport__ressource">
+            <b><b>Nourriture</b></b> /heure : {{batiment['apportNourritureHeure']}}<br>
+          </p>
+        </ng-template>
 
-      <b>Coût <b>Or</b> : </b>
-      <span [ngStyle]="{color:getColorRessourceManquanteOrBatiment()}">
-        <b>{{batiment['coutOrConstruction']}}</b>
-      </span><br>
 
-      <b>Coût <b>Nourriture</b> : </b>
-      <span [ngStyle]="{color:getColorRessourceManquanteNourritureBatiment()}">
-        <b>{{batiment['coutNourritureConstruction']}}</b>
-      </span><br>
+        <div class="row">
+          <div class="col-sm-12">
+            <p class="card__categorie">
+              Coût
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <p class="card__cout__ressource">
+              Pierre :
+              <span [ngStyle]="{color:getColorRessourceManquantePierreBatiment()}">
+                <b>{{batiment['coutPierreConstruction']}}</b>
+              </span>
+            </p>
+          </div>
+          <div class="col-sm-6">
+            <p class="card__cout__ressource">
+              Bois :
+              <span [ngStyle]="{color:getColorRessourceManquanteBoisBatiment()}">
+                <b>{{batiment['coutBoisConstruction']}}</b>
+              </span>
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <p class="card__cout__ressource">
+              Or :
+              <span [ngStyle]="{color:getColorRessourceManquanteOrBatiment()}">
+                <b>{{batiment['coutOrConstruction']}}</b>
+              </span>
+            </p>
+          </div>
+          <div class="col-sm-6">
+            <p class="card__cout__ressource">
+              Nourriture :
+              <span [ngStyle]="{color:getColorRessourceManquanteNourritureBatiment()}">
+                <b>{{batiment['coutNourritureConstruction']}}</b>
+              </span>
+            </p>
+          </div>
+        </div>
 
-      <b><b>Ouvrier</b> necessaire : </b> {{batiment['ouvrierNecessaireConstruction']}}<br>
-      <b><b>Temps</b> de construction : </b> {{batiment['tempsDeConstruction']}} secondes<br>
+        <!-- TEMPS DE CONSTRUCTION -->
+        <p class="card__temps__travail">
+          <b>Temps de construction : </b>
+          <b>{{batiment['tempsDeConstruction']}}</b> secondes
+        </p>
 
-      <div *ngIf="batiment['niveauHotelDeVilleNecessaireConstruction']>niveauHdvJoueur; else constructionPossible;"> 
-        <a routerLink="/campement">
-          <button class="btn btn-danger mt-3 mr-2">
-            HDV niveau {{batiment['niveauHotelDeVilleNecessaireConstruction']}} necessaire
-          </button>
-        </a>
+        <!-- BOUTONS -->
+        <div class="row">
+
+          <div class="col-sm-6">
+            <!-- NIVEAU INSUFFISANT -->
+            <div
+              *ngIf="batiment['niveauHotelDeVilleNecessaireConstruction']>niveauHdvJoueur; else constructionPossible;">
+              <a routerLink="/campement">
+                <button class="btn draw-border-error">
+                  HDV niveau {{batiment['niveauHotelDeVilleNecessaireConstruction']}} necessaire
+                </button>
+              </a>
+            </div>
+            <!-- OK : CONSTRUIRE -->
+            <ng-template #constructionPossible>
+              <button class="btn draw-border" (click)="construire()">Construire</button>
+            </ng-template>
+          </div>
+
+          <!-- RETOUR -->
+          <div class="col-sm-6">
+            <a routerLink="/campement">
+              <button class="btn draw-border-error">Retour</button>
+            </a>
+          </div>
+        </div>
+
+        <!-- MESSAGES D'INFORMATION -->
+        <!-- ERREUR-->
+        <div class="alert alert-danger divCenter mt-3" style="text-align: center;" role="danger" *ngIf="messageErreur">
+          <b>{{messageErreur}}</b>
+        </div>
+        <!-- OK-->
+        <div class="alert alert-success divCenter mt-3" role="success" *ngIf="messageValidation">
+          <b>{{messageValidation}}</b>
+        </div>
       </div>
-      <ng-template #constructionPossible>
-        <button class="btn btn-success mt-3 mr-2" (click)="construire()">
-          Construire
-        </button>
-      </ng-template>
-
-      <button routerLink="../../../campement" class="btn btn-danger mt-3">
-        Retour
-      </button>
-    </div>
-    <div class="alert alert-danger divCenter mt-3" style="text-align: center;" role="danger" *ngIf="messageErreur">
-      <b>{{messageErreur}}</b>
-    </div>
-    <div class="alert alert-success divCenter mt-3" role="success" *ngIf="messageValidation">
-      <b>{{messageValidation}}</b>
     </div>
   </div>
 
-  <!-- Affichage mode amélioration -->
-  <div *ngIf="modeConstructionAmelioration=='amelioration'">
-    <div class="text-center py-3">
-      <img src="{{batiment['icone']}}" alt="" style="width: 20%;" />
-    </div>
-    <div class="lead card-header text-center py-3 mt-3"
-      style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px;">
-      <b>Descriptif : </b> {{batiment['descriptif']}}<br>
 
-      <!-- Affichage timer si une amélioration est en cours -->
-      <div class="mt-3" *ngIf="flagEnCoursDeTravail; else pasDeTravailEnCours;">
-        <div class="row justify-content-center">
-          <!-- Si bâtiment en cours d'amélioration + pas encore terminé -->
+  <!-- Affichage mode amélioration -->
+
+  <div *ngIf="modeConstructionAmelioration=='amelioration'">
+    <div class="container">
+      <div class="card">
+        <!-- ICONE -->
+        <img src="{{batiment['icone']}}" alt="Person" class="card__image">
+        <p class="card__name">{{batiment['libelle']}}</p>
+
+
+        <!-- NIVEAU (Si possède) -->
+        <div class="card__niveau">
+          Niveau <b>{{batimentJoueurPossede['niveau']}}</b>
+        </div>
+
+        <!-- DESCRIPTION -->
+        <p class="card__description">
+          {{batiment['descriptif']}}
+        </p>
+
+        <!-- Affichage timer si une amélioration est en cours -->
+        <div *ngIf="flagEnCoursDeTravail; else pasDeTravailEnCours;">
+
           <div *ngIf="secondesRestantesAmelioration > 1; else travailTermine;">
+
+
+            <!-- MESSAGE PRODUCTION VILLAGEOIS INTERROMPU -->
             <ng-template [ngIf]="(idTypeBatiment==1)">
-              <b style="color:red;">La production de villageois n'est pas possible durant l'amélioration.</b><br>
+              <p class="card__production_interrompu">
+                La production de villageois n'est pas possible durant l'amélioration.
+              </p>
             </ng-template>
+
+            <!-- MESSAGE PRODUCTION RESSOURCES INTERROMPU -->
             <ng-template [ngIf]="(idTypeBatiment==3) ||(idTypeBatiment==4) ||(idTypeBatiment==5) ||(idTypeBatiment==6)">
-              <b style="color:red;">Le bâtiment ne produit pas de ressources durant l'amélioration.</b><br>
+              <p class="card__production_interrompu">
+                <b style="color:red;">Le bâtiment ne produit pas de ressources durant l'amélioration.</b>
+              </p>
             </ng-template>
+
+            <!-- MESSAGE PRODUCTION UNITEES DE COMBAT INTERROMPU -->
             <ng-template
               [ngIf]="(idTypeBatiment==11)||(idTypeBatiment==12) ||(idTypeBatiment==13) ||(idTypeBatiment==14)">
-              <b style="color:red;">La production d'unitées de combat n'est pas possible durant l'amélioration.</b><br>
+              <p class="card__production_interrompu">
+                <b style="color:red;">La production d'unitées de combat n'est pas possible durant
+                  l'amélioration.</b>
+              </p>
             </ng-template>
-            <div class="col-auto mb-2 mt-3"
-              style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
-              <h2>Temps restant : {{result}}</h2>
-              <!-- <div class="progress-bar progress-bar-striped progress-bar-animated" [ngStyle]="{width:getTempsRestant()}"></div> -->
-              
-              <div class="progress">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" [ngStyle]="{width:getTempsRestant()}"></div>
+
+
+            <div class="mt-3">
+              <hr class="style-seven">
+              <p class="card__progress_bar_text">Temps restant : {{result}}</p>
+
+              <div class="progress mb-3 center" style="width: 80%;">
+                <div class="progress-bar progress-bar-striped progress-bar-animated"
+                  [ngStyle]="{width:getTempsRestant()}"></div>
               </div>
             </div>
+
+            <!-- RETOUR -->
+            <div class="center">
+              <a routerLink="/campement">
+                <button class="btn draw-border-error">Retour</button>
+              </a>
+            </div>
+
           </div>
-          <!-- Si bâtiment en cours d'amélioration + travail terminé -->
+
+
           <ng-template #travailTermine>
-            <div class="col-auto mb-2" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
-              <h2>Travail terminé. Redirection ...</h2>
+            <div>
+              <p class="card__msg">Travail terminé. Redirection ...</p>
             </div>
           </ng-template>
         </div>
-      </div>
 
-      <ng-template #pasDeTravailEnCours>
-        <!-- Apport de ressources  -->
-        <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==3)">
-          <b>Apport <b>Pierre</b></b> : {{batimentJoueurPossede['apportPierreHeure']}} ->
-          {{batimentJoueurPossede['apportPierreHeure']*2}}<br>
+        <ng-template #pasDeTravailEnCours>
+
+          <!-- SI BATIMENT RAPPORTE DE LA RESSOURCE -->
+          <ng-template
+            [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==3)||(idTypeBatiment==4)||(idTypeBatiment==5)||(idTypeBatiment==6)">
+            <div class="row">
+              <div class="col-sm-12">
+                <p class="card__categorie">
+                  Apport
+                </p>
+              </div>
+            </div>
+          </ng-template>
+
+          <!-- APPORT DE RESSOURCES  -->
+          <!-- PIERRE -->
+          <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==3)">
+            <p class="card__apport__ressource">
+              <b><b>Pierre</b></b> /heure : {{batimentJoueurPossede['apportPierreHeure']}} ->
+              {{batimentJoueurPossede['apportPierreHeure']*2}}
+            </p>
+          </ng-template>
+
+          <!-- BOIS -->
+          <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==4)">
+            <p class="card__apport__ressource">
+              <b><b>Bois</b></b> /heure : {{batimentJoueurPossede['apportBoisHeure']}} ->
+              {{batimentJoueurPossede['apportBoisHeure']*2}}
+            </p>
+          </ng-template>
+
+          <!-- OR -->
+          <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==5)">
+            <p class="card__apport__ressource">
+              <b><b>Or</b></b> /heure : {{batimentJoueurPossede['apportOreHeure']}} ->
+              {{batimentJoueurPossede['apportOreHeure']*2}}
+            </p>
+          </ng-template>
+
+          <!-- NOURRITURE -->
+          <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==6)">
+            <p class="card__apport__ressource">
+              <b><b>Nourriture</b></b> /heure : {{batimentJoueurPossede['apportNourritureHeure']}} ->
+              {{batimentJoueurPossede['apportNourritureHeure']*2}}<br>
+            </p>
+          </ng-template>
+
+          <!-- COUT -->
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="card__categorie">
+                Coût
+              </p>
+            </div>
+          </div>
+          <!-- PIERRE -->
+          <div class="row">
+            <div class="col-sm-6">
+              <p class="card__cout__ressource">
+                Pierre :
+                <span [ngStyle]="{color:getColorRessourceManquantePierreBatiment()}">
+                  <b>{{batimentJoueurPossede['coutPierreAmelioration']*2}}</b>
+                </span>
+              </p>
+            </div>
+            <!-- BOIS -->
+            <div class="col-sm-6">
+              <p class="card__cout__ressource">
+                Bois :
+                <span [ngStyle]="{color:getColorRessourceManquanteBoisBatiment()}">
+                  <b>{{batimentJoueurPossede['coutBoisAmelioration']*2}}</b>
+                </span>
+              </p>
+            </div>
+          </div>
+          <!-- OR -->
+          <div class="row">
+            <div class="col-sm-6">
+              <p class="card__cout__ressource">
+                Or :
+                <span [ngStyle]="{color:getColorRessourceManquanteOrBatiment()}">
+                  <b>{{batimentJoueurPossede['coutOreAmelioration']*2}}</b>
+                </span>
+              </p>
+            </div>
+            <!-- NOURRITURE -->
+            <div class="col-sm-6">
+              <p class="card__cout__ressource">
+                Nourriture :
+                <span [ngStyle]="{color:getColorRessourceManquanteNourritureBatiment()}">
+                  <b>{{batimentJoueurPossede['coutNourritureAmelioration']*2}}</b>
+                </span>
+              </p>
+            </div>
+          </div>
+
+
+          <!-- TEMPS DE CONSTRUCTION -->
+          <p class="card__temps__travail">
+            <b>Temps d'amélioration : </b>
+            <b>{{batimentJoueurPossede['tempsAmelioration']*2}} </b> secondes
+          </p>
+
+          <!-- BOUTONS -->
+          <div class="row">
+
+            <div class="col-sm-6">
+              <!-- OK : AMELIORER -->
+              <button class="btn draw-border" (click)="ameliorer()">Ameliorer</button>
+            </div>
+
+            <!-- RETOUR -->
+            <div class="col-sm-6">
+              <a routerLink="/campement">
+                <button class="btn draw-border-error">Retour</button>
+              </a>
+            </div>
+          </div>
+
         </ng-template>
 
-        <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==4)">
-          <b>Apport <b>Bois</b></b> : {{batimentJoueurPossede['apportBoisHeure']}} ->
-          {{batimentJoueurPossede['apportBoisHeure']*2}}<br>
-        </ng-template>
-
-        <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==5)">
-          <b>Apport <b>Or</b></b> : {{batimentJoueurPossede['apportOreHeure']}} ->
-          {{batimentJoueurPossede['apportOreHeure']*2}}<br>
-        </ng-template>
-
-        <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==6)">
-          <b>Apport <b>Nourriture</b></b> : {{batimentJoueurPossede['apportNourritureHeure']}} ->
-          {{batimentJoueurPossede['apportNourritureHeure']*2}}<br>
-        </ng-template>
-
-        <div class="m-3"><u>Niveau suivant</u></div>
-        <!-- Coût de l'amélioration -->
-        <b>Coût <b>Pierre</b> : </b>
-        <span [ngStyle]="{color:getColorRessourceManquantePierreBatimentJoueur()}">
-          <b>{{batimentJoueurPossede['coutPierreAmelioration']*2}}</b>
-        </span><br>
-
-        <b>Coût <b>Bois</b> : </b>
-        <span [ngStyle]="{color:getColorRessourceManquanteBoisBatimentJoueur()}">
-          <b>{{batimentJoueurPossede['coutBoisAmelioration']*2}}</b>
-        </span><br>
-
-        <b>Coût <b>Or</b> : </b>
-        <span [ngStyle]="{color:getColorRessourceManquanteOrBatimentJoueur()}">
-          <b>{{batimentJoueurPossede['coutOreAmelioration']*2}}</b>
-        </span><br>
-
-        <b>Coût <b>Nourriture</b> : </b>
-        <span [ngStyle]="{color:getColorRessourceManquanteNourritureBatimentJoueur()}">
-          <b>{{batimentJoueurPossede['coutNourritureAmelioration']*2}}</b>
-        </span><br>
-
-        <b><b>Ouvrier</b> necessaire : </b> {{batimentJoueurPossede['ouvrierNecessaireAmelioration']*2}}<br>
-        <b><b>Temps</b> d'amélioration : </b> {{batimentJoueurPossede['tempsAmelioration']*2}} secondes<br>
-        <div>
-          <button class="btn btn-info mt-3 mr-2" (click)="ameliorer()">
-            Améliorer
-          </button>
+        <!-- MESSAGES D'INFORMATION -->
+        <!-- ERREUR-->
+        <div class="alert alert-danger divCenter mt-3" style="text-align: center;" role="danger" *ngIf="messageErreur">
+          <b>{{messageErreur}}</b>
         </div>
-      </ng-template>
-
-      <button routerLink="../../../campement" class="btn btn-danger mt-3">
-        Retour
-      </button>
-    </div>
-
-    <div class="alert alert-danger divCenter mt-3" style="text-align: center;" role="danger" *ngIf="messageErreur">
-      <b>{{messageErreur}}</b>
-    </div>
-
-    <div class="alert alert-success divCenter mt-3" role="success" *ngIf="messageValidation">
-      <b>{{messageValidation}}</b>
+        <!-- OK-->
+        <div class="alert alert-success divCenter mt-3" role="success" *ngIf="messageValidation">
+          <b>{{messageValidation}}</b>
+        </div>
+      </div>
     </div>
   </div>
+
 </div>

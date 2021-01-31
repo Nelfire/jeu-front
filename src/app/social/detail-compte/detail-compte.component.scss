@@ -51,7 +51,8 @@
     border-radius: 50%;
     border: 5px solid #272133;
     margin-top: 20px;
-    box-shadow: 0 10px 50px rgba(235, 25, 110, 1);
+    // Aura icone
+    box-shadow: 0 10px 50px rgb(9, 235, 243);
 }
 
 .draw-border {
@@ -91,6 +92,7 @@
 
 .draw-border:hover::before,
 .draw-border:hover::after {
+    // Contours bouton "Apres"
     border-color: #eb196e;
     -webkit-transition: border-color 0s, width 0.25s, height 0.25s;
     transition: border-color 0s, width 0.25s, height 0.25s;

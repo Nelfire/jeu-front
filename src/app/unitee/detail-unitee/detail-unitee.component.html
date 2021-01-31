@@ -1,118 +1,194 @@
 <!-- Affichage mode construction -->
-<div class="detailUnitee" *ngIf="unitee && joueur">
-    <div class="text-center py-3">
-        <img src="{{unitee['icone']}}" alt="" style="width: 20%;" />
-    </div>
-    <div class="lead card-header text-center py-3 mt-3"
-        style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px;">
-        <b>Descriptif : </b> {{unitee['descriptif']}}<br>
+<div *ngIf="unitee && joueur">
+    <div class="container">
+        <div class="card">
+            <!-- ICONE -->
+            <img src="{{unitee['icone']}}" class="card__image">
+            <p class="card__name">{{unitee['libelle']}}</p>
 
-        <!-- Coût de la construction -->
-        <b>Coût <b>Pierre</b> : </b>
-        <span [ngStyle]="{color:getColorRessourceManquantePierre()}">
-            <b>{{coutPierreFormation}}</b>
-        </span><br>
+            <!-- DESCRIPTION -->
+            <p class="card__description">
+                {{unitee['descriptif']}}
+            </p>
 
-        <b>Coût <b>Bois</b> : </b>
-        <span [ngStyle]="{color:getColorRessourceManquanteBois()}">
-            <b>{{coutBoisFormation}}</b>
-        </span><br>
+            <!-- STATISTIQUES  -->
+            <!-- VIE -->
+            <div class="row">
+                <div class="col-sm-6">
+                    <p class="card__statistique">
+                        Vie : {{unitee['vie']}}
+                    </p>
+                </div>
+                <div class="col-sm-6">
+                    <p class="card__statistique">
+                        Attaque : {{unitee['attaque']}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <p class="card__statistique">
+                        Portee : {{unitee['portee']}}
+                    </p>
+                </div>
+                <div class="col-sm-6">
+                    <p class="card__statistique">
+                        Armure : {{unitee['armure']}}
+                    </p>
+                </div>
+            </div>
 
-        <b>Coût <b>Or</b> : </b>
-        <span [ngStyle]="{color:getColorRessourceManquanteOr()}">
-            <b>{{coutOrFormation}}</b>
-        </span><br>
+            <!-- ATTAQUE -->
+            <!-- TEMPS DE FORMATION -->
+            <p class="card__temps__travail">
+                Temps de formation : {{unitee['tempsFormation']}} secondes
+            </p>
 
-        <b>Coût <b>Nourriture</b> : </b>
-        <span [ngStyle]="{color:getColorRessourceManquanteNourriture()}">
-            <b>{{coutNourritureFormation}}</b>
-        </span><br>
+            <!-- COUT -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <p class="card__categorie">
+                        Coût
+                    </p>
+                </div>
+            </div>
+            <!-- PIERRE -->
+            <div class="row">
+                <div class="col-sm-6">
+                    <p class="card__cout__ressource">
+                        Pierre :
+                        <span [ngStyle]="{color:getColorRessourceManquantePierre()}">
+                            <b>{{coutPierreFormation}}</b>
+                        </span>
+                    </p>
+                </div>
+                <!-- BOIS -->
+                <div class="col-sm-6">
+                    <p class="card__cout__ressource">
+                        Bois :
+                        <span [ngStyle]="{color:getColorRessourceManquanteBois()}">
+                            <b>{{coutBoisFormation}}</b>
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <!-- OR -->
+            <div class="row">
+                <div class="col-sm-6">
+                    <p class="card__cout__ressource">
+                        Or :
+                        <span [ngStyle]="{color:getColorRessourceManquanteOr()}">
+                            <b>{{coutOrFormation}}</b>
+                        </span>
+                    </p>
+                </div>
+                <!-- NOURRITURE -->
+                <div class="col-sm-6">
+                    <p class="card__cout__ressource">
+                        Nourriture :
+                        <span [ngStyle]="{color:getColorRessourceManquanteNourriture()}">
+                            <b>{{coutNourritureFormation}}</b>
+                        </span>
+                    </p>
+                </div>
+            </div>
 
-        <b>Coût <b>Humain</b> : </b>
-        <span>
-            <b>{{unitee['coutHumain']}}</b>
-        </span><br>
+            <!-- Si le joueur possède le bâtiment -->
+            <span *ngIf="joueurPossedeBatiment; else possedePas">
+                <!-- Si le niveau du bâtiment est assez élevé -->
+                <span *ngIf="niveauBatimentAssezEleveFormation; else niveauBatimentPasAssezEleve">
+                    <!-- Si le bâtiment n'est pas occupé [Construction/Amélioration]-->
+                    <span *ngIf="!batimentEnCoursDeTravail; else batimentOccupe">
+                        <div>
+                            <form [formGroup]="formCreationUnitee" (ngSubmit)="produireUnitee()">
+                                <div class="divformulaireCreation">
+                                    <!-- Choix quantité -->
+                                    <input type="text" pattern="[0-9]*" class="form-control" class="quantite"
+                                        id="quantite" rows="3" formControlName="quantite" [(ngModel)]="quantite"
+                                        (keyup)="recalculPrix(quantite)" required />
+                                    <button type="button" class="btn draw-border" (click)="maximum()">Maximum</button>
+                                </div>
+                                <!-- Désactivation du bouton si quantitée incorrecte ou vide -->
 
-        <b>Temps <b>Formation</b> : </b>
-        <span>
-            <b>{{unitee['tempsFormation']}} secondes</b>
-        </span><br>
+                                <!-- Quantité maximale -->
 
-        <b><b>Vie</b> : </b>
-        <span>
-            <b>{{unitee['vie']}}</b>
-        </span><br>
-
-        <b><b>Attaque</b> : </b>
-        <span>
-            <b>{{unitee['attaque']}}</b>
-        </span><br>
-
-        <b><b>Portée</b> : </b>
-        <span>
-            <b>{{unitee['portee']}}</b>
-        </span><br>
-
-        <b><b>Armure</b> : </b>
-        <span>
-            <b>{{unitee['armure']}}</b>
-        </span><br>
-
-        <!-- Si le joueur possède l bâtiment -->
-        <span *ngIf="joueurPossedeBatiment; else possedePas">
-            <!-- Si le niveau du bâtiment est assez élevé -->
-            <span *ngIf="niveauBatimentAssezEleveFormation; else niveauBatimentPasAssezEleve">
-                <!-- Si le bâtiment n'est pas occupé [Construction/Amélioration]-->
-                <span *ngIf="!batimentEnCoursDeTravail; else batimentOccupe">
-                    <div class="divformulaireCreation">
-                        <form [formGroup]="formCreationUnitee" (ngSubmit)="produireUnitee()">
-                            <div class="col-sm-10 center">
-                                <!-- Choix quantité -->
-                                <input type="text" pattern="[0-9]*" class="form-control" class="quantite" id="quantite"
-                                    rows="3" formControlName="quantite" [(ngModel)]="quantite"
-                                    (keyup)="recalculPrix(quantite)" required />
-                            </div>
-                            <!-- Désactivation du bouton si quantitée incorrecte ou vide -->
-                            <button class="btn btn-success m3" [disabled]="formCreationUnitee.invalid || quantite==0">
-                                Entrainer
-                            </button>
-                            <!-- Quantité maximale -->
-                            <button type="button" class="btn btn-info m-3" (click)="maximum()">Maximum</button>
-                        </form>
-                    </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <button class="btn draw-border"
+                                            [disabled]="formCreationUnitee.invalid || quantite==0">
+                                            Entrainer
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <button routerLink="../../../armee" class="btn draw-border-error">
+                                            Retour
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </span>
                 </span>
             </span>
-        </span>
 
-        <!-- Niveau du bâtiment pas assez élevé pour produire l'unitée -->
-        <ng-template #niveauBatimentPasAssezEleve>
-            <a routerLink="../../../batiment/detail-batiment/{{unitee.idBatimentProvenance}}"><button
-                    class="btn btn-warning">Niveau bâtiment insufisant</button></a>
-        </ng-template>
+            <!-- Niveau du bâtiment pas assez élevé pour produire l'unitée -->
+            <ng-template #niveauBatimentPasAssezEleve>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <a routerLink="../../../batiment/detail-batiment/{{unitee.idBatimentProvenance}}">
+                            <button class="btn draw-border-error">Niveau bâtiment insufisant</button>
+                        </a>
+                    </div>
+                    <div class="col-sm-6">
+                        <button routerLink="../../../armee" class="btn draw-border-error">
+                            Retour
+                        </button>
+                    </div>
+                </div>
+            </ng-template>
 
-        <!-- Le joueur ne possède pas encore le bâtiment -->
-        <ng-template #possedePas>
-            <a routerLink="../../../batiment/detail-batiment/{{unitee.idBatimentProvenance}}"><button
-                    class="btn btn-danger">Bâtiment manquant</button></a>
-        </ng-template>
+            <!-- Le joueur ne possède pas encore le bâtiment -->
+            <ng-template #possedePas>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <a routerLink="../../../batiment/detail-batiment/{{unitee.idBatimentProvenance}}">
+                            <button class="btn draw-border-error">Bâtiment manquant</button></a>
+                    </div>
+                    <div class="col-sm-6">
+                        <button routerLink="../../../armee" class="btn draw-border-error">
+                            Retour
+                        </button>
+                    </div>
+                </div>
+            </ng-template>
 
-        <!-- Bâtiment en cours de construction / d'amélioration -->
-        <ng-template #batimentOccupe>
-            <a routerLink="../../../batiment/detail-batiment/{{unitee.idBatimentProvenance}}"><button
-                    class="btn btn-warning">Bâtiment en cours de travail</button></a>
-        </ng-template>
+            <!-- Bâtiment en cours de construction / d'amélioration -->
+            <ng-template #batimentOccupe>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <a routerLink="../../../batiment/detail-batiment/{{unitee.idBatimentProvenance}}">
+                            <button class="btn draw-border-error">Bâtiment en cours de travail</button>
+                        </a>
+                    </div>
+                    <div class="col-sm-6">
+                        <button routerLink="../../../armee" class="btn draw-border-error">
+                            Retour
+                        </button>
+                    </div>
+                </div>
 
-        <!-- Retour -->
-        <button routerLink="../../../armee" class="btn btn-danger m-3">
-            Retour
-        </button>
-    </div>
+            </ng-template>
 
-    <!-- Messages -->
-    <div class="alert alert-danger divCenter mt-3" style="text-align: center;" role="danger" *ngIf="messageErreur">
-        <b>{{messageErreur}}</b>
-    </div>
-    <div class="alert alert-success divCenter mt-3" role="success" *ngIf="messageValidation">
-        <b>{{messageValidation}}</b>
+            <!-- MESSAGES D'INFORMATION -->
+            <!-- ERREUR-->
+            <div class="alert alert-danger divCenter mt-3" style="text-align: center;" role="danger"
+                *ngIf="messageErreur">
+                <b>{{messageErreur}}</b>
+            </div>
+            <!-- OK-->
+            <div class="alert alert-success divCenter mt-3" role="success" *ngIf="messageValidation">
+                <b>{{messageValidation}}</b>
+            </div>
+        </div>
     </div>
 </div>

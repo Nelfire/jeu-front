@@ -1,15 +1,15 @@
 <div class="expeditionJoueur" *ngIf="listeExpeditionJoueur">
-    <div class="row">
-        {{niveauTableExpedition}}
-        <div *ngIf="niveauTableExpedition==0; else possedeTableExpedition;">
-            <div class="row justify-content-center">
-                <div class="col-auto mb-4"
-                    style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
-                    <h2>Vous devez construire une table d'expédition</h2>
-                </div>
+    <div id="erreur">
+        <div class="erreur" *ngIf="niveauTableExpedition==0; else possedeTableExpedition;">
+            <div class="batimentManquant">
+                <h1><span></span></h1>
             </div>
+            <a routerLink="/batiment/detail-batiment/18">Vous devez d'abord construire une table d'expédition</a>
         </div>
-        <ng-template #possedeTableExpedition>
+    </div>
+    <ng-template #possedeTableExpedition>
+        <div class="row" *ngIf="listeExpeditionJoueur">
+
             <div class="col-lg-12">
                 <button class="btn btn-success m-2" (click)="listerToutesLesExpeditionsJoueur()">Toutes mes
                     expéditions</button>
@@ -61,7 +61,7 @@
                         </div>
                         <ng-template #terminee>
                             <div class="card h-100"
-                                [ngStyle]="{'background-color':uneExpeditionJoueur.etatExpedition == 1 ? '#4bff001a' : (uneExpeditionJoueur.etatExpedition  == 2 ? '#4bff001a' : '#ff00001a') }">
+                                [ngStyle]="{'background-color':uneExpeditionJoueur.etatExpedition == 1 ? '#48d40e61' : (uneExpeditionJoueur.etatExpedition  == 2 ? '#48d40e61' : '#ff000061') }">
                                 <img class="card-img-top" src="{{uneExpeditionJoueur.expedition.icone}}" alt="">
                                 <div class="card-body">
                                     <h4 class="card-title">
@@ -113,6 +113,7 @@
                     </div>
                 </div>
             </div>
-        </ng-template>
-    </div>
+
+        </div>
+    </ng-template>
 </div>

@@ -6,16 +6,14 @@
                     <th>Icone</th>
                     <th>Pseudo</th>
                     <th>Niveau</th>
-                    <th>Nombre d'unitées</th>
                     <th>Temps de jeu (sc)</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let joueur of listeJoueurs">
                     <td><img src="{{joueur.icone}}" alt="" style="width: 30px;" /></td>
-                    <td>{{joueur.pseudo}}</td>
+                    <td><a routerLink="/detailJoueur/{{joueur.id}}">{{joueur.pseudo}}</a></td>
                     <td>{{joueur.niveau}}</td>
-                    <td>XXXXXX</td>
                     <td>{{joueur.tempsDeJeu}}</td>
                 </tr>
             <tbody>

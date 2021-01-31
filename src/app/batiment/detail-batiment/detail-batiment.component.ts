@@ -120,6 +120,7 @@ export class DetailBatimentComponent implements OnInit {
                 this.result = date.toISOString().substr(11, 8);
                 //console.log(this.secondesRestantesAmelioration);
                 if (this.secondesRestantesAmelioration < 1) {
+                  this.ngOnDestroy();
                   setTimeout(() => {
                     // Redirection au bout de 1,5 secondes
                     this.router.navigate(['campement']);
