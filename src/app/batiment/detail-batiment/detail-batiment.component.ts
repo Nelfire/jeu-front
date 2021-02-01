@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Joueur } from 'src/app/auth/auth.domains';
 import { AuthService } from '../../service/auth.service';
@@ -15,6 +15,8 @@ import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { Observable, Subscription } from 'rxjs';
 import { NotificationService } from 'src/app/service/notification.service';
+import { HeaderComponent } from 'src/app/header/header.component';
+import { GenerationRessourcesService } from 'src/app/service/generation-ressources.service';
 // the second parameter 'fr' is optional
 registerLocaleData(localeFr, 'fr');
 
@@ -24,6 +26,8 @@ registerLocaleData(localeFr, 'fr');
   styleUrls: ['./detail-batiment.component.scss']
 })
 export class DetailBatimentComponent implements OnInit {
+
+  @ViewChild(HeaderComponent) headerComponent: HeaderComponent;
 
   joueur: JoueurInfos;
 
@@ -53,7 +57,8 @@ export class DetailBatimentComponent implements OnInit {
     private batimentService: BatimentService,
     private batimentJoueurService: BatimentJoueurService,
     private joueurService: JoueurService,
-    private notification: NotificationService) { }
+    private notification: NotificationService,
+    private generationRessourcesService: GenerationRessourcesService) { }
 
   ngOnInit(): void {
     // Détection niveau HDV
@@ -172,7 +177,10 @@ export class DetailBatimentComponent implements OnInit {
       }, (error) => {
         this.messageErreur = error.error.message;
       }, () => {
-        this.messageValidation = "Construction lancée";
+        
+        this.generationRessourcesService.onFirstComponentButtonClick();
+
+
         this.notification.showSuccess("", "Construction lancée.");
 
         setTimeout(() => {

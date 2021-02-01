@@ -63,6 +63,7 @@ import { DiscussionPriveeComponent } from './social/discussion/discussion-privee
 import { NotificationService } from './service/notification.service';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GenerationRessourcesService } from './service/generation-ressources.service';
 
 
 @NgModule({
@@ -131,6 +132,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     GuildeService,
     BoutiqueService,
     DiscussionService,
+    GenerationRessourcesService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

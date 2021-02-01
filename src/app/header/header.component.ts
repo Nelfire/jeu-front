@@ -13,6 +13,7 @@ import { JoueurService } from '../service/joueur.service';
 import { JoueurInfos } from '../models/joueur-infos';
 import { BatimentJoueurService } from '../service/batiment-joueur.service';
 import { InformationRessourcesJoueur } from '../models/informationRessourcesJoueur';
+import { GenerationRessourcesService } from '../service/generation-ressources.service';
 
 
 @Component({
@@ -33,8 +34,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   // Initialisations
   counterSubscription: Subscription;
-/*   secondes = 0; */
-/*   utilisateurConnecte: Joueur; */
+  /*   secondes = 0; */
+  /*   utilisateurConnecte: Joueur; */
   infosJoueur: JoueurInfos;
   // Récupération de :
 
@@ -51,14 +52,37 @@ export class HeaderComponent implements OnInit, OnDestroy {
   // Constructeur
   constructor(private authSrv: AuthService,
     private router: Router,
-    private joueurService: JoueurService) { }
+    private joueurService: JoueurService,
+    private generationRessourcesService: GenerationRessourcesService) { }
 
   ngOnInit() {
 
+    console.log("Ligne 60");
+    this.recuperationRessources();
+
+    if (this.generationRessourcesService.subsVar==undefined) {    
+      console.log("Ligne 64");
+      this.generationRessourcesService.subsVar = this.generationRessourcesService.    
+      invokeFirstComponentFunction.subscribe(
+        (name:string) => {    
+        this.recuperationRessources();  
+        console.log("Ligne 66");  
+      });    
+    }   
 
 
 
     // RECUPERATION INFORMATIONS RESSOURCE 
+
+    this.joueurService.informationJoueurByEmail().subscribe(
+      (value) => {
+        this.infosJoueur = value;
+      }
+    );
+  }
+
+  recuperationRessources() {
+    console.log("Ligne 83");
     this.joueurService.informationRessourcesJoueur().subscribe(
       (value) => {
         this.informationRessourcesJoueur = value;
@@ -69,30 +93,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     const compteur = Observable.interval(1000);
     this.counterSubscription = compteur.subscribe(
       (valeur: number) => {
-        this.informationRessourcesJoueur.pierrePossession = this.informationRessourcesJoueur.pierrePossession+this.informationRessourcesJoueur.apportPierreSeconde;
-        this.informationRessourcesJoueur.boisPossession = this.informationRessourcesJoueur.boisPossession+this.informationRessourcesJoueur.apportBoisSeconde;
-        this.informationRessourcesJoueur.orPossession = this.informationRessourcesJoueur.orPossession+this.informationRessourcesJoueur.apportOrSeconde;
-        this.informationRessourcesJoueur.nourriturePossession = this.informationRessourcesJoueur.nourriturePossession+this.informationRessourcesJoueur.apportNourritureSeconde;
+        this.informationRessourcesJoueur.pierrePossession = this.informationRessourcesJoueur.pierrePossession + this.informationRessourcesJoueur.apportPierreSeconde;
+        this.informationRessourcesJoueur.boisPossession = this.informationRessourcesJoueur.boisPossession + this.informationRessourcesJoueur.apportBoisSeconde;
+        this.informationRessourcesJoueur.orPossession = this.informationRessourcesJoueur.orPossession + this.informationRessourcesJoueur.apportOrSeconde;
+        this.informationRessourcesJoueur.nourriturePossession = this.informationRessourcesJoueur.nourriturePossession + this.informationRessourcesJoueur.apportNourritureSeconde;
       }
     );
-    // ** timer fin ** */
-/* 
-    this.joueurConnecte = this.authSrv.joueurConnecteObs;
-
-    // On vérifie si l'utilisateur est bien connecté
-    this.authSrv.verifierAuthentification().subscribe(
-      (etatConnexion) => {
-        this.utilisateurConnecte = etatConnexion;
-      }
-    ); */
-
-
-    this.joueurService.informationJoueurByEmail().subscribe(
-      (value) => {
-        this.infosJoueur = value;
-      }
-    );
-
   }
 
   // Déconnexion
