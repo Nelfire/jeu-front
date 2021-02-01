@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import {JoueurInfos} from '../models/joueur-infos';
 import { Observable } from 'rxjs';
 import { ObserveOnSubscriber } from 'rxjs/internal/operators/observeOn';
+import { InformationRessourcesJoueur } from '../models/informationRessourcesJoueur';
 
 const URL_BACKEND = environment.baseUrl + 'joueur';
 
@@ -38,5 +39,9 @@ export class JoueurService {
       email: `${email}`,
       descriptif: `${descriptif}`,
     })
+  }
+
+  informationRessourcesJoueur(): Observable<InformationRessourcesJoueur> {
+    return this.http.get<InformationRessourcesJoueur>(`${URL_BACKEND}/informationRessourcesJoueur`)
   }
 }

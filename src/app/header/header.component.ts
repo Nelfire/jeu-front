@@ -12,6 +12,7 @@ import { Observable } from 'rxjs/Observable';
 import { JoueurService } from '../service/joueur.service';
 import { JoueurInfos } from '../models/joueur-infos';
 import { BatimentJoueurService } from '../service/batiment-joueur.service';
+import { InformationRessourcesJoueur } from '../models/informationRessourcesJoueur';
 
 
 @Component({
@@ -31,61 +32,64 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
 
   // Initialisations
-  populationMaximaleJoueur: Number;
   counterSubscription: Subscription;
-  secondes = 0;
-  utilisateurConnecte: Joueur;
+/*   secondes = 0; */
+/*   utilisateurConnecte: Joueur; */
   infosJoueur: JoueurInfos;
-/*   pierrePossession: number;
-  pierreMaximum: number;
-  boisPossession: number;
-  boisMaximum: number;
-  orPossession: number;
-  orMaximum: number;
-  nourriturePossession: number;
-  nourritureMaximum: number; */
+  // Récupération de :
+
+  // Informations Ressource joueur
+  informationRessourcesJoueur: InformationRessourcesJoueur;
+
+
+
 
 
   // Mise en place de l'observable pour récupérer le role du joueur, pour l'affichage des onglets de navigation appropriés
   joueurConnecte: Observable<Joueur>;
 
   // Constructeur
-  constructor(private batimentJoueurService: BatimentJoueurService, private authSrv: AuthService, private router: Router, private joueurService: JoueurService) { }
+  constructor(private authSrv: AuthService,
+    private router: Router,
+    private joueurService: JoueurService) { }
 
   ngOnInit() {
+
+
+
+
+    // RECUPERATION INFORMATIONS RESSOURCE 
+    this.joueurService.informationRessourcesJoueur().subscribe(
+      (value) => {
+        this.informationRessourcesJoueur = value;
+      }
+    );
+
     // ** Actualisation chaques secondes ** */
     const compteur = Observable.interval(1000);
     this.counterSubscription = compteur.subscribe(
       (valeur: number) => {
-        this.authSrv.verifierAuthentification().subscribe(
-          (etatConnexion) => {
-            this.utilisateurConnecte = etatConnexion;
-            // J'actualise les informations du joueur (Ressources, ...)
-            this.joueurService.informationJoueurByEmail().subscribe(
-              (value) => {
-                this.infosJoueur = value;
-/*                 this.pierrePossession = value.pierrePossession;
-                this.pierreMaximum = value.pierreMaximum;
-                this.boisPossession = value.boisPossession;
-                this.boisMaximum = value.boisMaximum;
-                this.orPossession = value.orPossession;
-                this.orMaximum = value.orMaximum;
-                this.nourriturePossession = value.nourriturePossession;
-                this.nourritureMaximum = value.nourritureMaximum; */
-              }
-            );
-          }
-        );
+        this.informationRessourcesJoueur.pierrePossession = this.informationRessourcesJoueur.pierrePossession+this.informationRessourcesJoueur.apportPierreSeconde;
+        this.informationRessourcesJoueur.boisPossession = this.informationRessourcesJoueur.boisPossession+this.informationRessourcesJoueur.apportBoisSeconde;
+        this.informationRessourcesJoueur.orPossession = this.informationRessourcesJoueur.orPossession+this.informationRessourcesJoueur.apportOrSeconde;
+        this.informationRessourcesJoueur.nourriturePossession = this.informationRessourcesJoueur.nourriturePossession+this.informationRessourcesJoueur.apportNourritureSeconde;
       }
     );
     // ** timer fin ** */
-
+/* 
     this.joueurConnecte = this.authSrv.joueurConnecteObs;
 
     // On vérifie si l'utilisateur est bien connecté
     this.authSrv.verifierAuthentification().subscribe(
       (etatConnexion) => {
         this.utilisateurConnecte = etatConnexion;
+      }
+    ); */
+
+
+    this.joueurService.informationJoueurByEmail().subscribe(
+      (value) => {
+        this.infosJoueur = value;
       }
     );
 
@@ -102,23 +106,23 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.counterSubscription.unsubscribe();
   }
 
-  // Colorisation approche limite ressource (Pierre)
+  /* // Colorisation approche limite ressource (Pierre)
   getColorApprocheLimitePierre() {
 
-      if ((this.infosJoueur.pierrePossession / this.infosJoueur.pierreMaximum) < 0.5) {
-        // Vert
-        return '#43CF01';
-      } else if ((this.infosJoueur.pierrePossession / this.infosJoueur.pierreMaximum) >= 0.5 && (this.infosJoueur.pierrePossession / this.infosJoueur.pierreMaximum) < 0.7) {
-        // Jaune
-        return '#D2CB04';
-      } else if ((this.infosJoueur.pierrePossession / this.infosJoueur.pierreMaximum) >= 0.7 && (this.infosJoueur.pierrePossession / this.infosJoueur.pierreMaximum) < 0.9) {
-        // Orange
-        return '#FF8B00';
-      } else {
-        // Rouge
-        return '#FF3600';
-      }
-    
+    if ((this.infosJoueur.pierrePossession / this.infosJoueur.pierreMaximum) < 0.5) {
+      // Vert
+      return '#43CF01';
+    } else if ((this.infosJoueur.pierrePossession / this.infosJoueur.pierreMaximum) >= 0.5 && (this.infosJoueur.pierrePossession / this.infosJoueur.pierreMaximum) < 0.7) {
+      // Jaune
+      return '#D2CB04';
+    } else if ((this.infosJoueur.pierrePossession / this.infosJoueur.pierreMaximum) >= 0.7 && (this.infosJoueur.pierrePossession / this.infosJoueur.pierreMaximum) < 0.9) {
+      // Orange
+      return '#FF8B00';
+    } else {
+      // Rouge
+      return '#FF3600';
+    }
+
 
   }
 
@@ -171,5 +175,5 @@ export class HeaderComponent implements OnInit, OnDestroy {
       // Rouge
       return '#FF3600';
     }
-  }
+  } */
 }

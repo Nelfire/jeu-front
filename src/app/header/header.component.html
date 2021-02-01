@@ -3,35 +3,36 @@
         <img src="https://media.discordapp.net/attachments/649978115199860766/793975291994964028/72399-icons-crown-prodigy-game-computer-math-icon.png"
             alt="" style="width: 40px;height: 40px;" />
     </div>
-    <div class="menu" *ngIf="infosJoueur">
+<!--     {{informationRessourcesJoueur | json}} -->
+    <div class="menu" *ngIf="informationRessourcesJoueur">
         <ul class="modify">
             <li class="pierre">
                 <a class="btn">
                     <fa-icon [icon]="iconeStopWatch"></fa-icon> Pierre : <b
-                        [ngStyle]="{color:getColorApprocheLimitePierre()}">{{infosJoueur?.pierrePossession}}/{{infosJoueur?.pierreMaximum}}</b>
+                        [ngStyle]="{}">{{informationRessourcesJoueur.pierrePossession}}/{{informationRessourcesJoueur.quantiteMaximaleStockagePierre}}</b>
                 </a>
             </li>
             <li class="bois">
                 <a class="btn">
                     <fa-icon [icon]="iconeStopWatch"></fa-icon> Bois : <b
-                        [ngStyle]="{color:getColorApprocheLimiteBois()}">{{infosJoueur?.boisPossession}}/{{infosJoueur?.boisMaximum}}</b>
+                        [ngStyle]="{}">{{informationRessourcesJoueur.boisPossession}}/{{informationRessourcesJoueur.quantiteMaximaleStockageBois}}</b>
                 </a>
             </li>
             <li class="or">
                 <a class="btn">
                     <fa-icon [icon]="iconeStopWatch"></fa-icon> Or : <b
-                        [ngStyle]="{color:getColorApprocheLimiteOr()}">{{infosJoueur?.orPossession}}/{{infosJoueur?.orMaximum}}</b>
+                        [ngStyle]="{}">{{informationRessourcesJoueur.orPossession}}/{{informationRessourcesJoueur.quantiteMaximaleStockageOr}}</b>
                 </a>
             </li>
             <li class="nourriture">
                 <a class="btn">
                     <fa-icon [icon]="iconeStopWatch"></fa-icon> Nourriture : <b
-                        [ngStyle]="{color:getColorApprocheLimiteNourriture()}">{{infosJoueur?.nourriturePossession}}/{{infosJoueur?.nourritureMaximum}}</b>
+                        [ngStyle]="{}">{{informationRessourcesJoueur.nourriturePossession}}/{{informationRessourcesJoueur.quantiteMaximaleStockageNourriture}}</b>
                 </a>
             </li>
             <li class="gemme">
                 <a class="btn">
-                    <fa-icon [icon]="iconeStopWatch"></fa-icon> Gemmes : <b>{{infosJoueur?.gemmePossession}}</b>
+                    <fa-icon [icon]="iconeStopWatch"></fa-icon> Gemmes : <b>{{informationRessourcesJoueur.gemmePossession}}</b>
                 </a>
             </li>
         </ul>
