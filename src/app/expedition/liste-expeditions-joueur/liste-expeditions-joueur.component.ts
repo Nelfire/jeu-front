@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { ExpeditionJoueur } from 'src/app/models/expedition-joueur';
 import { BatimentJoueurService } from 'src/app/service/batiment-joueur.service';
 import { BatimentService } from 'src/app/service/batiment.service';
 import { ExpeditionJoueurService } from 'src/app/service/expedition-joueur.service';
+import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
   selector: 'app-liste-expeditions-joueur',
@@ -12,6 +12,7 @@ import { ExpeditionJoueurService } from 'src/app/service/expedition-joueur.servi
 })
 export class ListeExpeditionsJoueurComponent implements OnInit, OnDestroy {
 
+  // https://www.itsolutionstuff.com/post/how-to-use-toaster-notification-in-angular-8example.html
   // Initialisation
   etat: number;
   result: string;
@@ -25,9 +26,10 @@ export class ListeExpeditionsJoueurComponent implements OnInit, OnDestroy {
   clickRecuperer = false;
   messageBoutonRecuperationRecompense: string = "Récupérer récompense";
 
-  constructor(private expeditionJoueurService: ExpeditionJoueurService, 
-    private batimentService: BatimentService, 
-    private batimentJoueurService: BatimentJoueurService) { }
+  constructor(private expeditionJoueurService: ExpeditionJoueurService,
+    private batimentService: BatimentService,
+    private batimentJoueurService: BatimentJoueurService,
+    private notification: NotificationService) { }
 
   ngOnInit(): void {
     this.verifierNiveauTableExpedition();
@@ -74,33 +76,33 @@ export class ListeExpeditionsJoueurComponent implements OnInit, OnDestroy {
     );
   }
 
-    // Verification possession bâtiment de type "Table d'expédition"
-    verifierNiveauTableExpedition() {
-      // Récupération liste des batiments
-      this.batimentService.listerBatiments().subscribe(
-        () => {
-          // Récupération liste des batiments du joueur
-          this.batimentJoueurService.listerMesBatiments().subscribe(
-            (mesBatiments) => {
-              // Boucle sur les bâtiments du joueur
-              mesBatiments.forEach((monBatiment) => {
-                // SI LE JOUER POSSEDE UNE TABLE D'EXPEDITION (id:18), RECUPERATION DU NIVEAU
-                if (monBatiment.batiment.idTypeBatiment == 18) {
-                  // MAINTENANT
-                  var maintenant = new Date().getTime();
-                  // SI TABLE D'EXPEDITION N'EST PAS EN CONSTRUCTION
-                  if (monBatiment.dateFinConstruction < maintenant) {
-                    this.niveauTableExpedition = monBatiment.niveau;
-                  } else {
-                    this.niveauTableExpedition = monBatiment.niveau - 1;
-                  }
+  // Verification possession bâtiment de type "Table d'expédition"
+  verifierNiveauTableExpedition() {
+    // Récupération liste des batiments
+    this.batimentService.listerBatiments().subscribe(
+      () => {
+        // Récupération liste des batiments du joueur
+        this.batimentJoueurService.listerMesBatiments().subscribe(
+          (mesBatiments) => {
+            // Boucle sur les bâtiments du joueur
+            mesBatiments.forEach((monBatiment) => {
+              // SI LE JOUER POSSEDE UNE TABLE D'EXPEDITION (id:18), RECUPERATION DU NIVEAU
+              if (monBatiment.batiment.idTypeBatiment == 18) {
+                // MAINTENANT
+                var maintenant = new Date().getTime();
+                // SI TABLE D'EXPEDITION N'EST PAS EN CONSTRUCTION
+                if (monBatiment.dateFinConstruction < maintenant) {
+                  this.niveauTableExpedition = monBatiment.niveau;
+                } else {
+                  this.niveauTableExpedition = monBatiment.niveau - 1;
                 }
-              });
-            }
-          );
-        }
-      );
-    }
+              }
+            });
+          }
+        );
+      }
+    );
+  }
 
   // LISTER UNIQUEMENT LES EXPEDITIONS JOUEUR VICTORIEUSE + RECOMPENSE DEJA RECUPEREE = 2
   listerExpeditionJoueurTermineesVictoire() {
@@ -188,7 +190,8 @@ export class ListeExpeditionsJoueurComponent implements OnInit, OnDestroy {
   // RECUPERATION DES RECOMPENSES
   recupererRecompense(idExpedition: number) {
     this.clickRecuperer = true;
-    this.messageBoutonRecuperationRecompense = "Compte crédité"
+    this.messageBoutonRecuperationRecompense = "Compte crédité";
+    this.notification.showSuccess("", "Récompense récupérée !");
     this.expeditionJoueurService.recupererRecompense(idExpedition).subscribe();
   }
 
@@ -200,5 +203,6 @@ export class ListeExpeditionsJoueurComponent implements OnInit, OnDestroy {
       )
     }
   }
+
 
 }

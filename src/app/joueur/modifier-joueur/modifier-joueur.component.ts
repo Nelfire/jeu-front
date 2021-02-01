@@ -8,6 +8,7 @@ import { JoueurService } from 'src/app/service/joueur.service';
 import { CompetenceService } from 'src/app/service/competence.service';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Route } from '@angular/compiler/src/core';
+import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
   selector: 'app-modifier-joueur',
@@ -30,7 +31,8 @@ export class ModifierJoueurComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, 
     private joueurService: JoueurService, 
     private formBuilder: FormBuilder,
-    private router: Router) { }
+    private router: Router,
+    private notification: NotificationService) { }
 
   ngOnInit(): void {
 
@@ -74,13 +76,13 @@ export class ModifierJoueurComponent implements OnInit {
     this.joueurService.modifierInformationsJoueur(icone,email,descriptif).subscribe(() => {
     
     }, (error) => {
-      this.messageErreur = error.error.message
+      this.notification.showError(error.error.message, "Informations modifiées.");
     }, () => {
-      this.messageValidation = "Informations modifiées"
+      this.notification.showSuccess("", "Informations modifiées.");
       setTimeout(() => {
         // Redirection au bout de 1,5 secondes
         this.router.navigate(['/detailJoueur/'+this.joueur.id]);
-      }, 2000);
+      }, 1500);
     });
   }
 

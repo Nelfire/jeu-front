@@ -9,6 +9,7 @@ import { Unitee } from 'src/app/models/unitee';
 import { ArmeeService } from 'src/app/service/armee-joueur.service';
 import { BatimentJoueurService } from 'src/app/service/batiment-joueur.service';
 import { JoueurService } from 'src/app/service/joueur.service';
+import { NotificationService } from 'src/app/service/notification.service';
 import { UniteeService } from 'src/app/service/unitee.service';
 
 @Component({
@@ -45,7 +46,8 @@ export class DetailUniteeComponent implements OnInit {
     private armeeService: ArmeeService,
     private router: Router,
     private joueurService: JoueurService,
-    private batimentJoueurService: BatimentJoueurService) { }
+    private batimentJoueurService: BatimentJoueurService,
+    private notification: NotificationService) { }
 
   ngOnInit(): void {
 
@@ -109,7 +111,12 @@ export class DetailUniteeComponent implements OnInit {
 
       }, (error) => {
         this.messageErreur = error.error.message;
+        this.notification.showError(error.error.message, "Ressources manquantes.");
+
       }, () => {
+        // Toastr
+        quantite==1?this.notification.showSuccess("Production d'une unitée.", "Production lancée."):this.notification.showSuccess("Production de "+quantite+" unitées.", "Production lancée.");
+
         this.messageValidation = "Production lancée";
         setTimeout(() => {
           // Redirection au bout de 1,5 secondes

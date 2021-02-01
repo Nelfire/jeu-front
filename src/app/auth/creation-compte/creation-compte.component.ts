@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
+import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
   selector: 'app-creation-compte',
@@ -14,7 +16,9 @@ export class CreationCompteComponent implements OnInit {
   messageErreur: string;
   messageValidation: string;
   constructor(private authService: AuthService,
-    private formBuilder: FormBuilder) { }
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private notification: NotificationService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -36,14 +40,24 @@ export class CreationCompteComponent implements OnInit {
     const repeatPassword = this.formCreationCompte.get('repeatPassword').value;
     if(password!=repeatPassword) {
       this.messageErreur = "Les mots de passe ne sont pas identiques. Vérifiez votre saisie."
+      this.notification.showError("Les mots de passe ne sont pas identiques. Vérifiez votre saisie.", "Erreur dans la saisie.");
+
     } else {
-      console.log(pseudo+' / '+email +' / '+password);
       this.authService.creationCompte(pseudo,email,password).subscribe(
         () => {
-          this.messageErreur = "";
-          this.messageValidation = "Compte créé avec succès ☺";
+/*           this.messageErreur = "";
+          this.messageValidation = "Compte créé avec succès ☺"; */
         }, (error) => {
           this.messageErreur = error.error.message;
+          this.notification.showError(error.error.message, "Erreur dans la saisie.");
+
+        }, () => {
+          this.notification.showInfo("", "Compte créé avec succès");
+          
+        setTimeout(() => {
+          // Redirection au bout de 1,5 secondes
+          this.router.navigate(['/auth']);
+        }, 1000);
         }
       );
     }

@@ -5,6 +5,7 @@ import { JoueurInfos } from '../models/joueur-infos';
 import { BoutiqueService } from '../service/boutique.service';
 import { JoueurService } from '../service/joueur.service';
 import { ThousandSuffixesPipePipe} from 'src/app/pipe/thousand-suffixes-pipe.pipe'
+import { NotificationService } from '../service/notification.service';
 
 
 @Component({
@@ -54,7 +55,9 @@ export class BoutiqueComponent implements OnInit {
   // Nourriture: 100%
   coutGemmeNourriture100Pourcent: number;
   quantiteeRessourceNourriture100Pourcent: number
-  constructor(private boutiqueService: BoutiqueService, private joueurService: JoueurService) { }
+  constructor(private boutiqueService: BoutiqueService, 
+    private joueurService: JoueurService,
+    private notification: NotificationService) { }
 
   ngOnInit(): void {
     // Récupération des informations du joueur
@@ -225,15 +228,16 @@ export class BoutiqueComponent implements OnInit {
       }
       // SI GEMMES INSUFISANTES AU COUT
       if (this.infosJoueur.gemmePossession < coutGemme) {
-        this.messageErreur = "Gemmes insuffisantes";
+        this.notification.showError("Gemmes insuffisantes", "Erreur lors de l'achat.");
+
       }
       else // Gemmes suffisantes
       {
         this.boutiqueService.achat10PourcentPierre().subscribe(() => {
         }, (error) => {
-          this.messageErreur = error.error.message;
+          this.notification.showError(error.error.message, "Erreur lors de l'achat.");
         }, () => {
-          this.messageValidation = "Achat effectué";
+          this.notification.showSuccess("+"+quantiteePierre10pourcent+" Pierres.", "Achat effectué.");
         });
       }
     }
@@ -256,15 +260,15 @@ export class BoutiqueComponent implements OnInit {
       }
       // SI GEMMES INSUFISANTES AU COUT
       if (this.infosJoueur.gemmePossession < coutGemme) {
-        this.messageErreur = "Gemmes insuffisantes";
+        this.notification.showError("Gemmes insuffisantes", "Erreur lors de l'achat.");
       }
       else // Gemmes suffisantes
       {
         this.boutiqueService.achat50PourcentPierre().subscribe(() => {
         }, (error) => {
-          this.messageErreur = error.error.message;
+          this.notification.showError(error.error.message, "Erreur lors de l'achat.");
         }, () => {
-          this.messageValidation = "Achat effectué";
+          this.notification.showSuccess("+"+quantiteePierre50pourcent+" Pierres.", "Achat effectué.");
         });
       }
     }
@@ -287,15 +291,15 @@ export class BoutiqueComponent implements OnInit {
       }
       // SI GEMMES INSUFISANTES AU COUT
       if (this.infosJoueur.gemmePossession < coutGemme) {
-        this.messageErreur = "Gemmes insuffisantes";
+        this.notification.showError("Gemmes insuffisantes", "Erreur lors de l'achat.");
       }
       else // Gemmes suffisantes
       {
         this.boutiqueService.achat100PourcentPierre().subscribe(() => {
         }, (error) => {
-          this.messageErreur = error.error.message;
+          this.notification.showError(error.error.message, "Erreur lors de l'achat.");
         }, () => {
-          this.messageValidation = "Achat effectué";
+          this.notification.showSuccess("+"+quantiteePierre100pourcent+" Pierres.", "Achat effectué.");
         });
       }
     }
@@ -320,15 +324,15 @@ export class BoutiqueComponent implements OnInit {
       }
       // SI GEMMES INSUFISANTES AU COUT
       if (this.infosJoueur.gemmePossession < coutGemme) {
-        this.messageErreur = "Gemmes insuffisantes";
+        this.notification.showError("Gemmes insuffisantes", "Erreur lors de l'achat.");
       }
       else // Gemmes suffisantes
       {
         this.boutiqueService.achat10PourcentBois().subscribe(() => {
         }, (error) => {
-          this.messageErreur = error.error.message;
+          this.notification.showError(error.error.message, "Erreur lors de l'achat.");
         }, () => {
-          this.messageValidation = "Achat effectué";
+          this.notification.showSuccess("+"+quantiteeBois10pourcent+" Bois.", "Achat effectué.");
         });
       }
     }
@@ -351,15 +355,15 @@ export class BoutiqueComponent implements OnInit {
       }
       // SI GEMMES INSUFISANTES AU COUT
       if (this.infosJoueur.gemmePossession < coutGemme) {
-        this.messageErreur = "Gemmes insuffisantes";
+        this.notification.showError("Gemmes insuffisantes", "Erreur lors de l'achat.");
       }
       else // Gemmes suffisantes
       {
         this.boutiqueService.achat50PourcentBois().subscribe(() => {
         }, (error) => {
-          this.messageErreur = error.error.message;
+          this.notification.showError(error.error.message, "Erreur lors de l'achat.");
         }, () => {
-          this.messageValidation = "Achat effectué";
+          this.notification.showSuccess("+"+quantiteeBois50pourcent+" Bois.", "Achat effectué.");
         });
       }
     }
@@ -382,15 +386,15 @@ export class BoutiqueComponent implements OnInit {
       }
       // SI GEMMES INSUFISANTES AU COUT
       if (this.infosJoueur.gemmePossession < coutGemme) {
-        this.messageErreur = "Gemmes insuffisantes";
+        this.notification.showError("Gemmes insuffisantes", "Erreur lors de l'achat.");
       }
       else // Gemmes suffisantes
       {
         this.boutiqueService.achat100PourcentBois().subscribe(() => {
         }, (error) => {
-          this.messageErreur = error.error.message;
+          this.notification.showError(error.error.message, "Erreur lors de l'achat.");
         }, () => {
-          this.messageValidation = "Achat effectué";
+          this.notification.showSuccess("+"+quantiteeBois100pourcent+" Bois.", "Achat effectué.");
         });
       }
     }
@@ -415,15 +419,15 @@ export class BoutiqueComponent implements OnInit {
       }
       // SI GEMMES INSUFISANTES AU COUT
       if (this.infosJoueur.gemmePossession < coutGemme) {
-        this.messageErreur = "Gemmes insuffisantes";
+        this.notification.showError("Gemmes insuffisantes", "Erreur lors de l'achat.");
       }
       else // Gemmes suffisantes
       {
         this.boutiqueService.achat10PourcentOr().subscribe(() => {
         }, (error) => {
-          this.messageErreur = error.error.message;
+          this.notification.showError(error.error.message, "Erreur lors de l'achat.");
         }, () => {
-          this.messageValidation = "Achat effectué";
+          this.notification.showSuccess("+"+quantiteeOr10pourcent+" Or.", "Achat effectué.");
         });
       }
     }
@@ -446,15 +450,15 @@ export class BoutiqueComponent implements OnInit {
       }
       // SI GEMMES INSUFISANTES AU COUT
       if (this.infosJoueur.gemmePossession < coutGemme) {
-        this.messageErreur = "Gemmes insuffisantes";
+        this.notification.showError("Gemmes insuffisantes", "Erreur lors de l'achat.");
       }
       else // Gemmes suffisantes
       {
         this.boutiqueService.achat50PourcentOr().subscribe(() => {
         }, (error) => {
-          this.messageErreur = error.error.message;
+          this.notification.showError(error.error.message, "Erreur lors de l'achat.");
         }, () => {
-          this.messageValidation = "Achat effectué";
+          this.notification.showSuccess("+"+quantiteeOr50pourcent+" Or.", "Achat effectué.");
         });
       }
     }
@@ -477,15 +481,15 @@ export class BoutiqueComponent implements OnInit {
       }
       // SI GEMMES INSUFISANTES AU COUT
       if (this.infosJoueur.gemmePossession < coutGemme) {
-        this.messageErreur = "Gemmes insuffisantes";
+        this.notification.showError("Gemmes insuffisantes", "Erreur lors de l'achat.");
       }
       else // Gemmes suffisantes
       {
         this.boutiqueService.achat100PourcentOr().subscribe(() => {
         }, (error) => {
-          this.messageErreur = error.error.message;
+          this.notification.showError(error.error.message, "Erreur lors de l'achat.");
         }, () => {
-          this.messageValidation = "Achat effectué";
+          this.notification.showSuccess("+"+quantiteeOr100pourcent+" Or.", "Achat effectué.");
         });
       }
     }
@@ -510,15 +514,15 @@ export class BoutiqueComponent implements OnInit {
       }
       // SI GEMMES INSUFISANTES AU COUT
       if (this.infosJoueur.gemmePossession < coutGemme) {
-        this.messageErreur = "Gemmes insuffisantes";
+        this.notification.showError("Gemmes insuffisantes", "Erreur lors de l'achat.");
       }
       else // Gemmes suffisantes
       {
         this.boutiqueService.achat10PourcentNourriture().subscribe(() => {
         }, (error) => {
-          this.messageErreur = error.error.message;
+          this.notification.showError(error.error.message, "Erreur lors de l'achat.");
         }, () => {
-          this.messageValidation = "Achat effectué";
+          this.notification.showSuccess("+"+quantiteeNourriture10pourcent+" Nourriture.", "Achat effectué.");
         });
       }
     }
@@ -541,15 +545,15 @@ export class BoutiqueComponent implements OnInit {
       }
       // SI GEMMES INSUFISANTES AU COUT
       if (this.infosJoueur.gemmePossession < coutGemme) {
-        this.messageErreur = "Gemmes insuffisantes";
+        this.notification.showError("Gemmes insuffisantes", "Erreur lors de l'achat.");
       }
       else // Gemmes suffisantes
       {
         this.boutiqueService.achat50PourcentNourriture().subscribe(() => {
         }, (error) => {
-          this.messageErreur = error.error.message;
+          this.notification.showError(error.error.message, "Erreur lors de l'achat.");
         }, () => {
-          this.messageValidation = "Achat effectué";
+          this.notification.showSuccess("+"+quantiteeNourriture50pourcent+" Nourriture.", "Achat effectué.");
         });
       }
     }
@@ -572,15 +576,15 @@ export class BoutiqueComponent implements OnInit {
       }
       // SI GEMMES INSUFISANTES AU COUT
       if (this.infosJoueur.gemmePossession < coutGemme) {
-        this.messageErreur = "Gemmes insuffisantes";
+        this.notification.showError("Gemmes insuffisantes", "Erreur lors de l'achat.");
       }
       else // Gemmes suffisantes
       {
         this.boutiqueService.achat100PourcentNourriture().subscribe(() => {
         }, (error) => {
-          this.messageErreur = error.error.message;
+          this.notification.showError(error.error.message, "Erreur lors de l'achat.");
         }, () => {
-          this.messageValidation = "Achat effectué";
+          this.notification.showSuccess("+"+quantiteeNourriture100pourcent+" Nourriture.", "Achat effectué.");
         });
       }
     }

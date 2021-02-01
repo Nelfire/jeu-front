@@ -1,9 +1,12 @@
 <div class="armee" *ngIf="lesUnitees">
-    <div class="row justify-content-center">
-        <div class="col-auto mb-4" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
-            <h2>Unitées</h2>
-        </div>
+    
+    <!-- titre page -->
+    <div class="divider-custom divider-light">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-titre">UNITEES</div>
+        <div class="divider-custom-line"></div>
     </div>
+
     <div class="boutons divCenter">
 		<button class="btn btn-success m-3" (click)="uniteesToutes()">Toutes</button>
 		<button class="btn btn-success m-3" (click)="uniteesDivers()">Divers</button>

@@ -9,6 +9,7 @@ import { ArmeeService } from 'src/app/service/armee-joueur.service';
 import { ExpeditionJoueurService } from 'src/app/service/expedition-joueur.service';
 import { ExpeditionService } from 'src/app/service/expedition.service';
 import { JoueurService } from 'src/app/service/joueur.service';
+import { NotificationService } from 'src/app/service/notification.service';
 import { UniteeService } from 'src/app/service/unitee.service';
 
 @Component({
@@ -47,7 +48,8 @@ export class DetailExpeditionComponent implements OnInit {
     private routerLinkActive: ActivatedRoute,
     private armeeService: ArmeeService,
     private expeditionJoueurService: ExpeditionJoueurService,
-    private uniteeService: UniteeService) { }
+    private uniteeService: UniteeService,
+    private notification: NotificationService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -212,10 +214,13 @@ export class DetailExpeditionComponent implements OnInit {
     ).subscribe(() => {
     }, (error) => {
       this.messageErreur = error.error.message;
+      this.notification.showError(error.error.message, "Erreur de lancement.");
     }, () => {
       this.messageValidation = "Expédition lancée";
       this.clicked = true;
       this.messageBoutonEnvoiEnExpedition = "Envoi en cours...";
+      this.notification.showSuccess("", "Expedition lancée.");
+
       setTimeout(() => {
         // Redirection au bout de 1,5 secondes
         this.router.navigate(['mesExpeditions']);

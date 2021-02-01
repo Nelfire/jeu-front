@@ -1,17 +1,21 @@
 <div class="creer-guilde">
+    <!-- titre page -->
+    <div class="divider-custom divider-light">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-titre">CREER GUILDE</div>
+        <div class="divider-custom-line"></div>
+    </div>
     <a routerLink="/creerGuilde">
         <button class="btn btn-success">Créer guilde</button>
     </a>
     <a routerLink="/listeGuildes">
         <button class="btn btn-success">Lister guildes</button>
-    </a>    
+    </a>
     <a routerLink="/rechercheGuilde">
         <button class="btn btn-success">Rechercher guilde</button>
     </a>
     <div class="card">
-        <h2 class="card-header text-center py-3" style="background-color: #e3f2fd;">
-            Créer un guilde
-        </h2>
+
         <div class="card-body ">
             <form [formGroup]="formCreationGuilde" (ngSubmit)="creationGuilde()">
                 <div class="form-group row">

@@ -60,6 +60,9 @@ import { CreationCompteComponent } from './auth/creation-compte/creation-compte.
 import { DetailCompteComponent } from './social/detail-compte/detail-compte.component';
 import { ThousandSuffixesPipePipe } from './pipe/thousand-suffixes-pipe.pipe';
 import { DiscussionPriveeComponent } from './social/discussion/discussion-privee/discussion-privee.component';
+import { NotificationService } from './service/notification.service';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -109,7 +112,9 @@ import { DiscussionPriveeComponent } from './social/discussion/discussion-privee
     ReactiveFormsModule,
     FontAwesomeModule,
     NgbModule,
-    FullCalendarModule
+    FullCalendarModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [
     JourFermeService,

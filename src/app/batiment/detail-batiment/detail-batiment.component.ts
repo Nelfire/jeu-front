@@ -14,6 +14,7 @@ import { formatDate } from '@angular/common';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { Observable, Subscription } from 'rxjs';
+import { NotificationService } from 'src/app/service/notification.service';
 // the second parameter 'fr' is optional
 registerLocaleData(localeFr, 'fr');
 
@@ -51,7 +52,8 @@ export class DetailBatimentComponent implements OnInit {
     private routerLinkActive: ActivatedRoute,
     private batimentService: BatimentService,
     private batimentJoueurService: BatimentJoueurService,
-    private joueurService: JoueurService) { }
+    private joueurService: JoueurService,
+    private notification: NotificationService) { }
 
   ngOnInit(): void {
     // Détection niveau HDV
@@ -171,6 +173,8 @@ export class DetailBatimentComponent implements OnInit {
         this.messageErreur = error.error.message;
       }, () => {
         this.messageValidation = "Construction lancée";
+        this.notification.showSuccess("", "Construction lancée.");
+
         setTimeout(() => {
           // Redirection au bout de 1,5 secondes
           this.router.navigate(['campement']);
@@ -187,6 +191,7 @@ export class DetailBatimentComponent implements OnInit {
         this.messageErreur = error.error.message;
       }, () => {
         this.messageValidation = "Amélioration lancée";
+        this.notification.showSuccess("", "Amélioration lancée !");
         setTimeout(() => {
           // Redirection au bout de 1,5 secondes
           this.router.navigate(['campement']);

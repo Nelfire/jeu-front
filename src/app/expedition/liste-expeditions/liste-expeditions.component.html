@@ -1,4 +1,4 @@
-<div class="expedition"> 
+<div class="expedition">
     <div id="erreur">
         <div class="erreur" *ngIf="niveauTableExpedition==0; else possedeTableExpedition;">
             <div class="batimentManquant">
@@ -9,15 +9,19 @@
     </div>
     <ng-template #possedeTableExpedition>
         <div class="col-lg-12" *ngIf="listeExpedition">
-            <div class="row justify-content-center">
-                <div class="col-auto mb-4"
-                    style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
-                    <h2 *ngIf="tempsRestant">10 Nouvelles expeditions disponnibles dans {{tempsRestant}}<button
-                            class="btn btn-success" (click)="refeshExpedition()">Refresh (Cron à
-                            minuit)</button>
-                    </h2>
-                </div>
+
+
+            <!-- titre page -->
+            <div class="divider-custom divider-light" *ngIf="tempsRestant">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-titre">Nouvelles expeditions disponnibles dans {{tempsRestant}}</div>
+                <div class="divider-custom-line"></div>
             </div>
+            <button
+                    class="btn btn-success" (click)="refeshExpedition()">Refresh (Cron à
+                    minuit)</button>
+
+
             <div class="row">
                 <div class="col-lg-4 col-md-6 mb-4" *ngFor="let expedition of listeExpedition">
 
