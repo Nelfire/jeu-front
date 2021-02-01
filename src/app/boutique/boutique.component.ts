@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { from } from 'rxjs';
 import { JoueurInfos } from '../models/joueur-infos';
 import { BoutiqueService } from '../service/boutique.service';
 import { JoueurService } from '../service/joueur.service';
+import { ThousandSuffixesPipePipe} from 'src/app/pipe/thousand-suffixes-pipe.pipe'
 
 
 @Component({

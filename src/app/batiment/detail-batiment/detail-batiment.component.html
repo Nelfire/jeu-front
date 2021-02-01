@@ -32,28 +32,28 @@
         <!-- PIERRE -->
         <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==3)">
           <p class="card__apport__ressource">
-            <b><b>Pierre</b></b> /heure : {{batiment['apportPierreHeure']}}<br>
+            <b><b>Pierre</b></b> /heure : {{batiment['apportPierreHeure'] | thousandSuff:2}}<br>
           </p>
         </ng-template>
 
         <!-- BOIS -->
         <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==4)">
           <p class="card__apport__ressource">
-            <b><b>Bois</b></b> /heure : {{batiment['apportBoisHeure']}}<br>
+            <b><b>Bois</b></b> /heure : {{batiment['apportBoisHeure'] | thousandSuff:2}}<br>
           </p>
         </ng-template>
 
         <!-- OR -->
         <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==5)">
           <p class="card__apport__ressource">
-            <b><b>Or</b></b> /heure : {{batiment['apportOreHeure']}}<br>
+            <b><b>Or</b></b> /heure : {{batiment['apportOreHeure'] | thousandSuff:2}}<br>
           </p>
         </ng-template>
 
         <!-- NOURRITURE -->
         <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==6)">
           <p class="card__apport__ressource">
-            <b><b>Nourriture</b></b> /heure : {{batiment['apportNourritureHeure']}}<br>
+            <b><b>Nourriture</b></b> /heure : {{batiment['apportNourritureHeure'] | thousandSuff:2}}<br>
           </p>
         </ng-template>
 
@@ -70,7 +70,7 @@
             <p class="card__cout__ressource">
               Pierre :
               <span [ngStyle]="{color:getColorRessourceManquantePierreBatiment()}">
-                <b>{{batiment['coutPierreConstruction']}}</b>
+                <b>{{batiment['coutPierreConstruction'] | thousandSuff:2}}</b>
               </span>
             </p>
           </div>
@@ -78,7 +78,7 @@
             <p class="card__cout__ressource">
               Bois :
               <span [ngStyle]="{color:getColorRessourceManquanteBoisBatiment()}">
-                <b>{{batiment['coutBoisConstruction']}}</b>
+                <b>{{batiment['coutBoisConstruction'] | thousandSuff:2}}</b>
               </span>
             </p>
           </div>
@@ -88,7 +88,7 @@
             <p class="card__cout__ressource">
               Or :
               <span [ngStyle]="{color:getColorRessourceManquanteOrBatiment()}">
-                <b>{{batiment['coutOrConstruction']}}</b>
+                <b>{{batiment['coutOrConstruction'] | thousandSuff:2}}</b>
               </span>
             </p>
           </div>
@@ -96,7 +96,7 @@
             <p class="card__cout__ressource">
               Nourriture :
               <span [ngStyle]="{color:getColorRessourceManquanteNourritureBatiment()}">
-                <b>{{batiment['coutNourritureConstruction']}}</b>
+                <b>{{batiment['coutNourritureConstruction'] | thousandSuff:2}}</b>
               </span>
             </p>
           </div>
@@ -244,32 +244,32 @@
           <!-- PIERRE -->
           <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==3)">
             <p class="card__apport__ressource">
-              <b><b>Pierre</b></b> /heure : {{batimentJoueurPossede['apportPierreHeure']}} ->
-              {{batimentJoueurPossede['apportPierreHeure']*2}}
+              <b><b>Pierre</b></b> /heure : {{batimentJoueurPossede['apportPierreHeure'] | thousandSuff:2}} ->
+              {{batimentJoueurPossede['apportPierreHeure']*2 | thousandSuff:2}}
             </p>
           </ng-template>
 
           <!-- BOIS -->
           <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==4)">
             <p class="card__apport__ressource">
-              <b><b>Bois</b></b> /heure : {{batimentJoueurPossede['apportBoisHeure']}} ->
-              {{batimentJoueurPossede['apportBoisHeure']*2}}
+              <b><b>Bois</b></b> /heure : {{batimentJoueurPossede['apportBoisHeure'] | thousandSuff:2}} ->
+              {{batimentJoueurPossede['apportBoisHeure']*2 | thousandSuff:2}}
             </p>
           </ng-template>
 
           <!-- OR -->
           <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==5)">
             <p class="card__apport__ressource">
-              <b><b>Or</b></b> /heure : {{batimentJoueurPossede['apportOreHeure']}} ->
-              {{batimentJoueurPossede['apportOreHeure']*2}}
+              <b><b>Or</b></b> /heure : {{batimentJoueurPossede['apportOreHeure'] | thousandSuff:2}} ->
+              {{batimentJoueurPossede['apportOreHeure']*2 | thousandSuff:2}}
             </p>
           </ng-template>
 
           <!-- NOURRITURE -->
           <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==6)">
             <p class="card__apport__ressource">
-              <b><b>Nourriture</b></b> /heure : {{batimentJoueurPossede['apportNourritureHeure']}} ->
-              {{batimentJoueurPossede['apportNourritureHeure']*2}}<br>
+              <b><b>Nourriture</b></b> /heure : {{batimentJoueurPossede['apportNourritureHeure'] | thousandSuff:2}} ->
+              {{batimentJoueurPossede['apportNourritureHeure']*2 | thousandSuff:2}}<br>
             </p>
           </ng-template>
 
@@ -287,7 +287,7 @@
               <p class="card__cout__ressource">
                 Pierre :
                 <span [ngStyle]="{color:getColorRessourceManquantePierreBatiment()}">
-                  <b>{{batimentJoueurPossede['coutPierreAmelioration']*2}}</b>
+                  <b>{{batimentJoueurPossede['coutPierreAmelioration']*2 | thousandSuff:2}}</b>
                 </span>
               </p>
             </div>
@@ -296,7 +296,7 @@
               <p class="card__cout__ressource">
                 Bois :
                 <span [ngStyle]="{color:getColorRessourceManquanteBoisBatiment()}">
-                  <b>{{batimentJoueurPossede['coutBoisAmelioration']*2}}</b>
+                  <b>{{batimentJoueurPossede['coutBoisAmelioration']*2 | thousandSuff:2}}</b>
                 </span>
               </p>
             </div>
@@ -307,7 +307,7 @@
               <p class="card__cout__ressource">
                 Or :
                 <span [ngStyle]="{color:getColorRessourceManquanteOrBatiment()}">
-                  <b>{{batimentJoueurPossede['coutOreAmelioration']*2}}</b>
+                  <b>{{batimentJoueurPossede['coutOreAmelioration']*2 | thousandSuff:2}}</b>
                 </span>
               </p>
             </div>
@@ -316,7 +316,7 @@
               <p class="card__cout__ressource">
                 Nourriture :
                 <span [ngStyle]="{color:getColorRessourceManquanteNourritureBatiment()}">
-                  <b>{{batimentJoueurPossede['coutNourritureAmelioration']*2}}</b>
+                  <b>{{batimentJoueurPossede['coutNourritureAmelioration']*2 | thousandSuff:2}}</b>
                 </span>
               </p>
             </div>

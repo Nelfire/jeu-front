@@ -58,6 +58,8 @@ import { DiscussionComponent } from './social/discussion/discussion.component';
 import { DiscussionService } from './service/discussion.service';
 import { CreationCompteComponent } from './auth/creation-compte/creation-compte.component';
 import { DetailCompteComponent } from './social/detail-compte/detail-compte.component';
+import { ThousandSuffixesPipePipe } from './pipe/thousand-suffixes-pipe.pipe';
+import { DiscussionPriveeComponent } from './social/discussion/discussion-privee/discussion-privee.component';
 
 
 @NgModule({
@@ -95,7 +97,9 @@ import { DetailCompteComponent } from './social/detail-compte/detail-compte.comp
     MaGuildeComponent,
     DiscussionComponent,
     CreationCompteComponent,
-    DetailCompteComponent
+    DetailCompteComponent,
+    ThousandSuffixesPipePipe,
+    DiscussionPriveeComponent
   ],
   imports: [
     BrowserModule,

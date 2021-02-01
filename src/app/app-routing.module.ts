@@ -35,6 +35,7 @@ import { BoutiqueComponent } from './boutique/boutique.component';
 import { DiscussionComponent } from './social/discussion/discussion.component';
 import { CreationCompteComponent } from './auth/creation-compte/creation-compte.component';
 import { DetailCompteComponent } from './social/detail-compte/detail-compte.component';
+import { DiscussionPriveeComponent } from './social/discussion/discussion-privee/discussion-privee.component';
 
 const routes: Routes = [
   // canActivate: [StatutConnecteService] ==> Permet de verifier si l'utilisateur est connecte
@@ -96,6 +97,8 @@ const routes: Routes = [
 
   // ------------- DISCUSSION -------------
   { path: 'discussion', component: DiscussionComponent, canActivate: [StatutConnecteService]},
+  // ---- privée ---
+  { path: 'discussionPrivee/:id', component: DiscussionPriveeComponent, canActivate: [StatutConnecteService]},
 
   // ------------- JOUEUR -------------
   { path: 'detailJoueur/:id', component: DetailCompteComponent, canActivate: [StatutConnecteService]},

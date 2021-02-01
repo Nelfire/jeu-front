@@ -14,7 +14,6 @@ import { formatDate } from '@angular/common';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { Observable, Subscription } from 'rxjs';
-import { windowTime } from 'rxjs/operators';
 // the second parameter 'fr' is optional
 registerLocaleData(localeFr, 'fr');
 

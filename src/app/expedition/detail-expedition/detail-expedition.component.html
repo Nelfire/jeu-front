@@ -20,24 +20,24 @@
             <div class="row">
                 <div class="col-sm-6">
                     <p class="card__apport__ressource">
-                        Pierre : {{expedition['recompensePierre']}}
+                        Pierre : {{expedition['recompensePierre'] | thousandSuff:2}}
                     </p>
                 </div>
                 <div class="col-sm-6">
                     <p class="card__apport__ressource">
-                        Bois : {{expedition['recompenseBois']}}
+                        Bois : {{expedition['recompenseBois'] | thousandSuff:2}}
                     </p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6">
                     <p class="card__apport__ressource">
-                        Or : {{expedition['recompenseOr']}}
+                        Or : {{expedition['recompenseOr'] | thousandSuff:2}}
                     </p>
                 </div>
                 <div class="col-sm-6">
                     <p class="card__apport__ressource">
-                        Nourriture : {{expedition['recompenseNourriture']}}
+                        Nourriture : {{expedition['recompenseNourriture'] | thousandSuff:2}}
                     </p>
                 </div>
             </div>
@@ -46,11 +46,6 @@
             </p>
 
             <hr class="style-seven">
-
-
-
-
-
 
             <!-- COUT -->
             <div class="row">
@@ -66,7 +61,7 @@
                     <p class="card__cout__ressource">
                         Pierre :
                         <span [ngStyle]="{color:getColorRessourceManquantePierre()}">
-                            <b>{{expedition['coutPierre']}}</b>
+                            <b>{{expedition['coutPierre'] | thousandSuff:2}}</b>
                         </span>
                     </p>
                 </div>
@@ -75,7 +70,7 @@
                     <p class="card__cout__ressource">
                         Bois :
                         <span [ngStyle]="{color:getColorRessourceManquanteBois()}">
-                            <b>{{expedition['coutBois']}}</b>
+                            <b>{{expedition['coutBois'] | thousandSuff:2}}</b>
                         </span>
                     </p>
                 </div>
@@ -86,7 +81,7 @@
                     <p class="card__cout__ressource">
                         Or :
                         <span [ngStyle]="{color:getColorRessourceManquanteOr()}">
-                            <b>{{expedition['coutOr']}}</b>
+                            <b>{{expedition['coutOr'] | thousandSuff:2}}</b>
                         </span>
                     </p>
                 </div>
@@ -95,7 +90,7 @@
                     <p class="card__cout__ressource">
                         Nourriture :
                         <span [ngStyle]="{color:getColorRessourceManquanteNourriture()}">
-                            <b>{{expedition['coutNourriture']}}</b>
+                            <b>{{expedition['coutNourriture'] | thousandSuff:2}}</b>
                         </span>
                     </p>
                 </div>
@@ -115,19 +110,19 @@
             <div class="row">
                 <div class="col-sm-6">
                     <p class="card__statistique">
-                        Vie : {{vieExpedition}}
+                        Vie : {{vieExpedition | thousandSuff:2}}
                     </p>
                 </div>
                 <div class="col-sm-6">
                     <p class="card__statistique">
-                        Attaque : {{degatsExpedition}}
+                        Attaque : {{degatsExpedition | thousandSuff:2}}
                     </p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6">
                     <p class="card__statistique">
-                        Armure : {{armureExpedition}}
+                        Armure : {{armureExpedition | thousandSuff:2}}
                     </p>
                 </div>
                 <div class="col-sm-6">
