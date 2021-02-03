@@ -45,9 +45,9 @@ export class MonCampementComponent implements OnInit {
     this.batimentService.listerBatiments().subscribe(
       (value) => {
         this.lesBatiments = value;
+        this.listeDesBatiments();
       }
     );
-    this.listeDesBatiments();
   }
 
   /**
@@ -58,9 +58,9 @@ export class MonCampementComponent implements OnInit {
     this.batimentService.listerBatimentsDivers().subscribe(
       (value) => {
         this.lesBatiments = value;
+        this.listeDesBatiments();
       }
     );
-    this.listeDesBatiments();
   }
 
   /**
@@ -71,9 +71,9 @@ export class MonCampementComponent implements OnInit {
     this.batimentService.listerBatimentsRecolte().subscribe(
       (value) => {
         this.lesBatiments = value;
+        this.listeDesBatiments();
       }
     );
-    this.listeDesBatiments();
   }
   /**
    * LISTER QUE LES BATIMENTS DE TYPE STOCKAGE = 2
@@ -83,9 +83,9 @@ export class MonCampementComponent implements OnInit {
     this.batimentService.listerBatimentsStockage().subscribe(
       (value) => {
         this.lesBatiments = value;
+        this.listeDesBatiments();
       }
     );
-    this.listeDesBatiments();
   }
 
   /**
@@ -96,9 +96,9 @@ export class MonCampementComponent implements OnInit {
     this.batimentService.listerBatimentsMillitaire().subscribe(
       (value) => {
         this.lesBatiments = value;
+        this.listeDesBatiments();
       }
     );
-    this.listeDesBatiments();
   }
 
   listeDesBatiments() {

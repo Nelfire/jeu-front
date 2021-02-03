@@ -1,3 +1,4 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { Armee } from 'src/app/models/armee';
 import { Batiment } from 'src/app/models/batiment';
@@ -5,6 +6,7 @@ import { MesBatiments } from 'src/app/models/mes-batiments';
 import { Unitee } from 'src/app/models/unitee';
 import { ArmeeService } from 'src/app/service/armee-joueur.service';
 import { BatimentJoueurService } from 'src/app/service/batiment-joueur.service';
+import { GenerationRessourcesService } from 'src/app/service/generation-ressources.service';
 import { UniteeService } from 'src/app/service/unitee.service';
 
 @Component({
@@ -22,7 +24,9 @@ export class MonArmeeComponent implements OnInit {
   flagPossedeBatimentNecessaireFormationUnitee: boolean = false;
   flagNiveauBatimentNecessaireFormationUniteeAssezEleve: boolean = false;
 
-  constructor(private uniteeService: UniteeService, private armeeService: ArmeeService, private batimentJoueurService: BatimentJoueurService) { }
+  constructor(private uniteeService: UniteeService, 
+    private armeeService: ArmeeService, 
+    private batimentJoueurService: BatimentJoueurService) { }
 
   ngOnInit(): void {
     // Scan des bâtiments que possède le joueur, pour indiquer un bâtiment manquant/niveau insufisant
@@ -37,9 +41,11 @@ export class MonArmeeComponent implements OnInit {
     this.uniteeService.listerDifferentesUnitees().subscribe(
       (value) => {
         this.lesUnitees = value;
+        this.listeDesUnitees();
       }
+      
     );
-    this.listeDesUnitees();
+    
   }
 
   /*
@@ -50,9 +56,9 @@ export class MonArmeeComponent implements OnInit {
     this.uniteeService.listerUniteeDivers().subscribe(
       (value) => {
         this.lesUnitees = value;
+        this.listeDesUnitees();
       }
     );
-    this.listeDesUnitees();
   }
   /*
    * LISTER QUE LES UNITEES DE TYPE INFANTERIE = 2
@@ -62,9 +68,9 @@ export class MonArmeeComponent implements OnInit {
     this.uniteeService.listerUniteeInfanterie().subscribe(
       (value) => {
         this.lesUnitees = value;
+        this.listeDesUnitees();
       }
     );
-    this.listeDesUnitees();
   }
   /*
    * LISTER QUE LES UNITEES DE TYPE CAVALERIE = 3
@@ -74,9 +80,9 @@ export class MonArmeeComponent implements OnInit {
     this.uniteeService.listerUniteeCavalerie().subscribe(
       (value) => {
         this.lesUnitees = value;
+        this.listeDesUnitees();
       }
     );
-    this.listeDesUnitees();
   }
   /*
    * LISTER QUE LES UNITEES DE TYPE SIEGE = 4
@@ -86,9 +92,9 @@ export class MonArmeeComponent implements OnInit {
     this.uniteeService.listerUniteeSiege().subscribe(
       (value) => {
         this.lesUnitees = value;
+        this.listeDesUnitees();
       }
     );
-    this.listeDesUnitees();
   }
   /**
    * LISTER QUE LES UNITEES DE TYPE NAVALE = 5
@@ -98,9 +104,9 @@ export class MonArmeeComponent implements OnInit {
     this.uniteeService.listerUniteeNavale().subscribe(
       (value) => {
         this.lesUnitees = value;
+        this.listeDesUnitees();
       }
     );
-    this.listeDesUnitees();
   }
 
   listeDesUnitees() {
@@ -110,6 +116,7 @@ export class MonArmeeComponent implements OnInit {
         this.lesUnitees.forEach(unitasse => {
           // Parcourir les bâtiments que possède le joueur
           this.lesBatimentsDuJoueur.forEach(unBatimentJoueur => {
+
             // Si le joueur possède le bâtiment d'où provient l'unitée, c'est ok
             if (unitasse.idBatimentProvenance == unBatimentJoueur.batiment.idTypeBatiment) {
               unitasse.flagPossedeBatimentNecessaireFormationUnitee = true;

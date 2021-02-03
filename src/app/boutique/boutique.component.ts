@@ -6,6 +6,7 @@ import { BoutiqueService } from '../service/boutique.service';
 import { JoueurService } from '../service/joueur.service';
 import { ThousandSuffixesPipePipe} from 'src/app/pipe/thousand-suffixes-pipe.pipe'
 import { NotificationService } from '../service/notification.service';
+import { GenerationRessourcesService } from '../service/generation-ressources.service';
 
 
 @Component({
@@ -57,13 +58,15 @@ export class BoutiqueComponent implements OnInit {
   quantiteeRessourceNourriture100Pourcent: number
   constructor(private boutiqueService: BoutiqueService, 
     private joueurService: JoueurService,
-    private notification: NotificationService) { }
+    private notification: NotificationService,
+    private generationRessourceServices : GenerationRessourcesService) { }
 
   ngOnInit(): void {
     // Récupération des informations du joueur
     this.informationsJoueur();
   }
 
+  // RE-CALCUL DE TOUS LES TAUX
   informationsJoueur() {
     this.joueurService.informationJoueurByEmail().subscribe(
       (value) => {
@@ -212,7 +215,7 @@ export class BoutiqueComponent implements OnInit {
   // Pierre
   // 10%
   achat10PourcentPierre() {
-    this.informationsJoueur();
+    //this.informationsJoueur();
     let quantiteePierrePossede = this.infosJoueur.pierrePossession;
     let limitePierre = this.infosJoueur.pierreMaximum;
     let quantiteePierre10pourcent = limitePierre * 0.1;
@@ -238,13 +241,14 @@ export class BoutiqueComponent implements OnInit {
           this.notification.showError(error.error.message, "Erreur lors de l'achat.");
         }, () => {
           this.notification.showSuccess("+"+quantiteePierre10pourcent+" Pierres.", "Achat effectué.");
+          this.generationRessourceServices.onFirstComponentButtonClick();
         });
       }
     }
   }
   // 50%
   achat50PourcentPierre() {
-    this.informationsJoueur();
+    //this.informationsJoueur();
     let quantiteePierrePossede = this.infosJoueur.pierrePossession;
     let limitePierre = this.infosJoueur.pierreMaximum;
     let quantiteePierre50pourcent = limitePierre * 0.5;
@@ -269,13 +273,14 @@ export class BoutiqueComponent implements OnInit {
           this.notification.showError(error.error.message, "Erreur lors de l'achat.");
         }, () => {
           this.notification.showSuccess("+"+quantiteePierre50pourcent+" Pierres.", "Achat effectué.");
+          this.generationRessourceServices.onFirstComponentButtonClick();
         });
       }
     }
   }
   // 100%
   achat100PourcentPierre() {
-    this.informationsJoueur();
+    //this.informationsJoueur();
     let quantiteePierrePossede = this.infosJoueur.pierrePossession;
     let limitePierre = this.infosJoueur.pierreMaximum;
     let quantiteePierre100pourcent = limitePierre;
@@ -300,6 +305,7 @@ export class BoutiqueComponent implements OnInit {
           this.notification.showError(error.error.message, "Erreur lors de l'achat.");
         }, () => {
           this.notification.showSuccess("+"+quantiteePierre100pourcent+" Pierres.", "Achat effectué.");
+          this.generationRessourceServices.onFirstComponentButtonClick();
         });
       }
     }
@@ -308,7 +314,7 @@ export class BoutiqueComponent implements OnInit {
   // Bois
   // 10%
   achat10PourcentBois() {
-    this.informationsJoueur();
+    //this.informationsJoueur();
     let quantiteeBoisPossede = this.infosJoueur.boisPossession;
     let limiteBois = this.infosJoueur.boisMaximum;
     let quantiteeBois10pourcent = limiteBois * 0.1;
@@ -333,13 +339,14 @@ export class BoutiqueComponent implements OnInit {
           this.notification.showError(error.error.message, "Erreur lors de l'achat.");
         }, () => {
           this.notification.showSuccess("+"+quantiteeBois10pourcent+" Bois.", "Achat effectué.");
+          this.generationRessourceServices.onFirstComponentButtonClick();
         });
       }
     }
   }
   // 50%
   achat50PourcentBois() {
-    this.informationsJoueur();
+    //this.informationsJoueur();
     let quantiteeBoisPossede = this.infosJoueur.boisPossession;
     let limiteBois = this.infosJoueur.boisMaximum;
     let quantiteeBois50pourcent = limiteBois * 0.5;
@@ -364,13 +371,14 @@ export class BoutiqueComponent implements OnInit {
           this.notification.showError(error.error.message, "Erreur lors de l'achat.");
         }, () => {
           this.notification.showSuccess("+"+quantiteeBois50pourcent+" Bois.", "Achat effectué.");
+          this.generationRessourceServices.onFirstComponentButtonClick();
         });
       }
     }
   }
   // 100%
   achat100PourcentBois() {
-    this.informationsJoueur();
+    //this.informationsJoueur();
     let quantiteeBoisPossede = this.infosJoueur.boisPossession;
     let limiteBois = this.infosJoueur.boisMaximum;
     let quantiteeBois100pourcent = limiteBois;
@@ -395,6 +403,7 @@ export class BoutiqueComponent implements OnInit {
           this.notification.showError(error.error.message, "Erreur lors de l'achat.");
         }, () => {
           this.notification.showSuccess("+"+quantiteeBois100pourcent+" Bois.", "Achat effectué.");
+          this.generationRessourceServices.onFirstComponentButtonClick();
         });
       }
     }
@@ -403,7 +412,7 @@ export class BoutiqueComponent implements OnInit {
   // Or
   // 10%
   achat10PourcentOr() {
-    this.informationsJoueur();
+    //this.informationsJoueur();
     let quantiteeOrPossede = this.infosJoueur.orPossession;
     let limiteOr = this.infosJoueur.orMaximum;
     let quantiteeOr10pourcent = limiteOr * 0.1;
@@ -428,13 +437,14 @@ export class BoutiqueComponent implements OnInit {
           this.notification.showError(error.error.message, "Erreur lors de l'achat.");
         }, () => {
           this.notification.showSuccess("+"+quantiteeOr10pourcent+" Or.", "Achat effectué.");
+          this.generationRessourceServices.onFirstComponentButtonClick();
         });
       }
     }
   }
   // 50%
   achat50PourcentOr() {
-    this.informationsJoueur();
+    //this.informationsJoueur();
     let quantiteeOrPossede = this.infosJoueur.orPossession;
     let limiteOr = this.infosJoueur.orMaximum;
     let quantiteeOr50pourcent = limiteOr * 0.5;
@@ -459,13 +469,14 @@ export class BoutiqueComponent implements OnInit {
           this.notification.showError(error.error.message, "Erreur lors de l'achat.");
         }, () => {
           this.notification.showSuccess("+"+quantiteeOr50pourcent+" Or.", "Achat effectué.");
+          this.generationRessourceServices.onFirstComponentButtonClick();
         });
       }
     }
   }
   // 100%
   achat100PourcentOr() {
-    this.informationsJoueur();
+    //this.informationsJoueur();
     let quantiteeOrPossede = this.infosJoueur.orPossession;
     let limiteOr = this.infosJoueur.orMaximum;
     let quantiteeOr100pourcent = limiteOr;
@@ -490,6 +501,7 @@ export class BoutiqueComponent implements OnInit {
           this.notification.showError(error.error.message, "Erreur lors de l'achat.");
         }, () => {
           this.notification.showSuccess("+"+quantiteeOr100pourcent+" Or.", "Achat effectué.");
+          this.generationRessourceServices.onFirstComponentButtonClick();
         });
       }
     }
@@ -498,7 +510,7 @@ export class BoutiqueComponent implements OnInit {
   // Nourriture
   // 10%
   achat10PourcentNourriture() {
-    this.informationsJoueur();
+    //this.informationsJoueur();
     let quantiteeNourriturePossede = this.infosJoueur.nourriturePossession;
     let limiteNourriture = this.infosJoueur.nourritureMaximum;
     let quantiteeNourriture10pourcent = limiteNourriture * 0.1;
@@ -523,13 +535,14 @@ export class BoutiqueComponent implements OnInit {
           this.notification.showError(error.error.message, "Erreur lors de l'achat.");
         }, () => {
           this.notification.showSuccess("+"+quantiteeNourriture10pourcent+" Nourriture.", "Achat effectué.");
+          this.generationRessourceServices.onFirstComponentButtonClick();
         });
       }
     }
   }
   // 50%
   achat50PourcentNourriture() {
-    this.informationsJoueur();
+    //this.informationsJoueur();
     let quantiteeNourriturePossede = this.infosJoueur.nourriturePossession;
     let limiteNourriture = this.infosJoueur.nourritureMaximum;
     let quantiteeNourriture50pourcent = limiteNourriture * 0.5;
@@ -554,13 +567,14 @@ export class BoutiqueComponent implements OnInit {
           this.notification.showError(error.error.message, "Erreur lors de l'achat.");
         }, () => {
           this.notification.showSuccess("+"+quantiteeNourriture50pourcent+" Nourriture.", "Achat effectué.");
+          this.generationRessourceServices.onFirstComponentButtonClick();
         });
       }
     }
   }
   // 100%
   achat100PourcentNourriture() {
-    this.informationsJoueur();
+    //this.informationsJoueur();
     let quantiteeNourriturePossede = this.infosJoueur.nourriturePossession;
     let limiteNourriture = this.infosJoueur.nourritureMaximum;
     let quantiteeNourriture100pourcent = limiteNourriture;
@@ -585,6 +599,7 @@ export class BoutiqueComponent implements OnInit {
           this.notification.showError(error.error.message, "Erreur lors de l'achat.");
         }, () => {
           this.notification.showSuccess("+"+quantiteeNourriture100pourcent+" Nourriture.", "Achat effectué.");
+          this.generationRessourceServices.onFirstComponentButtonClick();
         });
       }
     }

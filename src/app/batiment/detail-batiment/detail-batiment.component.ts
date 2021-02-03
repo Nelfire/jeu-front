@@ -177,9 +177,6 @@ export class DetailBatimentComponent implements OnInit {
       }, (error) => {
         this.messageErreur = error.error.message;
       }, () => {
-        
-        this.generationRessourcesService.onFirstComponentButtonClick();
-
 
         this.notification.showSuccess("", "Construction lancée.");
 

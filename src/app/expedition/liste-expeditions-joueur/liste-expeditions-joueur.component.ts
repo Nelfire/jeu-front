@@ -3,6 +3,7 @@ import { Observable, Subscription } from 'rxjs';
 import { BatimentJoueurService } from 'src/app/service/batiment-joueur.service';
 import { BatimentService } from 'src/app/service/batiment.service';
 import { ExpeditionJoueurService } from 'src/app/service/expedition-joueur.service';
+import { GenerationRessourcesService } from 'src/app/service/generation-ressources.service';
 import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
@@ -21,6 +22,7 @@ export class ListeExpeditionsJoueurComponent implements OnInit, OnDestroy {
   listeExpeditionJoueur = [];
   secondesRestantesExpedition: number;
   niveauTableExpedition: number = 0;
+  intitulePage:string = "Toutes mes expéditions"
 
   // Pour désactiver le bouton une fois que le joueur à cliqué sur "Récupérer récompense"
   clickRecuperer = false;
@@ -29,14 +31,17 @@ export class ListeExpeditionsJoueurComponent implements OnInit, OnDestroy {
   constructor(private expeditionJoueurService: ExpeditionJoueurService,
     private batimentService: BatimentService,
     private batimentJoueurService: BatimentJoueurService,
-    private notification: NotificationService) { }
+    private notification: NotificationService,
+    private generationRessourcesService: GenerationRessourcesService) { }
 
   ngOnInit(): void {
     this.verifierNiveauTableExpedition();
     this.listerToutesLesExpeditionsJoueur();
   }
 
+  // AFFICHAGE DE TOUTES LES EXPEDITIONS DU JOUEUR SANS FILTRE
   listerToutesLesExpeditionsJoueur() {
+    this.intitulePage = "Toutes mes expéditions";
     // NETTOIE LES SUBSCRIPTIONS
     this.ngOnDestroy();
     this.expeditionJoueurService.listerExpeditionJoueur().subscribe(
@@ -106,6 +111,7 @@ export class ListeExpeditionsJoueurComponent implements OnInit, OnDestroy {
 
   // LISTER UNIQUEMENT LES EXPEDITIONS JOUEUR VICTORIEUSE + RECOMPENSE DEJA RECUPEREE = 2
   listerExpeditionJoueurTermineesVictoire() {
+    this.intitulePage = "Expéditions terminées [Victorieuses]";
     // NETTOIE LES SUBSCRIPTIONS
     this.ngOnDestroy();
     this.expeditionJoueurService.listerExpeditionJoueurTermineesVictoire().subscribe(
@@ -121,6 +127,7 @@ export class ListeExpeditionsJoueurComponent implements OnInit, OnDestroy {
 
   // LISTER UNIQUEMENT LES EXPEDITIONS JOUEUR EN COURS = 0
   listerExpeditionJoueurEnCours() {
+    this.intitulePage = "Expéditions en cours";
     // NETTOIE LES SUBSCRIPTIONS
     this.ngOnDestroy();
     this.expeditionJoueurService.listerExpeditionJoueurEnCours().subscribe(
@@ -160,6 +167,7 @@ export class ListeExpeditionsJoueurComponent implements OnInit, OnDestroy {
 
   // LISTER UNIQUEMENT LES EXPEDITIONS JOUEUR TERMINEES EN ECHEC = 3
   listerExpeditionJoueurTermineesEchec() {
+    this.intitulePage = "Expéditions terminées [Échouées]";
     // NETTOIE LES SUBSCRIPTIONS
     this.ngOnDestroy();
     this.expeditionJoueurService.listerExpeditionJoueurTermineesEchec().subscribe(
@@ -175,6 +183,7 @@ export class ListeExpeditionsJoueurComponent implements OnInit, OnDestroy {
 
   // LISTER UNIQUEMENT LES EXPEDITIONS JOUEUR VICTORIEUSE + RECOMPENSE EN ATTENTE DE RECUPERATION = 1
   listerExpeditionJoueurRecompenseEnAttente() {
+    this.intitulePage = "Récompenses en attente";
     // NETTOIE LES SUBSCRIPTIONS
     this.ngOnDestroy();
     this.expeditionJoueurService.listerExpeditionJoueurRecompenseEnAttente().subscribe(
@@ -193,6 +202,7 @@ export class ListeExpeditionsJoueurComponent implements OnInit, OnDestroy {
     this.messageBoutonRecuperationRecompense = "Compte crédité";
     this.notification.showSuccess("", "Récompense récupérée !");
     this.expeditionJoueurService.recupererRecompense(idExpedition).subscribe();
+    this.generationRessourcesService.onFirstComponentButtonClick();
   }
 
   // NETTOIE LE TABLEAU DE SUBSCRIPTIONS

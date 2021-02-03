@@ -8,19 +8,41 @@
         </div>
     </div>
     <ng-template #possedeTableExpedition>
-        <div class="row" *ngIf="listeExpeditionJoueur">
+        <div class="row center" *ngIf="listeExpeditionJoueur">
+
+            <div class="divider-custom divider-light">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-titre">{{intitulePage}}</div>
+                <div class="divider-custom-line"></div>
+            </div>
+
+
+
+            
+                <div class="col-sm-4">
+                    <button class="btn btn-info m-2" (click)="listerToutesLesExpeditionsJoueur()">Toutes mes
+                        expéditions</button>
+                </div>
+                <div class="col-sm-4">
+                    <button class="btn btn-danger m-2" (click)="listerExpeditionJoueurTermineesEchec()">Mes expéditions
+                        terminées Echec</button>
+                </div>
+
+                <div class="col-sm-4">
+                    <button class="btn btn-warning m-2" (click)="listerExpeditionJoueurEnCours()">Mes expéditions en
+                        cours</button>
+                </div>
+                <div class="col-sm-6">
+                    <button class="btn btn-success m-2" (click)="listerExpeditionJoueurTermineesVictoire()">Mes expéditions
+                        terminées Victorieuse</button>
+                </div>
+                <div class="col-sm-6">
+                    <button class="btn btn-success m-2" (click)="listerExpeditionJoueurRecompenseEnAttente()">Mes expédition
+                        récompense en attente</button>
+                </div>
 
             <div class="col-lg-12">
-                <button class="btn btn-success m-2" (click)="listerToutesLesExpeditionsJoueur()">Toutes mes
-                    expéditions</button>
-                <button class="btn btn-success m-2" (click)="listerExpeditionJoueurTermineesEchec()">Mes expéditions
-                    terminées Echec</button>
-                <button class="btn btn-success m-2" (click)="listerExpeditionJoueurRecompenseEnAttente()">Mes expédition
-                    récompense en attente</button>
-                <button class="btn btn-success m-2" (click)="listerExpeditionJoueurTermineesVictoire()">Mes expéditions
-                    terminées Victorieuse</button>
-                <button class="btn btn-success m-2" (click)="listerExpeditionJoueurEnCours()">Mes expéditions en
-                    cours</button>
+
                 <div class="row">
                     <div class="col-lg-4 col-md-6 mb-4" *ngFor="let uneExpeditionJoueur of listeExpeditionJoueur">
                         <div class="card h-100 enCours "

@@ -1,4 +1,4 @@
-<div class="detailBatiment" *ngIf="batiment && joueur">
+<div class="detailBatiment" *ngIf="batiment">
   <!-- Affichage mode construction -->
   <div *ngIf="modeConstructionAmelioration=='construction'">
     <div class="container">
@@ -69,7 +69,7 @@
           <div class="col-sm-6">
             <p class="card__cout__ressource">
               Pierre :
-              <span [ngStyle]="{color:getColorRessourceManquantePierreBatiment()}">
+              <span [ngStyle]="">
                 <b>{{batiment['coutPierreConstruction'] | thousandSuff:2}}</b>
               </span>
             </p>
@@ -77,7 +77,7 @@
           <div class="col-sm-6">
             <p class="card__cout__ressource">
               Bois :
-              <span [ngStyle]="{color:getColorRessourceManquanteBoisBatiment()}">
+              <span [ngStyle]="">
                 <b>{{batiment['coutBoisConstruction'] | thousandSuff:2}}</b>
               </span>
             </p>
@@ -87,7 +87,7 @@
           <div class="col-sm-6">
             <p class="card__cout__ressource">
               Or :
-              <span [ngStyle]="{color:getColorRessourceManquanteOrBatiment()}">
+              <span [ngStyle]="">
                 <b>{{batiment['coutOrConstruction'] | thousandSuff:2}}</b>
               </span>
             </p>
@@ -95,7 +95,7 @@
           <div class="col-sm-6">
             <p class="card__cout__ressource">
               Nourriture :
-              <span [ngStyle]="{color:getColorRessourceManquanteNourritureBatiment()}">
+              <span [ngStyle]="">
                 <b>{{batiment['coutNourritureConstruction'] | thousandSuff:2}}</b>
               </span>
             </p>
@@ -286,7 +286,7 @@
             <div class="col-sm-6">
               <p class="card__cout__ressource">
                 Pierre :
-                <span [ngStyle]="{color:getColorRessourceManquantePierreBatiment()}">
+                <span [ngStyle]="">
                   <b>{{batimentJoueurPossede['coutPierreAmelioration']*2 | thousandSuff:2}}</b>
                 </span>
               </p>
@@ -295,7 +295,7 @@
             <div class="col-sm-6">
               <p class="card__cout__ressource">
                 Bois :
-                <span [ngStyle]="{color:getColorRessourceManquanteBoisBatiment()}">
+                <span [ngStyle]="">
                   <b>{{batimentJoueurPossede['coutBoisAmelioration']*2 | thousandSuff:2}}</b>
                 </span>
               </p>
@@ -306,7 +306,7 @@
             <div class="col-sm-6">
               <p class="card__cout__ressource">
                 Or :
-                <span [ngStyle]="{color:getColorRessourceManquanteOrBatiment()}">
+                <span [ngStyle]="">
                   <b>{{batimentJoueurPossede['coutOreAmelioration']*2 | thousandSuff:2}}</b>
                 </span>
               </p>
@@ -315,7 +315,7 @@
             <div class="col-sm-6">
               <p class="card__cout__ressource">
                 Nourriture :
-                <span [ngStyle]="{color:getColorRessourceManquanteNourritureBatiment()}">
+                <span [ngStyle]="">
                   <b>{{batimentJoueurPossede['coutNourritureAmelioration']*2 | thousandSuff:2}}</b>
                 </span>
               </p>

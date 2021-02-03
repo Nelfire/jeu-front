@@ -1,3 +1,4 @@
+import { LiteralPrimitive } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -26,6 +27,8 @@ export class DetailExpeditionComponent implements OnInit {
   messageErreur: String;
   expedition: Expedition;
   armeesDuJoueur: Armee[];
+  flagErreurEnvoi: boolean;
+
   formEnvoiUniteesEnExpedition: FormGroup;
   toutesLesUnitees: Unitee[];
   degatsEmis: number = 0;
@@ -75,6 +78,11 @@ export class DetailExpeditionComponent implements OnInit {
     this.armeeService.listerArmeesDuJoueur().subscribe(
       (armeesJoueur) => {
         this.armeesDuJoueur = armeesJoueur;
+        console.log(this.armeesDuJoueur[0].unitee.id);
+        this.armeesDuJoueur.forEach(armee => {
+          console.log(armee.unitee);
+        });
+
       }
     );
 
@@ -137,8 +145,7 @@ export class DetailExpeditionComponent implements OnInit {
   }
 
   envoiExpedition() {
-    // Récupération des unitées
-
+    this.flagErreurEnvoi = false;
     //1 villageois 
     const nombreVillageois = this.formEnvoiUniteesEnExpedition.get('unitee1').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee1').value;
     //2 archer 
@@ -186,46 +193,192 @@ export class DetailExpeditionComponent implements OnInit {
     //23 pretre
     const nombrePretre = this.formEnvoiUniteesEnExpedition.get('unitee23').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee23').value;
 
-    this.expeditionJoueurService.envoiUniteeEnExpedition(
-      this.routerLinkActive.snapshot.params['id'],
-      nombreVillageois,
-      nombreArcher,
-      nombreArcherComposite,
-      nombreFantassinEpee,
-      nombreHommeDArme,
-      nombreLanceurDeHache,
-      nombreMilicien,
-      nombrePiquier,
-      nombreCavalierArcher,
-      nombreCavalier,
-      nombreChampion,
-      nombreBateauDePeche,
-      nombreBateauIncendiaire,
-      nombreBateauDeDestruction,
-      nombreGalionACanon,
-      nombreGalion,
-      nombreGuerrierElite,
-      nombrePhalange,
-      nombreSamourail,
-      nombreTemplier,
-      nombreCatapulte,
-      nombreElephantDeCombat,
-      nombrePretre
-    ).subscribe(() => {
-    }, (error) => {
-      this.messageErreur = error.error.message;
-      this.notification.showError(error.error.message, "Erreur de lancement.");
-    }, () => {
-      this.messageValidation = "Expédition lancée";
-      this.clicked = true;
-      this.messageBoutonEnvoiEnExpedition = "Envoi en cours...";
-      this.notification.showSuccess("", "Expedition lancée.");
-
-      setTimeout(() => {
-        // Redirection au bout de 1,5 secondes
-        this.router.navigate(['mesExpeditions']);
-      }, 1500);
+    // VERIFICATION LIMITE NON DEPASSEE
+    this.armeesDuJoueur.forEach(armee => {
+      if (armee.unitee.id == 1) { // Villageois
+        if (nombreVillageois > armee.quantitee) {
+          this.flagErreurEnvoi = true;
+          this.notification.showError("Vous manquez de villageois", "Erreur de lancement.");
+          console.log(this.flagErreurEnvoi);
+        }
+      } else if (armee.unitee.id == 2) { // archer
+        if (nombreArcher > armee.quantitee) {
+          this.flagErreurEnvoi = true;
+          this.notification.showError("Vous manquez d'archers", "Erreur de lancement.");
+          console.log(this.flagErreurEnvoi);
+        }
+      } else if (armee.unitee.id == 3) { // archerComposite
+        if (nombreArcherComposite > armee.quantitee) {
+          this.flagErreurEnvoi = true;
+          this.notification.showError("Vous manquez d'achers composite", "Erreur de lancement.");
+          console.log(this.flagErreurEnvoi);
+        }
+      } else if (armee.unitee.id == 4) { // fantassinEpee
+        if (nombreFantassinEpee > armee.quantitee) {
+          this.flagErreurEnvoi = true;
+          this.notification.showError("Vous manquez de fantassins épée", "Erreur de lancement.");
+          console.log(this.flagErreurEnvoi);
+        }
+      } else if (armee.unitee.id == 5) { // nombreHommeDArme
+        if (nombreHommeDArme > armee.quantitee) {
+          this.flagErreurEnvoi = true;
+          this.notification.showError("Vous manquez d'hommes d'arme", "Erreur de lancement.");
+          console.log(this.flagErreurEnvoi);
+        }
+      } else if (armee.unitee.id == 6) { // nombreLanceurDeHache
+        if (nombreLanceurDeHache > armee.quantitee) {
+          this.flagErreurEnvoi = true;
+          this.notification.showError("Vous manquez de lanceurs de hâche", "Erreur de lancement.");
+          console.log(this.flagErreurEnvoi);
+        }
+      } else if (armee.unitee.id == 7) { // nombreMilicien
+        if (nombreMilicien > armee.quantitee) {
+          this.flagErreurEnvoi = true;
+          this.notification.showError("Vous manquez de miliciens", "Erreur de lancement.");
+          console.log(this.flagErreurEnvoi);
+        }
+      } else if (armee.unitee.id == 8) { // nombrePiquier
+        if (nombrePiquier > armee.quantitee) {
+          this.flagErreurEnvoi = true;
+          this.notification.showError("Vous manquez de piquiers", "Erreur de lancement.");
+          console.log(this.flagErreurEnvoi);
+        }
+      } else if (armee.unitee.id == 9) { // nombreCavalierArcher
+        if (nombreCavalierArcher > armee.quantitee) {
+          this.flagErreurEnvoi = true;
+          this.notification.showError("Vous manquez de cavaliers acher", "Erreur de lancement.");
+          console.log(this.flagErreurEnvoi);
+        }
+      } else if (armee.unitee.id == 10) { // nombreCavalier
+        if (nombreCavalier > armee.quantitee) {
+          this.flagErreurEnvoi = true;
+          this.notification.showError("Vous manquez de cavaliers", "Erreur de lancement.");
+          console.log(this.flagErreurEnvoi);
+        }
+      } else if (armee.unitee.id == 11) { // nombreChampion
+        if (nombreChampion > armee.quantitee) {
+          this.flagErreurEnvoi = true;
+          this.notification.showError("Vous manquez de champions", "Erreur de lancement.");
+          console.log(this.flagErreurEnvoi);
+        }
+      } else if (armee.unitee.id == 12) { // nombreBateauDePeche
+        if (nombreBateauDePeche > armee.quantitee) {
+          this.flagErreurEnvoi = true;
+          this.notification.showError("Vous manquez de bâteaux de pêche", "Erreur de lancement.");
+          console.log(this.flagErreurEnvoi);
+        }
+      } else if (armee.unitee.id == 13) { // nombreBateauIncendiaire
+        if (nombreBateauIncendiaire > armee.quantitee) {
+          this.flagErreurEnvoi = true;
+          this.notification.showError("Vous manquez de bâteaux incendiaire", "Erreur de lancement.");
+          console.log(this.flagErreurEnvoi);
+        }
+      } else if (armee.unitee.id == 14) { // nombreBateauDeDestruction
+        if (nombreBateauDeDestruction > armee.quantitee) {
+          this.flagErreurEnvoi = true;
+          this.notification.showError("Vous manquez de bâteaux de destruction", "Erreur de lancement.");
+          console.log(this.flagErreurEnvoi);
+        }
+      } else if (armee.unitee.id == 15) { // nombreGalionACanon
+        if (nombreGalionACanon > armee.quantitee) {
+          this.flagErreurEnvoi = true;
+          this.notification.showError("Vous manquez de galions à canon", "Erreur de lancement.");
+          console.log(this.flagErreurEnvoi);
+        }
+      } else if (armee.unitee.id == 16) { // nombreGalion
+        if (nombreGalion > armee.quantitee) {
+          this.flagErreurEnvoi = true;
+          this.notification.showError("Vous manquez de galions", "Erreur de lancement.");
+          console.log(this.flagErreurEnvoi);
+        }
+      } else if (armee.unitee.id == 17) { // nombreGuerrierElite
+        if (nombreGuerrierElite > armee.quantitee) {
+          this.flagErreurEnvoi = true;
+          this.notification.showError("Vous manquez de guerriers élite", "Erreur de lancement.");
+          console.log(this.flagErreurEnvoi);
+        }
+      } else if (armee.unitee.id == 18) { // nombrePhalange
+        if (nombrePhalange > armee.quantitee) {
+          this.flagErreurEnvoi = true;
+          this.notification.showError("Vous manquez de phalanges", "Erreur de lancement.");
+          console.log(this.flagErreurEnvoi);
+        }
+      } else if (armee.unitee.id == 19) { // nombreSamourail
+        if (nombreSamourail > armee.quantitee) {
+          this.flagErreurEnvoi = true;
+          this.notification.showError("Vous manquez de samourails", "Erreur de lancement.");
+          console.log(this.flagErreurEnvoi);
+        }
+      } else if (armee.unitee.id == 20) { // nombreTemplier
+        if (nombreTemplier > armee.quantitee) {
+          this.flagErreurEnvoi = true;
+          this.notification.showError("Vous manquez de templiers", "Erreur de lancement.");
+          console.log(this.flagErreurEnvoi);
+        }
+      } else if (armee.unitee.id == 21) { // nombreCatapulte
+        if (nombreCatapulte > armee.quantitee) {
+          this.flagErreurEnvoi = true;
+          this.notification.showError("Vous manquez de catapultes", "Erreur de lancement.");
+          console.log(this.flagErreurEnvoi);
+        }
+      } else if (armee.unitee.id == 22) { // nombreElephantDeCombat
+        if (nombreElephantDeCombat > armee.quantitee) {
+          this.flagErreurEnvoi = true;
+          this.notification.showError("Vous manquez d'éléphants de combat", "Erreur de lancement.");
+          console.log(this.flagErreurEnvoi);
+        }
+      } else if (armee.unitee.id == 23) { // nombrePretre
+        if (nombrePretre > armee.quantitee) {
+          this.flagErreurEnvoi = true;
+          this.notification.showError("Vous manquez de prêtres", "Erreur de lancement.");
+          console.log(this.flagErreurEnvoi);
+        }
+      }
     });
+
+
+    if (this.flagErreurEnvoi == false) {
+      this.expeditionJoueurService.envoiUniteeEnExpedition(
+        this.routerLinkActive.snapshot.params['id'],
+        nombreVillageois,
+        nombreArcher,
+        nombreArcherComposite,
+        nombreFantassinEpee,
+        nombreHommeDArme,
+        nombreLanceurDeHache,
+        nombreMilicien,
+        nombrePiquier,
+        nombreCavalierArcher,
+        nombreCavalier,
+        nombreChampion,
+        nombreBateauDePeche,
+        nombreBateauIncendiaire,
+        nombreBateauDeDestruction,
+        nombreGalionACanon,
+        nombreGalion,
+        nombreGuerrierElite,
+        nombrePhalange,
+        nombreSamourail,
+        nombreTemplier,
+        nombreCatapulte,
+        nombreElephantDeCombat,
+        nombrePretre
+      ).subscribe(() => {
+      }, (error) => {
+        this.messageErreur = error.error.message;
+        this.notification.showError(error.error.message, "Erreur de lancement.");
+      }, () => {
+        this.messageValidation = "Expédition lancée";
+        this.clicked = true;
+        this.messageBoutonEnvoiEnExpedition = "Envoi en cours...";
+        this.notification.showSuccess("", "Expedition lancée.");
+
+        setTimeout(() => {
+          // Redirection au bout de 1,5 secondes
+          this.router.navigate(['mesExpeditions']);
+        }, 1500);
+      });
+    }
   }
 
   calculVieRestanteExpedition(quantite: number) {
