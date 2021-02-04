@@ -57,9 +57,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     this.recuperationRessources();
     if (this.generationRessourcesService.subsVar == undefined) {
+      
       this.generationRessourcesService.subsVar = this.generationRessourcesService.
         invokeFirstComponentFunction.subscribe(
           (name: string) => {
+            console.log("Ligne 64 Header.component.ts");
             this.recuperationRessources();
           });
     }
