@@ -57,11 +57,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     this.recuperationRessources();
     if (this.generationRessourcesService.subsVar == undefined) {
-      
+
       this.generationRessourcesService.subsVar = this.generationRessourcesService.
         invokeFirstComponentFunction.subscribe(
           (name: string) => {
-            console.log("Ligne 64 Header.component.ts");
+/*             console.log("Ligne 64 Header.component.ts"); */
             this.recuperationRessources();
           });
     }
@@ -81,20 +81,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
     // DESTRUCTION DES SOUSCRIPTIONS (Utile ici ?)
     this.ngOnDestroy();
     this.flag = false;
-    console.log("-----------")
-    console.log("FLAG --> " + this.flag)
+/*     console.log("-----------")
+    console.log("FLAG --> " + this.flag) */
 
     // J'APPELLE LES DONNEES RESSOURCE, POUR METTRE A JOUR
     this.joueurService.informationRessourcesJoueur().subscribe(
       (value) => {
         this.informationRessourcesJoueur = value;
-        console.log("-- RECUPERATION RESSOURCES QUE POSSEDE LE JOUEUR -- ");
+/*         console.log("-- RECUPERATION RESSOURCES QUE POSSEDE LE JOUEUR -- ");
         console.log("INFORMATIONS RESSOURCES PIERRE : " + this.informationRessourcesJoueur.pierrePossession);
         console.log("INFORMATIONS RESSOURCES BOIS : " + this.informationRessourcesJoueur.boisPossession);
         console.log("INFORMATIONS RESSOURCES OR : " + this.informationRessourcesJoueur.orPossession);
-        console.log("INFORMATIONS RESSOURCES NOURRITURE : " + this.informationRessourcesJoueur.nourriturePossession);
+        console.log("INFORMATIONS RESSOURCES NOURRITURE : " + this.informationRessourcesJoueur.nourriturePossession); */
         this.flag = true;
-        console.log("FLAG --> " + this.flag)
+/*         console.log("FLAG --> " + this.flag) */
       }
     );
 
@@ -107,7 +107,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     const compteur = Observable.interval(1000);
     this.counterSubscription = compteur.subscribe(
       () => {
-        console.log("-refresh- Pierre possession:" + this.informationRessourcesJoueur.pierrePossession);
+/*         console.log("-refresh- Pierre possession:" + this.informationRessourcesJoueur.pierrePossession); */
         this.informationRessourcesJoueur.pierrePossession = (this.informationRessourcesJoueur.pierrePossession + this.informationRessourcesJoueur.apportPierreSeconde) > this.informationRessourcesJoueur.quantiteMaximaleStockagePierre ? this.informationRessourcesJoueur.quantiteMaximaleStockagePierre : this.informationRessourcesJoueur.pierrePossession + this.informationRessourcesJoueur.apportPierreSeconde;
         this.informationRessourcesJoueur.boisPossession = (this.informationRessourcesJoueur.boisPossession + this.informationRessourcesJoueur.apportBoisSeconde) > this.informationRessourcesJoueur.quantiteMaximaleStockageBois ? this.informationRessourcesJoueur.quantiteMaximaleStockageBois : this.informationRessourcesJoueur.boisPossession + this.informationRessourcesJoueur.apportBoisSeconde;
         this.informationRessourcesJoueur.orPossession = (this.informationRessourcesJoueur.orPossession + this.informationRessourcesJoueur.apportOrSeconde) > this.informationRessourcesJoueur.quantiteMaximaleStockageOr ? this.informationRessourcesJoueur.quantiteMaximaleStockageOr : this.informationRessourcesJoueur.orPossession + this.informationRessourcesJoueur.apportOrSeconde;
@@ -163,8 +163,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   // Déconnexion
   seDeconnecter() {
     this.authSrv.seDeconnecter().subscribe(
-      () => this.router.navigate(['/auth'])
-    );
+      () => window.location.href = window.location.protocol + 'auth')
+    /*
+        this.authSrv.seDeconnecter().subscribe(
+    () => this.router.navigate(['/auth'])
+  );
+    */
   }
 
   // Colorisation approche limite ressource (Pierre)

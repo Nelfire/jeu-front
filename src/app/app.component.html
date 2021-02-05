@@ -2,7 +2,7 @@
   <app-header *ngIf="!col.estAnonyme()"></app-header>
 </ng-container>
 
-<main class="container" style="margin-bottom: 100px;">
+<main  style="margin-bottom: 100px;">
   <!--  // A CHAQUES CHANGEMENT DE ROUTE, ACTUALISATION DES RESSOURCES/APPORT/LIMITES du joueur -->
   <router-outlet (activate)="changeOfRoutes()"></router-outlet>
 </main>

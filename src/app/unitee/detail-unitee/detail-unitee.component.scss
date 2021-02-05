@@ -15,7 +15,7 @@
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@400;500&display=swap");
-.container {
+.containeer {
     display: grid;
     /*   grid-template-columns: 300px 300px 300px;
   grid-gap: 50px; */
@@ -35,7 +35,6 @@
     box-shadow: rgba(0, 0, 0, 0.7);
     color: white;
     opacity: 80%;
-    width: 500px;
 }
 
 .card__name {
@@ -59,6 +58,10 @@
 }
 .card__niveau {
     font-size: 1.2em;
+}
+
+.card__quantitee_possession {
+    font-size: 1em;
 }
 .card__production_interrompu {
     font-size: 1.6em;
@@ -258,3 +261,34 @@ hr.style-seven:before {
     margin: 0 auto;
     text-align: center;
 }
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      ". . . . . . . . . . . . . ."
+      ". . . . . unitee unitee unitee unitee . . . . ."
+      ". . . . . unitee unitee unitee unitee . production-en-cours production-en-cours production-en-cours ."
+      ". . . . . unitee unitee unitee unitee . production-en-cours production-en-cours production-en-cours ."
+      ". . . . . unitee unitee unitee unitee . . . . ."
+      ". . . . . . . . . . . . . .";
+  }
+  
+  .unitee { grid-area: unitee; }
+  
+  .production-en-cours { grid-area: production-en-cours; }
+    
+
+
+  .quantitePossede{
+    color: red;
+    text-align: center;
+    width: 140px;
+    font-weight:bold;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.603);
+  
+  }

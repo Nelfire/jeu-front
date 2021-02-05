@@ -22,7 +22,7 @@
                     <a routerLink="../unitee/detail-unitee/{{unitee.id}}">
                         <div>
                             <!-- Quantitée d'unitées affichée si le joueur en possède -->
-                            <div style="text-align:center;" *ngIf="unitee.joueurLaPossede">
+                            <div style="text-align:center;" *ngIf="unitee.joueurLaPossede && unitee.quantiteePossession!=0">
                                 <input disabled type="text" name="texte" class="quantite"
                                     value="Possède : {{unitee.quantiteePossession}}" />
                             </div>
@@ -58,7 +58,13 @@
                         </span>
                         <span
                             *ngIf="unitee.flagPossedeBatimentNecessaireFormationUnitee && unitee.flagNiveauBatimentNecessaireFormationUniteeAssezEleve && !unitee.flagBatimentUniteeEnCoursDeConstruction">
-                            <button class="btn btn-info">Créer</button>
+                            <span *ngIf="unitee.formationEnCours; else pasDeFormationEnCours">
+                                <button class="btn btn-warning"><span class="spinner-border spinner-border-sm"></span>En cours</button>
+                            </span>
+                            <ng-template #pasDeFormationEnCours>
+                                <button class="btn btn-info">Créer</button>
+                            </ng-template>
+                            
                         </span>
                     </a>
                 </div>

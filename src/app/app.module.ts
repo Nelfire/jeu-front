@@ -64,6 +64,7 @@ import { NotificationService } from './service/notification.service';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GenerationRessourcesService } from './service/generation-ressources.service';
+import { MinuteSecondePipePipe } from './pipe/minute-seconde-pipe.pipe';
 
 
 @NgModule({
@@ -103,7 +104,8 @@ import { GenerationRessourcesService } from './service/generation-ressources.ser
     CreationCompteComponent,
     DetailCompteComponent,
     ThousandSuffixesPipePipe,
-    DiscussionPriveeComponent
+    DiscussionPriveeComponent,
+    MinuteSecondePipePipe
   ],
   imports: [
     BrowserModule,

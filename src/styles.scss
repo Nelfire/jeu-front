@@ -1,57 +1,78 @@
 /* You can add global styles to this file, and also import other style files */
 @import "node_modules/bootstrap/scss/bootstrap";
 body {
-    background: url("https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/123740332/original/934af649631a2dc8730f0b63cfed1e63908b6f08/create-anime-background-style.jpg") no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+  background: url("https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/123740332/original/934af649631a2dc8730f0b63cfed1e63908b6f08/create-anime-background-style.jpg")
+    no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 /** TITRE + LIGNES **/
 
 .divider-custom {
-    margin: 1.25rem 0 1.5rem;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-  }
-  .divider-custom .divider-custom-line {
-    width: 100%;
-    max-width: 7rem;
-    height: 0.25rem;
-    background-color: #2c3e50;
-    border-radius: 1rem;
-    border-color: #2c3e50 !important;
-    
-  }
-  .divider-custom .divider-custom-line:first-child {
-    margin-right: 1rem;
-  }
-  .divider-custom .divider-custom-line:last-child {
-    margin-left: 1rem;
-  }
-  // Titre
-  .divider-custom .divider-custom-titre {
-    color: #2c3e50 !important;
-    font-size: 2rem;
-    font-weight: bold;
-    text-shadow: 0.1em 0.1em 0.2em black;
-    text-transform: uppercase;
-    text-align: center;
-  }
-  .divider-custom.divider-light .divider-custom-titre {
-    color: #fff !important;
-  }
-  // Lignes
-  .divider-custom.divider-light .divider-custom-line {
-    background-color: #fff;
-    box-shadow: 0.1em 0.1em 0.2em black;
-  }
-  
-  .center {
-    margin: 0 auto;
-    text-align: center;
-  }
+  margin: 1.25rem 0 1.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.divider-custom .divider-custom-line {
+  width: 100%;
+  max-width: 7rem;
+  height: 0.25rem;
+  background-color: #2c3e50;
+  border-radius: 1rem;
+  border-color: #2c3e50 !important;
+}
+.divider-custom .divider-custom-line:first-child {
+  margin-right: 1rem;
+}
+.divider-custom .divider-custom-line:last-child {
+  margin-left: 1rem;
+}
+// Titre
+.divider-custom .divider-custom-titre {
+  color: #2c3e50 !important;
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  text-transform: uppercase;
+  text-align: center;
+}
+.divider-custom.divider-light .divider-custom-titre {
+  color: #fff !important;
+}
+// Lignes
+.divider-custom.divider-light .divider-custom-line {
+  background-color: #fff;
+  box-shadow: 0.1em 0.1em 0.2em black;
+}
+
+.center {
+  margin: 0 auto;
+  text-align: center;
+}
+
+hr.style-seven {
+  overflow: visible; /* For IE */
+  height: 30px;
+  border-style: solid;
+  border-color: rgb(255, 255, 255);
+  border-width: 1px 0 0 0;
+  border-radius: 20px;
+  width: 80%;
+  margin-top: 30px;
+}
+hr.style-seven:before {
+  /* Not really supposed to work, but does */
+  display: block;
+  content: "";
+  height: 30px;
+  margin-top: -31px;
+  border-style: solid;
+  border-color: rgb(255, 255, 255);
+  border-width: 0 0 1px 0;
+  border-radius: 20px;
+}

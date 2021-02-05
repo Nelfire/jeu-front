@@ -19,6 +19,7 @@ export class MonCampementComponent implements OnInit {
 
   // Initialisations
   counterSubscription: Subscription;
+  subscriptions: Subscription[] = []
   listeBatiments: Batiment[];
   listeMesBatiments: MesBatiments[];
   utilisateurConnecte: Joueur;
@@ -138,6 +139,11 @@ export class MonCampementComponent implements OnInit {
                 const compteur = Observable.interval(1000);
                 this.counterSubscription = compteur.subscribe(
                   (valeur: number) => {
+                    // EN CAS DE FIN DE TIMER, DESTRUCTION DES SUBSCRIPTIONS + "RECHARGE" DU COMPONENT
+                    if(unBatiment.secondesRestantesAmelioration< 1){ 
+                      this.ngOnDestroy();
+                      this.ngOnInit();
+                    } 
                     // A chaques appel, je réduit de 1 seconde le nombre de secondes présentes dans le compteur
                     unBatiment.secondesRestantesAmelioration--;
                     unBatiment.dateFinConstruction = unBatiment.secondesRestantesAmelioration;
@@ -146,6 +152,8 @@ export class MonCampementComponent implements OnInit {
                     unBatiment.date = date.toISOString().substr(11, 8);
                   }
                 );
+                // AJOUT DE LA SUBSCRIPTION AU TABLEAU
+                this.subscriptions.push(this.counterSubscription);
               }
             }
           });
@@ -155,9 +163,13 @@ export class MonCampementComponent implements OnInit {
   }
 
 
-  ngOnDestroy(): void {
+
+  // DESTRUCTIONS
+  ngOnDestroy() {
     if (this.counterSubscription) {
-      this.counterSubscription.unsubscribe();
+      this.subscriptions.forEach(
+        (subscription) => subscription.unsubscribe()
+      )
     }
   }
 

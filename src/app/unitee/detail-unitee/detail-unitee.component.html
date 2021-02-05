@@ -1,10 +1,16 @@
 <!-- Affichage mode construction -->
 <div *ngIf="unitee && joueur">
-    <div class="container">
-        <div class="card">
+
+
+    <div class="grid-container">
+        <div class="unitee card">
             <!-- ICONE -->
             <img src="{{unitee['icone']}}" class="card__image">
             <p class="card__name">{{unitee['libelle']}}</p>
+
+            <p class="card__quantitee_possession" *ngIf="quantiteeUniteesPossession >=1">
+                <input disabled type="text" class="quantitePossede" value="Possède : {{quantiteeUniteesPossession}}" />
+            </p>
 
             <!-- DESCRIPTION -->
             <p class="card__description">
@@ -190,5 +196,30 @@
                 <b>{{messageValidation}}</b>
             </div>
         </div>
+        <div class="production-en-cours card" *ngIf="secondesRestantesAmelioration">
+
+            <div class="mt-3">
+                <hr class="style-seven">
+                
+                <p class="card__description center"><u>Production en cours</u></p>
+
+                <p class="card__progress_bar_text">Temps restant : {{secondesRestantesAmelioration}} secondes</p>
+                <div class="progress mb-3 center" style="width: 80%;">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated"
+                        [ngStyle]="{width:getTempsFormationTotalFileAttentePourcent()}"></div>
+                </div>
+
+                <p class="card__description center mb-3"><u>Unitées restantes : {{uniteesRestantesArrondis}}</u></p>
+                
+
+                <div class="progress mb-3 center" style="width: 80%;">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated"
+                        [ngStyle]="{width:getTempsFormationUniteePourcent()}"></div>
+                </div>
+                <hr class="style-seven">
+            </div>
+        </div>
     </div>
+
+
 </div>

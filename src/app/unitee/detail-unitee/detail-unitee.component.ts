@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
 import { Armee } from 'src/app/models/armee';
 import { Batiment } from 'src/app/models/batiment';
 import { JoueurInfos } from 'src/app/models/joueur-infos';
@@ -17,7 +19,7 @@ import { UniteeService } from 'src/app/service/unitee.service';
   templateUrl: './detail-unitee.component.html',
   styleUrls: ['./detail-unitee.component.scss']
 })
-export class DetailUniteeComponent implements OnInit {
+export class DetailUniteeComponent implements OnInit, OnDestroy {
 
   // Initialisations
   joueur: JoueurInfos;
@@ -37,6 +39,17 @@ export class DetailUniteeComponent implements OnInit {
   joueurPossedeBatiment: boolean;
   niveauBatimentAssezEleveFormation: boolean;
   batimentEnCoursDeTravail: boolean;
+
+  counterSubscription: Subscription;
+  result: string;
+
+  // Unitées en cours de production 
+  secondesRestantesAmelioration: number;
+  uniteesRestantes: number;
+  uniteesRestantesArrondis:number;
+  quantiteeUniteesPossession: number;
+  dateLancementProduction: number;
+  dateFinProduction: number;
 
 
   // Constructeur
@@ -92,10 +105,79 @@ export class DetailUniteeComponent implements OnInit {
               }
             });
           });
+        this.recuperationArmeeJoueur();
       }
     );
+  }
+
+  recuperationArmeeJoueur() {
+    console.log("recuperationArmeeJoueur");
+    this.armeeService.listerArmeesDuJoueur().subscribe(
+      (lesArmees) => {
+        lesArmees.forEach(armee => {
+
+          // Si le joueur possède le type d'unitée de la page
+          if (armee.unitee.id == this.id) {
+            console.log(armee.unitee.libelle)
+
+            console.log("quantiteeUniteesPossession " + armee.quantitee)
+            // Vérification formation en cours
+            var dateMaintenantMillisecondes = new Date().getTime();
+            console.log("dateMaintenantMillisecondes : " + dateMaintenantMillisecondes)
+            console.log("armee.dateFinProduction : " + armee.dateFinProduction)
+            if (armee.dateFinProduction > dateMaintenantMillisecondes) {
+              // formation en cours
+              this.secondesRestantesAmelioration = (armee.dateFinProduction - dateMaintenantMillisecondes) / 1000;
+              this.dateLancementProduction = armee.dateDebutProduction;
+              this.dateFinProduction = armee.dateFinProduction;
+              // actualisation du timer
+              if (this.secondesRestantesAmelioration > 1) {
+                // Définis l'interval de l'appel à 1000 ms (1 seconde)
+                const compteur = Observable.interval(1000);
+                this.counterSubscription = compteur.subscribe(
+                  () => {
+                    console.log("Timer unitée")
 
 
+                    // A chaques appel, réduction de 1 seconde le nombre de secondes présentes dans le compteur
+                    this.secondesRestantesAmelioration = Math.ceil(this.secondesRestantesAmelioration - 1);
+                    this.uniteesRestantesArrondis = Math.ceil(this.secondesRestantesAmelioration / armee.unitee.tempsFormation);
+                    this.uniteesRestantes = this.secondesRestantesAmelioration / armee.unitee.tempsFormation;
+                    // Je défini une date, pour convertir les secondes en timer (Format hh:mm:ss)
+                    var date = new Date(null);
+                    date.setSeconds(this.secondesRestantesAmelioration);
+                    this.result = date.toISOString().substr(11, 8);
+
+                    // MISE A JOUR DE LA QUANTITE D'UNITEES QUE LE JOUEUR POSSEDE
+                    this.quantiteeUniteesPossession = Math.trunc(armee.quantitee - this.uniteesRestantes);
+
+                    if (this.secondesRestantesAmelioration < 1) {
+                      this.ngOnDestroy();
+                      setTimeout(() => {
+                        // "Refresh" au bout d'1.5sc
+                        this.secondesRestantesAmelioration = undefined;
+                        this.uniteesRestantesArrondis = undefined;
+                        this.uniteesRestantes = undefined;
+                        this.ngOnDestroy();
+                        this.ngOnInit();
+                      }, 1500);
+
+                    }
+
+
+
+                  }
+                );
+
+              }
+            } else {
+              // Unitées déjà formées
+              this.quantiteeUniteesPossession = armee.quantitee;
+            }
+          }
+        });
+      }
+    )
   }
 
   initForm() {
@@ -115,18 +197,22 @@ export class DetailUniteeComponent implements OnInit {
 
       }, () => {
         // Toastr
-        quantite==1?this.notification.showSuccess("Production d'une unitée.", "Production lancée."):this.notification.showSuccess("Production de "+quantite+" unitées.", "Production lancée.");
+        quantite == 1 ? this.notification.showSuccess("Production d'une unitée.", "Production lancée.") : this.notification.showSuccess("Production de " + quantite + " unitées.", "Production lancée.");
 
         this.messageValidation = "Production lancée";
+        this.ngOnDestroy();
+        this.ngOnInit();
+
         setTimeout(() => {
-          // Redirection au bout de 1,5 secondes
-          this.router.navigate(['armee']);
-        }, 2000);
+          // Retrait du message de validation au bout de 2.5 sc
+          this.messageValidation = undefined;
+        }, 2500);
       }
     );
 
   }
 
+  // Retourne le nombre maximal d'unitées que peut produire le joueur avec les ressources qu'il possède actuellement.
   maximum() {
     this.quantite = Math.trunc(this.joueur.pierrePossession / this.unitee.coutPierreFormation);
     if (Math.trunc(this.joueur.boisPossession / this.unitee.coutBoisFormation) < this.quantite) {
@@ -177,6 +263,41 @@ export class DetailUniteeComponent implements OnInit {
       return 'red';
     } else {
       return 'green';
+    }
+  }
+
+  getTempsFormationUniteePourcent() {
+    // Temps du niveau suivantle
+    let pourcentageRestant;
+
+
+    pourcentageRestant = 100 - ((this.secondesRestantesAmelioration%this.unitee.tempsFormation) * 100) / this.unitee.tempsFormation;
+
+   // console.log("pourcentageRestant",pourcentageRestant);
+    return pourcentageRestant + '%';
+  }
+  getTempsFormationTotalFileAttentePourcent() {
+    // Temps du niveau suivantle
+    let pourcentageRestante;
+    console.log("dateLancementProduction : "+this.dateLancementProduction);
+    console.log("dateFinProduction : "+this.dateFinProduction);
+
+    let differenceSecondes = (this.dateFinProduction-this.dateLancementProduction)/1000;
+    //console.log("differenceDeux"+differenceDeux)
+
+    console.log("difference :"+differenceSecondes)
+    //pourcentageRestante = 100 - (((difference) * 100) / this.dateFinProduction);
+    pourcentageRestante = 100 - (this.secondesRestantesAmelioration*100)/(differenceSecondes);
+
+    //console.log("this.dateFinProduction : ",this.dateFinProduction)
+    //console.log("this.secondesRestantesAmelioration : ",this.secondesRestantesAmelioration)
+    //console.log("pourcentageRestant",pourcentageRestante);
+    return pourcentageRestante + '%';
+  }
+
+  ngOnDestroy(): void {
+    if (this.counterSubscription) {
+      this.counterSubscription.unsubscribe();
     }
   }
 

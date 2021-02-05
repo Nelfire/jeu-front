@@ -24,8 +24,8 @@ export class MonArmeeComponent implements OnInit {
   flagPossedeBatimentNecessaireFormationUnitee: boolean = false;
   flagNiveauBatimentNecessaireFormationUniteeAssezEleve: boolean = false;
 
-  constructor(private uniteeService: UniteeService, 
-    private armeeService: ArmeeService, 
+  constructor(private uniteeService: UniteeService,
+    private armeeService: ArmeeService,
     private batimentJoueurService: BatimentJoueurService) { }
 
   ngOnInit(): void {
@@ -43,9 +43,9 @@ export class MonArmeeComponent implements OnInit {
         this.lesUnitees = value;
         this.listeDesUnitees();
       }
-      
+
     );
-    
+
   }
 
   /*
@@ -142,8 +142,23 @@ export class MonArmeeComponent implements OnInit {
               this.lesUnitees.forEach(uneUnitee => {
                 // Si l'unitées en cours d'analyse = Unitée de l'armée du joueur, alors, il la possède
                 if (larmee.unitee.id === uneUnitee.id) {
+
                   uneUnitee.joueurLaPossede = true;
-                  uneUnitee.quantiteePossession = larmee.quantitee;
+                  // vérification quantité
+                  // Vérification formation en cours
+                  var dateMaintenantMillisecondes = new Date().getTime();
+                  if (larmee.dateFinProduction > dateMaintenantMillisecondes) {
+                    uneUnitee.formationEnCours = true;
+                    // formation en cours
+                    let difference = (larmee.dateFinProduction - dateMaintenantMillisecondes) / 1000;
+                    let uniteesEnFormation = difference / larmee.unitee.tempsFormation;
+                    // Unitées totales possédées - Unitées en formation
+                    uneUnitee.quantiteePossession = larmee.quantitee - Math.ceil(uniteesEnFormation);
+                  } else {
+                    // pas de formation en cours
+                    uneUnitee.quantiteePossession = larmee.quantitee;
+                  }
+                  // Possède le type d'unitée : oui
                   this.flag = true;
                 }
               });
