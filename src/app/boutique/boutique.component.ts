@@ -217,16 +217,20 @@ export class BoutiqueComponent implements OnInit {
   achat10PourcentPierre() {
     //this.informationsJoueur();
     let quantiteePierrePossede = this.infosJoueur.pierrePossession;
+    
     let limitePierre = this.infosJoueur.pierreMaximum;
     let quantiteePierre10pourcent = limitePierre * 0.1;
     let coutGemme = quantiteePierre10pourcent / 100;
+
     // CAS CAPACITEE STOCKAGE DEPASSEE
-    if (quantiteePierrePossede == limitePierre) {
-      this.messageErreur = "Limite de capacitée de stockage atteinte";
+    if (quantiteePierrePossede >= limitePierre) {
+      this.notification.showError("Limite de capacitée de stockage atteinte", "Limite atteinte");
+
     } else {
-      // Redéfinition du cout de gemme si approche de la limit
+      // Redéfinition du cout de gemme si approche de la limite
       if (limitePierre * 0.1 + quantiteePierrePossede > limitePierre) {
         coutGemme = (limitePierre - quantiteePierrePossede)/100;
+        quantiteePierre10pourcent = limitePierre - quantiteePierrePossede;
         console.log("Redéfinition cout en gemme , nouveau : "+coutGemme)
       }
       // SI GEMMES INSUFISANTES AU COUT
@@ -242,6 +246,7 @@ export class BoutiqueComponent implements OnInit {
         }, () => {
           this.notification.showSuccess("+"+quantiteePierre10pourcent+" Pierres.", "Achat effectué.");
           this.generationRessourceServices.onFirstComponentButtonClick();
+          this.infosJoueur.pierrePossession = this.infosJoueur.pierrePossession + quantiteePierre10pourcent;
         });
       }
     }
@@ -254,12 +259,13 @@ export class BoutiqueComponent implements OnInit {
     let quantiteePierre50pourcent = limitePierre * 0.5;
     let coutGemme = quantiteePierre50pourcent / 100;
     // CAS CAPACITEE STOCKAGE DEPASSEE
-    if (quantiteePierrePossede == limitePierre) {
-      this.messageErreur = "Limite de capacitée de stockage atteinte";
+    if (quantiteePierrePossede >= limitePierre) {
+      this.notification.showError("Limite de capacitée de stockage atteinte", "Limite atteinte");
     } else {
-      // Redéfinition du cout de gemme si approche de la limit
+      // Redéfinition du cout de gemme si approche de la limite
       if (limitePierre * 0.5 + quantiteePierrePossede > limitePierre) {
         coutGemme = (limitePierre - quantiteePierrePossede)/100;
+        quantiteePierre50pourcent = limitePierre - quantiteePierrePossede;
         console.log("Redéfinition cout en gemme , nouveau : "+coutGemme)
       }
       // SI GEMMES INSUFISANTES AU COUT
@@ -274,6 +280,8 @@ export class BoutiqueComponent implements OnInit {
         }, () => {
           this.notification.showSuccess("+"+quantiteePierre50pourcent+" Pierres.", "Achat effectué.");
           this.generationRessourceServices.onFirstComponentButtonClick();
+          this.infosJoueur.pierrePossession = this.infosJoueur.pierrePossession + quantiteePierre50pourcent;
+
         });
       }
     }
@@ -286,12 +294,13 @@ export class BoutiqueComponent implements OnInit {
     let quantiteePierre100pourcent = limitePierre;
     let coutGemme = quantiteePierre100pourcent / 100;
     // CAS CAPACITEE STOCKAGE DEPASSEE
-    if (quantiteePierrePossede == limitePierre) {
-      this.messageErreur = "Limite de capacitée de stockage atteinte";
+    if (quantiteePierrePossede >= limitePierre) {
+      this.notification.showError("Limite de capacitée de stockage atteinte", "Limite atteinte");
     } else {
-      // Redéfinition du cout de gemme si approche de la limit
+      // Redéfinition du cout de gemme si approche de la limite
       if (limitePierre + quantiteePierrePossede > limitePierre) {
         coutGemme = (limitePierre - quantiteePierrePossede)/100;
+        quantiteePierre100pourcent = limitePierre - quantiteePierrePossede;
         console.log("Redéfinition cout en gemme , nouveau : "+coutGemme)
       }
       // SI GEMMES INSUFISANTES AU COUT
@@ -306,6 +315,7 @@ export class BoutiqueComponent implements OnInit {
         }, () => {
           this.notification.showSuccess("+"+quantiteePierre100pourcent+" Pierres.", "Achat effectué.");
           this.generationRessourceServices.onFirstComponentButtonClick();
+          this.infosJoueur.pierrePossession = this.infosJoueur.pierrePossession + quantiteePierre100pourcent;
         });
       }
     }
@@ -319,14 +329,18 @@ export class BoutiqueComponent implements OnInit {
     let limiteBois = this.infosJoueur.boisMaximum;
     let quantiteeBois10pourcent = limiteBois * 0.1;
     let coutGemme = quantiteeBois10pourcent / 100;
+    console.log("quantiteeBoisPossede : ",quantiteeBoisPossede)
+    console.log("limiteBois : ",limiteBois)
     // CAS CAPACITEE STOCKAGE DEPASSEE
-    if (quantiteeBoisPossede == limiteBois) {
-      this.messageErreur = "Limite de capacitée de stockage atteinte";
+    if (quantiteeBoisPossede >= limiteBois) {
+      this.notification.showError("Limite de capacitée de stockage atteinte", "Limite atteinte");
     } else {
-      // Redéfinition du cout de gemme si approche de la limit
+      // Redéfinition du cout de gemme si approche de la limite
       if (limiteBois * 0.1 + quantiteeBoisPossede > limiteBois) {
         coutGemme = (limiteBois - quantiteeBoisPossede)/100;
+        quantiteeBois10pourcent = limiteBois - quantiteeBoisPossede;
         console.log("Redéfinition cout en gemme , nouveau : "+coutGemme)
+
       }
       // SI GEMMES INSUFISANTES AU COUT
       if (this.infosJoueur.gemmePossession < coutGemme) {
@@ -340,6 +354,7 @@ export class BoutiqueComponent implements OnInit {
         }, () => {
           this.notification.showSuccess("+"+quantiteeBois10pourcent+" Bois.", "Achat effectué.");
           this.generationRessourceServices.onFirstComponentButtonClick();
+          this.infosJoueur.boisPossession = this.infosJoueur.boisPossession + quantiteeBois10pourcent;
         });
       }
     }
@@ -351,13 +366,16 @@ export class BoutiqueComponent implements OnInit {
     let limiteBois = this.infosJoueur.boisMaximum;
     let quantiteeBois50pourcent = limiteBois * 0.5;
     let coutGemme = quantiteeBois50pourcent / 100;
+    console.log("quantiteeBoisPossede : ",quantiteeBoisPossede)
+    console.log("limiteBois : ",limiteBois)
     // CAS CAPACITEE STOCKAGE DEPASSEE
-    if (quantiteeBoisPossede == limiteBois) {
-      this.messageErreur = "Limite de capacitée de stockage atteinte";
+    if (quantiteeBoisPossede >= limiteBois) {
+      this.notification.showError("Limite de capacitée de stockage atteinte", "Limite atteinte");
     } else {
-      // Redéfinition du cout de gemme si approche de la limit
+      // Redéfinition du cout de gemme si approche de la limite
       if (limiteBois * 0.5 + quantiteeBoisPossede > limiteBois) {
         coutGemme = (limiteBois - quantiteeBoisPossede)/100;
+        quantiteeBois50pourcent = limiteBois - quantiteeBoisPossede;
         console.log("Redéfinition cout en gemme , nouveau : "+coutGemme)
       }
       // SI GEMMES INSUFISANTES AU COUT
@@ -372,6 +390,7 @@ export class BoutiqueComponent implements OnInit {
         }, () => {
           this.notification.showSuccess("+"+quantiteeBois50pourcent+" Bois.", "Achat effectué.");
           this.generationRessourceServices.onFirstComponentButtonClick();
+          this.infosJoueur.boisPossession = this.infosJoueur.boisPossession + quantiteeBois50pourcent;
         });
       }
     }
@@ -383,13 +402,16 @@ export class BoutiqueComponent implements OnInit {
     let limiteBois = this.infosJoueur.boisMaximum;
     let quantiteeBois100pourcent = limiteBois;
     let coutGemme = quantiteeBois100pourcent / 100;
+    console.log("quantiteeBoisPossede : ",quantiteeBoisPossede)
+    console.log("limiteBois : ",limiteBois)
     // CAS CAPACITEE STOCKAGE DEPASSEE
-    if (quantiteeBoisPossede == limiteBois) {
-      this.messageErreur = "Limite de capacitée de stockage atteinte";
+    if (quantiteeBoisPossede >= limiteBois) {
+      this.notification.showError("Limite de capacitée de stockage atteinte", "Limite atteinte");
     } else {
-      // Redéfinition du cout de gemme si approche de la limit
+      // Redéfinition du cout de gemme si approche de la limite
       if (limiteBois + quantiteeBoisPossede > limiteBois) {
         coutGemme = (limiteBois - quantiteeBoisPossede)/100;
+        quantiteeBois100pourcent = limiteBois - quantiteeBoisPossede;
         console.log("Redéfinition cout en gemme , nouveau : "+coutGemme)
       }
       // SI GEMMES INSUFISANTES AU COUT
@@ -404,6 +426,7 @@ export class BoutiqueComponent implements OnInit {
         }, () => {
           this.notification.showSuccess("+"+quantiteeBois100pourcent+" Bois.", "Achat effectué.");
           this.generationRessourceServices.onFirstComponentButtonClick();
+          this.infosJoueur.boisPossession = this.infosJoueur.boisPossession + quantiteeBois100pourcent;
         });
       }
     }
@@ -418,12 +441,13 @@ export class BoutiqueComponent implements OnInit {
     let quantiteeOr10pourcent = limiteOr * 0.1;
     let coutGemme = quantiteeOr10pourcent / 100;
     // CAS CAPACITEE STOCKAGE DEPASSEE
-    if (quantiteeOrPossede == limiteOr) {
-      this.messageErreur = "Limite de capacitée de stockage atteinte";
+    if (quantiteeOrPossede >= limiteOr) {
+      this.notification.showError("Limite de capacitée de stockage atteinte", "Limite atteinte");
     } else {
-      // Redéfinition du cout de gemme si approche de la limit
+      // Redéfinition du cout de gemme si approche de la limite
       if (limiteOr * 0.1 + quantiteeOrPossede > limiteOr) {
         coutGemme = (limiteOr - quantiteeOrPossede)/100;
+        quantiteeOr10pourcent = limiteOr - quantiteeOrPossede;
         console.log("Redéfinition cout en gemme , nouveau : "+coutGemme)
       }
       // SI GEMMES INSUFISANTES AU COUT
@@ -438,6 +462,7 @@ export class BoutiqueComponent implements OnInit {
         }, () => {
           this.notification.showSuccess("+"+quantiteeOr10pourcent+" Or.", "Achat effectué.");
           this.generationRessourceServices.onFirstComponentButtonClick();
+          this.infosJoueur.orPossession = this.infosJoueur.orPossession + quantiteeOr10pourcent;
         });
       }
     }
@@ -450,12 +475,13 @@ export class BoutiqueComponent implements OnInit {
     let quantiteeOr50pourcent = limiteOr * 0.5;
     let coutGemme = quantiteeOr50pourcent / 100;
     // CAS CAPACITEE STOCKAGE DEPASSEE
-    if (quantiteeOrPossede == limiteOr) {
-      this.messageErreur = "Limite de capacitée de stockage atteinte";
+    if (quantiteeOrPossede >= limiteOr) {
+      this.notification.showError("Limite de capacitée de stockage atteinte", "Limite atteinte");
     } else {
-      // Redéfinition du cout de gemme si approche de la limit
+      // Redéfinition du cout de gemme si approche de la limite
       if (limiteOr * 0.5 + quantiteeOrPossede > limiteOr) {
         coutGemme = (limiteOr - quantiteeOrPossede)/100;
+        quantiteeOr50pourcent = limiteOr - quantiteeOrPossede;
         console.log("Redéfinition cout en gemme , nouveau : "+coutGemme)
       }
       // SI GEMMES INSUFISANTES AU COUT
@@ -470,6 +496,7 @@ export class BoutiqueComponent implements OnInit {
         }, () => {
           this.notification.showSuccess("+"+quantiteeOr50pourcent+" Or.", "Achat effectué.");
           this.generationRessourceServices.onFirstComponentButtonClick();
+          this.infosJoueur.orPossession = this.infosJoueur.orPossession + quantiteeOr50pourcent;
         });
       }
     }
@@ -482,12 +509,13 @@ export class BoutiqueComponent implements OnInit {
     let quantiteeOr100pourcent = limiteOr;
     let coutGemme = quantiteeOr100pourcent / 100;
     // CAS CAPACITEE STOCKAGE DEPASSEE
-    if (quantiteeOrPossede == limiteOr) {
-      this.messageErreur = "Limite de capacitée de stockage atteinte";
+    if (quantiteeOrPossede >= limiteOr) {
+      this.notification.showError("Limite de capacitée de stockage atteinte", "Limite atteinte");
     } else {
-      // Redéfinition du cout de gemme si approche de la limit
+      // Redéfinition du cout de gemme si approche de la limite
       if (limiteOr + quantiteeOrPossede > limiteOr) {
         coutGemme = (limiteOr - quantiteeOrPossede)/100;
+        quantiteeOr100pourcent = limiteOr - quantiteeOrPossede;
         console.log("Redéfinition cout en gemme , nouveau : "+coutGemme)
       }
       // SI GEMMES INSUFISANTES AU COUT
@@ -502,6 +530,7 @@ export class BoutiqueComponent implements OnInit {
         }, () => {
           this.notification.showSuccess("+"+quantiteeOr100pourcent+" Or.", "Achat effectué.");
           this.generationRessourceServices.onFirstComponentButtonClick();
+          this.infosJoueur.orPossession = this.infosJoueur.orPossession + quantiteeOr100pourcent;
         });
       }
     }
@@ -516,12 +545,13 @@ export class BoutiqueComponent implements OnInit {
     let quantiteeNourriture10pourcent = limiteNourriture * 0.1;
     let coutGemme = quantiteeNourriture10pourcent / 100;
     // CAS CAPACITEE STOCKAGE DEPASSEE
-    if (quantiteeNourriturePossede == limiteNourriture) {
-      this.messageErreur = "Limite de capacitée de stockage atteinte";
+    if (quantiteeNourriturePossede >= limiteNourriture) {
+      this.notification.showError("Limite de capacitée de stockage atteinte", "Limite atteinte");
     } else {
-      // Redéfinition du cout de gemme si approche de la limit
+      // Redéfinition du cout de gemme si approche de la limite
       if (limiteNourriture * 0.1 + quantiteeNourriturePossede > limiteNourriture) {
         coutGemme = (limiteNourriture - quantiteeNourriturePossede)/100;
+        quantiteeNourriture10pourcent = limiteNourriture - quantiteeNourriturePossede;
         console.log("Redéfinition cout en gemme , nouveau : "+coutGemme)
       }
       // SI GEMMES INSUFISANTES AU COUT
@@ -536,6 +566,7 @@ export class BoutiqueComponent implements OnInit {
         }, () => {
           this.notification.showSuccess("+"+quantiteeNourriture10pourcent+" Nourriture.", "Achat effectué.");
           this.generationRessourceServices.onFirstComponentButtonClick();
+          this.infosJoueur.nourriturePossession = this.infosJoueur.nourriturePossession + quantiteeNourriture10pourcent;
         });
       }
     }
@@ -548,12 +579,13 @@ export class BoutiqueComponent implements OnInit {
     let quantiteeNourriture50pourcent = limiteNourriture * 0.5;
     let coutGemme = quantiteeNourriture50pourcent / 100;
     // CAS CAPACITEE STOCKAGE DEPASSEE
-    if (quantiteeNourriturePossede == limiteNourriture) {
-      this.messageErreur = "Limite de capacitée de stockage atteinte";
+    if (quantiteeNourriturePossede >= limiteNourriture) {
+      this.notification.showError("Limite de capacitée de stockage atteinte", "Limite atteinte");
     } else {
-      // Redéfinition du cout de gemme si approche de la limit
+      // Redéfinition du cout de gemme si approche de la limite
       if (limiteNourriture * 0.5 + quantiteeNourriturePossede > limiteNourriture) {
         coutGemme = (limiteNourriture - quantiteeNourriturePossede)/100;
+        quantiteeNourriture50pourcent = limiteNourriture - quantiteeNourriturePossede;
         console.log("Redéfinition cout en gemme , nouveau : "+coutGemme)
       }
       // SI GEMMES INSUFISANTES AU COUT
@@ -568,6 +600,7 @@ export class BoutiqueComponent implements OnInit {
         }, () => {
           this.notification.showSuccess("+"+quantiteeNourriture50pourcent+" Nourriture.", "Achat effectué.");
           this.generationRessourceServices.onFirstComponentButtonClick();
+          this.infosJoueur.nourriturePossession = this.infosJoueur.nourriturePossession + quantiteeNourriture50pourcent;
         });
       }
     }
@@ -580,12 +613,13 @@ export class BoutiqueComponent implements OnInit {
     let quantiteeNourriture100pourcent = limiteNourriture;
     let coutGemme = quantiteeNourriture100pourcent / 100;
     // CAS CAPACITEE STOCKAGE DEPASSEE
-    if (quantiteeNourriturePossede == limiteNourriture) {
-      this.messageErreur = "Limite de capacitée de stockage atteinte";
+    if (quantiteeNourriturePossede >= limiteNourriture) {
+      this.notification.showError("Limite de capacitée de stockage atteinte", "Limite atteinte");
     } else {
-      // Redéfinition du cout de gemme si approche de la limit
+      // Redéfinition du cout de gemme si approche de la limite
       if (limiteNourriture + quantiteeNourriturePossede > limiteNourriture) {
         coutGemme = (limiteNourriture - quantiteeNourriturePossede)/100;
+        quantiteeNourriture100pourcent = limiteNourriture - quantiteeNourriturePossede;
         console.log("Redéfinition cout en gemme , nouveau : "+coutGemme)
       }
       // SI GEMMES INSUFISANTES AU COUT
@@ -600,6 +634,7 @@ export class BoutiqueComponent implements OnInit {
         }, () => {
           this.notification.showSuccess("+"+quantiteeNourriture100pourcent+" Nourriture.", "Achat effectué.");
           this.generationRessourceServices.onFirstComponentButtonClick();
+          this.infosJoueur.nourriturePossession = this.infosJoueur.nourriturePossession + quantiteeNourriture100pourcent;
         });
       }
     }

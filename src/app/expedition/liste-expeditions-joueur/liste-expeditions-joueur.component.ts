@@ -202,7 +202,6 @@ export class ListeExpeditionsJoueurComponent implements OnInit, OnDestroy {
     this.messageBoutonRecuperationRecompense = "Compte crédité";
     this.notification.showSuccess("", "Récompense récupérée !");
     this.expeditionJoueurService.recupererRecompense(idExpedition).subscribe();
-    this.generationRessourcesService.onFirstComponentButtonClick();
   }
 
   // NETTOIE LE TABLEAU DE SUBSCRIPTIONS

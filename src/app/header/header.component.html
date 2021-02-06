@@ -3,28 +3,32 @@
         <img src="https://media.discordapp.net/attachments/649978115199860766/793975291994964028/72399-icons-crown-prodigy-game-computer-math-icon.png"
             alt="" style="width: 40px;height: 40px;" />
     </div>
-<!--     {{informationRessourcesJoueur | json}} -->
-    <div class="menu" *ngIf="infosJoueur">
+    <!--     {{informationRessourcesJoueur | json}} -->
+    <div class="menu" *ngIf="infosJoueur && informationRessourcesJoueur">
         <ul class="modify">
             <li class="pierre">
-                <a class="btn" ngbTooltip="Production par heure : {{informationRessourcesJoueur.apportPierreSeconde * 3600}}">
+                <a class="btn"
+                    ngbTooltip="Production par heure : {{informationRessourcesJoueur.apportPierreSeconde * 3600}}">
                     <fa-icon [icon]="iconeStopWatch"></fa-icon> Pierre : <b
                         [ngStyle]="{color:getColorApprocheLimitePierre()}">{{informationRessourcesJoueur.pierrePossession}}/{{informationRessourcesJoueur.quantiteMaximaleStockagePierre}}</b>
                 </a>
             </li>
             <li class="bois">
-                <a class="btn" ngbTooltip="Production par heure : {{informationRessourcesJoueur.apportBoisSeconde * 3600}}">
+                <a class="btn"
+                    ngbTooltip="Production par heure : {{informationRessourcesJoueur.apportBoisSeconde * 3600}}">
                     <fa-icon [icon]="iconeStopWatch"></fa-icon> Bois : <b
                         [ngStyle]="{color:getColorApprocheLimiteBois()}">{{informationRessourcesJoueur.boisPossession}}/{{informationRessourcesJoueur.quantiteMaximaleStockageBois}}</b>
                 </a>
             </li>
             <li class="or">
-                <a class="btn" ngbTooltip="Production par heure : {{informationRessourcesJoueur.apportOrSeconde * 3600}}">
+                <a class="btn"
+                    ngbTooltip="Production par heure : {{informationRessourcesJoueur.apportOrSeconde * 3600}}">
                     <fa-icon [icon]="iconeStopWatch"></fa-icon> Or : <b
                         [ngStyle]="{color:getColorApprocheLimiteOr()}">{{informationRessourcesJoueur.orPossession}}/{{informationRessourcesJoueur.quantiteMaximaleStockageOr}}</b>
                 </a>
             </li>
-            <li class="nourriture" ngbTooltip="Production par heure : {{informationRessourcesJoueur.apportNourritureSeconde * 3600}}">
+            <li class="nourriture"
+                ngbTooltip="Production par heure : {{informationRessourcesJoueur.apportNourritureSeconde * 3600}}">
                 <a class="btn">
                     <fa-icon [icon]="iconeStopWatch"></fa-icon> Nourriture : <b
                         [ngStyle]="{color:getColorApprocheLimiteNourriture()}">{{informationRessourcesJoueur.nourriturePossession}}/{{informationRessourcesJoueur.quantiteMaximaleStockageNourriture}}</b>
@@ -32,7 +36,8 @@
             </li>
             <li class="gemme">
                 <a class="btn" ngbTooltip="Gain de gemmes en réalisant des expéditions">
-                    <fa-icon [icon]="iconeStopWatch"></fa-icon> Gemmes : <b>{{informationRessourcesJoueur.gemmePossession}}</b>
+                    <fa-icon [icon]="iconeStopWatch"></fa-icon> Gemmes :
+                    <b>{{informationRessourcesJoueur.gemmePossession}}</b>
                 </a>
             </li>
         </ul>
@@ -121,7 +126,7 @@
                 <a routerLink="detailJoueur/{{infosJoueur.id}}">
                     <i class="fa fa-male fa-2x"></i>
                     <span class="nav-text">
-                        Mon compte 
+                        Mon compte
                     </span>
                 </a>
             </li>
