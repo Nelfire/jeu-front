@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as introJs from 'intro.js/intro.js';
 
 @Component({
   selector: 'app-accueil',
@@ -10,6 +11,7 @@ export class AccueilComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

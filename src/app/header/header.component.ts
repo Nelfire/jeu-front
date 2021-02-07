@@ -15,6 +15,7 @@ import { BatimentJoueurService } from '../service/batiment-joueur.service';
 import { GenerationRessourcesService } from '../service/generation-ressources.service';
 import { InformationRessourcesJoueur } from '../models/informationRessourcesJoueur';
 import { subscriptionLogsToBeFn } from 'rxjs/internal/testing/TestScheduler';
+import * as introJs from 'intro.js/intro.js';
 
 
 @Component({
@@ -32,6 +33,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   iconeArbre = faTree;
 
   // Initialisations
+  intro = introJs();
   populationMaximaleJoueur: Number;
   counterSubscription: Subscription;
   secondes = 0;
@@ -61,7 +63,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.generationRessourcesService.subsVar = this.generationRessourcesService.
         invokeFirstComponentFunction.subscribe(
           (name: string) => {
-/*             console.log("Ligne 64 Header.component.ts"); */
+            /*             console.log("Ligne 64 Header.component.ts"); */
             this.recuperationRessources();
           });
     }
@@ -81,20 +83,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
     // DESTRUCTION DES SOUSCRIPTIONS (Utile ici ?)
     this.ngOnDestroy();
     this.flag = false;
-/*     console.log("-----------")
-    console.log("FLAG --> " + this.flag) */
+    /*     console.log("-----------")
+        console.log("FLAG --> " + this.flag) */
 
     // J'APPELLE LES DONNEES RESSOURCE, POUR METTRE A JOUR
     this.joueurService.informationRessourcesJoueur().subscribe(
       (value) => {
         this.informationRessourcesJoueur = value;
-/*         console.log("-- RECUPERATION RESSOURCES QUE POSSEDE LE JOUEUR -- ");
-        console.log("INFORMATIONS RESSOURCES PIERRE : " + this.informationRessourcesJoueur.pierrePossession);
-        console.log("INFORMATIONS RESSOURCES BOIS : " + this.informationRessourcesJoueur.boisPossession);
-        console.log("INFORMATIONS RESSOURCES OR : " + this.informationRessourcesJoueur.orPossession);
-        console.log("INFORMATIONS RESSOURCES NOURRITURE : " + this.informationRessourcesJoueur.nourriturePossession); */
+        /*         console.log("-- RECUPERATION RESSOURCES QUE POSSEDE LE JOUEUR -- ");
+                console.log("INFORMATIONS RESSOURCES PIERRE : " + this.informationRessourcesJoueur.pierrePossession);
+                console.log("INFORMATIONS RESSOURCES BOIS : " + this.informationRessourcesJoueur.boisPossession);
+                console.log("INFORMATIONS RESSOURCES OR : " + this.informationRessourcesJoueur.orPossession);
+                console.log("INFORMATIONS RESSOURCES NOURRITURE : " + this.informationRessourcesJoueur.nourriturePossession); */
         this.flag = true;
-/*         console.log("FLAG --> " + this.flag) */
+        /*         console.log("FLAG --> " + this.flag) */
       }
     );
 
@@ -107,7 +109,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     const compteur = Observable.interval(1000);
     this.counterSubscription = compteur.subscribe(
       () => {
-/*         console.log("-refresh- Pierre possession:" + this.informationRessourcesJoueur.pierrePossession); */
+        /*         console.log("-refresh- Pierre possession:" + this.informationRessourcesJoueur.pierrePossession); */
         this.informationRessourcesJoueur.pierrePossession = (this.informationRessourcesJoueur.pierrePossession + this.informationRessourcesJoueur.apportPierreSeconde) > this.informationRessourcesJoueur.quantiteMaximaleStockagePierre ? this.informationRessourcesJoueur.quantiteMaximaleStockagePierre : this.informationRessourcesJoueur.pierrePossession + this.informationRessourcesJoueur.apportPierreSeconde;
         this.informationRessourcesJoueur.boisPossession = (this.informationRessourcesJoueur.boisPossession + this.informationRessourcesJoueur.apportBoisSeconde) > this.informationRessourcesJoueur.quantiteMaximaleStockageBois ? this.informationRessourcesJoueur.quantiteMaximaleStockageBois : this.informationRessourcesJoueur.boisPossession + this.informationRessourcesJoueur.apportBoisSeconde;
         this.informationRessourcesJoueur.orPossession = (this.informationRessourcesJoueur.orPossession + this.informationRessourcesJoueur.apportOrSeconde) > this.informationRessourcesJoueur.quantiteMaximaleStockageOr ? this.informationRessourcesJoueur.quantiteMaximaleStockageOr : this.informationRessourcesJoueur.orPossession + this.informationRessourcesJoueur.apportOrSeconde;
@@ -240,5 +242,55 @@ export class HeaderComponent implements OnInit, OnDestroy {
       // Rouge
       return '#FF3600';
     }
+  }
+
+
+
+
+  lancementTutoriel() {
+
+
+
+    var intro = introJs();
+    intro.setOptions({
+      steps: [
+        {
+          element: '#etape1',
+          intro: "Ici se trouvent vos ressources, elles se décomposent en 5 parties.",
+          showStepNumber: true
+        },
+        { // Pierre
+          element: '#etape2',
+          intro: 'La <strong>pierre</strong> est extraite des <strong>carrières</strong>. Elle est la principale ressource permettant la construction de bâtiments'
+        },
+        { // Bois
+          element: '#etape3',
+          intro: "Le <strong>bois</strong> provient des <strong>camps de bûcherons</strong>. Il sert à la construction de bâtiments et de diverses unitées."
+        },
+        { // Or
+          element: '#etape4',
+          intro: "L'<strong>or</strong> est extrait des <strong>mines</strong>. Il sert à la construction de bâtiments et de diverses unitées."
+        },
+        { // Nourriture
+          element: '#etape5',
+          intro: "La <strong>nourriture</strong> est produite grâce aux <strong>fermes</strong>. Elle sert à nourrir vos troupes et à la formation d'unitées."
+        },
+        { // Gemmes
+          element: '#etape6',
+          intro: 'Les <strong>gemmes</strong> sont attribuées aux valheureux aventuriers menant à bien des expéditions. Elle permettent de faire des achats dans la boutique.'
+        },
+        { // Vue gauche
+          element: '#etape7',
+          intro: "D'ici, vous aurez une vue globale sur votre <strong>village</strong>, vos <strong>troupes</strong> et bien d'autres choses !"
+        },
+        { // Cible village
+          element: '#etape8',
+          intro: "Et si nous allions construire votre premier bâtiment ?"
+        }
+      ],
+      showProgress: true
+    });
+
+    intro.start();
   }
 }

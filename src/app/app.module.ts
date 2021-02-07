@@ -65,6 +65,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GenerationRessourcesService } from './service/generation-ressources.service';
 import { MinuteSecondePipePipe } from './pipe/minute-seconde-pipe.pipe';
+import { DetailDefenseComponent } from './batiment/detail-defense/detail-defense.component';
+import { MesDefensesComponent } from './campement/mes-defenses/mes-defenses.component';
+import { DefenseService } from './service/defense.service';
+import { DefenseJoueurService } from './service/defense-joueur.service';
 
 
 @NgModule({
@@ -105,7 +109,9 @@ import { MinuteSecondePipePipe } from './pipe/minute-seconde-pipe.pipe';
     DetailCompteComponent,
     ThousandSuffixesPipePipe,
     DiscussionPriveeComponent,
-    MinuteSecondePipePipe
+    MinuteSecondePipePipe,
+    DetailDefenseComponent,
+    MesDefensesComponent
   ],
   imports: [
     BrowserModule,
@@ -135,6 +141,8 @@ import { MinuteSecondePipePipe } from './pipe/minute-seconde-pipe.pipe';
     BoutiqueService,
     DiscussionService,
     GenerationRessourcesService,
+    DefenseService,
+    DefenseJoueurService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

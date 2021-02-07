@@ -36,6 +36,8 @@ import { DiscussionComponent } from './social/discussion/discussion.component';
 import { CreationCompteComponent } from './auth/creation-compte/creation-compte.component';
 import { DetailCompteComponent } from './social/detail-compte/detail-compte.component';
 import { DiscussionPriveeComponent } from './social/discussion/discussion-privee/discussion-privee.component';
+import { MesDefensesComponent } from './campement/mes-defenses/mes-defenses.component';
+import { DetailDefenseComponent } from './batiment/detail-defense/detail-defense.component';
 
 const routes: Routes = [
   // canActivate: [StatutConnecteService] ==> Permet de verifier si l'utilisateur est connecte
@@ -60,6 +62,8 @@ const routes: Routes = [
   { path: 'message', component: MessageComponent, canActivate: [StatutConnecteService] },
   { path: 'messagePrive/:email', component: MessagePriveComponent, canActivate: [StatutConnecteService] },
   { path: 'campement', component: MonCampementComponent, canActivate: [StatutConnecteService] },
+  { path: 'defense', component: MesDefensesComponent, canActivate: [StatutConnecteService] },
+
   { path: 'armee', component: MonArmeeComponent, canActivate: [StatutConnecteService] },
   { path: 'classement-joueurs', component: ClassementJoueursComponent, canActivate: [StatutConnecteService] },
 
@@ -71,8 +75,11 @@ const routes: Routes = [
   // ------------ BATIMENTS --------------
   { path: 'batiment/detail-batiment/:idTypeBatiment', component: DetailBatimentComponent, canActivate: [StatutConnecteService] },
 
-  { path: '', redirectTo: '/accueil', pathMatch: 'full' },
-  { path: 'accesRefuse', component: AccesRefuseComponent, canActivate: [StatutConnecteService] },
+    // ------------ DEFENSES --------------
+
+  { path: 'defense/detail-defense/:idDefense', component: DetailDefenseComponent, canActivate: [StatutConnecteService] },
+
+
 
   // ------------ ADMINISTRATION --------------
   { path: 'menuAdministration', component: MenuAdministrationComponent, canActivate: [StatutAdministrateurService] },
@@ -103,7 +110,9 @@ const routes: Routes = [
   // ------------- JOUEUR -------------
   { path: 'detailJoueur/:id', component: DetailCompteComponent, canActivate: [StatutConnecteService]},
   { path: 'modificationJoueur', component: ModifierJoueurComponent, canActivate: [StatutConnecteService]},
-
+  
+  { path: '', redirectTo: '/accueil', pathMatch: 'full' },
+  { path: 'accesRefuse', component: AccesRefuseComponent, canActivate: [StatutConnecteService] },
   // Cas url inexistant
   { path: 'not-found', component: FourOhFourComponent, canActivate: [StatutConnecteService] },
 

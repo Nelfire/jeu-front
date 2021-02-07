@@ -4,37 +4,38 @@
             alt="" style="width: 40px;height: 40px;" />
     </div>
     <!--     {{informationRessourcesJoueur | json}} -->
+    
     <div class="menu" *ngIf="infosJoueur && informationRessourcesJoueur">
-        <ul class="modify">
-            <li class="pierre">
+        <ul class="modify" id="etape1" >
+            <li id="etape2" class="pierre">
                 <a class="btn"
                     ngbTooltip="Production par heure : {{informationRessourcesJoueur.apportPierreSeconde * 3600}}">
                     <fa-icon [icon]="iconeStopWatch"></fa-icon> Pierre : <b
                         [ngStyle]="{color:getColorApprocheLimitePierre()}">{{informationRessourcesJoueur.pierrePossession}}/{{informationRessourcesJoueur.quantiteMaximaleStockagePierre}}</b>
                 </a>
             </li>
-            <li class="bois">
+            <li id="etape3" class="bois">
                 <a class="btn"
                     ngbTooltip="Production par heure : {{informationRessourcesJoueur.apportBoisSeconde * 3600}}">
                     <fa-icon [icon]="iconeStopWatch"></fa-icon> Bois : <b
                         [ngStyle]="{color:getColorApprocheLimiteBois()}">{{informationRessourcesJoueur.boisPossession}}/{{informationRessourcesJoueur.quantiteMaximaleStockageBois}}</b>
                 </a>
             </li>
-            <li class="or">
+            <li id="etape4" class="or">
                 <a class="btn"
                     ngbTooltip="Production par heure : {{informationRessourcesJoueur.apportOrSeconde * 3600}}">
                     <fa-icon [icon]="iconeStopWatch"></fa-icon> Or : <b
                         [ngStyle]="{color:getColorApprocheLimiteOr()}">{{informationRessourcesJoueur.orPossession}}/{{informationRessourcesJoueur.quantiteMaximaleStockageOr}}</b>
                 </a>
             </li>
-            <li class="nourriture"
+            <li id="etape5" class="nourriture"
                 ngbTooltip="Production par heure : {{informationRessourcesJoueur.apportNourritureSeconde * 3600}}">
                 <a class="btn">
                     <fa-icon [icon]="iconeStopWatch"></fa-icon> Nourriture : <b
                         [ngStyle]="{color:getColorApprocheLimiteNourriture()}">{{informationRessourcesJoueur.nourriturePossession}}/{{informationRessourcesJoueur.quantiteMaximaleStockageNourriture}}</b>
                 </a>
             </li>
-            <li class="gemme">
+            <li id="etape6" class="gemme">
                 <a class="btn" ngbTooltip="Gain de gemmes en réalisant des expéditions">
                     <fa-icon [icon]="iconeStopWatch"></fa-icon> Gemmes :
                     <b>{{informationRessourcesJoueur.gemmePossession}}</b>
@@ -47,12 +48,20 @@
 <body>
     <div class="area"></div>
     <nav class="main-menu">
-        <ul>
-            <li>
+        <ul id="etape7">
+            <li id="etape8">
                 <a routerLink="campement">
                     <i class="fa fa-home fa-2x"></i>
                     <span class="nav-text">
                         Mon campement
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="defense">
+                    <i class="fa fa-home fa-2x"></i>
+                    <span class="nav-text">
+                        Mes défenses
                     </span>
                 </a>
             </li>
@@ -122,6 +131,14 @@
             </li>
         </ul>
         <ul class="logout" *ngIf="infosJoueur">
+            <li>
+                <a (click)="lancementTutoriel()">
+                    <i class="fa fa-male fa-2x"></i>
+                    <span class="nav-text">
+                        Tutoriel
+                    </span>
+                </a>
+            </li>
             <li>
                 <a routerLink="detailJoueur/{{infosJoueur.id}}">
                     <i class="fa fa-male fa-2x"></i>

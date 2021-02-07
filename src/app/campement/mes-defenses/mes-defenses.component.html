@@ -1,0 +1,62 @@
+<div class="defense">
+
+    <!-- titre page -->
+    <div class="divider-custom divider-light">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-titre">DEFENSES</div>
+        <div class="divider-custom-line"></div>
+    </div>
+
+    <div>
+        <ul class="honeycomb" lang="es">
+            <li class="honeycomb-cell" *ngFor="let defense of lesDefenses">
+                <div>
+                    <a routerLink="../defense/detail-defense/{{defense.id}}">
+                        <div>
+                            <!-- Quantitée d'unitées affichée si le joueur en possède -->
+                            <div style="text-align:center;"
+                                *ngIf="defense.joueurLaPossede && defense.quantiteePossession!=0">
+                                <input disabled type="text" name="texte" class="quantite"
+                                    value="Possède : {{defense.quantiteePossession}}" />
+                            </div>
+                            <!-- Icone -->
+                            <img class="honeycomb-cell__image" src="{{defense.icone}}">
+                            <!-- Libelle -->
+                            <div class="honeycomb-cell__title">{{defense.libelle}}</div>
+                            <br>
+                        </div>
+                        <!-- Boutons -->
+                        <!---->
+                        <span *ngIf="defense.flagPossedeBatimentNecessaireConstructionDefense">
+
+                            <span *ngIf="!defense.flagNiveauBatimentNecessaireConstructionDefenseAssezEleve">
+                                <a routerLink="../batiment/detail-batiment/{{defense.idBatimentProvenance}}">
+                                    <button class="btn btn-warning">Niveau bâtiment insuffisant</button>
+                                </a>
+                            </span>
+                        </span>
+                        <!-- SI NIVEAU BÂTIMENT DE PROVENCANT INSUFFISANT-->
+
+                        <!-- SI BÂTIMENT PAS ENCORS ACQUIS-->
+                        <span *ngIf="!defense.flagPossedeBatimentNecessaireConstructionDefense">
+                            <a routerLink="../batiment/detail-batiment/{{defense.idBatimentProvenance}}">
+                                <button class="btn btn-danger">Bâtiment manquant</button>
+                            </a>
+                        </span>
+                        <span
+                            *ngIf="defense.flagPossedeBatimentNecessaireConstructionDefense && defense.flagNiveauBatimentNecessaireConstructionDefenseAssezEleve && !defense.flagBatimentDefenseEnCoursDeConstruction">
+                            <span *ngIf="defense.constructionEnCours; else pasDeConstructionEnCours">
+                                <button class="btn btn-warning"><span class="spinner-border spinner-border-sm"></span>En
+                                    cours</button>
+                            </span>
+                            <ng-template #pasDeConstructionEnCours>
+                                <button class="btn btn-info">Créer</button>
+                            </ng-template>
+
+                        </span>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
