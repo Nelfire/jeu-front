@@ -34,7 +34,6 @@ export class DetailUniteeComponent implements OnInit, OnDestroy {
   coutNourritureFormation: number;
   quantite: number;
   lesUnitees = [];
-  armeesDuJoueur: Armee[];
   batimentJoueur: MesBatiments;
   joueurPossedeBatiment: boolean;
   niveauBatimentAssezEleveFormation: boolean;
@@ -57,7 +56,6 @@ export class DetailUniteeComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private uniteeService: UniteeService,
     private armeeService: ArmeeService,
-    private router: Router,
     private joueurService: JoueurService,
     private batimentJoueurService: BatimentJoueurService,
     private notification: NotificationService) { }

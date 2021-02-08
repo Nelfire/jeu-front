@@ -29,11 +29,21 @@
                         <!---->
                         <span *ngIf="defense.flagPossedeBatimentNecessaireConstructionDefense">
 
-                            <span *ngIf="!defense.flagNiveauBatimentNecessaireConstructionDefenseAssezEleve">
+                            <span *ngIf="defense.flagBatimentDefenseEnCoursDeConstruction; else suite;">
                                 <a routerLink="../batiment/detail-batiment/{{defense.idBatimentProvenance}}">
-                                    <button class="btn btn-warning">Niveau bâtiment insuffisant</button>
+                                    <button class="btn btn-warning">Bâtiment en cours de travail</button>
                                 </a>
                             </span>
+                            <ng-template #suite>
+                                <span *ngIf="!defense.flagNiveauBatimentNecessaireConstructionDefenseAssezEleve">
+                                    <a routerLink="../batiment/detail-batiment/{{defense.idBatimentProvenance}}">
+                                        <button class="btn btn-warning">Niveau bâtiment insuffisant</button>
+                                    </a>
+                                </span>
+                            </ng-template>
+
+
+
                         </span>
                         <!-- SI NIVEAU BÂTIMENT DE PROVENCANT INSUFFISANT-->
 

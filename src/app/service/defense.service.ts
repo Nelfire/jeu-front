@@ -20,4 +20,8 @@ export class DefenseService {
   listerDefense(): Observable<Defense[]> {
     return this.http.get<Defense[]>(`${URL_BACKEND}/listerDefense`);
   }
+
+  detailsDefense(id: number): Observable<Defense> {
+    return this.http.get<Defense>(`${URL_BACKEND}/detailsDefense?id=`+id);
+  }
 }

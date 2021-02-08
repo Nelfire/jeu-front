@@ -1,0 +1,294 @@
+.quantite {
+    margin-top: 10px;
+    width: 90px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.divformulaireCreation {
+    margin: 0 auto;
+    text-align: center;
+    width: 320px;
+    height: 110px;
+    border-radius: 20px;
+    background-color: rgba(15, 131, 209, 0.13);
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@400;500&display=swap");
+.containeer {
+    display: grid;
+    /*   grid-template-columns: 300px 300px 300px;
+  grid-gap: 50px; */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: "Baloo Paaji 2", cursive;
+}
+
+.card {
+    background-color: #222831;
+    /*     height: 37rem; */
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.7);
+    color: white;
+    opacity: 80%;
+}
+
+.card__name {
+    margin-top: 15px;
+    font-size: 1.8em;
+    text-decoration: underline;
+}
+.card__description {
+    font-size: 1em;
+}
+.card__apport__ressource {
+    font-size: 1.2em;
+}
+.card__cout__ressource {
+    font-size: 1.2em;
+    width: 240px;
+    text-align: center;
+}
+.card__temps__travail {
+    font-size: 1.2em;
+}
+.card__niveau {
+    font-size: 1.2em;
+}
+
+.card__quantitee_possession {
+    font-size: 1em;
+}
+.card__production_interrompu {
+    font-size: 1.6em;
+    color: rgb(255, 89, 89);
+    text-align: center;
+}
+.card__msg {
+    font-size: 1.5em;
+}
+.card__statistique {
+    font-size: 1.2em;
+    width: 180px;
+    text-align: center;
+}
+
+.card__categorie {
+    font-size: 1.5em;
+    text-decoration: underline;
+  }
+
+.card__progress_bar_text {
+    font-size: 1.6em;
+    text-align: center;
+}
+.card__progress_bar {
+    width: 80%;
+    text-align: center;
+}
+
+.card__image {
+    height: 160px;
+    width: 160px;
+    border-radius: 50%;
+    border: 5px solid #272133;
+    margin-top: 20px;
+    // Aura icone
+    box-shadow: 0 10px 50px rgb(9, 235, 243);
+}
+
+.draw-border {
+    box-shadow: inset 0 0 0 4px #58cdd1;
+    color: #58afd1;
+    -webkit-transition: color 0.25s 0.0833333333s;
+    transition: color 0.25s 0.0833333333s;
+    position: relative;
+}
+
+.draw-border::before,
+.draw-border::after {
+    border: 0 solid transparent;
+    box-sizing: border-box;
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    width: 0rem;
+    height: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.draw-border::before {
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+}
+
+.draw-border::after {
+    border-top-width: 4px;
+    border-right-width: 4px;
+}
+
+.draw-border:hover {
+    color: #ffe593;
+}
+
+.draw-border:hover::before,
+.draw-border:hover::after {
+    // Contours bouton "Apres"
+    border-color: #7ee937;
+    -webkit-transition: border-color 0s, width 0.25s, height 0.25s;
+    transition: border-color 0s, width 0.25s, height 0.25s;
+    width: 100%;
+    height: 100%;
+}
+
+.draw-border:hover::before {
+    -webkit-transition-delay: 0s, 0s, 0.25s;
+    transition-delay: 0s, 0s, 0.25s;
+}
+
+.draw-border:hover::after {
+    -webkit-transition-delay: 0s, 0.25s, 0s;
+    transition-delay: 0s, 0.25s, 0s;
+}
+
+// ----- DRAW BORDER ERROR -----
+.draw-border-error {
+    box-shadow: inset 0 0 0 4px #dd0101;
+    color: #dd0101;
+    -webkit-transition: color 0.25s 0.0833333333s;
+    transition: color 0.25s 0.0833333333s;
+    position: relative;
+}
+
+.draw-border-error::before,
+.draw-border-error::after {
+    border: 0 solid transparent;
+    box-sizing: border-box;
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    width: 0rem;
+    height: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.draw-border-error::before {
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+}
+
+.draw-border-error::after {
+    border-top-width: 4px;
+    border-right-width: 4px;
+}
+
+.draw-border-error:hover {
+    color: #ff9393;
+}
+
+.draw-border-error:hover::before,
+.draw-border-error:hover::after {
+    // Contours bouton "Apres"
+    border-color: #eb199b;
+    -webkit-transition: border-color 0s, width 0.25s, height 0.25s;
+    transition: border-color 0s, width 0.25s, height 0.25s;
+    width: 100%;
+    height: 100%;
+}
+
+.draw-border-error:hover::before {
+    -webkit-transition-delay: 0s, 0s, 0.25s;
+    transition-delay: 0s, 0s, 0.25s;
+}
+
+.draw-border-error:hover::after {
+    -webkit-transition-delay: 0s, 0.25s, 0s;
+    transition-delay: 0s, 0.25s, 0s;
+}
+
+.btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1.5;
+    font: 700 1.2rem "Roboto Slab", sans-serif;
+    padding: 0.75em 2em;
+    letter-spacing: 0.05rem;
+    margin: 1em;
+    width: 13rem;
+}
+
+.btn:focus {
+    outline: 2px dotted #55d7dc;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    font-size: 1.2em;
+}
+
+hr.style-seven {
+    overflow: visible; /* For IE */
+    height: 30px;
+    border-style: solid;
+    border-color: rgb(255, 255, 255);
+    border-width: 1px 0 0 0;
+    border-radius: 20px;
+    width: 80%;
+    margin-top: 30px;
+}
+hr.style-seven:before {
+    /* Not really supposed to work, but does */
+    display: block;
+    content: "";
+    height: 30px;
+    margin-top: -31px;
+    border-style: solid;
+    border-color: rgb(255, 255, 255);
+    border-width: 0 0 1px 0;
+    border-radius: 20px;
+}
+
+.center {
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      ". . . . . . . . . . . . . ."
+      ". . . . . defense defense defense defense . . . . ."
+      ". . . . . defense defense defense defense . production-en-cours production-en-cours production-en-cours ."
+      ". . . . . defense defense defense defense . production-en-cours production-en-cours production-en-cours ."
+      ". . . . . defense defense defense defense . . . . ."
+      ". . . . . . . . . . . . . .";
+  }
+  
+  .defense { grid-area: defense; }
+  
+  .production-en-cours { grid-area: production-en-cours; }
+    
+
+
+  .quantitePossede{
+    color: red;
+    text-align: center;
+    width: 140px;
+    font-weight:bold;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.603);
+  
+  }
