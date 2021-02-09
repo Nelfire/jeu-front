@@ -7,7 +7,6 @@ before_script:
 script: 
   - npm run build
 deploy:
-  local-dir: dist/jeu-front
   provider: pages
   skip-cleanup: true
   github-token: $GITHUB_TOKEN
