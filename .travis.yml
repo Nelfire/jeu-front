@@ -1,3 +1,4 @@
+  
 language: node_js
 node_js:
   - "12"
@@ -12,7 +13,6 @@ deploy:
   skip-cleanup: true
   github-token: $GITHUB_TOKEN
   on:
-    branch: master
-    branch: gh-pages-with-travis
+  branch: master
 notifications:
   email: false
