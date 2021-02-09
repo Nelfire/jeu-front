@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+  - "12"
+before_script:
+  - npm install
+script: 
+  - npm run build
+  - cd dist/jeu-front && cp index.html
+deploy:
+  local-dir: dist/jeu-front
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  on:
+    branch: master
+    branch: gh-pages-with-travis
+notifications:
+  email: false
