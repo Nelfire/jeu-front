@@ -6,7 +6,6 @@ before_script:
   - npm install
 script: 
   - npm run build
-  - cd dist/jeu-front && cp index.html
 deploy:
   local-dir: dist/jeu-front
   provider: pages
