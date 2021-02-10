@@ -10,7 +10,7 @@ deploy:
   provider: pages
   skip-cleanup: true
   github-token: $GITHUB_TOKEN
-  local-dir: build
+  local-dir: dist/front
   on:
     branch: master
 notifications:
