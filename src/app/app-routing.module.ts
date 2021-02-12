@@ -51,8 +51,7 @@ const routes: Routes = [
   { path: 'auth', component: AuthComponent },
   // ------------ CREATION DE COMPTE ----------------
   { path: 'creationCompte', component: CreationCompteComponent},
-  { path: 'listerJourFerme', component: ListerJourFermeComponent, canActivate: [StatutConnecteService] },
-  { path: 'listerJoueurs', component: ListerJoueurComponent, canActivate: [StatutConnecteService] },
+
   { path: 'creationJourFerme', component: CreationJourFermeComponent, canActivate: [StatutConnecteService, StatutAdministrateurService] },
 
   { path: 'visualisationJoueur/:email', component: VisualiserJoueurComponent, canActivate: [StatutConnecteService] },
