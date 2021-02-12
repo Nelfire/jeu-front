@@ -109,20 +109,14 @@ export class DetailUniteeComponent implements OnInit, OnDestroy {
   }
 
   recuperationArmeeJoueur() {
-    console.log("recuperationArmeeJoueur");
     this.armeeService.listerArmeesDuJoueur().subscribe(
       (lesArmees) => {
         lesArmees.forEach(armee => {
 
           // Si le joueur possède le type d'unitée de la page
           if (armee.unitee.id == this.id) {
-            console.log(armee.unitee.libelle)
-
-            console.log("quantiteeUniteesPossession " + armee.quantitee)
             // Vérification formation en cours
             var dateMaintenantMillisecondes = new Date().getTime();
-            console.log("dateMaintenantMillisecondes : " + dateMaintenantMillisecondes)
-            console.log("armee.dateFinProduction : " + armee.dateFinProduction)
             if (armee.dateFinProduction > dateMaintenantMillisecondes) {
               // formation en cours
               this.secondesRestantesAmelioration = (armee.dateFinProduction - dateMaintenantMillisecondes) / 1000;
@@ -134,9 +128,6 @@ export class DetailUniteeComponent implements OnInit, OnDestroy {
                 const compteur = Observable.interval(1000);
                 this.counterSubscription = compteur.subscribe(
                   () => {
-                    console.log("Timer unitée")
-
-
                     // A chaques appel, réduction de 1 seconde le nombre de secondes présentes dans le compteur
                     this.secondesRestantesAmelioration = Math.ceil(this.secondesRestantesAmelioration - 1);
                     this.uniteesRestantesArrondis = Math.ceil(this.secondesRestantesAmelioration / armee.unitee.tempsFormation);
@@ -267,29 +258,17 @@ export class DetailUniteeComponent implements OnInit, OnDestroy {
   getTempsFormationUniteePourcent() {
     // Temps du niveau suivantle
     let pourcentageRestant;
-
-
     pourcentageRestant = 100 - ((this.secondesRestantesAmelioration%this.unitee.tempsFormation) * 100) / this.unitee.tempsFormation;
-
-   // console.log("pourcentageRestant",pourcentageRestant);
     return pourcentageRestant + '%';
   }
   getTempsFormationTotalFileAttentePourcent() {
     // Temps du niveau suivantle
     let pourcentageRestante;
-    console.log("dateLancementProduction : "+this.dateLancementProduction);
-    console.log("dateFinProduction : "+this.dateFinProduction);
-
     let differenceSecondes = (this.dateFinProduction-this.dateLancementProduction)/1000;
-    //console.log("differenceDeux"+differenceDeux)
 
-    console.log("difference :"+differenceSecondes)
     //pourcentageRestante = 100 - (((difference) * 100) / this.dateFinProduction);
     pourcentageRestante = 100 - (this.secondesRestantesAmelioration*100)/(differenceSecondes);
-
-    //console.log("this.dateFinProduction : ",this.dateFinProduction)
-    //console.log("this.secondesRestantesAmelioration : ",this.secondesRestantesAmelioration)
-    //console.log("pourcentageRestant",pourcentageRestante);
+    
     return pourcentageRestante + '%';
   }
 

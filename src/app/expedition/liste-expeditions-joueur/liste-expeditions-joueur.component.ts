@@ -65,7 +65,6 @@ export class ListeExpeditionsJoueurComponent implements OnInit, OnDestroy {
                 if (uneExpedition.secondesRestantesAmelioration < 1) {
                   this.listerToutesLesExpeditionsJoueur();
                 }
-                console.log(uneExpedition.secondesRestantesAmelioration);
                 uneExpedition.dateFinExpedition = uneExpedition.secondesRestantesAmelioration;
                 var date = new Date(null);
                 date.setSeconds(uneExpedition.dateFinExpedition);

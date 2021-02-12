@@ -47,7 +47,6 @@ export class ListeExpeditionsComponent implements OnInit, OnDestroy {
               lesExpeditionsJoueur.forEach((uneExpeditionJoueur) => {
                 // Si l'id expedition en cours d'analyse = l'id expedition joueur, alors il l'a déjà faite
                 if (uneExpeditionJoueur.expedition.id === uneExpedition.id) {
-                  console.log(uneExpedition.id)
                   uneExpedition.dejaRealisee = true;
                 }
               });
@@ -71,7 +70,6 @@ export class ListeExpeditionsComponent implements OnInit, OnDestroy {
         demain.setDate(demain.getDate() + 1);
         // Secondes restantes avant demain
         var secondesRestantesAvantRefresh = (demain.getTime() - aujourdhui.getTime()) / 1000;
-        console.log(secondesRestantesAvantRefresh);
         // Mise au bon format (hh:mm:ss)
         var date = new Date(null);
         date.setSeconds(secondesRestantesAvantRefresh);

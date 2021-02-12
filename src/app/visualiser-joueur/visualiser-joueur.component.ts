@@ -20,8 +20,6 @@ export class VisualiserJoueurComponent implements OnInit {
     this.joueurService.informationJoueurByEmail().subscribe(
       (joueurRecupere) => {
         this.joueur = joueurRecupere;
-      }, (error) => {
-        console.log(error);
       }
     );
   }

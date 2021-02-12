@@ -99,7 +99,6 @@ export class AuthService {
   }
 
   creationCompte(pseudo: string, email: string, password: string) {
-    console.log("auth.service.ts ligne 101");
     return this.http.post(`${URL_BACKEND}`,{
       pseudo: `${pseudo}`,
       email: `${email}`,

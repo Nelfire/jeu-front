@@ -231,7 +231,6 @@ export class BoutiqueComponent implements OnInit {
       if (limitePierre * 0.1 + quantiteePierrePossede > limitePierre) {
         coutGemme = (limitePierre - quantiteePierrePossede)/100;
         quantiteePierre10pourcent = limitePierre - quantiteePierrePossede;
-        console.log("Redéfinition cout en gemme , nouveau : "+coutGemme)
       }
       // SI GEMMES INSUFISANTES AU COUT
       if (this.infosJoueur.gemmePossession < coutGemme) {
@@ -266,7 +265,6 @@ export class BoutiqueComponent implements OnInit {
       if (limitePierre * 0.5 + quantiteePierrePossede > limitePierre) {
         coutGemme = (limitePierre - quantiteePierrePossede)/100;
         quantiteePierre50pourcent = limitePierre - quantiteePierrePossede;
-        console.log("Redéfinition cout en gemme , nouveau : "+coutGemme)
       }
       // SI GEMMES INSUFISANTES AU COUT
       if (this.infosJoueur.gemmePossession < coutGemme) {
@@ -301,7 +299,6 @@ export class BoutiqueComponent implements OnInit {
       if (limitePierre + quantiteePierrePossede > limitePierre) {
         coutGemme = (limitePierre - quantiteePierrePossede)/100;
         quantiteePierre100pourcent = limitePierre - quantiteePierrePossede;
-        console.log("Redéfinition cout en gemme , nouveau : "+coutGemme)
       }
       // SI GEMMES INSUFISANTES AU COUT
       if (this.infosJoueur.gemmePossession < coutGemme) {
@@ -329,8 +326,6 @@ export class BoutiqueComponent implements OnInit {
     let limiteBois = this.infosJoueur.boisMaximum;
     let quantiteeBois10pourcent = limiteBois * 0.1;
     let coutGemme = quantiteeBois10pourcent / 100;
-    console.log("quantiteeBoisPossede : ",quantiteeBoisPossede)
-    console.log("limiteBois : ",limiteBois)
     // CAS CAPACITEE STOCKAGE DEPASSEE
     if (quantiteeBoisPossede >= limiteBois) {
       this.notification.showError("Limite de capacitée de stockage atteinte", "Limite atteinte");
@@ -339,8 +334,6 @@ export class BoutiqueComponent implements OnInit {
       if (limiteBois * 0.1 + quantiteeBoisPossede > limiteBois) {
         coutGemme = (limiteBois - quantiteeBoisPossede)/100;
         quantiteeBois10pourcent = limiteBois - quantiteeBoisPossede;
-        console.log("Redéfinition cout en gemme , nouveau : "+coutGemme)
-
       }
       // SI GEMMES INSUFISANTES AU COUT
       if (this.infosJoueur.gemmePossession < coutGemme) {
@@ -366,8 +359,6 @@ export class BoutiqueComponent implements OnInit {
     let limiteBois = this.infosJoueur.boisMaximum;
     let quantiteeBois50pourcent = limiteBois * 0.5;
     let coutGemme = quantiteeBois50pourcent / 100;
-    console.log("quantiteeBoisPossede : ",quantiteeBoisPossede)
-    console.log("limiteBois : ",limiteBois)
     // CAS CAPACITEE STOCKAGE DEPASSEE
     if (quantiteeBoisPossede >= limiteBois) {
       this.notification.showError("Limite de capacitée de stockage atteinte", "Limite atteinte");
@@ -376,7 +367,6 @@ export class BoutiqueComponent implements OnInit {
       if (limiteBois * 0.5 + quantiteeBoisPossede > limiteBois) {
         coutGemme = (limiteBois - quantiteeBoisPossede)/100;
         quantiteeBois50pourcent = limiteBois - quantiteeBoisPossede;
-        console.log("Redéfinition cout en gemme , nouveau : "+coutGemme)
       }
       // SI GEMMES INSUFISANTES AU COUT
       if (this.infosJoueur.gemmePossession < coutGemme) {
@@ -402,8 +392,6 @@ export class BoutiqueComponent implements OnInit {
     let limiteBois = this.infosJoueur.boisMaximum;
     let quantiteeBois100pourcent = limiteBois;
     let coutGemme = quantiteeBois100pourcent / 100;
-    console.log("quantiteeBoisPossede : ",quantiteeBoisPossede)
-    console.log("limiteBois : ",limiteBois)
     // CAS CAPACITEE STOCKAGE DEPASSEE
     if (quantiteeBoisPossede >= limiteBois) {
       this.notification.showError("Limite de capacitée de stockage atteinte", "Limite atteinte");
@@ -412,7 +400,6 @@ export class BoutiqueComponent implements OnInit {
       if (limiteBois + quantiteeBoisPossede > limiteBois) {
         coutGemme = (limiteBois - quantiteeBoisPossede)/100;
         quantiteeBois100pourcent = limiteBois - quantiteeBoisPossede;
-        console.log("Redéfinition cout en gemme , nouveau : "+coutGemme)
       }
       // SI GEMMES INSUFISANTES AU COUT
       if (this.infosJoueur.gemmePossession < coutGemme) {
@@ -448,7 +435,6 @@ export class BoutiqueComponent implements OnInit {
       if (limiteOr * 0.1 + quantiteeOrPossede > limiteOr) {
         coutGemme = (limiteOr - quantiteeOrPossede)/100;
         quantiteeOr10pourcent = limiteOr - quantiteeOrPossede;
-        console.log("Redéfinition cout en gemme , nouveau : "+coutGemme)
       }
       // SI GEMMES INSUFISANTES AU COUT
       if (this.infosJoueur.gemmePossession < coutGemme) {
@@ -482,7 +468,6 @@ export class BoutiqueComponent implements OnInit {
       if (limiteOr * 0.5 + quantiteeOrPossede > limiteOr) {
         coutGemme = (limiteOr - quantiteeOrPossede)/100;
         quantiteeOr50pourcent = limiteOr - quantiteeOrPossede;
-        console.log("Redéfinition cout en gemme , nouveau : "+coutGemme)
       }
       // SI GEMMES INSUFISANTES AU COUT
       if (this.infosJoueur.gemmePossession < coutGemme) {
@@ -516,7 +501,6 @@ export class BoutiqueComponent implements OnInit {
       if (limiteOr + quantiteeOrPossede > limiteOr) {
         coutGemme = (limiteOr - quantiteeOrPossede)/100;
         quantiteeOr100pourcent = limiteOr - quantiteeOrPossede;
-        console.log("Redéfinition cout en gemme , nouveau : "+coutGemme)
       }
       // SI GEMMES INSUFISANTES AU COUT
       if (this.infosJoueur.gemmePossession < coutGemme) {
@@ -552,7 +536,6 @@ export class BoutiqueComponent implements OnInit {
       if (limiteNourriture * 0.1 + quantiteeNourriturePossede > limiteNourriture) {
         coutGemme = (limiteNourriture - quantiteeNourriturePossede)/100;
         quantiteeNourriture10pourcent = limiteNourriture - quantiteeNourriturePossede;
-        console.log("Redéfinition cout en gemme , nouveau : "+coutGemme)
       }
       // SI GEMMES INSUFISANTES AU COUT
       if (this.infosJoueur.gemmePossession < coutGemme) {
@@ -586,7 +569,6 @@ export class BoutiqueComponent implements OnInit {
       if (limiteNourriture * 0.5 + quantiteeNourriturePossede > limiteNourriture) {
         coutGemme = (limiteNourriture - quantiteeNourriturePossede)/100;
         quantiteeNourriture50pourcent = limiteNourriture - quantiteeNourriturePossede;
-        console.log("Redéfinition cout en gemme , nouveau : "+coutGemme)
       }
       // SI GEMMES INSUFISANTES AU COUT
       if (this.infosJoueur.gemmePossession < coutGemme) {
@@ -620,7 +602,6 @@ export class BoutiqueComponent implements OnInit {
       if (limiteNourriture + quantiteeNourriturePossede > limiteNourriture) {
         coutGemme = (limiteNourriture - quantiteeNourriturePossede)/100;
         quantiteeNourriture100pourcent = limiteNourriture - quantiteeNourriturePossede;
-        console.log("Redéfinition cout en gemme , nouveau : "+coutGemme)
       }
       // SI GEMMES INSUFISANTES AU COUT
       if (this.infosJoueur.gemmePossession < coutGemme) {

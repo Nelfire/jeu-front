@@ -107,7 +107,6 @@ export class DetailDefenseComponent implements OnInit, OnDestroy {
   }
 
   recuperationDefensesJoueur() {
-    console.log("recuperationDefensesJoueur");
     this.defenseJoueurService.listerMesDefenses().subscribe(
       (lesDefensesJoueurs) => {
         lesDefensesJoueurs.forEach(uneDefenseJoueur => {
@@ -115,7 +114,6 @@ export class DetailDefenseComponent implements OnInit, OnDestroy {
           // Si le joueur possède le type de défense de la page
           if (uneDefenseJoueur.defense.idTypeDefense == this.id) {
 
-            console.log("quantiteeDefensesPossession " + uneDefenseJoueur.quantite)
             // Vérification construction en cours
             var dateMaintenantMillisecondes = new Date().getTime();
 
@@ -130,9 +128,6 @@ export class DetailDefenseComponent implements OnInit, OnDestroy {
                 const compteur = Observable.interval(1000);
                 this.counterSubscription = compteur.subscribe(
                   () => {
-                    console.log("Timer défense")
-
-
                     // A chaques appel, réduction de 1 seconde le nombre de secondes présentes dans le compteur
                     this.secondesRestantesAmelioration = Math.ceil(this.secondesRestantesAmelioration - 1);
                     this.defensesRestantesArrondis = Math.ceil(this.secondesRestantesAmelioration / uneDefenseJoueur.defense.tempsConstruction);
@@ -263,29 +258,19 @@ export class DetailDefenseComponent implements OnInit, OnDestroy {
   getTempsConstructionDefensePourcent() {
     // Temps du niveau suivantle
     let pourcentageRestant;
-
-
     pourcentageRestant = 100 - ((this.secondesRestantesAmelioration%this.defense.tempsConstruction) * 100) / this.defense.tempsConstruction;
-
-   // console.log("pourcentageRestant",pourcentageRestant);
     return pourcentageRestant + '%';
   }
   getTempsConstructionTotalFileAttentePourcent() {
+
     // Temps du niveau suivantle
     let pourcentageRestante;
-    console.log("dateLancementProduction : "+this.dateLancementProduction);
-    console.log("dateFinConstruction : "+this.dateFinConstruction);
 
     let differenceSecondes = (this.dateFinConstruction-this.dateLancementProduction)/1000;
-    //console.log("differenceDeux"+differenceDeux)
-
-    console.log("difference :"+differenceSecondes)
+    
     //pourcentageRestante = 100 - (((difference) * 100) / this.dateFinConstruction);
     pourcentageRestante = 100 - (this.secondesRestantesAmelioration*100)/(differenceSecondes);
 
-    //console.log("this.dateFinConstruction : ",this.dateFinConstruction)
-    //console.log("this.secondesRestantesAmelioration : ",this.secondesRestantesAmelioration)
-    //console.log("pourcentageRestant",pourcentageRestante);
     return pourcentageRestante + '%';
   }
 

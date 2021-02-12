@@ -113,7 +113,6 @@ export class DetailBatimentComponent implements OnInit {
           // ** Actualisation chaques secondes ** */
           // Timer temps amélioration restant
           if (this.secondesRestantesAmelioration > 1) {
-            console.log(this.secondesRestantesAmelioration);
             // Définis l'interval de l'appel à 1000 ms (1 seconde)
             const compteur = Observable.interval(1000);
             this.counterSubscription = compteur.subscribe(
@@ -124,7 +123,6 @@ export class DetailBatimentComponent implements OnInit {
                 var date = new Date(null);
                 date.setSeconds(this.secondesRestantesAmelioration);
                 this.result = date.toISOString().substr(11, 8);
-                //console.log(this.secondesRestantesAmelioration);
                 if (this.secondesRestantesAmelioration < 1) {
                   this.ngOnDestroy();
                   setTimeout(() => {
@@ -206,7 +204,7 @@ export class DetailBatimentComponent implements OnInit {
   }
 
   annuler() {
-    console.log("Annulation");
+    
   }
 
   // Batiments Joueur Amélioration Colorisation ressources
@@ -279,11 +277,6 @@ export class DetailBatimentComponent implements OnInit {
       tempsMax = this.batimentJoueurPossede.tempsAmelioration;
     }
     pourcentageRestant = 100 - (this.secondesRestantesAmelioration * 100) / tempsMax;
-    console.log("secondesRestantesAmelioration : "+this.secondesRestantesAmelioration);
-    console.log("tempsMax : "+tempsMax);
-    console.log("this.batiment.tempsDeConstruction : "+this.batiment.tempsDeConstruction)
-    console.log("this.batimentJoueurPossede.niveau : "+this.batimentJoueurPossede.niveau)
-    console.log("pourcentageRestant : "+pourcentageRestant)
     return pourcentageRestant + '%';
   }
 

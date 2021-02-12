@@ -27,7 +27,6 @@ export class MesDefensesComponent implements OnInit {
     this.defenseService.listerDefense().subscribe(
       (defenses) => {
         this.lesDefenses = defenses;
-        console.log(defenses)
         this.listeDesDefenses();
       }
     );
@@ -40,16 +39,11 @@ export class MesDefensesComponent implements OnInit {
         this.lesDefenses.forEach(uneDefense => {
           // Parcourir les bâtiments que possède le joueur
           this.lesBatimentsDuJoueur.forEach(unBatimentJoueur => {
-            console.log("unBatimentJoueur.batiment.idTypeBatiment",unBatimentJoueur.batiment.idTypeBatiment)
-            console.log("uneDefense.idBatimentProvenance :",uneDefense.idBatimentProvenance)
 
             // Si le joueur possède le bâtiment d'où provient l'unitée, c'est ok
             if (uneDefense.idBatimentProvenance == unBatimentJoueur.batiment.idTypeBatiment) {
-              console.log("passe par ici !")
               uneDefense.flagPossedeBatimentNecessaireConstructionDefense = true;
               // Puis, vérification du niveau de bâtiment necessaire
-              console.log("unBatimentJoueur.niveau : ",unBatimentJoueur.niveau)
-              console.log("uneDefense.niveauBatimentNecessaireFormation", uneDefense.niveauBatimentNecessaireConstruction)
               if (unBatimentJoueur.niveau >= uneDefense.niveauBatimentNecessaireConstruction) {
                 uneDefense.flagNiveauBatimentNecessaireConstructionDefenseAssezEleve = true;
               }

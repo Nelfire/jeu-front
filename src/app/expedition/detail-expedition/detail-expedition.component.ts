@@ -79,15 +79,7 @@ export class DetailExpeditionComponent implements OnInit {
       (armeesJoueur) => {
         this.armeesDuJoueur = armeesJoueur;
         // Vérifier les reeles quantités (Retirer les unitées en cours de formation)
-
-
-
-        console.log(this.armeesDuJoueur[0].unitee.id);
         this.armeesDuJoueur.forEach(larmee => {
-
-
-
-
           // Vérification formation en cours
           var dateMaintenantMillisecondes = new Date().getTime();
           if (larmee.dateFinProduction > dateMaintenantMillisecondes) {
@@ -229,146 +221,123 @@ export class DetailExpeditionComponent implements OnInit {
       } else {
         quantiteePossession = armee.quantite;
       }
-      
+
 
 
       if (armee.unitee.id == 1) { // Villageois
         if (nombreVillageois > quantiteePossession) {
           this.flagErreurEnvoi = true;
           this.notification.showError("Vous manquez de villageois", "Erreur de lancement.");
-          console.log(this.flagErreurEnvoi);
         }
       } else if (armee.unitee.id == 2) { // archer
         if (nombreArcher > quantiteePossession) {
           this.flagErreurEnvoi = true;
           this.notification.showError("Vous manquez d'archers", "Erreur de lancement.");
-          console.log(this.flagErreurEnvoi);
         }
       } else if (armee.unitee.id == 3) { // archerComposite
         if (nombreArcherComposite > quantiteePossession) {
           this.flagErreurEnvoi = true;
           this.notification.showError("Vous manquez d'achers composite", "Erreur de lancement.");
-          console.log(this.flagErreurEnvoi);
         }
       } else if (armee.unitee.id == 4) { // fantassinEpee
         if (nombreFantassinEpee > quantiteePossession) {
           this.flagErreurEnvoi = true;
           this.notification.showError("Vous manquez de fantassins épée", "Erreur de lancement.");
-          console.log(this.flagErreurEnvoi);
         }
       } else if (armee.unitee.id == 5) { // nombreHommeDArme
         if (nombreHommeDArme > quantiteePossession) {
           this.flagErreurEnvoi = true;
           this.notification.showError("Vous manquez d'hommes d'arme", "Erreur de lancement.");
-          console.log(this.flagErreurEnvoi);
         }
       } else if (armee.unitee.id == 6) { // nombreLanceurDeHache
         if (nombreLanceurDeHache > quantiteePossession) {
           this.flagErreurEnvoi = true;
           this.notification.showError("Vous manquez de lanceurs de hâche", "Erreur de lancement.");
-          console.log(this.flagErreurEnvoi);
         }
       } else if (armee.unitee.id == 7) { // nombreMilicien
         if (nombreMilicien > quantiteePossession) {
           this.flagErreurEnvoi = true;
           this.notification.showError("Vous manquez de miliciens", "Erreur de lancement.");
-          console.log(this.flagErreurEnvoi);
         }
       } else if (armee.unitee.id == 8) { // nombrePiquier
         if (nombrePiquier > quantiteePossession) {
           this.flagErreurEnvoi = true;
           this.notification.showError("Vous manquez de piquiers", "Erreur de lancement.");
-          console.log(this.flagErreurEnvoi);
         }
       } else if (armee.unitee.id == 9) { // nombreCavalierArcher
         if (nombreCavalierArcher > quantiteePossession) {
           this.flagErreurEnvoi = true;
           this.notification.showError("Vous manquez de cavaliers acher", "Erreur de lancement.");
-          console.log(this.flagErreurEnvoi);
         }
       } else if (armee.unitee.id == 10) { // nombreCavalier
         if (nombreCavalier > quantiteePossession) {
           this.flagErreurEnvoi = true;
           this.notification.showError("Vous manquez de cavaliers", "Erreur de lancement.");
-          console.log(this.flagErreurEnvoi);
         }
       } else if (armee.unitee.id == 11) { // nombreChampion
         if (nombreChampion > quantiteePossession) {
           this.flagErreurEnvoi = true;
           this.notification.showError("Vous manquez de champions", "Erreur de lancement.");
-          console.log(this.flagErreurEnvoi);
         }
       } else if (armee.unitee.id == 12) { // nombreBateauDePeche
         if (nombreBateauDePeche > quantiteePossession) {
           this.flagErreurEnvoi = true;
           this.notification.showError("Vous manquez de bâteaux de pêche", "Erreur de lancement.");
-          console.log(this.flagErreurEnvoi);
         }
       } else if (armee.unitee.id == 13) { // nombreBateauIncendiaire
         if (nombreBateauIncendiaire > quantiteePossession) {
           this.flagErreurEnvoi = true;
           this.notification.showError("Vous manquez de bâteaux incendiaire", "Erreur de lancement.");
-          console.log(this.flagErreurEnvoi);
         }
       } else if (armee.unitee.id == 14) { // nombreBateauDeDestruction
         if (nombreBateauDeDestruction > quantiteePossession) {
           this.flagErreurEnvoi = true;
           this.notification.showError("Vous manquez de bâteaux de destruction", "Erreur de lancement.");
-          console.log(this.flagErreurEnvoi);
         }
       } else if (armee.unitee.id == 15) { // nombreGalionACanon
         if (nombreGalionACanon > quantiteePossession) {
           this.flagErreurEnvoi = true;
           this.notification.showError("Vous manquez de galions à canon", "Erreur de lancement.");
-          console.log(this.flagErreurEnvoi);
         }
       } else if (armee.unitee.id == 16) { // nombreGalion
         if (nombreGalion > quantiteePossession) {
           this.flagErreurEnvoi = true;
           this.notification.showError("Vous manquez de galions", "Erreur de lancement.");
-          console.log(this.flagErreurEnvoi);
         }
       } else if (armee.unitee.id == 17) { // nombreGuerrierElite
         if (nombreGuerrierElite > quantiteePossession) {
           this.flagErreurEnvoi = true;
           this.notification.showError("Vous manquez de guerriers élite", "Erreur de lancement.");
-          console.log(this.flagErreurEnvoi);
         }
       } else if (armee.unitee.id == 18) { // nombrePhalange
         if (nombrePhalange > quantiteePossession) {
           this.flagErreurEnvoi = true;
           this.notification.showError("Vous manquez de phalanges", "Erreur de lancement.");
-          console.log(this.flagErreurEnvoi);
         }
       } else if (armee.unitee.id == 19) { // nombreSamourail
         if (nombreSamourail > quantiteePossession) {
           this.flagErreurEnvoi = true;
           this.notification.showError("Vous manquez de samourails", "Erreur de lancement.");
-          console.log(this.flagErreurEnvoi);
         }
       } else if (armee.unitee.id == 20) { // nombreTemplier
         if (nombreTemplier > quantiteePossession) {
           this.flagErreurEnvoi = true;
           this.notification.showError("Vous manquez de templiers", "Erreur de lancement.");
-          console.log(this.flagErreurEnvoi);
         }
       } else if (armee.unitee.id == 21) { // nombreCatapulte
         if (nombreCatapulte > quantiteePossession) {
           this.flagErreurEnvoi = true;
           this.notification.showError("Vous manquez de catapultes", "Erreur de lancement.");
-          console.log(this.flagErreurEnvoi);
         }
       } else if (armee.unitee.id == 22) { // nombreElephantDeCombat
         if (nombreElephantDeCombat > quantiteePossession) {
           this.flagErreurEnvoi = true;
           this.notification.showError("Vous manquez d'éléphants de combat", "Erreur de lancement.");
-          console.log(this.flagErreurEnvoi);
         }
       } else if (armee.unitee.id == 23) { // nombrePretre
         if (nombrePretre > quantiteePossession) {
           this.flagErreurEnvoi = true;
           this.notification.showError("Vous manquez de prêtres", "Erreur de lancement.");
-          console.log(this.flagErreurEnvoi);
         }
       }
     });
