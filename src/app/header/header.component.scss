@@ -23,7 +23,7 @@ overflow:visible;
 
 
 header {
-    background-color: #e3f2fd;
+    background-color: rgb(227 242 253 / 65%);;
     position: fixed;
     top: 0;
     height: 7%;
@@ -33,7 +33,7 @@ header {
     border-bottom: 1px solid #cbeaff00;
     -webkit-box-shadow: 0px 2px 2px rgba(135, 147, 250, 0.486);
     box-shadow: 0px 2px 2px rgba(135, 146, 250, 0.144);
-    opacity: 65%; 
+    //opacity: 65%; 
 }
 header .logo {
     float: left;
