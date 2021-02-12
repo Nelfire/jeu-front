@@ -12,10 +12,12 @@
     <form>
       <!-- email -->
       <input type="email" name="email" [(ngModel)]="joueur.email" class="fadeIn second" id="exampleInputEmail1"
-        aria-describedby="emailHelp">
+        aria-describedby="emailHelp"><br>
+        <small>Email de test : test@email.com</small>
       <!-- password -->
       <input type="password" name="pass" [(ngModel)]="joueur.motDePasse" class="fadeIn third" id="exampleInputPassword1"
-        aria-describedby="passwordHelp">
+        aria-describedby="passwordHelp"><br>
+        <small>Password : password</small><br>
       <!-- bouton de connexion -->
       <input type="submit" class="fadeIn fourth mb-3" (click)="connecter()" value="Se connecter">
       <!-- bouton création de compte -->
