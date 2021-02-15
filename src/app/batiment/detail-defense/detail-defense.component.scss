@@ -266,7 +266,7 @@ hr.style-seven:before {
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 0.6fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     gap: 0px 0px;
     grid-template-areas:
       ". . . . . . . . . . . . . ."
@@ -274,6 +274,8 @@ hr.style-seven:before {
       ". . . . . defense defense defense defense . production-en-cours production-en-cours production-en-cours ."
       ". . . . . defense defense defense defense . production-en-cours production-en-cours production-en-cours ."
       ". . . . . defense defense defense defense . . . . ."
+      ". . . . . . . . . . . . . ."
+      ". . . . . . . . . . . . . ."
       ". . . . . . . . . . . . . .";
   }
   

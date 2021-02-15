@@ -199,7 +199,7 @@ export class ListeExpeditionsJoueurComponent implements OnInit, OnDestroy {
   recupererRecompense(idExpedition: number) {
     this.clickRecuperer = true;
     this.messageBoutonRecuperationRecompense = "Compte crédité";
-    this.notification.showSuccess("", "Récompense récupérée !");
+    this.notification.showSuccess("", "Récompense récupérée ! Vos unitées rentrent au campement.");
     this.expeditionJoueurService.recupererRecompense(idExpedition).subscribe();
   }
 

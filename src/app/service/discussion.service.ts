@@ -18,6 +18,7 @@ export class DiscussionService {
   }
 
   publierMessage(contenu: string): Observable<Message> {
+    console.log(contenu);
     return this.http.post<Message>(`${URL_BACKEND}`,
       {
         contenu: `${contenu}`

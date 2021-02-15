@@ -42,7 +42,7 @@
                                 <div class="d-flex justify-content-end mb-4">
                                     <div class="msg_cotainer_send">
                                         {{message.contenu}}
-                                        <span class="msg_time_send">8:55 AM, Today --
+                                        <span class="msg_time_send">{{message.datePublication | date:'dd/MM/yyyy HH:mm:ss'}} --
                                             <b><a
                                                     routerLink="/detailJoueur/{{message.joueur.id}}">{{message.joueur.pseudo}}</a></b></span>
                                     </div>
