@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as introJs from 'intro.js/intro.js';
+import { JoueurInfos } from '../models/joueur-infos';
+import { JoueurService } from '../service/joueur.service';
 
 @Component({
   selector: 'app-accueil',
@@ -7,11 +9,18 @@ import * as introJs from 'intro.js/intro.js';
   styleUrls: ['./accueil.component.scss']
 })
 export class AccueilComponent implements OnInit {
+  
+  // INITIALISATIONS
+  infosJoueur: JoueurInfos;
 
-  constructor() { }
+  constructor(private joueurService: JoueurService) { }
 
   ngOnInit(): void {
-    
+    this.joueurService.informationJoueurByEmail().subscribe(
+      (value) => {
+        this.infosJoueur = value;
+      }
+    );
   }
 
 }
