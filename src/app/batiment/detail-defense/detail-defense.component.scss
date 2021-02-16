@@ -80,7 +80,7 @@
 .card__categorie {
     font-size: 1.5em;
     text-decoration: underline;
-  }
+}
 
 .card__progress_bar_text {
     font-size: 1.6em;
@@ -262,35 +262,37 @@ hr.style-seven:before {
     text-align: center;
 }
 
-
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 0.6fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     gap: 0px 0px;
     grid-template-areas:
-      ". . . . . . . . . . . . . ."
-      ". . . . . defense defense defense defense . . . . ."
-      ". . . . . defense defense defense defense . production-en-cours production-en-cours production-en-cours ."
-      ". . . . . defense defense defense defense . production-en-cours production-en-cours production-en-cours ."
-      ". . . . . defense defense defense defense . . . . ."
-      ". . . . . . . . . . . . . ."
-      ". . . . . . . . . . . . . ."
-      ". . . . . . . . . . . . . .";
-  }
-  
-  .defense { grid-area: defense; }
-  
-  .production-en-cours { grid-area: production-en-cours; }
-    
+        ". . . . . . . . . . . . . ."
+        ". . . . . defense defense defense defense . . . . ."
+        ". . . . . defense defense defense defense . production-en-cours production-en-cours production-en-cours ."
+        ". . . . . defense defense defense defense . production-en-cours production-en-cours production-en-cours ."
+        ". . . . . defense defense defense defense . . . . ."
+        ". . . . . . . . . . . . . ."
+        ". . . . . . . . . . . . . ."
+        ". . . . . . . . . . . . . .";
+}
 
+.defense {
+    grid-area: defense;
+}
 
-  .quantitePossede{
+.production-en-cours {
+    grid-area: production-en-cours;
+}
+
+.quantitePossede {
     color: red;
     text-align: center;
     width: 140px;
-    font-weight:bold;
+    font-weight: bold;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.603);
-  
-  }
+    font-size: 18px;
+    text-shadow: 0.1em 0.1em 0.2em black;
+}

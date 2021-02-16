@@ -1,48 +1,70 @@
 <ng-container *ngIf="joueurConnecte | async as jou">
 
     <header>
-        <div class="logo">
-            <img src="https://media.discordapp.net/attachments/649978115199860766/793975291994964028/72399-icons-crown-prodigy-game-computer-math-icon.png"
-                alt="" style="width: 40px;height: 40px;" />
-        </div>
+
 
 
         <div class="menu" *ngIf="infosJoueur && informationRessourcesJoueur">
             <ul class="modify" id="etape1">
-                <li id="etape2" class="pierre">
-                    <a class="btn"
-                        ngbTooltip="Production par heure : {{informationRessourcesJoueur.apportPierreSeconde * 3600}}">
-                        <fa-icon [icon]="iconeStopWatch"></fa-icon> Pierre : <b
-                            [ngStyle]="{color:getColorApprocheLimitePierre()}">{{informationRessourcesJoueur.pierrePossession}}/{{informationRessourcesJoueur.quantiteMaximaleStockagePierre}}</b>
-                    </a>
-                </li>
-                <li id="etape3" class="bois">
-                    <a class="btn"
-                        ngbTooltip="Production par heure : {{informationRessourcesJoueur.apportBoisSeconde * 3600}}">
-                        <fa-icon [icon]="iconeStopWatch"></fa-icon> Bois : <b
-                            [ngStyle]="{color:getColorApprocheLimiteBois()}">{{informationRessourcesJoueur.boisPossession}}/{{informationRessourcesJoueur.quantiteMaximaleStockageBois}}</b>
-                    </a>
-                </li>
-                <li id="etape4" class="or">
-                    <a class="btn"
-                        ngbTooltip="Production par heure : {{informationRessourcesJoueur.apportOrSeconde * 3600}}">
-                        <fa-icon [icon]="iconeStopWatch"></fa-icon> Or : <b
-                            [ngStyle]="{color:getColorApprocheLimiteOr()}">{{informationRessourcesJoueur.orPossession}}/{{informationRessourcesJoueur.quantiteMaximaleStockageOr}}</b>
-                    </a>
-                </li>
-                <li id="etape5" class="nourriture"
-                    ngbTooltip="Production par heure : {{informationRessourcesJoueur.apportNourritureSeconde * 3600}}">
-                    <a class="btn">
-                        <fa-icon [icon]="iconeStopWatch"></fa-icon> Nourriture : <b
-                            [ngStyle]="{color:getColorApprocheLimiteNourriture()}">{{informationRessourcesJoueur.nourriturePossession}}/{{informationRessourcesJoueur.quantiteMaximaleStockageNourriture}}</b>
-                    </a>
-                </li>
-                <li id="etape6" class="gemme">
-                    <a class="btn" ngbTooltip="Gain de gemmes en réalisant des expéditions">
-                        <fa-icon [icon]="iconeStopWatch"></fa-icon> Gemmes :
-                        <b>{{informationRessourcesJoueur.gemmePossession}}</b>
-                    </a>
-                </li>
+                <div class="row">
+                    <div class="col-sm-1">
+                        <div class="logo">
+                            <img src="https://media.discordapp.net/attachments/649978115199860766/793975291994964028/72399-icons-crown-prodigy-game-computer-math-icon.png"
+                                alt="" style="width: 40px;height: 40px;" />
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <li id="etape2" class="pierre">
+                            <a class="btn"
+                                ngbTooltip="Production par heure : {{informationRessourcesJoueur.apportPierreSeconde * 3600}}">
+                                <fa-icon [icon]="iconeStopWatch"></fa-icon> Pierre : <b
+                                    [ngStyle]="{color:getColorApprocheLimitePierre()}">{{informationRessourcesJoueur.pierrePossession}}/{{informationRessourcesJoueur.quantiteMaximaleStockagePierre}}</b>
+                            </a>
+                        </li>
+                    </div>
+                    <div class="col-sm-2">
+                        <li id="etape3" class="bois">
+                            <a class="btn"
+                                ngbTooltip="Production par heure : {{informationRessourcesJoueur.apportBoisSeconde * 3600}}">
+                                <fa-icon [icon]="iconeStopWatch"></fa-icon> Bois : <b
+                                    [ngStyle]="{color:getColorApprocheLimiteBois()}">{{informationRessourcesJoueur.boisPossession}}/{{informationRessourcesJoueur.quantiteMaximaleStockageBois}}</b>
+                            </a>
+                        </li>
+                    </div>
+                    <div class="col-sm-2">
+                        <li id="etape4" class="or">
+                            <a class="btn"
+                                ngbTooltip="Production par heure : {{informationRessourcesJoueur.apportOrSeconde * 3600}}">
+                                <fa-icon [icon]="iconeStopWatch"></fa-icon> Or : <b
+                                    [ngStyle]="{color:getColorApprocheLimiteOr()}">{{informationRessourcesJoueur.orPossession}}/{{informationRessourcesJoueur.quantiteMaximaleStockageOr}}</b>
+                            </a>
+                        </li>
+                    </div>
+                    <div class="col-sm-2">
+                        <li id="etape5" class="nourriture"
+                        ngbTooltip="Production par heure : {{informationRessourcesJoueur.apportNourritureSeconde * 3600}}">
+                        <a class="btn">
+                            <fa-icon [icon]="iconeStopWatch"></fa-icon> Nourriture : <b
+                                [ngStyle]="{color:getColorApprocheLimiteNourriture()}">{{informationRessourcesJoueur.nourriturePossession}}/{{informationRessourcesJoueur.quantiteMaximaleStockageNourriture}}</b>
+                        </a>
+                    </li>
+                    </div>
+                    <div class="col-sm-2">
+                        <li id="etape6" class="gemme">
+                            <a class="btn" ngbTooltip="Gain de gemmes en réalisant des expéditions">
+                                <fa-icon [icon]="iconeStopWatch"></fa-icon> Gemmes :
+                                <b>{{informationRessourcesJoueur.gemmePossession}}</b>
+                            </a>
+                        </li>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+
+
+
+
+
             </ul>
         </div>
     </header>

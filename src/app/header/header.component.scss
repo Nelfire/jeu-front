@@ -25,8 +25,9 @@ header {
     background-color: rgb(227 242 253 / 65%);
     position: fixed;
     top: 0;
-    height: 7%;
+    height: auto;
     width: 100%;
+    overflow-x: hidden;
     z-index: 999;
     min-width: 1170px;
     border-bottom: 1px solid #cbeaff00;
@@ -36,14 +37,10 @@ header {
 }
 header .logo {
     float: left;
-    margin-top: 8px;
-    margin-left: 8px;
-    margin-right: 20px;
-    width: 200px;
-    height: 50px;
+    margin-left: 15px;
 }
 header .menu {
-    margin-top: 10px;
+    padding-top: 10px;
 }
 header .menu ul {
     padding-left: 0;
@@ -83,8 +80,11 @@ header .menu ul li.gemme .btn {
 .btn {
     text-shadow: 0.1em 0.1em 0.05em #333;
     box-shadow: 1.5px 1.5px 1.5px rgb(0, 0, 0);
+    
 }
-
+.row{
+    text-align: center;
+}
 header .menu ul li a {
     color: #fdfdfd;
     font-weight: 600;
@@ -95,9 +95,8 @@ header .menu ul li a {
     background-color: rgb(227 242 253 / 65%);
     border-right: 1px solid #e5e5e5;
     position: fixed;
-    top: 7%;
-    bottom: 5%;
-    height: 88%;
+    top: 5%;
+    height: 90%;
     left: 0;
     width: 60px;
     overflow: hidden;
