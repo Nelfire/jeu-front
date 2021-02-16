@@ -1,0 +1,19 @@
+<div class="listeDefense container">
+    <div class="divider-custom divider-light">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-titre">Les défenses</div>
+        <div class="divider-custom-line"></div>
+    </div>
+    <div *ngIf="listeDefenses">
+        <ul class="honeycomb" lang="es">
+            <li class="honeycomb-cell" *ngFor="let defense of listeDefenses">
+                <a routerLink="../modificationDefense/{{defense.id}}">
+                    <img class="honeycomb-cell__image" src="{{defense.icone}}">
+                    <div class="honeycomb-cell__title">{{defense.libelle}}</div>
+                    <br>
+                    <button class="btn btn-info">Modifier</button>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

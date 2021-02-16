@@ -71,6 +71,7 @@ body {
       word-break: break-word;
       text-transform: uppercase;
       color: #fff;
+      text-shadow: 0.1em 0.1em 0.05em #333;
       font-weight: 700;
       font-size: 1.75em;
       transition: opacity 350ms;
@@ -198,4 +199,7 @@ body {
 
 .divCenter {
   text-align: center;
+}
+.btn {
+  box-shadow: 1.5px 1.5px 1.5px rgb(0, 0, 0);
 }

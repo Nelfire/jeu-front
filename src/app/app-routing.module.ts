@@ -20,9 +20,7 @@ import { MonCampementComponent } from './campement/mon-campement/mon-campement.c
 import { MonArmeeComponent } from './armee/mon-armee/mon-armee.component';
 import { ClassementJoueursComponent } from './social/classement-joueurs/classement-joueurs.component';
 import { DetailBatimentComponent } from './batiment/detail-batiment/detail-batiment.component';
-import { CreationUniteeComponent } from './administration/creation-unitee/creation-unitee.component';
 import { MenuAdministrationComponent } from './administration/menu-administration/menu-administration.component';
-import { ModificationUniteeComponent } from './administration/modification-unitee/modification-unitee.component';
 import { DetailUniteeComponent } from './unitee/detail-unitee/detail-unitee.component';
 import { ListeExpeditionsComponent } from './expedition/liste-expeditions/liste-expeditions.component';
 import { DetailExpeditionComponent } from './expedition/detail-expedition/detail-expedition.component';
@@ -38,6 +36,14 @@ import { DetailCompteComponent } from './social/detail-compte/detail-compte.comp
 import { DiscussionPriveeComponent } from './social/discussion/discussion-privee/discussion-privee.component';
 import { MesDefensesComponent } from './campement/mes-defenses/mes-defenses.component';
 import { DetailDefenseComponent } from './batiment/detail-defense/detail-defense.component';
+import { ListeBatimentComponent } from './administration/batiment/liste-batiment/liste-batiment.component';
+import { ModificationBatimentComponent } from './administration/batiment/modification-batiment/modification-batiment.component';
+import { ListeDefenseComponent } from './administration/defense/liste-defense/liste-defense.component';
+import { ModificationDefenseComponent } from './administration/defense/modification-defense/modification-defense.component';
+import { ListeUniteeComponent } from './administration/unitee/liste-unitee/liste-unitee.component';
+import { CreationUniteeComponent } from './administration/unitee/creation-unitee/creation-unitee.component';
+import { ModificationUniteeComponent } from './administration/unitee/modification-unitee/modification-unitee.component';
+
 
 const routes: Routes = [
   // canActivate: [StatutConnecteService] ==> Permet de verifier si l'utilisateur est connecte
@@ -82,6 +88,14 @@ const routes: Routes = [
 
   // ------------ ADMINISTRATION --------------
   { path: 'menuAdministration', component: MenuAdministrationComponent, canActivate: [StatutAdministrateurService] },
+  // - Bâtiments -
+  { path: 'listeBatiment', component: ListeBatimentComponent, canActivate: [StatutAdministrateurService]}, 
+  { path: 'modificationBatiment/:id', component: ModificationBatimentComponent, canActivate: [StatutAdministrateurService]}, 
+  // - Défenses -
+  { path: 'listeDefense', component: ListeDefenseComponent, canActivate: [StatutAdministrateurService]}, 
+  { path: 'modificationDefense/:id', component: ModificationDefenseComponent, canActivate: [StatutAdministrateurService]}, 
+  // - Unitées -
+  { path: 'listeUnitee', component: ListeUniteeComponent, canActivate: [StatutAdministrateurService] },
   { path: 'creationUnitee', component: CreationUniteeComponent, canActivate: [StatutAdministrateurService] },
   { path: 'modificationUnitee/:id', component: ModificationUniteeComponent, canActivate: [StatutAdministrateurService] },
 

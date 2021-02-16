@@ -41,7 +41,60 @@ export class BatimentService {
   listerBatimentsMillitaire(): Observable<Batiment[]> {
     return this.http.get<Batiment[]>(`${URL_BACKEND}/listerBatimentsMillitaire`);
   }
+
   detailsBatiment(idTypeBatiment: Number): Observable<Batiment> {
     return this.http.get<Batiment>(`${URL_BACKEND}/idTypeBatiment?idTypeBatiment=` + idTypeBatiment);
   }
+
+  // Modification bâtiment depuis la page d'administration
+  administrationModificationBatiment(
+    id: number,
+    idTypeBatiment: number,
+    idCategorieBatiment: number,
+    icone: string,
+    libelle: string,
+    descriptif: string,
+    ouvrierNecessaireConstruction: number,
+    tempsDeConstruction: number,
+    coutPierreConstruction: number,
+    coutBoisConstruction: number,
+    coutOrConstruction: number,
+    coutNourritureConstruction: number,
+    niveauHotelDeVilleNecessaireConstruction: number,
+    quantiteeStockagePierre: number,
+    quantiteeStockageBois: number,
+    quantiteeStockageOre: number,
+    quantiteeStockageNourriture: number,
+    apportPierreHeure: number,
+    apportBoisHeure: number,
+    apportOreHeure: number,
+    apportNourritureHeure: number
+  ): Observable<Batiment> {
+    return this.http.put<Batiment>(`${URL_BACKEND}/modificationBatiment?id=` + id,
+      {
+        id: `${id}`,
+        idTypeBatiment: `${idTypeBatiment}`,
+        idCategorieBatiment: `${idCategorieBatiment}`,
+        icone: `${icone}`,
+        libelle: `${libelle}`,
+        descriptif: `${descriptif}`,
+        ouvrierNecessaireConstruction: `${ouvrierNecessaireConstruction}`,
+        tempsDeConstruction: `${tempsDeConstruction}`,
+        coutPierreConstruction: `${coutPierreConstruction}`,
+        coutBoisConstruction: `${coutBoisConstruction}`,
+        coutOrConstruction: `${coutOrConstruction}`,
+        coutNourritureConstruction: `${coutNourritureConstruction}`,
+        niveauHotelDeVilleNecessaireConstruction: `${niveauHotelDeVilleNecessaireConstruction}`,
+        quantiteeStockagePierre: `${quantiteeStockagePierre}`,
+        quantiteeStockageBois: `${quantiteeStockageBois}`,
+        quantiteeStockageOre: `${quantiteeStockageOre}`,
+        quantiteeStockageNourriture: `${quantiteeStockageNourriture}`,
+        apportPierreHeure: `${apportPierreHeure}`,
+        apportBoisHeure: `${apportBoisHeure}`,
+        apportOreHeure: `${apportOreHeure}`,
+        apportNourritureHeure: `${apportNourritureHeure}`
+      });
+  }
+
+
 }

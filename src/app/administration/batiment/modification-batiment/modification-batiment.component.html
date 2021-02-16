@@ -1,0 +1,184 @@
+<div class="modificationBatiment container">
+    <div class="divider-custom divider-light">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-titre">Modification {{batiment.libelle}}</div>
+        <div class="divider-custom-line"></div>
+    </div>
+    <div class="card">
+        <div class="card-body ">
+            <form [formGroup]="formModificationBatiment" (ngSubmit)="modificationBatiment()">
+                <div class="form-group row">
+                    <label for="id" class="col-sm-2 col-form-label">ID</label>
+                    <div class="col-sm-10">
+                        <input disabled type="text" class="form-control" value="{{id}}" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="idTypeBatiment" class="col-sm-2 col-form-label">Type de bâtiment</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="idTypeBatiment" rows="3"
+                            formControlName="idTypeBatiment" disabled />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="idCategorieBatiment" class="col-sm-2 col-form-label">Categorie batiment</label>
+                    <div class="col-sm-10">
+                        <select class="custom-select" id="idCategorieBatiment" formControlName="idCategorieBatiment"
+                            required>
+                            <option selected value="null">- Choix -</option>
+                            <option value="0">Divers</option>
+                            <option value="1">Ressource</option>
+                            <option value="2">Stockage</option>
+                            <option value="3">Millitaire</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="icone" class="col-sm-2 col-form-label">Icone</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="icone" rows="3" formControlName="icone" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="libelle" class="col-sm-2 col-form-label">Libelle</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="libelle" rows="3" formControlName="libelle" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="descriptif" class="col-sm-2 col-form-label">Descriptif</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" id="descriptif" rows="3" formControlName="descriptif"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="ouvrierNecessaireConstruction" class="col-sm-2 col-form-label">Ouvriers necessaire construction</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="ouvrierNecessaireConstruction" rows="3"
+                            formControlName="ouvrierNecessaireConstruction" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="tempsDeConstruction" class="col-sm-2 col-form-label">Temps de construction (en secondes)</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="tempsDeConstruction" rows="3"
+                            formControlName="tempsDeConstruction" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="coutPierreConstruction" class="col-sm-2 col-form-label">Coût pierre construction</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="coutPierreConstruction" rows="3"
+                            formControlName="coutPierreConstruction" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="coutBoisConstruction" class="col-sm-2 col-form-label">Coût bois construction</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="coutBoisConstruction" rows="3"
+                            formControlName="coutBoisConstruction" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="coutOrConstruction" class="col-sm-2 col-form-label">Coût or construction</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="coutOrConstruction" rows="3"
+                            formControlName="coutOrConstruction" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="coutNourritureConstruction" class="col-sm-2 col-form-label">Coût nourriture construction</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="coutNourritureConstruction" rows="3" formControlName="coutNourritureConstruction" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="niveauHotelDeVilleNecessaireConstruction" class="col-sm-2 col-form-label">Niveau hôtel de ville necessaire construction</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="niveauHotelDeVilleNecessaireConstruction" rows="3" formControlName="niveauHotelDeVilleNecessaireConstruction" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="quantiteeStockagePierre" class="col-sm-2 col-form-label">Quantité stôckage pierre</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="quantiteeStockagePierre" rows="3" formControlName="quantiteeStockagePierre" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="quantiteeStockageBois" class="col-sm-2 col-form-label">Quantité stôckage bois</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="quantiteeStockageBois" rows="3" formControlName="quantiteeStockageBois" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="quantiteeStockageOre" class="col-sm-2 col-form-label">Quantité stôckage or</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="quantiteeStockageOre" rows="3"
+                            formControlName="quantiteeStockageOre" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="quantiteeStockageNourriture" class="col-sm-2 col-form-label">Quantité stôckage nourriture</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="quantiteeStockageNourriture" rows="3"
+                            formControlName="quantiteeStockageNourriture" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="apportPierreHeure" class="col-sm-2 col-form-label">Apport de pierre (par heure)</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="apportPierreHeure" rows="3"
+                            formControlName="apportPierreHeure" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="apportBoisHeure" class="col-sm-2 col-form-label">Apport de bois (par heure)</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="apportBoisHeure" rows="3"
+                            formControlName="apportBoisHeure" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="apportOreHeure" class="col-sm-2 col-form-label">Apport d'or (par heure)</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="apportOreHeure" rows="3"
+                            formControlName="apportOreHeure" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="apportNourritureHeure" class="col-sm-2 col-form-label">Apport de nourriture (par heure)</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="apportNourritureHeure" rows="3"
+                            formControlName="apportNourritureHeure" />
+                    </div>
+                </div>
+
+                
+
+                <div class="alert alert-danger" role="danger" *ngIf="messageErreur">
+                    <b>{{messageErreur}}</b>
+                </div>
+                <div class="alert alert-success" role="success" *ngIf="messageValidation">
+                    <b>{{messageValidation}}</b>
+                </div>
+
+                <div class="row justify-content-md-center">
+                    <div class="col-md-auto">
+                        <!-- bouton valider formulaire -->
+                        <button class="btn btn-success mr-2" [disabled]="formModificationBatiment.invalid">
+                            Modifier
+                        </button>
+
+                        <!-- bouton annuler formulaire -->
+                        <a routerLink="../../listeBatiment">
+                            <button class="btn btn-danger">
+                                Annuler
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

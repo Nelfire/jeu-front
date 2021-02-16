@@ -37,10 +37,8 @@ import { CampementService } from './service/campement.service';
 import { BatimentService } from './service/batiment.service';
 import { BatimentJoueurService } from './service/batiment-joueur.service';
 import { DetailBatimentComponent } from './batiment/detail-batiment/detail-batiment.component';
-import { CreationUniteeComponent } from './administration/creation-unitee/creation-unitee.component';
 import { UniteeService } from './service/unitee.service';
 import { MenuAdministrationComponent } from './administration/menu-administration/menu-administration.component';
-import { ModificationUniteeComponent } from './administration/modification-unitee/modification-unitee.component';
 import { DetailUniteeComponent } from './unitee/detail-unitee/detail-unitee.component';
 import { ArmeeService } from './service/armee-joueur.service';
 import { ListeExpeditionsComponent } from './expedition/liste-expeditions/liste-expeditions.component';
@@ -60,7 +58,6 @@ import { CreationCompteComponent } from './auth/creation-compte/creation-compte.
 import { DetailCompteComponent } from './social/detail-compte/detail-compte.component';
 import { ThousandSuffixesPipePipe } from './pipe/thousand-suffixes-pipe.pipe';
 import { DiscussionPriveeComponent } from './social/discussion/discussion-privee/discussion-privee.component';
-import { NotificationService } from './service/notification.service';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GenerationRessourcesService } from './service/generation-ressources.service';
@@ -69,6 +66,13 @@ import { DetailDefenseComponent } from './batiment/detail-defense/detail-defense
 import { MesDefensesComponent } from './campement/mes-defenses/mes-defenses.component';
 import { DefenseService } from './service/defense.service';
 import { DefenseJoueurService } from './service/defense-joueur.service';
+import { ModificationBatimentComponent } from './administration/batiment/modification-batiment/modification-batiment.component';
+import { ListeBatimentComponent } from './administration/batiment/liste-batiment/liste-batiment.component';
+import { ModificationDefenseComponent } from './administration/defense/modification-defense/modification-defense.component';
+import { ListeDefenseComponent } from './administration/defense/liste-defense/liste-defense.component';
+import { ListeUniteeComponent } from './administration/unitee/liste-unitee/liste-unitee.component';
+import { CreationUniteeComponent } from './administration/unitee/creation-unitee/creation-unitee.component';
+import { ModificationUniteeComponent } from './administration/unitee/modification-unitee/modification-unitee.component';
 
 
 @NgModule({
@@ -111,7 +115,12 @@ import { DefenseJoueurService } from './service/defense-joueur.service';
     DiscussionPriveeComponent,
     MinuteSecondePipePipe,
     DetailDefenseComponent,
-    MesDefensesComponent
+    MesDefensesComponent,
+    ModificationBatimentComponent,
+    ListeBatimentComponent,
+    ListeDefenseComponent,
+    ModificationDefenseComponent,
+    ListeUniteeComponent
   ],
   imports: [
     BrowserModule,

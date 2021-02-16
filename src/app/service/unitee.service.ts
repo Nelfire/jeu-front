@@ -42,7 +42,7 @@ export class UniteeService {
     });
   }
 
-   // Création de nouveau type d'unitées depuis la page d'administration
+   // Modification d'unitées depuis la page d'administration
    administrationModificationUnitee(id:number,idTypeUnitee:number,idBatimentProvenance:number,icone:string,libelle:string,descriptif:string,coutPierreFormation:number,coutBoisFormation:number,coutOrFormation:number,coutNourritureFormation:number,
     coutHumain:number,tempsFormation:number,vie:number,attaque:number,portee:number,armure:number,niveauBatimentNecessaireFormation:number,apportRessourcePierreHeure:number,apportRessourceBoisHeure:number,
     apportRessourceOrHeure:number,apportRessourceNourritureHeure:number): Observable<Unitee> {

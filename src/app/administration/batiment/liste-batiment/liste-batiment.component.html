@@ -1,0 +1,19 @@
+<div class="listeBatiment container">
+    <div class="divider-custom divider-light">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-titre">Les bâtiments</div>
+        <div class="divider-custom-line"></div>
+    </div>
+    <div *ngIf="listeBatiments">
+        <ul class="honeycomb" lang="es">
+            <li class="honeycomb-cell" *ngFor="let batiment of listeBatiments">
+                <a routerLink="../modificationBatiment/{{batiment.id}}">
+                    <img class="honeycomb-cell__image" src="{{batiment.icone}}">
+                    <div class="honeycomb-cell__title">{{batiment.libelle}}</div>
+                    <br>
+                    <button class="btn btn-info">Modifier</button>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -11,12 +11,14 @@ import { UniteeService } from 'src/app/service/unitee.service';
 })
 export class ModificationUniteeComponent implements OnInit {
 
+
   // Initialisations
   messageValidation: string;
   messageErreur: string;
   id: number;
   unitee: Unitee;
   formModificationUnitee: FormGroup;
+  
   constructor(private router: Router,
     private formBuilder: FormBuilder,
     private routerLinkActive: ActivatedRoute,

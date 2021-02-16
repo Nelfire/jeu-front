@@ -66,30 +66,29 @@ header .menu ul li .btn {
     width: auto;
 }
 header .menu ul li.pierre .btn {
-    background-image: linear-gradient(to bottom, #464647da 0%, #464647be 100%);
-    border: 1px solid #4e5757;
+    background-image: url("../../images/ressource/pierre.jpg");
 }
 header .menu ul li.bois .btn {
-    background-image: linear-gradient(to bottom, #7e490dd2 0%, #7e490dbb 100%);
-    border: 1px solid #5f2b09;
+    background-image: url("../../images/ressource/bois.jpg");
 }
 header .menu ul li.or .btn {
-    background-image: linear-gradient(to bottom, #767e0dcc 0%, #7e7c0dbb 100%);
-    border: 1px solid #747205;
+    background-image: url("../../images/ressource/or.png");
 }
 header .menu ul li.nourriture .btn {
-    background-image: linear-gradient(to bottom, #7e0d0dd5 0%, #7e0d0dbb 100%);
-    border: 1px solid #a01818;
+    background-image: url("../../images/ressource/nourriture.jpg");
 }
 header .menu ul li.gemme .btn {
-    background-image: linear-gradient(to bottom, #247e0dd5 0%, #117e0dbb 100%);
-    border: 1px solid #18a03a;
+    background-image: url("../../images/ressource/gemme.jpg");
+}
+.btn {
+    text-shadow: 0.1em 0.1em 0.05em #333;
+    box-shadow: 1.5px 1.5px 1.5px rgb(0, 0, 0);
 }
 
 header .menu ul li a {
     color: #fdfdfd;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 17px;
 }
 
 .main-menu {

@@ -1,0 +1,19 @@
+<div class="listeUnitee container">
+    <div class="divider-custom divider-light">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-titre">Les bâtiments</div>
+        <div class="divider-custom-line"></div>
+    </div>
+    <div *ngIf="listeUnitees">
+        <ul class="honeycomb" lang="es">
+            <li class="honeycomb-cell" *ngFor="let unitee of listeUnitees">
+                <a routerLink="../modificationUnitee/{{unitee.id}}">
+                    <img class="honeycomb-cell__image" src="{{unitee.icone}}">
+                    <div class="honeycomb-cell__title">{{unitee.libelle}}</div>
+                    <br>
+                    <button class="btn btn-info">Modifier</button>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
