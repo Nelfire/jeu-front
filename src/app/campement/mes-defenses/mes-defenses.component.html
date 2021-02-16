@@ -6,7 +6,11 @@
         <div class="divider-custom-titre">DEFENSES</div>
         <div class="divider-custom-line"></div>
     </div>
-
+	<div class="boutons divCenter">
+		<button class="btn btn-success m-3" (click)="defensesToutes()">Toutes</button>
+		<button class="btn btn-success m-3" (click)="defensesOffensive()">Offensive</button>
+		<button class="btn btn-success m-3" (click)="defensesDefensive()">Défensive</button>
+	</div>
     <div>
         <ul class="honeycomb" lang="es">
             <li class="honeycomb-cell" *ngFor="let defense of lesDefenses">

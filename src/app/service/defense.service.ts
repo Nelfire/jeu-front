@@ -12,17 +12,31 @@ const URL_BACKEND = environment.baseUrl + 'defense';
 })
 export class DefenseService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   /*
-	 * LISTE LES DIFFERENTS TYPES DE DEFENSE
-	 */
+   * LISTE LES DIFFERENTS TYPES DE DEFENSE
+   */
   listerDefense(): Observable<Defense[]> {
     return this.http.get<Defense[]>(`${URL_BACKEND}/listerDefense`);
   }
 
+  /*
+  * LISTER QUE LES DEFENSES DE TYPE OFFENSIVE = 1
+  */
+  listerDefensesOffensive(): Observable<Defense[]> {
+    return this.http.get<Defense[]>(`${URL_BACKEND}/listerDefensesOffensive`);
+  }
+
+  /*
+  * LISTER QUE LES DEFENSES DE TYPE DEFENSIVE = 2
+  */
+  listerDefensesDefensive(): Observable<Defense[]> {
+    return this.http.get<Defense[]>(`${URL_BACKEND}/listerDefensesDefensive`);
+  }
+
   detailsDefense(id: number): Observable<Defense> {
-    return this.http.get<Defense>(`${URL_BACKEND}/detailsDefense?id=`+id);
+    return this.http.get<Defense>(`${URL_BACKEND}/detailsDefense?id=` + id);
   }
 
   // Modification défense depuis la page d'administration

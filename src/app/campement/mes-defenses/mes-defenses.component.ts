@@ -24,12 +24,8 @@ export class MesDefensesComponent implements OnInit {
 
   //ngOnInit
   ngOnInit(): void {
-    this.defenseService.listerDefense().subscribe(
-      (defenses) => {
-        this.lesDefenses = defenses;
-        this.listeDesDefenses();
-      }
-    );
+    // Récupération liste de toutes les défenses existants
+    this.defensesToutes();
   }
 
   listeDesDefenses() {
@@ -87,6 +83,33 @@ export class MesDefensesComponent implements OnInit {
             });
           }
         );
+      }
+    );
+  }
+
+  defensesToutes() {
+    this.defenseService.listerDefense().subscribe(
+      (defenses) => {
+        this.lesDefenses = defenses;
+        this.listeDesDefenses();
+      }
+    );
+  }
+
+  defensesOffensive() {
+    this.defenseService.listerDefensesOffensive().subscribe(
+      (defenses) => {
+        this.lesDefenses = defenses;
+        this.listeDesDefenses();
+      }
+    );
+  }
+
+  defensesDefensive() {
+    this.defenseService.listerDefensesDefensive().subscribe(
+      (defenses) => {
+        this.lesDefenses = defenses;
+        this.listeDesDefenses();
       }
     );
   }
