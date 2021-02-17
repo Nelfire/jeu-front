@@ -12,14 +12,11 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { CreationJourFermeComponent } from './jourFerme/creation-jour-ferme/creation-jour-ferme.component';
-import { ListerJourFermeComponent } from './jourFerme/lister-jour-ferme/lister-jour-ferme.component';
 import { AccesRefuseComponent } from './erreurNavigation/acces-refuse/acces-refuse.component';
 import { FourOhFourComponent } from './erreurNavigation/four-oh-four/four-oh-four.component';
 import { JourFermeService } from './service/jour-ferme.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ModificationJourFermeComponent } from './jourFerme/modification-jour-ferme/modification-jour-ferme.component';
 import { JoueurService } from './service/joueur.service';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { AccueilComponent } from './accueil/accueil.component';
@@ -82,11 +79,8 @@ import { ModificationUniteeComponent } from './administration/unitee/modificatio
     TechComponent,
     HeaderComponent,
     FooterComponent,
-    CreationJourFermeComponent,
-    ListerJourFermeComponent,
     AccesRefuseComponent,
     FourOhFourComponent,
-    ModificationJourFermeComponent,
     AccueilComponent,
     ListerJoueurComponent,
     VisualiserJoueurComponent,

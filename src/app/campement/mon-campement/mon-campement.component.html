@@ -67,8 +67,8 @@
 							<!-- CAS CONSTRUCTION IMPOSSIBLE -->
 							<div
 								*ngIf="batiment.niveauHotelDeVilleNecessaireConstruction>niveauHdvJoueur;else constructionPossible">
-								<button class="btn btn-danger">
-									Hdv {{batiment.niveauHotelDeVilleNecessaireConstruction}} necessaire
+								<button class="btn btn-warning">
+									Hdv <b>{{batiment.niveauHotelDeVilleNecessaireConstruction}}</b> nécessaire
 								</button>
 							</div>
 							<!-- CAS CONSTRUCTION POSSIBLE -->

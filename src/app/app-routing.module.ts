@@ -2,13 +2,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TechComponent } from './tech/tech.component';
 import { AuthComponent } from './auth/auth.component';
-import { ListerJourFermeComponent } from './jourFerme/lister-jour-ferme/lister-jour-ferme.component';
-import { CreationJourFermeComponent } from './jourFerme/creation-jour-ferme/creation-jour-ferme.component';
 import { StatutConnecteService } from './service/statut-connecte.service';
 import { StatutAdministrateurService } from './service/statut-administrateur.service';
 import { FourOhFourComponent } from './erreurNavigation/four-oh-four/four-oh-four.component';
 import { AccesRefuseComponent } from './erreurNavigation/acces-refuse/acces-refuse.component';
-import { ModificationJourFermeComponent } from './jourFerme/modification-jour-ferme/modification-jour-ferme.component';
 import { StatutManagerService } from './service/statut-manager.service';
 import { AccueilComponent } from './accueil/accueil.component';
 import { ListerJoueurComponent } from './lister-joueur/lister-joueur.component';
@@ -58,12 +55,10 @@ const routes: Routes = [
   // ------------ CREATION DE COMPTE ----------------
   { path: 'creationCompte', component: CreationCompteComponent},
 
-  { path: 'creationJourFerme', component: CreationJourFermeComponent, canActivate: [StatutConnecteService, StatutAdministrateurService] },
 
   { path: 'visualisationJoueur/:email', component: VisualiserJoueurComponent, canActivate: [StatutConnecteService] },
   { path: 'modifierJoueur/:email', component: ModifierJoueurComponent, canActivate: [StatutConnecteService, StatutAdministrateurService] },
 
-  { path: 'modificationJourFerme/:id', component: ModificationJourFermeComponent, canActivate: [StatutConnecteService, StatutAdministrateurService] },
   { path: 'message', component: MessageComponent, canActivate: [StatutConnecteService] },
   { path: 'messagePrive/:email', component: MessagePriveComponent, canActivate: [StatutConnecteService] },
   { path: 'campement', component: MonCampementComponent, canActivate: [StatutConnecteService] },
@@ -129,7 +124,7 @@ const routes: Routes = [
   // Cas url inexistant
   { path: 'not-found', component: FourOhFourComponent, canActivate: [StatutConnecteService] },
 
-  // Bien faire attention de laisser ce path en fin de liste, mettre les votres avant.
+  // Bien faire attention de laisser ce path en fin de liste.
   { path: '**', redirectTo: '/not-found' }
 ];
 

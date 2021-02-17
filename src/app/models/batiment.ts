@@ -19,7 +19,9 @@ export class Batiment {
       public apportPierreHeure: number,
       public apportBoisHeure: number,
       public apportOreHeure: number,
-      public apportNourritureHeure: number
+      public apportNourritureHeure: number,
+      public multiplicateurApport: number,
+      public multiplicateurCout: number
       ) {
     }
   

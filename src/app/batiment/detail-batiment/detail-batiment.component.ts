@@ -209,28 +209,28 @@ export class DetailBatimentComponent implements OnInit {
 
   // Batiments Joueur Amélioration Colorisation ressources
   getColorRessourceManquantePierreBatimentJoueur() {
-    if (this.joueur.pierrePossession < this.batimentJoueurPossede.coutPierreAmelioration) {
+    if (this.joueur.pierrePossession < this.batimentJoueurPossede.coutPierreAmelioration * this.batiment.multiplicateurCout) {
       return 'red';
     } else {
       return 'green';
     }
   }
   getColorRessourceManquanteBoisBatimentJoueur() {
-    if (this.joueur.boisPossession < this.batimentJoueurPossede.coutBoisAmelioration) {
+    if (this.joueur.boisPossession < this.batimentJoueurPossede.coutBoisAmelioration * this.batiment.multiplicateurCout) {
       return 'red';
     } else {
       return 'green';
     }
   }
   getColorRessourceManquanteOrBatimentJoueur() {
-    if (this.joueur.orPossession < this.batimentJoueurPossede.coutOreAmelioration) {
+    if (this.joueur.orPossession < this.batimentJoueurPossede.coutOreAmelioration * this.batiment.multiplicateurCout) {
       return 'red';
     } else {
       return 'green';
     }
   }
   getColorRessourceManquanteNourritureBatimentJoueur() {
-    if (this.joueur.nourriturePossession < this.batimentJoueurPossede.coutNourritureAmelioration) {
+    if (this.joueur.nourriturePossession < this.batimentJoueurPossede.coutNourritureAmelioration * this.batiment.multiplicateurCout) {
       return 'red';
     } else {
       return 'green';
