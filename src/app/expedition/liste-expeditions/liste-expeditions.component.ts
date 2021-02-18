@@ -19,6 +19,7 @@ export class ListeExpeditionsComponent implements OnInit, OnDestroy {
   dejaRealisee: boolean = false;
   counterSubscription: Subscription;
   niveauTableExpedition: number = 0;
+  compteurExpedition: number = 0;
   /* leJourSuivant: Date; */
 
   tempsRestant: string;
@@ -45,9 +46,16 @@ export class ListeExpeditionsComponent implements OnInit, OnDestroy {
             (lesExpeditionsJoueur) => {
               // Parcours les expéditions joueur
               lesExpeditionsJoueur.forEach((uneExpeditionJoueur) => {
+                console.log(uneExpeditionJoueur)
                 // Si l'id expedition en cours d'analyse = l'id expedition joueur, alors il l'a déjà faite
                 if (uneExpeditionJoueur.expedition.id === uneExpedition.id) {
                   uneExpedition.dejaRealisee = true;
+                  // Expeditions en cours ? Compteur limite atteinte. Upgade bâtiment necessaire
+                  // MAINTENANT
+                  var maintenant = new Date().getTime();
+                  if (uneExpeditionJoueur.dateFinExpedition > maintenant && uneExpeditionJoueur.etatExpedition == 0) {
+                    this.compteurExpedition++;
+                  }
                 }
               });
             }

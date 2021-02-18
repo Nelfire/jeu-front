@@ -7,6 +7,7 @@ import { Expedition } from 'src/app/models/expedition';
 import { JoueurInfos } from 'src/app/models/joueur-infos';
 import { Unitee } from 'src/app/models/unitee';
 import { ArmeeService } from 'src/app/service/armee-joueur.service';
+import { BatimentJoueurService } from 'src/app/service/batiment-joueur.service';
 import { ExpeditionJoueurService } from 'src/app/service/expedition-joueur.service';
 import { ExpeditionService } from 'src/app/service/expedition.service';
 import { JoueurService } from 'src/app/service/joueur.service';
@@ -36,6 +37,9 @@ export class DetailExpeditionComponent implements OnInit {
   messageBoutonEnvoiEnExpedition: string = "Envoyer les unitées en expéditions";
   clicked = false;
 
+  niveauTableExpedition: number = 0;
+  compteurExpeditionJoueurEnCours: number = 0;
+
   // Données de l'expedition
   // vie
   vieExpedition: number;
@@ -52,7 +56,8 @@ export class DetailExpeditionComponent implements OnInit {
     private armeeService: ArmeeService,
     private expeditionJoueurService: ExpeditionJoueurService,
     private uniteeService: UniteeService,
-    private notification: NotificationService) { }
+    private notification: NotificationService,
+    private batimentJoueurService: BatimentJoueurService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -62,6 +67,30 @@ export class DetailExpeditionComponent implements OnInit {
         this.joueur = infosJoueur;
       }
     );
+
+    // Recherche niveau table expédition joueur
+    this.batimentJoueurService.rechercheBatimentJoueur(18).subscribe(
+      (value) => {
+        this.niveauTableExpedition = value.niveau;
+        console.log(this.niveauTableExpedition);
+      }
+    );
+
+    // Recherche expéditions joueur (Vérification limite non atteinte)
+    // Les expeditions joueurs
+    this.expeditionJoueurService.listerExpeditionJoueur().subscribe(
+      (lesExpeditionsJoueur) => {
+        // Parcours les expéditions joueur
+        lesExpeditionsJoueur.forEach((uneExpeditionJoueur) => {
+            // Expeditions en cours ? Compteur limite atteinte. Upgade bâtiment necessaire
+            // MAINTENANT
+            var maintenant = new Date().getTime();
+            if (uneExpeditionJoueur.dateFinExpedition > maintenant && uneExpeditionJoueur.etatExpedition == 0) {
+              this.compteurExpeditionJoueurEnCours++;
+            }
+        });
+      }
+    )
 
     // Affiche les infos de l'expeditions
     this.expeditionService.detailExpedition(this.routerLinkActive.snapshot.params['id']).subscribe(

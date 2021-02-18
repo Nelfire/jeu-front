@@ -17,7 +17,8 @@
                 <div class="divider-custom-titre">Nouvelles expéditions disponnibles dans {{tempsRestant}}</div>
                 <div class="divider-custom-line"></div>
             </div>
-<!--             <button class="btn btn-success" (click)="refeshExpedition()">Refresh (Cron à
+            Expédition en cours: {{compteurExpedition}}
+            <!--             <button class="btn btn-success" (click)="refeshExpedition()">Refresh (Cron à
                 minuit)</button> -->
 
 
@@ -117,9 +118,17 @@
                                 <small class="text-muted" *ngIf="expedition.difficultee == 1">&#9733; &#9734;
                                     &#9734;
                                     &#9734; &#9734;</small>
-                                <a routerLink="detail-expedition/{{expedition.id}}">
-                                    <button class="btn btn-info">Détails</button>
-                                </a>
+                                <div *ngIf="niveauTableExpedition > compteurExpedition; else upgadeBatimentNecessaire">
+                                    <a routerLink="detail-expedition/{{expedition.id}}">
+                                        <button class="btn btn-info">Détails</button>
+                                    </a>
+                                </div>
+                                <ng-template #upgadeBatimentNecessaire>
+                                    <a routerLink="/batiment/detail-batiment/18" ngbTooltip="Limite d'expédition simultanée atteinte. Veuillez améliorer votre chantier pour augmenter la limite d'expéditions simultanées.">
+                                        <button class="btn btn-danger">Limite atteinte</button>
+                                    </a>
+                                </ng-template>
+
                             </div>
                         </div>
                     </ng-template>

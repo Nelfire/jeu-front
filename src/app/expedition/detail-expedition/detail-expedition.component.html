@@ -149,37 +149,51 @@
             </div>
         </div>
     </div>
-    <!-- DIfférentes unitées du joueur -->
-    <form [formGroup]="formEnvoiUniteesEnExpedition" (ngSubmit)="envoiExpedition()">
-        <div>
-            <ul class="honeycomb" lang="es">
-                <li class="honeycomb-cell" *ngFor="let unitee of armeesDuJoueur">
-                    <div>
+    <div class="divUnites">
+
+        <!-- DIfférentes unitées du joueur -->
+        <form [formGroup]="formEnvoiUniteesEnExpedition" (ngSubmit)="envoiExpedition()">
+            <div>
+                <ul class="honeycomb" lang="es">
+                    <li class="honeycomb-cell" *ngFor="let unitee of armeesDuJoueur">
                         <div>
-                            <!-- Quantitée d'unitées -->
-                            <div style="text-align:center;">
-                                <input disabled type="text" name="texte" class="quantite"
-                                    value="Possède : {{unitee.quantiteePossession}}" />
+                            <div>
+                                <!-- Quantitée d'unitées -->
+                                <div style="text-align:center;">
+                                    <input disabled type="text" name="texte" class="quantite"
+                                        value="Possède : {{unitee.quantiteePossession}}" />
+                                </div>
+                                <!-- Icone -->
+                                <img class="honeycomb-cell__image" src="{{unitee.unitee.icone}}">
+                                <!-- Libelle -->
+                                <div class="honeycomb-cell__title">{{unitee.unitee.libelle}}</div>
+                                <br>
                             </div>
-                            <!-- Icone -->
-                            <img class="honeycomb-cell__image" src="{{unitee.unitee.icone}}">
-                            <!-- Libelle -->
-                            <div class="honeycomb-cell__title">{{unitee.unitee.libelle}}</div>
-                            <br>
+                            <!-- Selection du nombre d'unitées à envoyer -->
+                            <div style="text-align:center;">
+                                <input type="number" name="unitee{{unitee.unitee.id}}" value=""
+                                    formControlName="unitee{{unitee.unitee.id}}"
+                                    (keyup)="calculVieRestanteExpedition(unitee.unitee.id)">
+                            </div>
                         </div>
-                        <!-- Selection du nombre d'unitées à envoyer -->
-                        <div style="text-align:center;">
-                            <input type="number" name="unitee{{unitee.unitee.id}}" value=""
-                                formControlName="unitee{{unitee.unitee.id}}"
-                                (keyup)="calculVieRestanteExpedition(unitee.unitee.id)">
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="divCenter">
-            <button class="btn draw-border"
-                [disabled]="formEnvoiUniteesEnExpedition.invalid ||clicked">{{messageBoutonEnvoiEnExpedition}}</button>
-        </div>
-    </form>
+                    </li>
+                </ul>
+            </div>
+            <div *ngIf="niveauTableExpedition > compteurExpeditionJoueurEnCours; else upgadeBatimentNecessaire">
+                <div class="divCenter">
+                    <button class="btn draw-border"
+                        [disabled]="formEnvoiUniteesEnExpedition.invalid ||clicked">{{messageBoutonEnvoiEnExpedition}}</button>
+                </div>
+            </div>
+            <ng-template #upgadeBatimentNecessaire>
+                <div class="divCenter">
+                    <a routerLink="/batiment/detail-batiment/18"
+                        ngbTooltip="Limite d'expédition simultanée atteinte. Veuillez améliorer votre chantier pour augmenter la limite d'expéditions simultanées.">
+                        <button class="btn draw-border-error">Limite atteinte</button>
+                    </a>
+                </div>
+            </ng-template>
+        </form>
+
+    </div>
 </div>

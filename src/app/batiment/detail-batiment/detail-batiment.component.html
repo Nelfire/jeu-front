@@ -304,7 +304,24 @@
             </p>
           </ng-template>
 
+          <!-- CATEGORIE "AMELIORATION " POUR BÂTIMENTS DIVERS-->
+          <ng-template [ngIf]="(idTypeBatiment==18)">
+            <div class="row">
+              <div class="col-sm-12">
+                <p class="card__categorie">
+                  Amélioration
+                </p>
+              </div>
+            </div>
+          </ng-template>
 
+          <!-- LIMITE EXPEDITIONS  -->
+          <ng-template [ngIf]="(idTypeBatiment==18)">
+            <p class="card__apport__ressource">
+              <b>Limite</b> expéditions simultanées : {{batimentJoueurPossede['niveau']}} ->
+              {{batimentJoueurPossede['niveau'] + 1}}
+            </p>
+          </ng-template>
           <!-- SI BATIMENT RAPPORTE DE LA RESSOURCE -->
           <ng-template
             [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==3)||(idTypeBatiment==4)||(idTypeBatiment==5)||(idTypeBatiment==6)">
