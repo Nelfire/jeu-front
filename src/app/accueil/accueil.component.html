@@ -1,34 +1,44 @@
 <div class="accueil container">
-    <div class="divider-custom divider-light" *ngIf="infosJoueur">
-        <div class="divider-custom-line"></div>
-        <div class="divider-custom-titre">Bienvenue {{infosJoueur.pseudo}}</div>
-        <div class="divider-custom-line"></div>
-    </div>
-
-<!-- 	<div class="text-center py-3">
-		<div class="image"></div>
-	</div> -->
-
-	<div>
-		<p class="lead card-header text-center py-3 mt-3"
-			style="background-color: #c2e5ff; border-radius:7px; box-shadow: 0 0 12px #000000;">
-
-			Bienvenue dans le monde <b>d'Aphiaros</b> !<br><br>
-
-			Les règles régies par ce monde sont des plus simples, <b>Exeroth</b>, le seigneur de ce monde, vous octroie une parcelle de terrain sur laquelle 
-			vous pourrez construire divers <b>bâtiments</b>, <b>structures de défenses</b> et <b>unités de combat</b>, afin de l'aider à repousser une mystérieuse force qui envahis petit à petit son monde.
-			
-			<br><br>
-			Mais soyez méfiants, cette force du mal n'est pas le seul danger auquel vous serez confronté. <br>
-			Vous pourriez croiser d'autres joueurs, avare de richesses, qui pourraient être intéressés par les trésors que vous cachez dans votre campement...
-			<br><br>
-			<b>Exeroth</b>, dans sa grande bontée, vous offre <b>1 000</b> unitées de <b class="pierre">Pierre</b>, de <b class="bois">Bois</b>, d'<b class="or">Or</b>, de <b class="nourriture">Nourriture</b> et quelques <b class="gemme">Gemmes</b>.
-			<br><br>
-			Ces ressources vous permettront de construire des bâtiments dans votre <b><a routerLink="/campement">campement</a></b>.<br><br>
-			Ce monde semble fertile et plein de richesses, vous serez peut-être en mesure de pouvoir récolter vos propres ressources et subvenir à vos besoins.<br><br>
-			Lorsque vous serez convenablement installé, vous ne devriez sans grand mal pouvoir recruter quelques <b><a routerLink="/armee">mercenaires</a></b> pour vous aider à mener à bien votre épique aventure au travers <b><a routerLink="/expedition">d'expéditions</a></b>.
-			<br><br>
-			Bon courage !
-		</p>
+	<div class="divider-custom divider-light" *ngIf="infosJoueur">
+		<div class="divider-custom-line"></div>
+		<div class="divider-custom-titre">Bienvenue {{infosJoueur.pseudo}}</div>
+		<div class="divider-custom-line"></div>
 	</div>
+
+	<div id="texte">
+		<p class="lead card-header text-center py-3 mt-3"
+			style="background-color: #c2e5ff; border-radius:7px; box-shadow: 0 0 12px #000000; margin: 0 auto; ">
+
+			Bienvenue aventurier. Je suis <b>Exeroth</b>, je gouverne sur le monde <b>d'Aphiaros</b> .<br><br>
+
+			J'ai besoin de votre aide. Une mystérieuse force envahis petit à petit mon monde.<br><br>
+
+			Pour que vous puissiez me venir en aide, je vous octroie une parcelle de terrain sur laquelle vous pourrez
+			construire divers <b>bâtiments</b>, <b>structures de défenses</b> et <b>unités de combat</b>.<br><br>
+
+			Mais soyez méfiants, cette force du mal n'est pas le seul danger auquel vous serez confronté. <br>
+			Vous pourriez croiser d'autres joueurs, avare de richesses, qui pourraient être intéressés par les trésors
+			que vous cachez dans votre campement... <br><br>
+
+
+			Je vous fais dons de <b>1 000</b> unitées de <b class="pierre">Pierre</b>, de
+			<b class="bois">Bois</b>, d'<b class="or">Or</b>, de <b class="nourriture">Nourriture</b> et quelques <b
+				class="gemme">Gemmes</b>. <br><br>
+
+
+			Ces ressources vous permettront de construire des bâtiments dans votre <b><a
+					routerLink="/campement">campement</a></b>.<br><br>
+			Mon monde est fertile et plein de richesses, <br>
+			vous serez sans nul doute en mesure de récolter vos
+			propres ressources et subvenir à vos besoins.<br><br>
+			Lorsque vous serez convenablement installé, vous ne devriez sans grand mal pouvoir recruter des <b><a
+					routerLink="/armee">mercenaires</a></b> pour vous aider à mener à bien votre épique aventure au
+			travers <b><a routerLink="/expedition">d'expéditions</a></b>.
+			<br><br>
+			Bon courage ! Vous êtes mon seul espoir.
+		</p>
+		<div id="image"></div>
+	</div>
+
+
 </div>

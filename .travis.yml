@@ -6,6 +6,7 @@ before_script:
   - npm install
 script: 
   - npm run build
+  - cp dist/front/index.html dist/front/404.html
 deploy:
   provider: pages
   skip-cleanup: true
