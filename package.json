@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --base-href https://nelfire.github.io/jeu-front/",
+    "build": "ng build --prod --base-href https://nelfire.github.io/jeu-front/auth",
 
     "test": "ng test",
     "lint": "ng lint",
