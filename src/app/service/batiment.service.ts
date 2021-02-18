@@ -68,7 +68,9 @@ export class BatimentService {
     apportPierreHeure: number,
     apportBoisHeure: number,
     apportOreHeure: number,
-    apportNourritureHeure: number
+    apportNourritureHeure: number,
+    multiplicateurApport:number,
+    multiplicateurCout:number
   ): Observable<Batiment> {
     return this.http.put<Batiment>(`${URL_BACKEND}/modificationBatiment?id=` + id,
       {
@@ -92,7 +94,9 @@ export class BatimentService {
         apportPierreHeure: `${apportPierreHeure}`,
         apportBoisHeure: `${apportBoisHeure}`,
         apportOreHeure: `${apportOreHeure}`,
-        apportNourritureHeure: `${apportNourritureHeure}`
+        apportNourritureHeure: `${apportNourritureHeure}`,
+        multiplicateurApport: `${multiplicateurApport}`,
+        multiplicateurCout: `${multiplicateurCout}`
       });
   }
 

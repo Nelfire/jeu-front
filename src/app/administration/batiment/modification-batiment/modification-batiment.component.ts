@@ -46,7 +46,9 @@ export class ModificationBatimentComponent implements OnInit {
       apportPierreHeure: ['', Validators.required],
       apportBoisHeure: ['', Validators.required],
       apportOreHeure: ['', Validators.required],
-      apportNourritureHeure: ['', Validators.required]
+      apportNourritureHeure: ['', Validators.required],
+      multiplicateurApport: ['', Validators.required],
+      multiplicateurCout: ['', Validators.required]
     });
     // Snapshot pour rï¿½cupï¿½rer l'id passï¿½ via l'url
     this.id = this.routerLinkActive.snapshot.params['id'];
@@ -81,7 +83,9 @@ export class ModificationBatimentComponent implements OnInit {
       apportPierreHeure: [this.batiment.apportPierreHeure, Validators.required],
       apportBoisHeure: [this.batiment.apportBoisHeure, Validators.required],
       apportOreHeure: [this.batiment.apportOreHeure, Validators.required],
-      apportNourritureHeure: [this.batiment.apportNourritureHeure, Validators.required]
+      apportNourritureHeure: [this.batiment.apportNourritureHeure, Validators.required],
+      multiplicateurApport: [this.batiment.multiplicateurApport, Validators.required],
+      multiplicateurCout: [this.batiment.multiplicateurCout, Validators.required]
     });
   }
 
@@ -106,6 +110,8 @@ export class ModificationBatimentComponent implements OnInit {
     const apportBoisHeure = this.formModificationBatiment.get('apportBoisHeure').value;
     const apportOreHeure = this.formModificationBatiment.get('apportOreHeure').value;
     const apportNourritureHeure = this.formModificationBatiment.get('apportNourritureHeure').value;
+    const multiplicateurApport = this.formModificationBatiment.get('multiplicateurApport').value;
+    const multiplicateurCout = this.formModificationBatiment.get('multiplicateurCout').value;
     this.batimentService.administrationModificationBatiment(
       this.id,
       idTypeBatiment,
@@ -128,6 +134,8 @@ export class ModificationBatimentComponent implements OnInit {
       apportBoisHeure,
       apportOreHeure,
       apportNourritureHeure,
+      multiplicateurApport,
+      multiplicateurCout
       ).subscribe(
         () => {
 
