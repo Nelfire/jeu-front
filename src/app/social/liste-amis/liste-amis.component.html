@@ -1,0 +1,67 @@
+<div class="listeAmis container">
+    <div class="divider-custom divider-light">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-titre">Liste amis</div>
+        <div class="divider-custom-line"></div>
+    </div>
+
+    <div id="erreur">
+        <div class="erreur" *ngIf="listeVide==true; else possedeAmis;">
+            <div class="sansAmis">
+                <h1><span></span></h1>
+            </div>
+            <a>Oh :( Vous n'avez pas encore d'amis</a>
+        </div>
+    </div>
+
+    <ng-template #possedeAmis>
+        <div class="table-wrapper">
+            <table class="fl-table">
+                <thead>
+                    <tr>
+                        <th>Icone</th>
+                        <th>Pseudo</th>
+                        <th>Niveau</th>
+                        <th>Temps de jeu (sc)</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let joueur of listeAmis">
+                        <td><img src="{{joueur.icone}}" alt="" style="width: 30px;" /></td>
+                        <td><a routerLink="/detailJoueur/{{joueur.id}}">{{joueur.pseudo}}</a></td>
+                        <td>{{joueur.niveau}}</td>
+                        <td>{{joueur.tempsDeJeu}}</td>
+                        <td>
+                            <button class="btn" (click)="open(mymodal, joueur.id)">
+                                <fa-icon [icon]="faTrash"></fa-icon>
+                            </button>
+                        </td>
+
+                        <!-- moddal choix suppression -->
+                        <ng-template #mymodal let-modal>
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="modal-basic-title">Retrait ami</h4>
+                                <button type="button" class="close" aria-label="Close"
+                                    (click)="modal.dismiss('Cross click')">
+                                    <span aria-hidden="true">X</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <h5>&Ecirc;tes vous s&ucirc;r de vouloir mettre fin à votre amitié avec
+                                    {{joueur.pseudo}}
+                                    ?? <br></h5>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Je suis
+                                    sur
+                                    !</button>
+                            </div>
+                        </ng-template>
+                    </tr>
+                <tbody>
+            </table>
+        </div>
+    </ng-template>
+
+</div>

@@ -26,8 +26,6 @@ h2 {
   color: #cccccc;
 }
 
-
-
 /* STRUCTURE */
 
 .wrapper {
@@ -63,8 +61,6 @@ h2 {
   border-radius: 0 0 10px 10px;
 }
 
-
-
 /* TABS */
 
 h2.inactive {
@@ -76,13 +72,11 @@ h2.active {
   border-bottom: 2px solid #5fbae9;
 }
 
-
-
 /* FORM TYPOGRAPHY*/
 
-input[type=button],
-input[type=submit],
-input[type=reset] {
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
   background-color: #56baed;
   border: none;
   color: white;
@@ -104,15 +98,15 @@ input[type=reset] {
   transition: all 0.3s ease-in-out;
 }
 
-input[type=button]:hover,
-input[type=submit]:hover,
-input[type=reset]:hover {
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover {
   background-color: #39ace7;
 }
 
-input[type=button]:active,
-input[type=submit]:active,
-input[type=reset]:active {
+input[type="button"]:active,
+input[type="submit"]:active,
+input[type="reset"]:active {
   -moz-transform: scale(0.95);
   -webkit-transform: scale(0.95);
   -o-transform: scale(0.95);
@@ -120,7 +114,7 @@ input[type=reset]:active {
   transform: scale(0.95);
 }
 
-input[type=text] {
+input[type="text"] {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
@@ -141,17 +135,16 @@ input[type=text] {
   border-radius: 5px 5px 5px 5px;
 }
 
-input[type=text]:focus {
+input[type="text"]:focus {
   background-color: #fff;
   border-bottom: 2px solid #5fbae9;
 }
 
-input[type=text]:placeholder {
+input[type="text"]:placeholder {
   color: #cccccc;
 }
 
-
-input[type=email] {
+input[type="email"] {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
@@ -172,17 +165,16 @@ input[type=email] {
   border-radius: 5px 5px 5px 5px;
 }
 
-input[type=email]:focus {
+input[type="email"]:focus {
   background-color: #fff;
   border-bottom: 2px solid #5fbae9;
 }
 
-input[type=email]:placeholder {
+input[type="email"]:placeholder {
   color: #cccccc;
 }
 
-
-input[type=password] {
+input[type="password"] {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
@@ -207,17 +199,14 @@ div.wrapper {
   min-height: 90vh;
 }
 
-
-input[type=password]:focus {
+input[type="password"]:focus {
   background-color: #fff;
   border-bottom: 2px solid #5fbae9;
 }
 
-input[type=password]:placeholder {
+input[type="password"]:placeholder {
   color: #cccccc;
 }
-
-
 
 /* ANIMATIONS */
 
@@ -349,8 +338,6 @@ input[type=password]:placeholder {
   width: 100%;
 }
 
-
-
 /* OTHERS */
 
 *:focus {
@@ -359,4 +346,18 @@ input[type=password]:placeholder {
 
 #icon {
   width: 60%;
+}
+
+.logo {
+  background: url("../../images/logo.png")
+    no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: contain;
+  width: 130px;
+  height: 130px;
+  
+  margin: 0 auto;
+  margin-top: 20px;
 }

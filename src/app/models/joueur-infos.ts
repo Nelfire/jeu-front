@@ -1,6 +1,6 @@
 export class JoueurInfos {
   constructor(
-    public id: string,
+    public id: number,
     public icone: string,
     public pseudo: string,
     public email: string,

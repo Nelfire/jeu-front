@@ -40,6 +40,7 @@ import { ModificationDefenseComponent } from './administration/defense/modificat
 import { ListeUniteeComponent } from './administration/unitee/liste-unitee/liste-unitee.component';
 import { CreationUniteeComponent } from './administration/unitee/creation-unitee/creation-unitee.component';
 import { ModificationUniteeComponent } from './administration/unitee/modification-unitee/modification-unitee.component';
+import { ListeAmisComponent } from './social/liste-amis/liste-amis.component';
 
 
 const routes: Routes = [
@@ -118,6 +119,7 @@ const routes: Routes = [
   // ------------- JOUEUR -------------
   { path: 'detailJoueur/:id', component: DetailCompteComponent, canActivate: [StatutConnecteService]},
   { path: 'modificationJoueur', component: ModifierJoueurComponent, canActivate: [StatutConnecteService]},
+  { path: 'listeAmis', component: ListeAmisComponent, canActivate: [StatutConnecteService]},
   
   { path: '', redirectTo: '/accueil', pathMatch: 'full' },
   { path: 'accesRefuse', component: AccesRefuseComponent, canActivate: [StatutConnecteService] },

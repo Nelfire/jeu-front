@@ -70,6 +70,8 @@ import { ListeDefenseComponent } from './administration/defense/liste-defense/li
 import { ListeUniteeComponent } from './administration/unitee/liste-unitee/liste-unitee.component';
 import { CreationUniteeComponent } from './administration/unitee/creation-unitee/creation-unitee.component';
 import { ModificationUniteeComponent } from './administration/unitee/modification-unitee/modification-unitee.component';
+import { ListeAmisService } from './service/social/liste-amis.service';
+import { ListeAmisComponent } from './social/liste-amis/liste-amis.component';
 
 
 @NgModule({
@@ -114,7 +116,8 @@ import { ModificationUniteeComponent } from './administration/unitee/modificatio
     ListeBatimentComponent,
     ListeDefenseComponent,
     ModificationDefenseComponent,
-    ListeUniteeComponent
+    ListeUniteeComponent,
+    ListeAmisComponent
   ],
   imports: [
     BrowserModule,
@@ -146,6 +149,7 @@ import { ModificationUniteeComponent } from './administration/unitee/modificatio
     GenerationRessourcesService,
     DefenseService,
     DefenseJoueurService,
+    ListeAmisService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
