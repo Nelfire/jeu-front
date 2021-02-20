@@ -41,6 +41,7 @@ import { ListeUniteeComponent } from './administration/unitee/liste-unitee/liste
 import { CreationUniteeComponent } from './administration/unitee/creation-unitee/creation-unitee.component';
 import { ModificationUniteeComponent } from './administration/unitee/modification-unitee/modification-unitee.component';
 import { ListeAmisComponent } from './social/liste-amis/liste-amis.component';
+import { MerciComponent } from './divers/merci/merci.component';
 
 
 const routes: Routes = [
@@ -120,6 +121,10 @@ const routes: Routes = [
   { path: 'detailJoueur/:id', component: DetailCompteComponent, canActivate: [StatutConnecteService]},
   { path: 'modificationJoueur', component: ModifierJoueurComponent, canActivate: [StatutConnecteService]},
   { path: 'listeAmis', component: ListeAmisComponent, canActivate: [StatutConnecteService]},
+
+  // --------- DIVERS -----------
+  
+  { path: 'merci', component: MerciComponent, canActivate: [StatutConnecteService]},
   
   { path: '', redirectTo: '/accueil', pathMatch: 'full' },
   { path: 'accesRefuse', component: AccesRefuseComponent, canActivate: [StatutConnecteService] },

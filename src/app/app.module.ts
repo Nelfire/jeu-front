@@ -72,6 +72,7 @@ import { CreationUniteeComponent } from './administration/unitee/creation-unitee
 import { ModificationUniteeComponent } from './administration/unitee/modification-unitee/modification-unitee.component';
 import { ListeAmisService } from './service/social/liste-amis.service';
 import { ListeAmisComponent } from './social/liste-amis/liste-amis.component';
+import { MerciComponent } from './divers/merci/merci.component';
 
 
 @NgModule({
@@ -117,7 +118,8 @@ import { ListeAmisComponent } from './social/liste-amis/liste-amis.component';
     ListeDefenseComponent,
     ModificationDefenseComponent,
     ListeUniteeComponent,
-    ListeAmisComponent
+    ListeAmisComponent,
+    MerciComponent
   ],
   imports: [
     BrowserModule,
