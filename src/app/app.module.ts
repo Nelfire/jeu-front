@@ -21,7 +21,6 @@ import { JoueurService } from './service/joueur.service';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { AccueilComponent } from './accueil/accueil.component';
 import { ListerJoueurComponent } from './lister-joueur/lister-joueur.component';
-import { VisualiserJoueurComponent } from './visualiser-joueur/visualiser-joueur.component';
 import { MessageComponent } from './message/message.component';
 import { MessageService } from './service/message.service';
 import { MessagePriveComponent } from './message/message-prive/message-prive.component';
@@ -88,7 +87,6 @@ import { TantPisComponent } from './divers/tant-pis/tant-pis.component';
     FourOhFourComponent,
     AccueilComponent,
     ListerJoueurComponent,
-    VisualiserJoueurComponent,
     MessageComponent,
     MessagePriveComponent,
     ModifierJoueurComponent,

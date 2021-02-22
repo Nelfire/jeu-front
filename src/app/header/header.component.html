@@ -18,7 +18,7 @@
                         <li id="etape2" class="pierre">
                             <a class="btn"
                                 ngbTooltip="Production par heure : {{informationRessourcesJoueur.apportPierreSeconde * 3600}}">
-                                <fa-icon [icon]="iconeStopWatch"></fa-icon> Pierre : <b
+                                <span class="nom-ressource">Pierre : </span><b
                                     [ngStyle]="{color:getColorApprocheLimitePierre()}">{{informationRessourcesJoueur.pierrePossession}}/{{informationRessourcesJoueur.quantiteMaximaleStockagePierre}}</b>
                             </a>
                         </li>
@@ -27,7 +27,7 @@
                         <li id="etape3" class="bois">
                             <a class="btn"
                                 ngbTooltip="Production par heure : {{informationRessourcesJoueur.apportBoisSeconde * 3600}}">
-                                <fa-icon [icon]="iconeStopWatch"></fa-icon> Bois : <b
+                                <span class="nom-ressource">Bois : </span> <b
                                     [ngStyle]="{color:getColorApprocheLimiteBois()}">{{informationRessourcesJoueur.boisPossession}}/{{informationRessourcesJoueur.quantiteMaximaleStockageBois}}</b>
                             </a>
                         </li>
@@ -36,7 +36,7 @@
                         <li id="etape4" class="or">
                             <a class="btn"
                                 ngbTooltip="Production par heure : {{informationRessourcesJoueur.apportOrSeconde * 3600}}">
-                                <fa-icon [icon]="iconeStopWatch"></fa-icon> Or : <b
+                                <span class="nom-ressource">Or : </span> <b
                                     [ngStyle]="{color:getColorApprocheLimiteOr()}">{{informationRessourcesJoueur.orPossession}}/{{informationRessourcesJoueur.quantiteMaximaleStockageOr}}</b>
                             </a>
                         </li>
@@ -45,7 +45,7 @@
                         <li id="etape5" class="nourriture"
                         ngbTooltip="Production par heure : {{informationRessourcesJoueur.apportNourritureSeconde * 3600}}">
                         <a class="btn">
-                            <fa-icon [icon]="iconeStopWatch"></fa-icon> Nourriture : <b
+                            <span class="nom-ressource">Nourriture : </span> <b
                                 [ngStyle]="{color:getColorApprocheLimiteNourriture()}">{{informationRessourcesJoueur.nourriturePossession}}/{{informationRessourcesJoueur.quantiteMaximaleStockageNourriture}}</b>
                         </a>
                     </li>
@@ -53,7 +53,7 @@
                     <div class="col-sm-2">
                         <li id="etape6" class="gemme">
                             <a class="btn" ngbTooltip="Gain de gemmes en réalisant des expéditions">
-                                <fa-icon [icon]="iconeStopWatch"></fa-icon> Gemmes :
+                                <span class="nom-ressource">Gemmes : </span>
                                 <b>{{informationRessourcesJoueur.gemmePossession}}</b>
                             </a>
                         </li>
@@ -165,7 +165,7 @@
             <ul class="logout" *ngIf="infosJoueur">
                 <li>
                     <a routerLink="aVenir">
-                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>
                         <span class="nav-text">
                             A venir
                         </span>

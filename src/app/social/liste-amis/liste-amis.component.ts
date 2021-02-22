@@ -33,15 +33,18 @@ export class ListeAmisComponent implements OnInit {
     this.listeAmis = [];
     this.listeAmisService.lister().subscribe(
       (value) => {
-        value.listeDAmis.forEach(element => {
-          this.listeVide = false;
+        if(value.proprietaireListe!=null) {
+          value.listeDAmis.forEach(element => {
+            this.listeVide = false;
+  
+            this.joueurService.informationJoueurById(element).subscribe(
+              (donnees) => {
+                this.listeAmis.push(donnees);
+              }
+            );
+          });
+        }
 
-          this.joueurService.informationJoueurById(element).subscribe(
-            (donnees) => {
-              this.listeAmis.push(donnees);
-            }
-          );
-        });
       }
     );
   }

@@ -4,3 +4,16 @@
 .btn {
     box-shadow: 1.5px 1.5px 1.5px rgb(0, 0, 0);
 }
+
+
+#image {
+    height: 410px;
+    width: 500px;
+    background-image: url("../../../../../images/travaux.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-image-outset: 7px 12px 14px 5px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 10%;
+  }

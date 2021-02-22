@@ -72,7 +72,6 @@ export class DetailExpeditionComponent implements OnInit {
     this.batimentJoueurService.rechercheBatimentJoueur(18).subscribe(
       (value) => {
         this.niveauTableExpedition = value.niveau;
-        console.log(this.niveauTableExpedition);
       }
     );
 

@@ -9,7 +9,6 @@ import { AccesRefuseComponent } from './erreurNavigation/acces-refuse/acces-refu
 import { StatutManagerService } from './service/statut-manager.service';
 import { AccueilComponent } from './accueil/accueil.component';
 import { ListerJoueurComponent } from './lister-joueur/lister-joueur.component';
-import { VisualiserJoueurComponent } from './visualiser-joueur/visualiser-joueur.component';
 import { MessageComponent } from './message/message.component';
 import { MessagePriveComponent } from './message/message-prive/message-prive.component';
 import { ModifierJoueurComponent } from './joueur/modifier-joueur/modifier-joueur.component';
@@ -60,7 +59,6 @@ const routes: Routes = [
   { path: 'creationCompte', component: CreationCompteComponent},
 
 
-  { path: 'visualisationJoueur/:email', component: VisualiserJoueurComponent, canActivate: [StatutConnecteService] },
   { path: 'modifierJoueur/:email', component: ModifierJoueurComponent, canActivate: [StatutConnecteService, StatutAdministrateurService] },
 
   { path: 'message', component: MessageComponent, canActivate: [StatutConnecteService] },
