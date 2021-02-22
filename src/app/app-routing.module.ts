@@ -42,6 +42,8 @@ import { CreationUniteeComponent } from './administration/unitee/creation-unitee
 import { ModificationUniteeComponent } from './administration/unitee/modification-unitee/modification-unitee.component';
 import { ListeAmisComponent } from './social/liste-amis/liste-amis.component';
 import { MerciComponent } from './divers/merci/merci.component';
+import { AnnonceAVenirComponent } from './divers/annonce-a-venir/annonce-a-venir.component';
+import { TantPisComponent } from './divers/tant-pis/tant-pis.component';
 
 
 const routes: Routes = [
@@ -124,8 +126,11 @@ const routes: Routes = [
 
   // --------- DIVERS -----------
   
-  { path: 'merci', component: MerciComponent, canActivate: [StatutConnecteService]},
+  { path: 'merciInfiniment', component: MerciComponent, canActivate: [StatutConnecteService]},
+  { path: 'tantPis', component: TantPisComponent, canActivate: [StatutConnecteService]},
+  { path: 'aVenir', component: AnnonceAVenirComponent, canActivate: [StatutConnecteService]},
   
+  // --------- REDIRECTIONS ---------
   { path: '', redirectTo: '/accueil', pathMatch: 'full' },
   { path: 'accesRefuse', component: AccesRefuseComponent, canActivate: [StatutConnecteService] },
   // Cas url inexistant

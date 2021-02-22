@@ -22,8 +22,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body msg_card_body">
-                        <span *ngFor="let message of listeMessages">
+                    <div class="card-body msg_card_body" (scroll)="scrolled($event)" #scrollframe>
+                        <span *ngFor="let message of listeMessages" #item>
 
                             <div class="d-flex justify-content-start mb-4"
                                 *ngIf="message.appartientAuJoueurConnecte == true; else autreJoueur;">
@@ -34,17 +34,16 @@
                                 <div class="msg_cotainer">
                                     {{message.contenu}}
                                     <span class="msg_time">{{message.datePublication | date:'dd/MM/yyyy HH:mm:ss'}} --
-                                        <b><a
-                                                routerLink="/detailJoueur/{{message.joueur.id}}">{{message.joueur.pseudo}}</a></b></span>
+                                        <b><a routerLink="/detailJoueur/{{message.joueur.id}}" class="emetteur">{{message.joueur.pseudo}}</a></b></span>
                                 </div>
                             </div>
                             <ng-template #autreJoueur>
                                 <div class="d-flex justify-content-end mb-4">
                                     <div class="msg_cotainer_send">
                                         {{message.contenu}}
-                                        <span class="msg_time_send">{{message.datePublication | date:'dd/MM/yyyy HH:mm:ss'}} --
-                                            <b><a
-                                                    routerLink="/detailJoueur/{{message.joueur.id}}">{{message.joueur.pseudo}}</a></b></span>
+                                        <span class="msg_time_send">{{message.datePublication | date:'dd/MM/yyyy
+                                            HH:mm:ss'}} --
+                                            <b><a routerLink="/detailJoueur/{{message.joueur.id}}">{{message.joueur.pseudo}}</a></b></span>
                                     </div>
                                     <div class="img_cont_msg">
                                         <img src="{{message.joueur.icone}}" class="rounded-circle user_img_msg">
@@ -57,8 +56,9 @@
                         <form [formGroup]="formAjouterMessage" (ngSubmit)="validerMessage()">
                             <div class="input-group">
                                 <textarea name="" class="form-control type_msg" placeholder="Tapez votre message ..."
-                                    id="contenu" rows="3" formControlName="contenu"></textarea>
-                                <button class="btn btn-success mr-2">
+                                    id="contenu" rows="3" formControlName="contenu"
+                                    (keyup.enter)="validerMessage()"></textarea>
+                                <button class="btn btn-success mr-2" [disabled]="formAjouterMessage.invalid">
                                     Envoyer
                                 </button>
                             </div>

@@ -1,6 +1,12 @@
+::-webkit-scrollbar {
+    display: none;
+}
 .chat {
     margin-top: auto;
     margin-bottom: auto;
+}
+.chatMessages {
+    overflow-y: scroll;
 }
 .card {
     height: 700px;
@@ -22,16 +28,6 @@
 .container {
     align-content: center;
 }
-.search {
-    border-radius: 15px 0 0 15px !important;
-    background-color: rgba(0, 0, 0, 0.3) !important;
-    border: 0 !important;
-    color: white !important;
-}
-.search:focus {
-    box-shadow: none !important;
-    outline: 0px !important;
-}
 .type_msg {
     background-color: rgba(0, 0, 0, 0.3) !important;
     border: 0 !important;
@@ -43,29 +39,12 @@
     box-shadow: none !important;
     outline: 0px !important;
 }
-.attach_btn {
-    border-radius: 15px 0 0 15px !important;
-    background-color: rgba(0, 0, 0, 0.3) !important;
-    border: 0 !important;
-    color: white !important;
-    cursor: pointer;
-}
 .send_btn {
     border-radius: 0 15px 15px 0 !important;
     background-color: rgba(0, 0, 0, 0.3) !important;
     border: 0 !important;
     color: white !important;
     cursor: pointer;
-}
-.search_btn {
-    border-radius: 0 15px 15px 0 !important;
-    background-color: rgba(0, 0, 0, 0.3) !important;
-    border: 0 !important;
-    color: white !important;
-    cursor: pointer;
-}
-.active {
-    background-color: rgba(0, 0, 0, 0.3);
 }
 .user_img {
     height: 70px;
@@ -85,19 +64,6 @@
 .img_cont_msg {
     height: 40px;
     width: 40px;
-}
-.online_icon {
-    position: absolute;
-    height: 15px;
-    width: 15px;
-    background-color: #4cd137;
-    border-radius: 50%;
-    bottom: 0.2em;
-    right: 0.4em;
-    border: 1.5px solid white;
-}
-.offline {
-    background-color: #c23616 !important;
 }
 .user_info {
     margin-top: auto;
@@ -133,9 +99,10 @@
 .msg_time {
     position: absolute;
     left: 0;
-    bottom: -15px;
+    bottom: -20px;
     color: rgba(255, 255, 255, 0.5);
     font-size: 10px;
+    width: 300px;
 }
 .msg_time_send {
     position: absolute;
@@ -156,4 +123,9 @@
 
 .discussion {
     margin-top: 6%;
+}
+
+.emetteur {
+    color: rgb(255, 255, 255);
+    text-shadow: 0.1em 0.1em 0.2em rgb(255, 208, 0);
 }

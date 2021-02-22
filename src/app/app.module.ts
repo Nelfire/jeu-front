@@ -73,6 +73,8 @@ import { ModificationUniteeComponent } from './administration/unitee/modificatio
 import { ListeAmisService } from './service/social/liste-amis.service';
 import { ListeAmisComponent } from './social/liste-amis/liste-amis.component';
 import { MerciComponent } from './divers/merci/merci.component';
+import { AnnonceAVenirComponent } from './divers/annonce-a-venir/annonce-a-venir.component';
+import { TantPisComponent } from './divers/tant-pis/tant-pis.component';
 
 
 @NgModule({
@@ -119,7 +121,9 @@ import { MerciComponent } from './divers/merci/merci.component';
     ModificationDefenseComponent,
     ListeUniteeComponent,
     ListeAmisComponent,
-    MerciComponent
+    MerciComponent,
+    AnnonceAVenirComponent,
+    TantPisComponent
   ],
   imports: [
     BrowserModule,

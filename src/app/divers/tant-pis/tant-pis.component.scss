@@ -8,12 +8,12 @@ body {
     margin: 0;
 }
 
-#merci {
+#tantPis {
     position: relative;
     height: 80vh;
 }
 
-#merci .merci {
+#tantPis .tantPis {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -22,18 +22,18 @@ body {
     transform: translate(-50%, -50%);
 }
 
-.merci {
+.tantPis {
     max-width: 520px;
     width: 100%;
     text-align: center;
     line-height: 1.4;
 }
 
-.merci .merci-fete {
+.tantPis .tantPis-embarrasse {
     height: 190px;
 }
 
-.merci .merci-fete h1 {
+.tantPis .tantPis-embarrasse h1 {
     font-family: "Montserrat", sans-serif;
     font-size: 146px;
     font-weight: 700;
@@ -41,11 +41,11 @@ body {
     color: #232323;
 }
 
-.merci .merci-fete h1 > span {
+.tantPis .tantPis-embarrasse h1 > span {
     display: inline-block;
     width: 120px;
     height: 120px;
-    background-image: url("../../../images/emoji-fete.png");
+    background-image: url("../../../images/embarrasse.png");
     background-size: cover;
     -webkit-transform: scale(1.4);
     -ms-transform: scale(1.4);
@@ -53,7 +53,7 @@ body {
     z-index: -1;
 }
 
-.merci h2 {
+.tantPis h2 {
     font-family: "Montserrat", sans-serif;
     font-size: 26px;
     font-weight: 700;
@@ -62,14 +62,14 @@ body {
     color: #232323;
 }
 
-.merci p {
+.tantPis p {
     font-family: "Montserrat", sans-serif;
     font-size: 19px;
     color: #000000;
     font-weight: 300;
 }
 
-.merci a {
+.tantPis a {
     font-family: "Montserrat", sans-serif;
     display: inline-block;
     padding: 12px 30px;
@@ -83,20 +83,20 @@ body {
     cursor: pointer;
 }
 
-.merci a:hover {
+.tantPis a:hover {
     opacity: 0.8;
 }
 
 @media only screen and (max-width: 767px) {
-    .merci .merci-fete {
+    .tantPis .tantPis-embarrasse {
         height: 115px;
     }
 
-    .merci .merci-fete h1 {
+    .tantPis .tantPis-embarrasse h1 {
         font-size: 86px;
     }
 
-    .merci .merci-fete h1 > span {
+    .tantPis .tantPis-embarrasse h1 > span {
         width: 86px;
         height: 86px;
     }

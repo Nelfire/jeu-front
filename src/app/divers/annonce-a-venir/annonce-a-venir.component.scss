@@ -1,0 +1,51 @@
+.accueil {
+    margin-top: 6%;
+}
+
+b {
+    font-weight: bold;
+}
+.pierre {
+    color: grey;
+}
+
+.bois {
+    color: rgb(104, 59, 0);
+}
+
+.or {
+    color: rgb(255, 238, 0);
+}
+
+.nourriture {
+    color: rgb(255, 0, 106);
+}
+
+.gemme {
+    color: rgb(90, 201, 0);
+}
+
+#texte {
+    height: 1px;
+    position: relative;
+}
+
+#image {
+    height: 600px;
+    width: 355px;
+    position: absolute;
+    left: 4%;
+    top: -9000%;
+
+    background-image: url("../../../images/travail-en-cours.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: inline-block;
+    border-image-outset: 7px 12px 14px 5px;
+    background-position: center right;
+    z-index: 3;
+}
+
+p{
+    height: 415px;
+}

@@ -164,6 +164,14 @@
             </ul>
             <ul class="logout" *ngIf="infosJoueur">
                 <li>
+                    <a routerLink="aVenir">
+                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                        <span class="nav-text">
+                            A venir
+                        </span>
+                    </a>
+                </li>                
+                <li>
                     <a (click)="lancementTutoriel()">
                         <i class="fa fa-question-circle" aria-hidden="true"></i>
                         <span class="nav-text">
