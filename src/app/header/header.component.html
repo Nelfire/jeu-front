@@ -7,64 +7,87 @@
         <div class="menu" *ngIf="infosJoueur && informationRessourcesJoueur">
             <ul class="modify" id="etape1">
                 <div class="row">
-                    <div class="col-sm-1">
+                    <div class="col-sm-1 emplacement-logo">
                         <div class="logo">
                             <img src="https://media.discordapp.net/attachments/649978115199860766/793975291994964028/72399-icons-crown-prodigy-game-computer-math-icon.png"
                                 alt="" style="width: 40px;height: 40px;" />
                         </div>
                     </div>
 
-                    <div class="col-sm-2">
+                    <div class="col">
                         <li id="etape2" class="pierre">
-                            <a class="btn"
-                                ngbTooltip="Production par heure : {{informationRessourcesJoueur.apportPierreSeconde * 3600}}">
-                                <span class="nom-ressource">Pierre : </span><b
-                                    [ngStyle]="{color:getColorApprocheLimitePierre()}">{{informationRessourcesJoueur.pierrePossession}}/{{informationRessourcesJoueur.quantiteMaximaleStockagePierre}}</b>
+                            <a class="btn" [ngbTooltip]="productionPierre">
+                                <span class="nom-ressource">Pierre : </span> <b
+                                    [ngStyle]="{color:getColorApprocheLimitePierre()}">{{informationRessourcesJoueur.pierrePossession | number}}<span
+                                        class="limite-ressource">/{{informationRessourcesJoueur.quantiteMaximaleStockagePierre | number}}</span></b>
                             </a>
+                            <ng-template #productionPierre>
+                                <div class="d-flex flex-column">
+                                    <span><b>PIERRE</b></span>
+                                    <span><b>Production : </b> {{informationRessourcesJoueur.apportPierreSeconde * 3600 | number}} /h</span>
+                                  <span><b>Limite : </b> {{informationRessourcesJoueur.quantiteMaximaleStockagePierre | number}}</span>
+                                </div>
+                            </ng-template>
                         </li>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col">
                         <li id="etape3" class="bois">
-                            <a class="btn"
-                                ngbTooltip="Production par heure : {{informationRessourcesJoueur.apportBoisSeconde * 3600}}">
+                            <a class="btn" [ngbTooltip]="productionBois">
                                 <span class="nom-ressource">Bois : </span> <b
-                                    [ngStyle]="{color:getColorApprocheLimiteBois()}">{{informationRessourcesJoueur.boisPossession}}/{{informationRessourcesJoueur.quantiteMaximaleStockageBois}}</b>
+                                    [ngStyle]="{color:getColorApprocheLimiteBois()}">{{informationRessourcesJoueur.boisPossession | number}}<span
+                                        class="limite-ressource">/{{informationRessourcesJoueur.quantiteMaximaleStockageBois | number}}</span></b>
                             </a>
+                            <ng-template #productionBois>
+                                <div class="d-flex flex-column">
+                                    <span><b>BOIS</b></span>
+                                    <span><b>Production : </b> {{informationRessourcesJoueur.apportBoisSeconde * 3600 | number}} /h</span>
+                                  <span><b>Limite : </b> {{informationRessourcesJoueur.quantiteMaximaleStockageBois | number}}</span>
+                                </div>
+                            </ng-template>
                         </li>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col">
                         <li id="etape4" class="or">
-                            <a class="btn"
-                                ngbTooltip="Production par heure : {{informationRessourcesJoueur.apportOrSeconde * 3600}}">
+                            <a class="btn" [ngbTooltip]="productionOr">
                                 <span class="nom-ressource">Or : </span> <b
-                                    [ngStyle]="{color:getColorApprocheLimiteOr()}">{{informationRessourcesJoueur.orPossession}}/{{informationRessourcesJoueur.quantiteMaximaleStockageOr}}</b>
+                                    [ngStyle]="{color:getColorApprocheLimiteOr()}">{{informationRessourcesJoueur.orPossession | number}}<span
+                                        class="limite-ressource">/{{informationRessourcesJoueur.quantiteMaximaleStockageOr | number}}</span></b>
                             </a>
+                            <ng-template #productionOr>
+                                <div class="d-flex flex-column">
+                                    <span><b>OR</b></span>
+                                    <span><b>Production : </b> {{informationRessourcesJoueur.apportOrSeconde * 3600 | number}} /h</span>
+                                  <span><b>Limite : </b> {{informationRessourcesJoueur.quantiteMaximaleStockageOr | number}}</span>
+                                </div>
+                            </ng-template>
                         </li>
                     </div>
-                    <div class="col-sm-2">
-                        <li id="etape5" class="nourriture"
-                        ngbTooltip="Production par heure : {{informationRessourcesJoueur.apportNourritureSeconde * 3600}}">
-                        <a class="btn">
-                            <span class="nom-ressource">Nourriture : </span> <b
-                                [ngStyle]="{color:getColorApprocheLimiteNourriture()}">{{informationRessourcesJoueur.nourriturePossession}}/{{informationRessourcesJoueur.quantiteMaximaleStockageNourriture}}</b>
-                        </a>
-                    </li>
+                    <div class="col">
+                        <li id="etape5" class="nourriture">
+                            <a class="btn" [ngbTooltip]="productionNourriture">
+                                <span class="nom-ressource">Nourriture : </span> <b
+                                    [ngStyle]="{color:getColorApprocheLimiteNourriture()}">{{informationRessourcesJoueur.nourriturePossession | number}}<span
+                                        class="limite-ressource">/{{informationRessourcesJoueur.quantiteMaximaleStockageNourriture | number}}</span></b>
+                            </a>
+                            <ng-template #productionNourriture>
+                                <div class="d-flex flex-column">
+                                    <span><b>NOURRITURE</b></span>
+                                    <span><b>Production : </b> {{informationRessourcesJoueur.apportNourritureSeconde * 3600 | number}} /h</span>
+                                  <span><b>Limite : </b> {{informationRessourcesJoueur.quantiteMaximaleStockageNourriture | number}}</span>
+                                </div>
+                            </ng-template>
+                        </li>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col">
                         <li id="etape6" class="gemme">
                             <a class="btn" ngbTooltip="Gain de gemmes en réalisant des expéditions">
                                 <span class="nom-ressource">Gemmes : </span>
-                                <b>{{informationRessourcesJoueur.gemmePossession}}</b>
+                                <b>{{informationRessourcesJoueur.gemmePossession | number}}</b>
                             </a>
                         </li>
                     </div>
-                    <div class="col-sm-1"></div>
+                    <div class="col-sm-1 emplacement-logo"></div>
                 </div>
-
-
-
-
-
             </ul>
         </div>
     </header>
@@ -170,7 +193,7 @@
                             A venir
                         </span>
                     </a>
-                </li>                
+                </li>
                 <li>
                     <a (click)="lancementTutoriel()">
                         <i class="fa fa-question-circle" aria-hidden="true"></i>

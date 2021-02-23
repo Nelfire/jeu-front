@@ -10,4 +10,9 @@
     margin-top: 1%;
 }
 
-
+// 200px -> 1300px
+@media screen and (min-width: 200px) and (max-width: 1300px) {
+    .texte {
+        display: none;
+    }
+}
