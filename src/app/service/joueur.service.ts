@@ -33,10 +33,9 @@ export class JoueurService {
     return this.http.get<JoueurInfos>(`${URL_BACKEND}/informationJoueurById?id=`+id);
   }
 
-  modifierInformationsJoueur(icone:string,email:string,descriptif:string): Observable<any> {
+  modifierInformationsJoueur(icone:string,descriptif:string): Observable<any> {
     return this.http.put<any>(`${URL_BACKEND}/modifierInformationsJoueur`, {
       icone: `${icone}`,
-      email: `${email}`,
       descriptif: `${descriptif}`,
     })
   }

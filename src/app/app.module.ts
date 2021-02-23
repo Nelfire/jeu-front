@@ -74,6 +74,7 @@ import { ListeAmisComponent } from './social/liste-amis/liste-amis.component';
 import { MerciComponent } from './divers/merci/merci.component';
 import { AnnonceAVenirComponent } from './divers/annonce-a-venir/annonce-a-venir.component';
 import { TantPisComponent } from './divers/tant-pis/tant-pis.component';
+import { UsineComponent } from './usine/usine.component';
 
 
 @NgModule({
@@ -121,7 +122,8 @@ import { TantPisComponent } from './divers/tant-pis/tant-pis.component';
     ListeAmisComponent,
     MerciComponent,
     AnnonceAVenirComponent,
-    TantPisComponent
+    TantPisComponent,
+    UsineComponent
   ],
   imports: [
     BrowserModule,

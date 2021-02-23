@@ -70,10 +70,10 @@ export class ModifierJoueurComponent implements OnInit {
   validerFormulaire() {
 
     const icone = this.formModificationJoueur.get("icone").value;
-    const email = this.formModificationJoueur.get("email").value;
+    /* const email = this.formModificationJoueur.get("email").value; */
     const descriptif = this.formModificationJoueur.get("descriptif").value;
 
-    this.joueurService.modifierInformationsJoueur(icone,email,descriptif).subscribe(() => {
+    this.joueurService.modifierInformationsJoueur(icone,descriptif).subscribe(() => {
     
     }, (error) => {
       this.notification.showError(error.error.message, "Informations modifiées.");
