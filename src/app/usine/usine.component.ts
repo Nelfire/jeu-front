@@ -190,14 +190,14 @@ export class UsineComponent implements OnInit {
   recolterOr() {
     // Cas bâtiment manquant
     if (this.campDeMineur.niveau == null) {
-      this.notification.showError("Vous ne possédez pas encore de camp de mineur", "Erreur...");
+      this.notification.showError("Vous ne possédez pas encore de mine d'or", "Erreur...");
     }
     else // Sinon : 1 Clique = Equivalent de 2 secondes de génération de ressource
     {
       var maintenant = new Date().getTime();
       // Bâtiment en cours de travail ?
       if (this.campDeMineur.dateFinConstruction > maintenant) {
-        this.notification.showWarning("Votre camp de mineur est en cours d'amélioration", "Patience...");
+        this.notification.showWarning("Votre mine d'or est en cours d'amélioration", "Patience...");
       } else {
         // Police du clic (Rapiditée) -70ms
         var maintenant = new Date().getTime();

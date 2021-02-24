@@ -43,7 +43,7 @@
                                         {{message.contenu}}
                                         <span class="msg_time_send">{{message.datePublication | date:'dd/MM/yyyy
                                             HH:mm:ss'}} --
-                                            <b><a routerLink="/detailJoueur/{{message.joueur.id}}">{{message.joueur.pseudo}}</a></b></span>
+                                            <b><a routerLink="/detailJoueur/{{message.joueur.id}}" class="emetteur">{{message.joueur.pseudo}}</a></b></span>
                                     </div>
                                     <div class="img_cont_msg">
                                         <img src="{{message.joueur.icone}}" class="rounded-circle user_img_msg">
