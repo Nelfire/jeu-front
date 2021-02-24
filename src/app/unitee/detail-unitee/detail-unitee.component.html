@@ -47,7 +47,7 @@
             <!-- ATTAQUE -->
             <!-- TEMPS DE FORMATION -->
             <p class="card__temps__travail">
-                Temps de formation : {{unitee['tempsFormation']}} secondes
+                Temps de formation : {{unitee['tempsFormation'] | minuteSecondePipe: 's':'hhmmss'}}
             </p>
 
             <!-- COUT -->
@@ -203,7 +203,7 @@
                 
                 <p class="card__description center"><u>Production en cours</u></p>
 
-                <p class="card__progress_bar_text">Temps restant : {{secondesRestantesAmelioration}} secondes</p>
+                <p class="card__progress_bar_text">Temps restant : {{secondesRestantesAmelioration | minuteSecondePipe: 's':'hhmmss'}}</p>
                 <div class="progress mb-3 center" style="width: 80%;">
                     <div class="progress-bar progress-bar-striped progress-bar-animated"
                         [ngStyle]="{width:getTempsFormationTotalFileAttentePourcent()}"></div>

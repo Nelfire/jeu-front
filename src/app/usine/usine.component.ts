@@ -3,6 +3,7 @@ import { BatimentJoueurService } from '../service/batiment-joueur.service';
 import { JoueurService } from '../service/joueur.service';
 import { NotificationService } from '../service/notification.service';
 import { MesBatiments } from '../models/mes-batiments';
+import { GenerationRessourcesService } from '../service/generation-ressources.service';
 
 @Component({
   selector: 'app-usine',
@@ -21,6 +22,11 @@ export class UsineComponent implements OnInit {
   campDeBucheron: MesBatiments;
   campDeMineur: MesBatiments;
   ferme: MesBatiments;
+  // Etat bâtiment
+  carriereEnCoursDeTravail: boolean;
+  campDeBucheronEnCoursDeTravail: boolean;
+  campDeMineurEnCoursDeTravail: boolean;
+  fermeEnCoursDeTravail: boolean;
 
   // Police du click
   // --- PIERRE ---
@@ -55,7 +61,8 @@ export class UsineComponent implements OnInit {
   // CONSTRUCTEUR
   constructor(private notification: NotificationService,
     private joueurService: JoueurService,
-    private batimentJoueurService: BatimentJoueurService) { }
+    private batimentJoueurService: BatimentJoueurService,
+    private generationRessourceServices : GenerationRessourcesService) { }
 
   ngOnInit(): void {
 
@@ -64,24 +71,42 @@ export class UsineComponent implements OnInit {
     this.batimentJoueurService.rechercheBatimentJoueur(3).subscribe(
       (batimentPierre) => {
         this.carriere = batimentPierre;
+        // Bâtiment en cours de travail ?
+        var maintenant = new Date().getTime();
+        if (this.carriere.dateFinConstruction > maintenant) {
+          this.carriereEnCoursDeTravail = true;
+        }
       }
     );
     // Camp de bucheron
     this.batimentJoueurService.rechercheBatimentJoueur(4).subscribe(
       (batimentBois) => {
         this.campDeBucheron = batimentBois;
+        // Bâtiment en cours de travail ?
+        var maintenant = new Date().getTime();
+        if (this.campDeBucheron.dateFinConstruction > maintenant) {
+          this.campDeBucheronEnCoursDeTravail = true;
+        }
       }
     );
     // Camp de mineur
     this.batimentJoueurService.rechercheBatimentJoueur(5).subscribe(
       (batimentOr) => {
         this.campDeMineur = batimentOr;
+        var maintenant = new Date().getTime();
+        if (this.campDeMineur.dateFinConstruction > maintenant) {
+          this.campDeMineurEnCoursDeTravail = true;
+        }
       }
     );
     // Ferme
     this.batimentJoueurService.rechercheBatimentJoueur(6).subscribe(
       (batimentNourriture) => {
         this.ferme = batimentNourriture;
+        var maintenant = new Date().getTime();
+        if (this.ferme.dateFinConstruction > maintenant) {
+          this.fermeEnCoursDeTravail = true;
+        }
       }
     );
   }
@@ -96,8 +121,10 @@ export class UsineComponent implements OnInit {
       var maintenant = new Date().getTime();
       // Bâtiment en cours de travail ?
       if (this.carriere.dateFinConstruction > maintenant) {
+        this.carriereEnCoursDeTravail = true;
         this.notification.showWarning("Votre carrière de pierre est en cours d'amélioration", "Patience...");
       } else {
+        this.carriereEnCoursDeTravail = false;
         // Police du clic (Rapiditée) -70ms
         var maintenant = new Date().getTime();
         var ecart = maintenant - this.lastClickPierre;
@@ -147,8 +174,10 @@ export class UsineComponent implements OnInit {
       var maintenant = new Date().getTime();
       // Bâtiment en cours de travail ?
       if (this.campDeBucheron.dateFinConstruction > maintenant) {
+        this.campDeBucheronEnCoursDeTravail = true;
         this.notification.showWarning("Votre camp de bûcheron est en cours d'amélioration", "Patience...");
       } else {
+        this.campDeBucheronEnCoursDeTravail = false;
         // Police du clic (Rapiditée) -70ms
         var maintenant = new Date().getTime();
         var ecart = maintenant - this.lastClickBois;
@@ -197,8 +226,10 @@ export class UsineComponent implements OnInit {
       var maintenant = new Date().getTime();
       // Bâtiment en cours de travail ?
       if (this.campDeMineur.dateFinConstruction > maintenant) {
+        this.campDeMineurEnCoursDeTravail = true;
         this.notification.showWarning("Votre mine d'or est en cours d'amélioration", "Patience...");
       } else {
+        this.campDeMineurEnCoursDeTravail = false;
         // Police du clic (Rapiditée) -70ms
         var maintenant = new Date().getTime();
         var ecart = maintenant - this.lastClickOr;
@@ -247,8 +278,10 @@ export class UsineComponent implements OnInit {
       var maintenant = new Date().getTime();
       // Bâtiment en cours de travail ?
       if (this.ferme.dateFinConstruction > maintenant) {
+        this.fermeEnCoursDeTravail = true;
         this.notification.showWarning("Votre ferme est en cours d'amélioration", "Patience...");
       } else {
+        this.fermeEnCoursDeTravail = false;
         // Police du clic (Rapiditée) -70ms
         var maintenant = new Date().getTime();
         var ecart = maintenant - this.lastClickNourriture;
@@ -297,6 +330,7 @@ export class UsineComponent implements OnInit {
           this.montantRecolteBois = 0;
           this.montantRecolteOr = 0;
           this.montantRecolteNourriture = 0;
+          this.generationRessourceServices.onFirstComponentButtonClick();
         }, (error) => {
           this.notification.showError(error.error.message, "Oups...");
         }

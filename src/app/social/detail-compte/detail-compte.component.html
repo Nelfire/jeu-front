@@ -12,7 +12,7 @@
             </div>
             <p class="card__niveau">Niveau : {{joueur.niveau}}</p>
             <p class="card__experience">Experience : {{joueur.experience}}</p>
-            <p class="card__tempsDeJeu">Temps de jeu : {{joueur.tempsDeJeu}} sc</p>
+            <p class="card__tempsDeJeu">Temps de jeu : {{joueur.tempsDeJeu | minuteSecondePipe: 's':'hhmmss'}}</p>
 
             <div *ngIf="joueurConnecte.id == joueur.id; else consultationJoueur">
                 <a routerLink="/modificationJoueur">

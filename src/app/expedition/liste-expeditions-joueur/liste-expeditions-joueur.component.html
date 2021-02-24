@@ -103,7 +103,7 @@
                                     <h5>- Vie : {{uneExpeditionJoueur.expedition.vie | thousandSuff:2}}</h5>
                                     <h5>- Degats : {{uneExpeditionJoueur.expedition.degats | thousandSuff:2}}</h5>
                                     <h5>- Armure : {{uneExpeditionJoueur.expedition.armure | thousandSuff:2}}</h5>
-                                    <h5>- Durée : {{uneExpeditionJoueur.expedition.dureeExpedition}} secondes</h5>
+                                    <h5>- Durée : {{uneExpeditionJoueur.expedition.dureeExpedition | minuteSecondePipe: 's':'hhmmss'}}</h5>
                                     <hr>
                                     <h2>Expédition terminée</h2>
                                 </div>

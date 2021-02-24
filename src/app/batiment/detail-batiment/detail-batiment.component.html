@@ -141,7 +141,7 @@
         <!-- TEMPS DE CONSTRUCTION -->
         <p class="card__temps__travail">
           <b>Temps de construction : </b>
-          <b>{{batiment['tempsDeConstruction']}}</b> secondes
+          <b>{{batiment['tempsDeConstruction'] | minuteSecondePipe: 's':'hhmmss'}}</b>
         </p>
 
         <!-- BOUTONS -->
@@ -422,16 +422,24 @@
           <!-- TEMPS DE CONSTRUCTION -->
           <p class="card__temps__travail">
             <b>Temps d'amélioration : </b>
-            <b>{{batimentJoueurPossede['tempsAmelioration']*batiment.multiplicateurCout}} </b> secondes
+            <b>{{batimentJoueurPossede['tempsAmelioration']*batiment.multiplicateurCout | minuteSecondePipe: 's':'hhmmss'}} </b>
           </p>
 
           <!-- BOUTONS -->
           <div class="row">
 
-            <div class="col-sm-6">
-              <!-- OK : AMELIORER -->
-              <button class="btn draw-border" (click)="ameliorer()">Ameliorer</button>
+
+
+            <!-- CAS UNITE PROVENANT DE CE BATIMENT EN COURS DE PRODUCTION -->
+            <div class="col-sm-6" *ngIf="batimentUniteEnCoursDeProduction; else ameliorationPossible">
+              <button class="btn draw-border" (click)="ameliorer()">Unités en cours de production</button>
             </div>
+            <!-- OK : AMELIORER -->
+            <ng-template #ameliorationPossible>
+              <div class="col-sm-6">
+                <button class="btn draw-border" (click)="ameliorer()">Ameliorer</button>
+              </div>
+            </ng-template>
 
             <!-- RETOUR -->
             <div class="col-sm-6">

@@ -75,6 +75,7 @@ import { MerciComponent } from './divers/merci/merci.component';
 import { AnnonceAVenirComponent } from './divers/annonce-a-venir/annonce-a-venir.component';
 import { TantPisComponent } from './divers/tant-pis/tant-pis.component';
 import { UsineComponent } from './usine/usine.component';
+import { NouveauteComponent } from './divers/nouveaute/nouveaute.component';
 
 
 @NgModule({
@@ -123,7 +124,8 @@ import { UsineComponent } from './usine/usine.component';
     MerciComponent,
     AnnonceAVenirComponent,
     TantPisComponent,
-    UsineComponent
+    UsineComponent,
+    NouveauteComponent
   ],
   imports: [
     BrowserModule,

@@ -46,7 +46,7 @@
             <!-- ATTAQUE -->
             <!-- TEMPS DE CONSTRUCTION -->
             <p class="card__temps__travail">
-                Temps de construction : {{defense['tempsConstruction']}} secondes
+                Temps de construction : {{defense['tempsConstruction'] | minuteSecondePipe: 's':'hhmmss'}}
             </p>
 
             <!-- COUT -->
@@ -202,7 +202,7 @@
                 
                 <p class="card__description center"><u>Constructions en cours</u></p>
 
-                <p class="card__progress_bar_text">Temps restant : {{secondesRestantesAmelioration}} secondes</p>
+                <p class="card__progress_bar_text">Temps restant : {{secondesRestantesAmelioration | minuteSecondePipe: 's':'hhmmss'}}</p>
                 <div class="progress mb-3 center" style="width: 80%;">
                     <div class="progress-bar progress-bar-striped progress-bar-animated"
                         [ngStyle]="{width:getTempsConstructionTotalFileAttentePourcent()}"></div>

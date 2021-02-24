@@ -44,6 +44,7 @@ import { MerciComponent } from './divers/merci/merci.component';
 import { AnnonceAVenirComponent } from './divers/annonce-a-venir/annonce-a-venir.component';
 import { TantPisComponent } from './divers/tant-pis/tant-pis.component';
 import { UsineComponent } from './usine/usine.component';
+import { NouveauteComponent } from './divers/nouveaute/nouveaute.component';
 
 
 const routes: Routes = [
@@ -124,12 +125,13 @@ const routes: Routes = [
   { path: 'listeAmis', component: ListeAmisComponent, canActivate: [StatutConnecteService]},
 
   // --------- USINE -----------
-  { path: 'usine', component: UsineComponent, canActivate: [StatutConnecteService]},
+  { path: 'centreRecolte', component: UsineComponent, canActivate: [StatutConnecteService]},
   // --------- DIVERS -----------
   
   { path: 'merciInfiniment', component: MerciComponent, canActivate: [StatutConnecteService]},
   { path: 'tantPis', component: TantPisComponent, canActivate: [StatutConnecteService]},
   { path: 'aVenir', component: AnnonceAVenirComponent, canActivate: [StatutConnecteService]},
+  { path: 'nouveautes', component: NouveauteComponent, canActivate: [StatutConnecteService]},
   
   // --------- REDIRECTIONS ---------
   { path: '', redirectTo: '/accueil', pathMatch: 'full' },

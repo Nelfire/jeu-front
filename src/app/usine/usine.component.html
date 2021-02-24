@@ -8,16 +8,16 @@
     <div>
         <div class="grid-container">
             <div class="pierre card" [ngStyle]="{opacity:getOpacityCarriere()}" (click)="recolterPierre()">
-                <div class="action-recolte">Miner</div>
+                <div class="action-recolte noselect">Miner <span class="spinner-border spinner-border-sm" style="vertical-align: middle;" *ngIf="carriereEnCoursDeTravail"></span></div>
             </div>
             <div class="bois card" [ngStyle]="{opacity:getOpacityCampDeBucheron()}" (click)="recolterBois()">
-                <div class="action-recolte">Couper</div>
+                <div class="action-recolte noselect">Couper  <span class="spinner-border spinner-border-sm" style="vertical-align: middle;" *ngIf="campDeBucheronEnCoursDeTravail"></span></div>
             </div>
             <div class="or card" [ngStyle]="{opacity:getOpacityCampDeMineur()}" (click)="recolterOr()">
-                <div class="action-recolte">Extraire</div>
+                <div class="action-recolte noselect">Extraire  <span class="spinner-border spinner-border-sm" style="vertical-align: middle;" *ngIf="campDeMineurEnCoursDeTravail"></span></div>
             </div>
             <div class="nourriture card" [ngStyle]="{opacity:getOpacityFerme()}" (click)="recolterNourriture()">
-                <div class="action-recolte">Chasser</div>
+                <div class="action-recolte noselect">Chasser  <span class="spinner-border spinner-border-sm" style="vertical-align: middle;" *ngIf="fermeEnCoursDeTravail"></span></div>
             </div>
             <div class="production card">
 

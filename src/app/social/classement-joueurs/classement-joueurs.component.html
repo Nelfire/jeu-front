@@ -19,7 +19,7 @@
                     <td><img src="{{joueur.icone}}" alt="" style="width: 30px;" /></td>
                     <td><a routerLink="/detailJoueur/{{joueur.id}}">{{joueur.pseudo}}</a></td>
                     <td>{{joueur.niveau}}</td>
-                    <td>{{joueur.tempsDeJeu}}</td>
+                    <td>{{joueur.tempsDeJeu | minuteSecondePipe: 's':'hhmmss'}}</td>
                 </tr>
             <tbody>
         </table>

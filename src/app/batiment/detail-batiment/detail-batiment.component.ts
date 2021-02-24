@@ -17,6 +17,7 @@ import { Observable, Subscription } from 'rxjs';
 import { NotificationService } from 'src/app/service/notification.service';
 import { HeaderComponent } from 'src/app/header/header.component';
 import { GenerationRessourcesService } from 'src/app/service/generation-ressources.service';
+import { ArmeeService } from 'src/app/service/armee-joueur.service';
 // the second parameter 'fr' is optional
 registerLocaleData(localeFr, 'fr');
 
@@ -48,6 +49,8 @@ export class DetailBatimentComponent implements OnInit {
   flagEnCoursDeTravail: Boolean;
   niveauHdvJoueur: number = 0;
 
+  batimentUniteEnCoursDeProduction: boolean = false;
+
   result: string;
 
   // Constructeur
@@ -58,7 +61,8 @@ export class DetailBatimentComponent implements OnInit {
     private batimentJoueurService: BatimentJoueurService,
     private joueurService: JoueurService,
     private notification: NotificationService,
-    private generationRessourcesService: GenerationRessourcesService) { }
+    private generationRessourcesService: GenerationRessourcesService,
+    private armeeService: ArmeeService) { }
 
   ngOnInit(): void {
     // Détection niveau HDV
@@ -88,13 +92,25 @@ export class DetailBatimentComponent implements OnInit {
         // Cas 1 : Le joueur ne possède pas le bâtiment
         // Cas 2 : Le joueur possède déjà le bâtiment
         if (value.id == null) {
+          console.log("Possède pas ")
           this.modeConstructionAmelioration = "construction";
           this.etatBoutonConstruire = "disabled";
           this.etatBoutonAmeliorer = "";
         } else {
+          console.log("Possède")
           this.modeConstructionAmelioration = "amelioration";
           this.etatBoutonConstruire = "";
           this.etatBoutonAmeliorer = "disabled";
+          // Y a t'il des unités provenant de cette structure qui sont en cours de construction ? Si oui: Désactive le bouton d'amélioration
+          var maintenant = new Date().getTime();
+          this.armeeService.listerArmeesDuJoueur().subscribe((armee) => {
+            armee.forEach((ligne) => {
+              if((ligne.unitee.idBatimentProvenance == this.routerLinkActive.snapshot.params['idTypeBatiment']) &&(ligne.dateFinProduction> maintenant)) {
+                this.batimentUniteEnCoursDeProduction = true;
+                console.log("Production en cours")
+              }
+            })
+          })
         }
 
         var dateMaintenantMillisecondes = new Date().getTime();
@@ -174,6 +190,7 @@ export class DetailBatimentComponent implements OnInit {
 
       }, (error) => {
         this.messageErreur = error.error.message;
+        this.notification.showError(error.error.message, "Erreur ...");
       }, () => {
 
         this.notification.showSuccess("", "Construction lancée.");
@@ -188,19 +205,25 @@ export class DetailBatimentComponent implements OnInit {
 
   // Lancement construction du bâtiment
   ameliorer() {
-    this.batimentJoueurService.ameliorerBatimentJoueur(this.batimentJoueurPossede.id).subscribe(
-      () => {
-      }, (error) => {
-        this.messageErreur = error.error.message;
-      }, () => {
-        this.messageValidation = "Amélioration lancée";
-        this.notification.showSuccess("", "Amélioration lancée !");
-        setTimeout(() => {
-          // Redirection au bout de 1,5 secondes
-          this.router.navigate(['campement']);
-        }, 1500);
-      }
-    );
+    if(this.batimentUniteEnCoursDeProduction) {
+      this.notification.showWarning("L'amélioration n'est pas possible pour le moment. Vous avez des unités en cours de production.", "Patience...");
+    } else {
+      this.batimentJoueurService.ameliorerBatimentJoueur(this.batimentJoueurPossede.id).subscribe(
+        () => {
+        }, (error) => {
+          this.messageErreur = error.error.message;
+          this.notification.showError(error.error.message, "Erreur ...");
+        }, () => {
+          this.messageValidation = "Amélioration lancée";
+          this.notification.showSuccess("", "Amélioration lancée !");
+          setTimeout(() => {
+            // Redirection au bout de 1,5 secondes
+            this.router.navigate(['campement']);
+          }, 1500);
+        }
+      );
+    }
+
   }
 
   annuler() {

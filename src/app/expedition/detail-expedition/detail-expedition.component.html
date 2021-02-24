@@ -134,7 +134,7 @@
 
             <!-- TEMPS DE L'EXPEDITION -->
             <p class="card__temps__travail">
-                Temps Expédition : {{expedition['dureeExpedition']}} secondes
+                Temps Expédition : {{expedition['dureeExpedition'] | minuteSecondePipe: 's':'hhmmss'}}
             </p>
 
             <!-- MESSAGES D'INFORMATION -->

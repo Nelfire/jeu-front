@@ -48,7 +48,7 @@
                             <h5>- Vie : {{expedition.vie | thousandSuff:2}}</h5>
                             <h5>- Degats : {{expedition.degats | thousandSuff:2}}</h5>
                             <h5>- Armure : {{expedition.armure | thousandSuff:2}}</h5>
-                            <h5>- Durée : {{expedition.dureeExpedition}} secondes</h5>
+                            <h5>- Durée : {{expedition.dureeExpedition | minuteSecondePipe: 's':'hhmmss'}}</h5>
                         </div>
                         <div class="card-footer">
                             Difficultée :
@@ -97,7 +97,7 @@
                                 <h5>- Degats : {{expedition.degats | thousandSuff:2}}</h5>
                                 <h5>- Armure : {{expedition.armure | thousandSuff:2}}</h5>
 
-                                <h5> - Durée : {{expedition.dureeExpedition}} secondes</h5>
+                                <h5> - Durée : {{expedition.dureeExpedition | minuteSecondePipe: 's':'hhmmss'}}</h5>
 
                             </div>
                             <div class="card-footer">
