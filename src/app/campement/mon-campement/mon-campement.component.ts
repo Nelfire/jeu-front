@@ -40,6 +40,9 @@ export class MonCampementComponent implements OnInit {
     private joueurService: JoueurService) { }
 
   ngOnInit(): void {
+    this.batimentJoueurService.listerMesBatiments().subscribe((value) => {
+      this.listeMesBatiments = value;
+    });
     // Récupération des informations du joueur, pour indiquer le manque de ressources (colorisation)
     this.joueurService.informationJoueurByEmail().subscribe(
       (value) => {
@@ -137,6 +140,10 @@ export class MonCampementComponent implements OnInit {
             // Si l'id du batiment en cours d'analyse = a l'id du bâtiment du joueur , alors je considère qu'il le possède
             if (monBatiment.batiment.idTypeBatiment === unBatiment.idTypeBatiment) {
               unBatiment.joueurLePossede = true;
+              unBatiment.coutPierreAmelioration = monBatiment.coutPierreAmelioration * unBatiment.multiplicateurCout ;
+              unBatiment.coutBoisAmelioration = monBatiment.coutBoisAmelioration * unBatiment.multiplicateurCout ;
+              unBatiment.coutOrAmelioration = monBatiment.coutOreAmelioration * unBatiment.multiplicateurCout ;
+              unBatiment.coutNourritureAmelioration = monBatiment.coutNourritureAmelioration * unBatiment.multiplicateurCout ;
               unBatiment.niveauBatimentDuJoueur = monBatiment.niveau;
               unBatiment.dateFinConstruction = monBatiment.dateFinConstruction;
               this.flag = true;
@@ -232,9 +239,9 @@ export class MonCampementComponent implements OnInit {
   // Batiments Amélioration Colorisation ressources
   getColorRessourceManquantePierreAmeliorationBatiment(idTypeBatiment: number) {
     var couleur = '';
-    this.lesBatiments.forEach(element => {
-      if(idTypeBatiment == element.idTypeBatiment) {
-        if (this.joueur.pierrePossession < element.niveauBatimentDuJoueur*element.coutPierreConstruction*element.multiplicateurCout) {
+    this.listeMesBatiments.forEach(element => {
+      if(idTypeBatiment == element.batiment.idTypeBatiment) {
+        if (this.joueur.pierrePossession < element.coutPierreAmelioration*element.batiment.multiplicateurCout) {
           couleur = 'red';
         } else {
           couleur = 'green';
@@ -245,9 +252,9 @@ export class MonCampementComponent implements OnInit {
   }
    getColorRessourceManquanteBoisAmeliorationBatiment(idTypeBatiment: number) {
     var couleur = '';
-    this.lesBatiments.forEach(element => {
-      if(idTypeBatiment == element.idTypeBatiment) {
-        if (this.joueur.boisPossession < element.niveauBatimentDuJoueur*element.coutBoisConstruction*element.multiplicateurCout) {
+    this.listeMesBatiments.forEach(element => {
+      if(idTypeBatiment == element.batiment.idTypeBatiment) {
+        if (this.joueur.boisPossession < element.coutBoisAmelioration*element.batiment.multiplicateurCout) {
           couleur = 'red';
         } else {
           couleur = 'green';
@@ -258,9 +265,9 @@ export class MonCampementComponent implements OnInit {
   }
   getColorRessourceManquanteOrAmeliorationBatiment(idTypeBatiment: number) {
     var couleur = '';
-    this.lesBatiments.forEach(element => {
-      if(idTypeBatiment == element.idTypeBatiment) {
-        if (this.joueur.orPossession < element.niveauBatimentDuJoueur*element.coutOrConstruction*element.multiplicateurCout) {
+    this.listeMesBatiments.forEach(element => {
+      if(idTypeBatiment == element.batiment.idTypeBatiment) {
+        if (this.joueur.orPossession < element.coutOreAmelioration*element.batiment.multiplicateurCout) {
           couleur = 'red';
         } else {
           couleur = 'green';
@@ -271,9 +278,9 @@ export class MonCampementComponent implements OnInit {
   }
   getColorRessourceManquanteNourritureAmeliorationBatiment(idTypeBatiment: number) {
     var couleur = '';
-    this.lesBatiments.forEach(element => {
-      if(idTypeBatiment == element.idTypeBatiment) {
-        if (this.joueur.nourriturePossession < element.niveauBatimentDuJoueur*element.coutNourritureConstruction*element.multiplicateurCout) {
+    this.listeMesBatiments.forEach(element => {
+      if(idTypeBatiment == element.batiment.idTypeBatiment) {
+        if (this.joueur.nourriturePossession < element.coutNourritureAmelioration*element.batiment.multiplicateurCout) {
           couleur = 'red';
         } else {
           couleur = 'green';
