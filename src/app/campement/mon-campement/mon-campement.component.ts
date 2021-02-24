@@ -9,6 +9,8 @@ import { CampementService } from 'src/app/service/campement.service';
 import { formatDate } from '@angular/common';
 import { Observable, Subscription } from 'rxjs';
 import { BoundElementProperty } from '@angular/compiler';
+import { JoueurInfos } from 'src/app/models/joueur-infos';
+import { JoueurService } from 'src/app/service/joueur.service';
 
 @Component({
   selector: 'app-mon-campement',
@@ -30,11 +32,21 @@ export class MonCampementComponent implements OnInit {
   dateDeFin: String;
   result: string;
   secondesRestantesAmelioration: number;
+  joueur: JoueurInfos;
 
   // Constructeur
-  constructor(private batimentService: BatimentService, private batimentJoueurService: BatimentJoueurService) { }
+  constructor(private batimentService: BatimentService,
+    private batimentJoueurService: BatimentJoueurService,
+    private joueurService: JoueurService) { }
 
   ngOnInit(): void {
+    // Récupération des informations du joueur, pour indiquer le manque de ressources (colorisation)
+    this.joueurService.informationJoueurByEmail().subscribe(
+      (value) => {
+        this.joueur = value;
+      }
+    );
+
     // Récupération liste des tous les batiments existants
     this.batimentsTous();
   }
@@ -140,10 +152,10 @@ export class MonCampementComponent implements OnInit {
                 this.counterSubscription = compteur.subscribe(
                   (valeur: number) => {
                     // EN CAS DE FIN DE TIMER, DESTRUCTION DES SUBSCRIPTIONS + "RECHARGE" DU COMPONENT
-                    if(unBatiment.secondesRestantesAmelioration< 1){ 
+                    if (unBatiment.secondesRestantesAmelioration < 1) {
                       this.ngOnDestroy();
                       this.ngOnInit();
-                    } 
+                    }
                     // A chaques appel, je réduit de 1 seconde le nombre de secondes présentes dans le compteur
                     unBatiment.secondesRestantesAmelioration--;
                     unBatiment.dateFinConstruction = unBatiment.secondesRestantesAmelioration;
@@ -162,7 +174,114 @@ export class MonCampementComponent implements OnInit {
     );
   }
 
-
+  // ------- CONSTRUCTION -----
+  // Batiments Amélioration Colorisation ressources
+  getColorRessourceManquantePierreConstructionBatiment(idTypeBatiment: number) {
+    var couleur = '';
+    this.lesBatiments.forEach(element => {
+      if(idTypeBatiment == element.idTypeBatiment) {
+        if (this.joueur.pierrePossession < element.coutPierreConstruction) {
+          couleur = 'red';
+        } else {
+          couleur = 'green';
+        }
+      }
+    });
+    return couleur;
+  }
+   getColorRessourceManquanteBoisConstructionBatiment(idTypeBatiment: number) {
+    var couleur = '';
+    this.lesBatiments.forEach(element => {
+      if(idTypeBatiment == element.idTypeBatiment) {
+        if (this.joueur.boisPossession < element.coutBoisConstruction) {
+          couleur = 'red';
+        } else {
+          couleur = 'green';
+        }
+      }
+    });
+    return couleur;
+  }
+  getColorRessourceManquanteOrConstructionBatiment(idTypeBatiment: number) {
+    var couleur = '';
+    this.lesBatiments.forEach(element => {
+      if(idTypeBatiment == element.idTypeBatiment) {
+        if (this.joueur.orPossession < element.coutOrConstruction) {
+          couleur = 'red';
+        } else {
+          couleur = 'green';
+        }
+      }
+    });
+    return couleur;
+  }
+  getColorRessourceManquanteNourritureConstructionBatiment(idTypeBatiment: number) {
+    var couleur = '';
+    this.lesBatiments.forEach(element => {
+      if(idTypeBatiment == element.idTypeBatiment) {
+        if (this.joueur.nourriturePossession < element.coutNourritureConstruction) {
+          couleur = 'red';
+        } else {
+          couleur = 'green';
+        }
+      }
+    });
+    return couleur;
+  } 
+  // -------AMELIORATION -----
+  // Batiments Amélioration Colorisation ressources
+  getColorRessourceManquantePierreAmeliorationBatiment(idTypeBatiment: number) {
+    var couleur = '';
+    this.lesBatiments.forEach(element => {
+      if(idTypeBatiment == element.idTypeBatiment) {
+        if (this.joueur.pierrePossession < element.niveauBatimentDuJoueur*element.coutPierreConstruction*element.multiplicateurCout) {
+          couleur = 'red';
+        } else {
+          couleur = 'green';
+        }
+      }
+    });
+    return couleur;
+  }
+   getColorRessourceManquanteBoisAmeliorationBatiment(idTypeBatiment: number) {
+    var couleur = '';
+    this.lesBatiments.forEach(element => {
+      if(idTypeBatiment == element.idTypeBatiment) {
+        if (this.joueur.boisPossession < element.niveauBatimentDuJoueur*element.coutBoisConstruction*element.multiplicateurCout) {
+          couleur = 'red';
+        } else {
+          couleur = 'green';
+        }
+      }
+    });
+    return couleur;
+  }
+  getColorRessourceManquanteOrAmeliorationBatiment(idTypeBatiment: number) {
+    var couleur = '';
+    this.lesBatiments.forEach(element => {
+      if(idTypeBatiment == element.idTypeBatiment) {
+        if (this.joueur.orPossession < element.niveauBatimentDuJoueur*element.coutOrConstruction*element.multiplicateurCout) {
+          couleur = 'red';
+        } else {
+          couleur = 'green';
+        }
+      }
+    });
+    return couleur;
+  }
+  getColorRessourceManquanteNourritureAmeliorationBatiment(idTypeBatiment: number) {
+    var couleur = '';
+    this.lesBatiments.forEach(element => {
+      if(idTypeBatiment == element.idTypeBatiment) {
+        if (this.joueur.nourriturePossession < element.niveauBatimentDuJoueur*element.coutNourritureConstruction*element.multiplicateurCout) {
+          couleur = 'red';
+        } else {
+          couleur = 'green';
+        }
+      }
+    });
+    return couleur;
+  } 
 
   // DESTRUCTIONS
   ngOnDestroy() {
