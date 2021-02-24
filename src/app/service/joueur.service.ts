@@ -6,6 +6,7 @@ import {JoueurInfos} from '../models/joueur-infos';
 import { Observable } from 'rxjs';
 import { ObserveOnSubscriber } from 'rxjs/internal/operators/observeOn';
 import { InformationRessourcesJoueur } from '../models/informationRessourcesJoueur';
+import { GainRessource } from '../models/gain-ressource';
 
 const URL_BACKEND = environment.baseUrl + 'joueur';
 
@@ -42,5 +43,20 @@ export class JoueurService {
 
   informationRessourcesJoueur(): Observable<InformationRessourcesJoueur> {
     return this.http.get<InformationRessourcesJoueur>(`${URL_BACKEND}/informationRessourcesJoueur`)
+  }
+
+  attributionRessources(
+    gainPierre: number,
+    gainBois: number,
+    gainOr: number,
+    gainNourriture: number
+  ): Observable<GainRessource> {
+    return this.http.post<GainRessource>(`${URL_BACKEND}/attributionRessources`,
+      {
+        gainPierre: `${gainPierre}`,
+        gainBois: `${gainBois}`,
+        gainOr: `${gainOr}`,
+        gainNourriture: `${gainNourriture}`
+      });
   }
 }
