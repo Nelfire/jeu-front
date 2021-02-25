@@ -2,10 +2,12 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Expedition } from 'src/app/models/expedition';
 import { ExpeditionJoueur } from 'src/app/models/expedition-joueur';
+import { JoueurInfos } from 'src/app/models/joueur-infos';
 import { BatimentJoueurService } from 'src/app/service/batiment-joueur.service';
 import { BatimentService } from 'src/app/service/batiment.service';
 import { ExpeditionJoueurService } from 'src/app/service/expedition-joueur.service';
 import { ExpeditionService } from 'src/app/service/expedition.service';
+import { JoueurService } from 'src/app/service/joueur.service';
 
 @Component({
   selector: 'app-liste-expeditions',
@@ -20,6 +22,7 @@ export class ListeExpeditionsComponent implements OnInit, OnDestroy {
   counterSubscription: Subscription;
   niveauTableExpedition: number = 0;
   compteurExpedition: number = 0;
+  joueur: JoueurInfos;
   /* leJourSuivant: Date; */
 
   tempsRestant: string;
@@ -28,7 +31,8 @@ export class ListeExpeditionsComponent implements OnInit, OnDestroy {
   constructor(private batimentService: BatimentService,
     private batimentJoueurService: BatimentJoueurService,
     private expeditionService: ExpeditionService,
-    private expeditionJoueurService: ExpeditionJoueurService) { }
+    private expeditionJoueurService: ExpeditionJoueurService,
+    private joueurService: JoueurService) { }
 
   ngOnInit(): void {
 
@@ -63,6 +67,13 @@ export class ListeExpeditionsComponent implements OnInit, OnDestroy {
         });
       }
     );
+
+        // Récupération des informations du joueur, pour indiquer le manque de ressources (colorisation)
+        this.joueurService.informationJoueurByEmail().subscribe(
+          (value) => {
+            this.joueur = value;
+          }
+        );
   }
 
   calculerTempsRestantAvantReset() {
@@ -125,5 +136,60 @@ export class ListeExpeditionsComponent implements OnInit, OnDestroy {
 
     }
   }
+
+  // COLORATION COUT RESSOURCE
+  getColorRessourceManquantePierre(idExpedition : number) {
+      var couleur = '';
+      this.listeExpedition.forEach(element => {
+        if(idExpedition == element.id) {
+          if (this.joueur.pierrePossession < element.coutPierre) {
+            couleur = 'red';
+          } else {
+            couleur = 'green';
+          }
+        }
+      });
+      return couleur;
+  }
+  getColorRessourceManquanteBois(idExpedition : number) {
+    var couleur = '';
+    this.listeExpedition.forEach(element => {
+      if(idExpedition == element.id) {
+        if (this.joueur.boisPossession < element.coutBois) {
+          couleur = 'red';
+        } else {
+          couleur = 'green';
+        }
+      }
+    });
+    return couleur;
+  }
+  getColorRessourceManquanteOr(idExpedition : number) {
+    var couleur = '';
+    this.listeExpedition.forEach(element => {
+      if(idExpedition == element.id) {
+        if (this.joueur.orPossession < element.coutOr) {
+          couleur = 'red';
+        } else {
+          couleur = 'green';
+        }
+      }
+    });
+    return couleur;
+  }
+  getColorRessourceManquanteNourriture(idExpedition : number) {
+    var couleur = '';
+    this.listeExpedition.forEach(element => {
+      if(idExpedition == element.id) {
+        if (this.joueur.nourriturePossession < element.coutNourriture) {
+          couleur = 'red';
+        } else {
+          couleur = 'green';
+        }
+      }
+    });
+    return couleur;
+  }
+  
 
 }

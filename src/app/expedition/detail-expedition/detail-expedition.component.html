@@ -183,7 +183,11 @@
                 <div class="divCenter">
                     <button class="btn draw-border"
                         [disabled]="formEnvoiUniteesEnExpedition.invalid ||clicked">{{messageBoutonEnvoiEnExpedition}}</button>
+                    <a routerLink="/expedition">
+                        <button class="btn draw-border-error">Retour</button>
+                    </a>
                 </div>
+
             </div>
             <ng-template #upgadeBatimentNecessaire>
                 <div class="divCenter">

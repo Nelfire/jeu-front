@@ -32,23 +32,23 @@
                             </h4>
                             <hr>
                             <h2>Coût :</h2>
-                            <h5>- Pierre : {{expedition.coutPierre | thousandSuff:2}}</h5>
-                            <h5>- Bois : {{expedition.coutBois | thousandSuff:2}}</h5>
-                            <h5>- Or : {{expedition.coutOr | thousandSuff:2}}</h5>
-                            <h5>- Nourriture : {{expedition.coutNourriture | thousandSuff:2}}</h5>
+                            <h5>- Pierre : <b>{{expedition.coutPierre | thousandSuff:2}}</b></h5>
+                            <h5>- Bois : <b>{{expedition.coutBois | thousandSuff:2}}</b></h5>
+                            <h5>- Or : <b>{{expedition.coutOr | thousandSuff:2}}</b></h5>
+                            <h5>- Nourriture : <b>{{expedition.coutNourriture | thousandSuff:2}}</b></h5>
                             <hr>
                             <h2>Récompense :</h2>
-                            <h5>- Pierre : {{expedition.recompensePierre | thousandSuff:2}}</h5>
-                            <h5>- Bois : {{expedition.recompenseBois | thousandSuff:2}}</h5>
-                            <h5>- Or : {{expedition.recompenseOr | thousandSuff:2}}</h5>
-                            <h5>- Nourriture : {{expedition.recompenseNourriture | thousandSuff:2}}</h5>
-                            <h5>- Gemme : {{expedition.recompenseGemme}}</h5>
+                            <h5>- Pierre : <b>{{expedition.recompensePierre | thousandSuff:2}}</b></h5>
+                            <h5>- Bois : <b>{{expedition.recompenseBois | thousandSuff:2}}</b></h5>
+                            <h5>- Or : <b>{{expedition.recompenseOr | thousandSuff:2}}</b></h5>
+                            <h5>- Nourriture : <b>{{expedition.recompenseNourriture | thousandSuff:2}}</b></h5>
+                            <h5>- Gemme : <b>{{expedition.recompenseGemme}}</b></h5>
                             <hr>
                             <h2>Infos :</h2>
-                            <h5>- Vie : {{expedition.vie | thousandSuff:2}}</h5>
-                            <h5>- Degats : {{expedition.degats | thousandSuff:2}}</h5>
-                            <h5>- Armure : {{expedition.armure | thousandSuff:2}}</h5>
-                            <h5>- Durée : {{expedition.dureeExpedition | minuteSecondePipe: 's':'hhmmss'}}</h5>
+                            <h5>- Vie : <b>{{expedition.vie | thousandSuff:2}}</b></h5>
+                            <h5>- Degats : <b>{{expedition.degats | thousandSuff:2}}</b></h5>
+                            <h5>- Armure : <b>{{expedition.armure | thousandSuff:2}}</b></h5>
+                            <h5>- Durée : <b>{{expedition.dureeExpedition | minuteSecondePipe: 's':'hhmmss'}}</b></h5>
                         </div>
                         <div class="card-footer">
                             Difficultée :
@@ -80,24 +80,24 @@
                                 </h4>
                                 <hr>
                                 <h2>Coût :</h2>
-                                <h5>- Pierre : {{expedition.coutPierre | thousandSuff:2}}</h5>
-                                <h5>- Bois : {{expedition.coutBois | thousandSuff:2}}</h5>
-                                <h5>- Or : {{expedition.coutOr | thousandSuff:2}}</h5>
-                                <h5>- Nourriture : {{expedition.coutNourriture | thousandSuff:2}}</h5>
+                                <h5>- Pierre : <b [ngStyle]="{'color':getColorRessourceManquantePierre(expedition.id)}">{{expedition.coutPierre | thousandSuff:2}}</b></h5>
+                                <h5>- Bois : <b [ngStyle]="{'color':getColorRessourceManquanteBois(expedition.id)}">{{expedition.coutBois | thousandSuff:2}}</b></h5>
+                                <h5>- Or : <b [ngStyle]="{'color':getColorRessourceManquanteOr(expedition.id)}">{{expedition.coutOr | thousandSuff:2}}</b></h5>
+                                <h5>- Nourriture : <b [ngStyle]="{'color':getColorRessourceManquanteNourriture(expedition.id)}">{{expedition.coutNourriture | thousandSuff:2}}</b></h5>
                                 <hr>
                                 <h2>Récompense :</h2>
-                                <h5>- Pierre : {{expedition.recompensePierre | thousandSuff:2}}</h5>
-                                <h5>- Bois : {{expedition.recompenseBois | thousandSuff:2}}</h5>
-                                <h5>- Or : {{expedition.recompenseOr | thousandSuff:2}}</h5>
-                                <h5>- Nourriture : {{expedition.recompenseNourriture | thousandSuff:2}}</h5>
-                                <h5>- Gemme : {{expedition.recompenseGemme}}</h5>
+                                <h5>- Pierre : <b>{{expedition.recompensePierre | thousandSuff:2}}</b></h5>
+                                <h5>- Bois : <b>{{expedition.recompenseBois | thousandSuff:2}}</b></h5>
+                                <h5>- Or : <b>{{expedition.recompenseOr | thousandSuff:2}}</b></h5>
+                                <h5>- Nourriture : <b>{{expedition.recompenseNourriture | thousandSuff:2}}</b></h5>
+                                <h5>- Gemme : <b>{{expedition.recompenseGemme}}</b></h5>
                                 <hr>
                                 <h2>Infos :</h2>
-                                <h5>- Vie : {{expedition.vie | thousandSuff:2}}</h5>
-                                <h5>- Degats : {{expedition.degats | thousandSuff:2}}</h5>
-                                <h5>- Armure : {{expedition.armure | thousandSuff:2}}</h5>
+                                <h5>- Vie : <b>{{expedition.vie | thousandSuff:2}}</b></h5>
+                                <h5>- Degats : <b>{{expedition.degats | thousandSuff:2}}</b></h5>
+                                <h5>- Armure : <b>{{expedition.armure | thousandSuff:2}}</b></h5>
 
-                                <h5> - Durée : {{expedition.dureeExpedition | minuteSecondePipe: 's':'hhmmss'}}</h5>
+                                <h5> - Durée : <b>{{expedition.dureeExpedition | minuteSecondePipe: 's':'hhmmss'}}</b></h5>
 
                             </div>
                             <div class="card-footer">

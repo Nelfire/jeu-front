@@ -31,8 +31,7 @@ export class ListeExpeditionsJoueurComponent implements OnInit, OnDestroy {
   constructor(private expeditionJoueurService: ExpeditionJoueurService,
     private batimentService: BatimentService,
     private batimentJoueurService: BatimentJoueurService,
-    private notification: NotificationService,
-    private generationRessourcesService: GenerationRessourcesService) { }
+    private notification: NotificationService) { }
 
   ngOnInit(): void {
     this.verifierNiveauTableExpedition();
@@ -201,6 +200,9 @@ export class ListeExpeditionsJoueurComponent implements OnInit, OnDestroy {
     this.messageBoutonRecuperationRecompense = "Compte crédité";
     this.notification.showSuccess("", "Récompense récupérée ! Vos unitées rentrent au campement.");
     this.expeditionJoueurService.recupererRecompense(idExpedition).subscribe();
+    // Refresh ressources header
+    
+
   }
 
   // NETTOIE LE TABLEAU DE SUBSCRIPTIONS

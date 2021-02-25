@@ -8,7 +8,7 @@
         </div>
     </div>
     <ng-template #possedeTableExpedition>
-        <div class="row center" *ngIf="listeExpeditionJoueur">
+        <div class="row" *ngIf="listeExpeditionJoueur">
 
             <div class="divider-custom divider-light">
                 <div class="divider-custom-line"></div>
@@ -52,19 +52,18 @@
                                 </h4>
                                 <hr>
                                 <h2>Récompense :</h2>
-                                <h5>- Pierre : {{uneExpeditionJoueur.expedition.recompensePierre | thousandSuff:2}}</h5>
-                                <h5>- Bois : {{uneExpeditionJoueur.expedition.recompenseBois | thousandSuff:2}}</h5>
-                                <h5>- Or : {{uneExpeditionJoueur.expedition.recompenseOr | thousandSuff:2}}</h5>
-                                <h5>- Nourriture : {{uneExpeditionJoueur.expedition.recompenseNourriture |
-                                    thousandSuff:2}}</h5>
-                                <h5>- Gemme : {{uneExpeditionJoueur.expedition.recompenseGemme}}</h5>
+                                <h5>- Pierre : <b>{{uneExpeditionJoueur.expedition.recompensePierre | thousandSuff:2}}</b></h5>
+                                <h5>- Bois : <b>{{uneExpeditionJoueur.expedition.recompenseBois | thousandSuff:2}}</b></h5>
+                                <h5>- Or : <b>{{uneExpeditionJoueur.expedition.recompenseOr | thousandSuff:2}}</b></h5>
+                                <h5>- Nourriture : <b>{{uneExpeditionJoueur.expedition.recompenseNourriture |
+                                    thousandSuff:2}}</b></h5>
+                                <h5>- Gemme : <b>{{uneExpeditionJoueur.expedition.recompenseGemme}}</b></h5>
                                 <hr>
                                 <h2>Infos :</h2>
-                                <h5>- Vie : {{uneExpeditionJoueur.expedition.vie | thousandSuff:2}}</h5>
-                                <h5>- Degats : {{uneExpeditionJoueur.expedition.degats | thousandSuff:2}}</h5>
-                                <h5>- Armure : {{uneExpeditionJoueur.expedition.armure | thousandSuff:2}}</h5>
-                                <h5>- Durée : {{uneExpeditionJoueur.expedition.dureeExpedition | thousandSuff:2}}
-                                    secondes</h5>
+                                <h5>- Vie : <b>{{uneExpeditionJoueur.expedition.vie | thousandSuff:2}}</b></h5>
+                                <h5>- Degats : <b>{{uneExpeditionJoueur.expedition.degats | thousandSuff:2}}</b></h5>
+                                <h5>- Armure : <b>{{uneExpeditionJoueur.expedition.armure | thousandSuff:2}}</b></h5>
+                                <h5>- Durée : <b>{{uneExpeditionJoueur.expedition.dureeExpedition | minuteSecondePipe: 's':'hhmmss'}}</b></h5>
                                 <hr>
                                 <div *ngIf="uneExpeditionJoueur.date">
                                     <h2>Temps restant : {{uneExpeditionJoueur.date}}</h2>
@@ -91,19 +90,18 @@
                                     </h4>
                                     <hr>
                                     <h2>Récompense :</h2>
-                                    <h5>- Pierre : {{uneExpeditionJoueur.expedition.recompensePierre | thousandSuff:2}}
-                                    </h5>
-                                    <h5>- Bois : {{uneExpeditionJoueur.expedition.recompenseBois | thousandSuff:2}}</h5>
-                                    <h5>- Or : {{uneExpeditionJoueur.expedition.recompenseOr | thousandSuff:2}}</h5>
-                                    <h5>- Nourriture : {{uneExpeditionJoueur.expedition.recompenseNourriture |
-                                        thousandSuff:2}}</h5>
-                                    <h5>- Gemme : {{uneExpeditionJoueur.expedition.recompenseGemme}}</h5>
+                                    <h5>- Pierre : <b>{{uneExpeditionJoueur.expedition.recompensePierre | thousandSuff:2}}</b></h5>
+                                    <h5>- Bois : <b>{{uneExpeditionJoueur.expedition.recompenseBois | thousandSuff:2}}</b></h5>
+                                    <h5>- Or : <b>{{uneExpeditionJoueur.expedition.recompenseOr | thousandSuff:2}}</b></h5>
+                                    <h5>- Nourriture : <b>{{uneExpeditionJoueur.expedition.recompenseNourriture |
+                                        thousandSuff:2}}</b></h5>
+                                    <h5>- Gemme : <b>{{uneExpeditionJoueur.expedition.recompenseGemme}}</b></h5>
                                     <hr>
                                     <h2>Infos :</h2>
-                                    <h5>- Vie : {{uneExpeditionJoueur.expedition.vie | thousandSuff:2}}</h5>
-                                    <h5>- Degats : {{uneExpeditionJoueur.expedition.degats | thousandSuff:2}}</h5>
-                                    <h5>- Armure : {{uneExpeditionJoueur.expedition.armure | thousandSuff:2}}</h5>
-                                    <h5>- Durée : {{uneExpeditionJoueur.expedition.dureeExpedition | minuteSecondePipe: 's':'hhmmss'}}</h5>
+                                    <h5>- Vie : <b>{{uneExpeditionJoueur.expedition.vie | thousandSuff:2}}</b></h5>
+                                    <h5>- Degats : <b>{{uneExpeditionJoueur.expedition.degats | thousandSuff:2}}</b></h5>
+                                    <h5>- Armure : <b>{{uneExpeditionJoueur.expedition.armure | thousandSuff:2}}</b></h5>
+                                    <h5>- Durée : <b>{{uneExpeditionJoueur.expedition.dureeExpedition | minuteSecondePipe: 's':'hhmmss'}}</b></h5>
                                     <hr>
                                     <h2>Expédition terminée</h2>
                                 </div>
