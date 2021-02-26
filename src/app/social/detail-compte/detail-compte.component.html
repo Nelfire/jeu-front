@@ -13,23 +13,31 @@
             <p class="card__niveau">Niveau : {{joueur.niveau}}</p>
             <p class="card__experience">Experience : {{joueur.experience}}</p>
             <p class="card__tempsDeJeu">Temps de jeu : {{joueur.tempsDeJeu | minuteSecondePipe: 's':'hhmmss'}}</p>
+            <div class="row">
+            <div class="col-sm-6">
+                <div *ngIf="joueurConnecte.id == joueur.id; else consultationJoueur">
+                    <a routerLink="/modifierJoueur">
+                        <button class="btn draw-border">Modifier mes données</button>
+                    </a>
+                </div>
 
-            <div *ngIf="joueurConnecte.id == joueur.id; else consultationJoueur">
-                <a routerLink="/modifierJoueur">
-                    <button class="btn draw-border">Modifier mes données</button>
+                <ng-template #consultationJoueur>
+                    <div *ngIf="dejaAmis==true; else pasDejaAmis">
+                        <button class="btn draw-border" (click)="dejaAmi()">Déjà ami</button>
+                    </div>
+                    <ng-template #pasDejaAmis>
+                        <button class="btn draw-border" (click)="ajouterAmi(joueur.id)">Ajouter ami</button>
+                    </ng-template>
+                </ng-template>
+            </div>
+            <div class="col-sm-6">
+                <a routerLink="/classement-joueurs">
+                    <button class="btn draw-border-error">Retour</button>
                 </a>
             </div>
-
-            <ng-template #consultationJoueur>
-                <div *ngIf="dejaAmis==true; else pasDejaAmis">
-                    <button class="btn draw-border" (click)="dejaAmi()">Déjà ami</button>
-                </div>
-                <ng-template #pasDejaAmis>
-                    <button class="btn draw-border" (click)="ajouterAmi(joueur.id)">Ajouter ami</button>
-                </ng-template>
-            </ng-template>
+            </div>
 
         </div>
     </div>
 
-</div>   
+</div>

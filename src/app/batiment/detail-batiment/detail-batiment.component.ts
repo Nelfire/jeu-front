@@ -92,12 +92,10 @@ export class DetailBatimentComponent implements OnInit {
         // Cas 1 : Le joueur ne possède pas le bâtiment
         // Cas 2 : Le joueur possède déjà le bâtiment
         if (value.id == null) {
-          console.log("Possède pas ")
           this.modeConstructionAmelioration = "construction";
           this.etatBoutonConstruire = "disabled";
           this.etatBoutonAmeliorer = "";
         } else {
-          console.log("Possède")
           this.modeConstructionAmelioration = "amelioration";
           this.etatBoutonConstruire = "";
           this.etatBoutonAmeliorer = "disabled";
@@ -107,7 +105,6 @@ export class DetailBatimentComponent implements OnInit {
             armee.forEach((ligne) => {
               if((ligne.unitee.idBatimentProvenance == this.routerLinkActive.snapshot.params['idTypeBatiment']) &&(ligne.dateFinProduction> maintenant)) {
                 this.batimentUniteEnCoursDeProduction = true;
-                console.log("Production en cours")
               }
             })
           })

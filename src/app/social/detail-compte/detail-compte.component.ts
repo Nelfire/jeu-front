@@ -29,17 +29,18 @@ export class DetailCompteComponent implements OnInit {
     this.joueurService.informationJoueurByEmail().subscribe(
       (donnees) => {
         this.joueurConnecte = donnees;
+        this.traitement();
       }, (error) => {
         this.messageErreur = "Erreur dans le traitement : " + error;
       }
+      
     );
 
-    this.traitement();
+    
 
   }
 
   traitement() {
-        // Rï¿½cupï¿½ration informations du collegue connectï¿½ (email) pour la vï¿½rification suivante.
         this.joueurService.informationJoueurById(this.routerLinkActive.snapshot.params['id']).subscribe(
           (donnees) => {
             this.joueur = donnees;
@@ -63,7 +64,6 @@ export class DetailCompteComponent implements OnInit {
   }
 
   ajouterAmi(id:number) {
-    console.log("Ajouter ami !"+id)
     this.listeAmisService.ajouterAmi(id).subscribe(
       () => {
         this.notification.showSuccess("Vous avez un nouvel ami !", "Ami ajouté.");

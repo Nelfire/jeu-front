@@ -8,18 +8,22 @@
     <div>
         <div class="grid-container">
             <div class="pierre card" [ngStyle]="{opacity:getOpacityCarriere()}" (click)="recolterPierre()">
-                <div class="action-recolte noselect">Miner <span class="spinner-border spinner-border-sm" style="vertical-align: middle;" *ngIf="carriereEnCoursDeTravail"></span></div>
+                <div class="action-recolte noselect">Miner <span class="spinner-border spinner-border-sm"
+                        style="vertical-align: middle;" *ngIf="carriereEnCoursDeTravail"></span></div>
             </div>
             <div class="bois card" [ngStyle]="{opacity:getOpacityCampDeBucheron()}" (click)="recolterBois()">
-                <div class="action-recolte noselect">Couper  <span class="spinner-border spinner-border-sm" style="vertical-align: middle;" *ngIf="campDeBucheronEnCoursDeTravail"></span></div>
+                <div class="action-recolte noselect">Couper <span class="spinner-border spinner-border-sm"
+                        style="vertical-align: middle;" *ngIf="campDeBucheronEnCoursDeTravail"></span></div>
             </div>
             <div class="or card" [ngStyle]="{opacity:getOpacityCampDeMineur()}" (click)="recolterOr()">
-                <div class="action-recolte noselect">Extraire  <span class="spinner-border spinner-border-sm" style="vertical-align: middle;" *ngIf="campDeMineurEnCoursDeTravail"></span></div>
+                <div class="action-recolte noselect">Extraire <span class="spinner-border spinner-border-sm"
+                        style="vertical-align: middle;" *ngIf="campDeMineurEnCoursDeTravail"></span></div>
             </div>
             <div class="nourriture card" [ngStyle]="{opacity:getOpacityFerme()}" (click)="recolterNourriture()">
-                <div class="action-recolte noselect">Chasser  <span class="spinner-border spinner-border-sm" style="vertical-align: middle;" *ngIf="fermeEnCoursDeTravail"></span></div>
+                <div class="action-recolte noselect">Chasser <span class="spinner-border spinner-border-sm"
+                        style="vertical-align: middle;" *ngIf="fermeEnCoursDeTravail"></span></div>
             </div>
-            <div class="production card">
+            <div class="production card noselect">
 
                 <div class="productionPierre center">
                     {{montantRecoltePierre}} <b>Pierre</b>
@@ -40,7 +44,7 @@
             </div>
         </div>
     </div>
-    <div class="avertissement">
+    <div class="avertissement noselect">
         Le système détecte les tentatives de triche (logiciels de clique automatique)<br>
         Vous êtes détecté par le système mais vous n'utilisez aucun logiciel d'automatisation ? <a
             href="mailto:GIRVINCENT@GMAIL.COM">Prévenez moi !</a>

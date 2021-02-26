@@ -344,27 +344,37 @@ export class UsineComponent implements OnInit {
 
   getOpacityCarriere() {
     var maintenant = new Date().getTime();
-    if (this.carriere.niveau == null || this.carriere.dateFinConstruction > maintenant) {
-      return "50%";
+
+    if(this.carriere) {
+      if (this.carriere.niveau == null || this.carriere.dateFinConstruction > maintenant) {
+        return "50%";
+      }
     }
   }
   getOpacityCampDeBucheron() {
     var maintenant = new Date().getTime();
-    if (this.campDeBucheron.niveau == null || this.campDeBucheron.dateFinConstruction > maintenant) {
-      return "50%";
+    if(this.campDeBucheron) {
+      if (this.campDeBucheron.niveau == null || this.campDeBucheron.dateFinConstruction > maintenant) {
+        return "50%";
+      }
     }
   }
   getOpacityCampDeMineur() {
     var maintenant = new Date().getTime();
-    if (this.campDeMineur.niveau == null || this.campDeMineur.dateFinConstruction > maintenant) {
-      return "50%";
+    if(this.campDeMineur) {
+      if (this.campDeMineur.niveau == null || this.campDeMineur.dateFinConstruction > maintenant) {
+        return "50%";
+      }
     }
   }
   getOpacityFerme() {
     var maintenant = new Date().getTime();
-    if (this.ferme.niveau == null || this.ferme.dateFinConstruction > maintenant) {
-      return "50%";
+    if(this.ferme) {
+      if (this.ferme.niveau == null || this.ferme.dateFinConstruction > maintenant) {
+        return "50%";
+      }
     }
+
   }
 
 }

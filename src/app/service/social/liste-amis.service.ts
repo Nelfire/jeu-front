@@ -18,7 +18,6 @@ export class ListeAmisService {
    * AJOUTER UN NOUVEL AMI
    */
   ajouterAmi(idAmi: number): Observable<AjoutAmi> {
-    console.log("service : " + idAmi)
     return this.http.post<AjoutAmi>(`${URL_BACKEND}`,
       {
         idAmi: `${idAmi}`

@@ -422,14 +422,12 @@
           <!-- TEMPS DE CONSTRUCTION -->
           <p class="card__temps__travail">
             <b>Temps d'amélioration : </b>
-            <b>{{batimentJoueurPossede['tempsAmelioration']*batiment.multiplicateurCout | minuteSecondePipe: 's':'hhmmss'}} </b>
+            <b>{{batimentJoueurPossede['tempsAmelioration']*batiment.multiplicateurCout | minuteSecondePipe:
+              's':'hhmmss'}} </b>
           </p>
 
           <!-- BOUTONS -->
           <div class="row">
-
-
-
             <!-- CAS UNITE PROVENANT DE CE BATIMENT EN COURS DE PRODUCTION -->
             <div class="col-sm-6" *ngIf="batimentUniteEnCoursDeProduction; else ameliorationPossible">
               <button class="btn draw-border" (click)="ameliorer()">Unités en cours de production</button>

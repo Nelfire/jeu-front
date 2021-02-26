@@ -1,4 +1,4 @@
-<div class="modificationBatiment container">
+<div class="container" *ngIf="joueur">
     <div class="divider-custom divider-light">
         <div class="divider-custom-line"></div>
         <div class="divider-custom-titre">Modification {{joueur.pseudo}}</div>
@@ -156,7 +156,7 @@
                         </button>
 
                         <!-- bouton annuler formulaire -->
-                        <a routerLink="/classementJoueur">
+                        <a routerLink="/classement-joueurs">
                             <button class="btn btn-danger">
                                 Annuler
                             </button>
