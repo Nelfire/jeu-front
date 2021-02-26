@@ -45,6 +45,8 @@ import { AnnonceAVenirComponent } from './divers/annonce-a-venir/annonce-a-venir
 import { TantPisComponent } from './divers/tant-pis/tant-pis.component';
 import { UsineComponent } from './usine/usine.component';
 import { NouveauteComponent } from './divers/nouveaute/nouveaute.component';
+import { MarcheComponent } from './marche/marche.component';
+import { ModificationJoueurComponent } from './administration/joueur/modification-joueur/modification-joueur.component';
 
 
 const routes: Routes = [
@@ -97,7 +99,10 @@ const routes: Routes = [
   { path: 'listeUnitee', component: ListeUniteeComponent, canActivate: [StatutAdministrateurService] },
   { path: 'creationUnitee', component: CreationUniteeComponent, canActivate: [StatutAdministrateurService] },
   { path: 'modificationUnitee/:id', component: ModificationUniteeComponent, canActivate: [StatutAdministrateurService] },
+  // - Joueur -
+  { path: 'modificationJoueur/:id', component: ModificationJoueurComponent, canActivate: [StatutAdministrateurService]},
 
+  // ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥  BETTIE D'AMOUR VINCENT D'AMOUR PAPI MAMIE D'AMOUR ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥
   // ------------- UNITEE ---------------
 
   { path: 'unitee/detail-unitee/:id', component: DetailUniteeComponent, canActivate: [StatutConnecteService] },
@@ -113,6 +118,8 @@ const routes: Routes = [
 
   // ------------- BOUTIQUE -------------
   { path: 'boutique', component: BoutiqueComponent, canActivate: [StatutConnecteService]},
+  // ------------- MARCHE -------------
+  { path: 'marche', component: MarcheComponent, canActivate: [StatutConnecteService]},
 
   // ------------- DISCUSSION -------------
   { path: 'discussion', component: DiscussionComponent, canActivate: [StatutConnecteService]},
@@ -121,7 +128,7 @@ const routes: Routes = [
 
   // ------------- JOUEUR -------------
   { path: 'detailJoueur/:id', component: DetailCompteComponent, canActivate: [StatutConnecteService]},
-  { path: 'modificationJoueur', component: ModifierJoueurComponent, canActivate: [StatutConnecteService]},
+  { path: 'modifierJoueur', component: ModifierJoueurComponent, canActivate: [StatutConnecteService]},
   { path: 'listeAmis', component: ListeAmisComponent, canActivate: [StatutConnecteService]},
 
   // --------- USINE -----------

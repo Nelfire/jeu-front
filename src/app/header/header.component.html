@@ -160,19 +160,28 @@
                         </span>
                     </a>
                 </li>
-                <li class="has-subnav">
-                    <a routerLink="classement-joueurs">
-                        <i class="fa fa-table fa-2x"></i>
-                        <span class="nav-text">
-                            Classement Joueur
-                        </span>
-                    </a>
-                </li>
                 <li>
                     <a routerLink="menuAdministration" *ngIf="jou.roles[0] == roleEnum.RoleAdmin">
                         <i class="fa fa-bar-chart-o fa-2x"></i>
                         <span class="nav-text">
                             Administration
+                        </span>
+                    </a>
+                </li>
+<!-- 
+                <li>
+                    <a routerLink="marche">
+                        <i class="fa fa-exchange" aria-hidden="true"></i>
+                        <span class="nav-text">
+                            Marché
+                        </span>
+                    </a>
+                </li> -->
+                <li>
+                    <a routerLink="boutique">
+                        <i class="fa fa-money fa-2x"></i>
+                        <span class="nav-text">
+                            Boutique
                         </span>
                     </a>
                 </li>
@@ -184,11 +193,11 @@
                         </span>
                     </a>
                 </li>
-                <li>
-                    <a routerLink="boutique">
-                        <i class="fa fa-money fa-2x"></i>
+                <li class="has-subnav">
+                    <a routerLink="classement-joueurs">
+                        <i class="fa fa-table fa-2x"></i>
                         <span class="nav-text">
-                            Boutique
+                            Classement Joueur
                         </span>
                     </a>
                 </li>

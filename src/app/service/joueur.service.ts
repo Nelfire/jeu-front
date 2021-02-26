@@ -59,4 +59,45 @@ export class JoueurService {
         gainNourriture: `${gainNourriture}`
       });
   }
+
+  
+   // Modification joueur depuis la page d'administration
+   administrationModificationJoueur(
+    id : number,
+    icone : string,
+    pseudo : string,
+    email : string,
+    descriptif : string,
+    niveau : number,
+    experience : number,
+    pierrePossession : number,
+    boisPossession : number,
+    orPossession : number,
+    nourriturePossession : number,
+    gemmePossession : number,
+    pierreBoostProduction : number,
+    boisBoostProduction : number,
+    orBoostProduction : number,
+    nourritureBoostProduction : number
+  ): Observable<JoueurInfos> {
+    return this.http.put<JoueurInfos>(`${URL_BACKEND}/administrationModificationJoueur?id=` + id,
+      {
+        id: `${id}`,
+        icone : `${icone}`,
+        pseudo :`${pseudo}`,
+        email : `${email}`,
+        descriptif : `${descriptif}`,
+        niveau : `${niveau}`,
+        experience : `${experience}`,
+        pierrePossession : `${pierrePossession}`,
+        boisPossession : `${boisPossession}`,
+        orPossession : `${orPossession}`,
+        nourriturePossession : `${nourriturePossession}`,
+        gemmePossession : `${gemmePossession}`,
+        pierreBoostProduction : `${pierreBoostProduction}`,
+        boisBoostProduction : `${boisBoostProduction}`,
+        orBoostProduction : `${orBoostProduction}`,
+        nourritureBoostProduction : `${nourritureBoostProduction}`
+      });
+  }
 }

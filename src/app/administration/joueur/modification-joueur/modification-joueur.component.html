@@ -1,0 +1,169 @@
+<div class="modificationBatiment container">
+    <div class="divider-custom divider-light">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-titre">Modification {{joueur.pseudo}}</div>
+        <div class="divider-custom-line"></div>
+    </div>
+    <div class="card">
+        <div class="card-body ">
+            <form [formGroup]="formModificationJoueur" (ngSubmit)="modificationJoueur()">
+                <div class="form-group row">
+                    <label for="id" class="col-sm-2 col-form-label">ID</label>
+                    <div class="col-sm-10">
+                        <input disabled type="text" class="form-control" value="{{id}}" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="icone" class="col-sm-2 col-form-label">Icone</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="icone" rows="3" formControlName="icone" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="pseudo" class="col-sm-2 col-form-label">Pseudo</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="pseudo" rows="3" formControlName="pseudo" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="email" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="email" rows="3" formControlName="email" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="descriptif" class="col-sm-2 col-form-label">descriptif</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="descriptif" rows="3" formControlName="descriptif" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="niveau" class="col-sm-2 col-form-label">niveau</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="niveau" rows="3" formControlName="niveau" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="experience" class="col-sm-2 col-form-label">experience</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="experience" rows="3" formControlName="experience" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="pierrePossession" class="col-sm-2 col-form-label">pierrePossession</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="pierrePossession" rows="3" formControlName="pierrePossession" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="boisPossession" class="col-sm-2 col-form-label">boisPossession</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="boisPossession" rows="3" formControlName="boisPossession" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="orPossession" class="col-sm-2 col-form-label">orPossession</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="orPossession" rows="3" formControlName="orPossession" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="nourriturePossession" class="col-sm-2 col-form-label">nourriturePossession</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="nourriturePossession" rows="3" formControlName="nourriturePossession" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="gemmePossession" class="col-sm-2 col-form-label">gemmePossession</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="gemmePossession" rows="3" formControlName="gemmePossession" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="pierreMaximum" class="col-sm-2 col-form-label">pierreMaximum</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="pierreMaximum" rows="3" formControlName="pierreMaximum" disabled />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="boisMaximum" class="col-sm-2 col-form-label">boisMaximum</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="boisMaximum" rows="3" formControlName="boisMaximum" disabled />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="orMaximum" class="col-sm-2 col-form-label">orMaximum</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="orMaximum" rows="3" formControlName="orMaximum" disabled />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="nourritureMaximum" class="col-sm-2 col-form-label">nourritureMaximum</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="nourritureMaximum" rows="3" formControlName="nourritureMaximum" disabled />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="pierreBoostProduction" class="col-sm-2 col-form-label">pierreBoostProduction</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="pierreBoostProduction" rows="3" formControlName="pierreBoostProduction" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="boisBoostProduction" class="col-sm-2 col-form-label">boisBoostProduction</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="boisBoostProduction" rows="3" formControlName="boisBoostProduction" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="orBoostProduction" class="col-sm-2 col-form-label">orBoostProduction</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="orBoostProduction" rows="3" formControlName="orBoostProduction" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="nourritureBoostProduction" class="col-sm-2 col-form-label">nourritureBoostProduction</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="nourritureBoostProduction" rows="3" formControlName="nourritureBoostProduction" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="tempsDeJeu" class="col-sm-2 col-form-label">tempsDeJeu</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="tempsDeJeu" rows="3" formControlName="tempsDeJeu" disabled/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="derniereConnexion" class="col-sm-2 col-form-label">derniereConnexion</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="derniereConnexion" rows="3" formControlName="derniereConnexion" disabled />
+                    </div>
+                </div>                
+
+                <div class="alert alert-danger" role="danger" *ngIf="messageErreur">
+                    <b>{{messageErreur}}</b>
+                </div>
+                <div class="alert alert-success" role="success" *ngIf="messageValidation">
+                    <b>{{messageValidation}}</b>
+                </div>
+
+                <div class="row justify-content-md-center">
+                    <div class="col-md-auto">
+                        <!-- bouton valider formulaire -->
+                        <button class="btn btn-success mr-2" [disabled]="formModificationJoueur.invalid">
+                            Modifier
+                        </button>
+
+                        <!-- bouton annuler formulaire -->
+                        <a routerLink="/classementJoueur">
+                            <button class="btn btn-danger">
+                                Annuler
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

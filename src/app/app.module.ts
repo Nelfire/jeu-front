@@ -76,6 +76,8 @@ import { AnnonceAVenirComponent } from './divers/annonce-a-venir/annonce-a-venir
 import { TantPisComponent } from './divers/tant-pis/tant-pis.component';
 import { UsineComponent } from './usine/usine.component';
 import { NouveauteComponent } from './divers/nouveaute/nouveaute.component';
+import { MarcheComponent } from './marche/marche.component';
+import { ModificationJoueurComponent } from './administration/joueur/modification-joueur/modification-joueur.component';
 
 
 @NgModule({
@@ -125,7 +127,9 @@ import { NouveauteComponent } from './divers/nouveaute/nouveaute.component';
     AnnonceAVenirComponent,
     TantPisComponent,
     UsineComponent,
-    NouveauteComponent
+    NouveauteComponent,
+    MarcheComponent,
+    ModificationJoueurComponent
   ],
   imports: [
     BrowserModule,

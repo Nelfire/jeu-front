@@ -15,7 +15,7 @@
             <p class="card__tempsDeJeu">Temps de jeu : {{joueur.tempsDeJeu | minuteSecondePipe: 's':'hhmmss'}}</p>
 
             <div *ngIf="joueurConnecte.id == joueur.id; else consultationJoueur">
-                <a routerLink="/modificationJoueur">
+                <a routerLink="/modifierJoueur">
                     <button class="btn draw-border">Modifier mes données</button>
                 </a>
             </div>
@@ -32,4 +32,4 @@
         </div>
     </div>
 
-</div>
+</div>   

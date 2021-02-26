@@ -1,27 +1,36 @@
-<div class="classementJoueur container">
-    <div class="divider-custom divider-light">
-        <div class="divider-custom-line"></div>
-        <div class="divider-custom-titre">Classement joueur</div>
-        <div class="divider-custom-line"></div>
+<ng-container *ngIf="joueurConnecte | async as jou">
+    <div class="classementJoueur container">
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-titre">Classement joueur</div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <div class="table-wrapper">
+            <table class="fl-table">
+                <thead>
+                    <tr>
+                        <th>Icone</th>
+                        <th>Pseudo</th>
+                        <th>Niveau</th>
+                        <th>Temps de jeu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let joueur of listeJoueurs">
+                        <td><img src="{{joueur.icone}}" alt="" style="width: 30px;" /></td>
+                        <td>
+                            <a routerLink="/detailJoueur/{{joueur.id}}">{{joueur.pseudo}}</a>
+                            <span *ngIf="jou.roles[0] == roleEnum.RoleAdmin"> - 
+                                <a routerLink="/modificationJoueur/{{joueur.id}}">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </a>
+                            </span>
+                        </td>
+                        <td>{{joueur.niveau}}</td>
+                        <td>{{joueur.tempsDeJeu | minuteSecondePipe: 's':'hhmmss'}}</td>
+                    </tr>
+                <tbody>
+            </table>
+        </div>
     </div>
-    <div class="table-wrapper">
-        <table class="fl-table">
-            <thead>
-                <tr>
-                    <th>Icone</th>
-                    <th>Pseudo</th>
-                    <th>Niveau</th>
-                    <th>Temps de jeu</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let joueur of listeJoueurs">
-                    <td><img src="{{joueur.icone}}" alt="" style="width: 30px;" /></td>
-                    <td><a routerLink="/detailJoueur/{{joueur.id}}">{{joueur.pseudo}}</a></td>
-                    <td>{{joueur.niveau}}</td>
-                    <td>{{joueur.tempsDeJeu | minuteSecondePipe: 's':'hhmmss'}}</td>
-                </tr>
-            <tbody>
-        </table>
-    </div>
-</div>
+</ng-container>
