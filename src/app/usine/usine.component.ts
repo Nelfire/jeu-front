@@ -126,14 +126,10 @@ export class UsineComponent implements OnInit {
       } else {
         this.carriereEnCoursDeTravail = false;
         // Police du clic (Rapiditée) -70ms
-        console.log("maintenant :" + maintenant);
-        console.log("this.lastClickPierre :" + this.lastClickPierre);
         var maintenant = new Date().getTime();
         var ecart = maintenant - this.lastClickPierre;
-        console.log("ecart :" + ecart)
         if (ecart < 90) {
           this.compteurRapiditeClickPierre++;
-          console.log(this.compteurRapiditeClickPierre);
           // Si rapiditée répétée : Suspect
           if (this.compteurRapiditeClickPierre > 15) {
             this.notification.showError("Vraiment rapide le bonhomme ! N'utiliserais tu pas un logiciel pour t'aider à faire ça ? Le prochain avertissement te vaudra une pénalité ! Retrait de la production pour le moment !", "Oh oh oh !!");
@@ -185,14 +181,14 @@ export class UsineComponent implements OnInit {
         // Police du clic (Rapiditée) -70ms
         var maintenant = new Date().getTime();
         var ecart = maintenant - this.lastClickBois;
-        if (ecart < 70) {
+        if (ecart < 90) {
           this.compteurRapiditeClickBois++;
           // Si rapiditée répétée : Suspect
           if (this.compteurRapiditeClickBois > 15) {
             this.notification.showError("Vraiment rapide le bonhomme ! N'utiliserais tu pas un logiciel pour t'aider à faire ça ? Le prochain avertissement te vaudra une pénalité ! Retrait de la production pour le moment !", "Oh oh oh !!");
             // Réinitialisation du farm
             this.compteurRapiditeClickBois = 0;
-            this.montantRecolteBois = 0;
+            this.montantRecoltePierre = 0;
             this.montantRecolteBois = 0;
             this.montantRecolteOr = 0;
             this.montantRecolteNourriture = 0;
@@ -208,7 +204,7 @@ export class UsineComponent implements OnInit {
             this.notification.showError("Vraiment réguliers les clics ! N'utiliserais-tu pas un logiciel pour t'aider à faire ça ? Le prochain avertissement te vaudra une pénalité ! Retrait de la production pour le moment !", "Oh oh oh !!");
             // Réinitialisation
             this.compteurRegulariteClickBois = 0;
-            this.montantRecolteBois = 0;
+            this.montantRecoltePierre = 0;
             this.montantRecolteBois = 0;
             this.montantRecolteOr = 0;
             this.montantRecolteNourriture = 0;
@@ -237,15 +233,15 @@ export class UsineComponent implements OnInit {
         // Police du clic (Rapiditée) -70ms
         var maintenant = new Date().getTime();
         var ecart = maintenant - this.lastClickOr;
-        if (ecart < 70) {
+        if (ecart < 90) {
           this.compteurRapiditeClickOr++;
           // Si rapiditée répétée : Suspect
           if (this.compteurRapiditeClickOr > 15) {
             this.notification.showError("Vraiment rapide le bonhomme ! N'utiliserais tu pas un logiciel pour t'aider à faire ça ? Le prochain avertissement te vaudra une pénalité ! Retrait de la production pour le moment !", "Oh oh oh !!");
             // Réinitialisation du farm
             this.compteurRapiditeClickOr = 0;
-            this.montantRecolteOr = 0;
-            this.montantRecolteOr = 0;
+            this.montantRecoltePierre = 0;
+            this.montantRecolteBois = 0;
             this.montantRecolteOr = 0;
             this.montantRecolteNourriture = 0;
           }
@@ -260,8 +256,8 @@ export class UsineComponent implements OnInit {
             this.notification.showError("Vraiment réguliers les clics ! N'utiliserais-tu pas un logiciel pour t'aider à faire ça ? Le prochain avertissement te vaudra une pénalité ! Retrait de la production pour le moment !", "Oh oh oh !!");
             // Réinitialisation
             this.compteurRegulariteClickOr = 0;
-            this.montantRecolteOr = 0;
-            this.montantRecolteOr = 0;
+            this.montantRecoltePierre = 0;
+            this.montantRecolteBois = 0;
             this.montantRecolteOr = 0;
             this.montantRecolteNourriture = 0;
           }
@@ -289,15 +285,15 @@ export class UsineComponent implements OnInit {
         // Police du clic (Rapiditée) -70ms
         var maintenant = new Date().getTime();
         var ecart = maintenant - this.lastClickNourriture;
-        if (ecart < 70) {
+        if (ecart < 90) {
           this.compteurRapiditeClickNourriture++;
           // Si rapiditée répétée : Suspect
           if (this.compteurRapiditeClickNourriture > 15) {
             this.notification.showError("Vraiment rapide le bonhomme ! N'utiliserais tu pas un logiciel pour t'aider à faire ça ? Le prochain avertissement te vaudra une pénalité ! Retrait de la production pour le moment !", "Oh oh oh !!");
             // Réinitialisation du farm
             this.compteurRapiditeClickNourriture = 0;
-            this.montantRecolteNourriture = 0;
-            this.montantRecolteNourriture = 0;
+            this.montantRecoltePierre = 0;
+            this.montantRecolteBois = 0;
             this.montantRecolteOr = 0;
             this.montantRecolteNourriture = 0;
           }
@@ -312,8 +308,8 @@ export class UsineComponent implements OnInit {
             this.notification.showError("Vraiment réguliers les clics ! N'utiliserais-tu pas un logiciel pour t'aider à faire ça ? Le prochain avertissement te vaudra une pénalité ! Retrait de la production pour le moment !", "Oh oh oh !!");
             // Réinitialisation
             this.compteurRegulariteClickNourriture = 0;
-            this.montantRecolteNourriture = 0;
-            this.montantRecolteNourriture = 0;
+            this.montantRecoltePierre = 0;
+            this.montantRecolteBois = 0;
             this.montantRecolteOr = 0;
             this.montantRecolteNourriture = 0;
           }
