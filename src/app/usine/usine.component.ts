@@ -32,31 +32,31 @@ export class UsineComponent implements OnInit {
   // --- PIERRE ---
   // - rapidité
   lastClickPierre;
-  compteurRapiditeClickPierre;
+  compteurRapiditeClickPierre = 1;
   // - régularité
   lastEcartClickPierre;
-  compteurRegulariteClickPierre;
+  compteurRegulariteClickPierre = 1;
   // --- BOIS ---
   // - rapidité
   lastClickBois;
-  compteurRapiditeClickBois;
+  compteurRapiditeClickBois = 1;
   // - régularité
   lastEcartClickBois;
-  compteurRegulariteClickBois;
+  compteurRegulariteClickBois = 1;
   // --- OR ---
   // - rapidité
   lastClickOr;
-  compteurRapiditeClickOr;
+  compteurRapiditeClickOr = 1;
   // - régularité
   lastEcartClickOr;
-  compteurRegulariteClickOr;
+  compteurRegulariteClickOr = 1;
   // --- NOURRITURE ---
   // - rapidité
   lastClickNourriture;
-  compteurRapiditeClickNourriture;
+  compteurRapiditeClickNourriture = 1;
   // - régularité
   lastEcartClickNourriture;
-  compteurRegulariteClickNourriture;
+  compteurRegulariteClickNourriture = 1;
 
   // CONSTRUCTEUR
   constructor(private notification: NotificationService,
@@ -126,10 +126,14 @@ export class UsineComponent implements OnInit {
       } else {
         this.carriereEnCoursDeTravail = false;
         // Police du clic (Rapiditée) -70ms
+        console.log("maintenant :" + maintenant);
+        console.log("this.lastClickPierre :" + this.lastClickPierre);
         var maintenant = new Date().getTime();
         var ecart = maintenant - this.lastClickPierre;
-        if (ecart < 70) {
+        console.log("ecart :" + ecart)
+        if (ecart < 90) {
           this.compteurRapiditeClickPierre++;
+          console.log(this.compteurRapiditeClickPierre);
           // Si rapiditée répétée : Suspect
           if (this.compteurRapiditeClickPierre > 15) {
             this.notification.showError("Vraiment rapide le bonhomme ! N'utiliserais tu pas un logiciel pour t'aider à faire ça ? Le prochain avertissement te vaudra une pénalité ! Retrait de la production pour le moment !", "Oh oh oh !!");
