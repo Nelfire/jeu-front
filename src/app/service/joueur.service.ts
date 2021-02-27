@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { ObserveOnSubscriber } from 'rxjs/internal/operators/observeOn';
 import { InformationRessourcesJoueur } from '../models/informationRessourcesJoueur';
 import { GainRessource } from '../models/gain-ressource';
+import { EchangeRessource } from '../models/echange-ressource';
 
 const URL_BACKEND = environment.baseUrl + 'joueur';
 
@@ -99,5 +100,28 @@ export class JoueurService {
         orBoostProduction : `${orBoostProduction}`,
         nourritureBoostProduction : `${nourritureBoostProduction}`
       });
+  }
+
+
+  echangeRessource(montantPierre:number,
+    montantBois:number,
+    montantOr:number,
+    montantNourriture:number,
+    etatPierre:boolean,
+    etatBois:boolean,
+    etatOr:boolean,
+    etatNourriture:boolean
+    ): Observable<EchangeRessource> {
+    return this.http.post<EchangeRessource>(`${URL_BACKEND}/echangeRessource`,
+    {
+      montantPierre: `${montantPierre}`,
+      montantBois: `${montantBois}`,
+      montantOr: `${montantOr}`,
+      montantNourriture: `${montantNourriture}`,
+      etatPierre: `${etatPierre}`,
+      etatBois: `${etatBois}`,
+      etatOr: `${etatOr}`,
+      etatNourriture: `${etatNourriture}`
+    });
   }
 }

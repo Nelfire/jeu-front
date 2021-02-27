@@ -4,81 +4,115 @@
         <div class="divider-custom-titre">Marché<br>échangez vos ressources</div>
         <div class="divider-custom-line"></div>
     </div>
-    <form [formGroup]="formMarche" (ngSubmit)="validerEchange()">
-        <div class="grid-container">
-
-            <!-- RESSOURCES DU JOUEUR-->
-            <div class="pierreJoueur card pierre">
-                <input type="text" pattern="[0-9]*" class="form-control saisieRessource" formControlName="pierreJoueur" [(ngModel)]="quantitePierre" (keyup)="pierre(quantitePierre)" /> <b>Maximum : {{infosJoueur.pierrePossession | number}}</b>
+    <div id="erreur">
+        <div class="erreur" *ngIf="niveauMarche==0; else possedeMarche;">
+            <div class="batimentManquant">
+                <h1><span></span></h1>
             </div>
-            <div class="boisJoueur card bois">
-                <input type="text" class="form-control saisieRessource" formControlName="boisJoueur" [(ngModel)]="quantiteBois" (keyup)="bois(quantiteBois)"/> <b>Maximum : {{infosJoueur.boisPossession | number}}</b>
-            </div>
-            <div class="orJoueur card or">
-                <input type="text" class="form-control saisieRessource" formControlName="orJoueur" [(ngModel)]="quantiteOr" (keyup)="or(quantiteOr)"/> <b>Maximum : {{infosJoueur.orPossession | number}}</b>
-            </div>
-            <div class="nourritureJoueur card nourriture">
-                <input type="text" class="form-control saisieRessource" formControlName="nourritureJoueur" [(ngModel)]="quantiteNourriture" (keyup)="nourriture(quantiteNourriture)"/> <b>Maximum : {{infosJoueur.nourriturePossession | number}}</b>
-            </div>
-            <!-- FLECHE -->
-            <div class="fleche"></div>
-            <!-- ECHANGE -->
-            <div class="echangePierre card pierre">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <input type="checkbox">
-                        </div>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control montantTransaciton" disabled value="{{montantPierreEchange | number}}"/>
-                        </div>
-                    </div>
-                </div>
-                <b>Maximum : {{infosJoueur.pierreMaximum-infosJoueur.pierrePossession | number}}</b>
-            </div>
-            <div class="echangeBois card bois">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <input type="checkbox">
-                        </div>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control montantTransaciton" disabled value="{{montantBoisEchange | number}}"/>
-                        </div>
-                    </div>
-                </div>
-                <b>Maximum : {{infosJoueur.boisMaximum-infosJoueur.boisPossession | number}}</b>
-            </div>
-            <div class="echangeOr card or">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <input type="checkbox">
-                        </div>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control montantTransaciton" disabled value="{{montantOrEchange | number}}"/>
-                        </div>
-                    </div>
-                </div>
-                <b>Maximum : {{infosJoueur.orMaximum-infosJoueur.orPossession | number}}</b>
-            </div>
-            <div class="echangeNourriture card nourriture">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <input type="checkbox">
-                        </div>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control montantTransaciton" disabled value="{{montantNourritureEchange | number}}"/>
-                        </div>
-                    </div>
-                </div>
-                <b>Maximum : {{infosJoueur.nourritureMaximum-infosJoueur.nourriturePossession | number}}</b>
-            </div>
-
-            <div class="bouton">
-                <button class="btn btn-success">Valider l'échange</button>
-            </div>
+            <a routerLink="/batiment/detail-batiment/17">Vous devez d'abords construire un marché pour pouvoir échanger
+                vos ressources</a>
         </div>
-    </form>
+    </div>
+    <ng-template #possedeMarche>
+
+
+        <div class="avertissement">
+            Taux de change <br>
+            Or (5) : Pierre (3) : Bois (2) : Nourriture (1)
+        </div>
+        <form [formGroup]="formMarche" (ngSubmit)="validerEchange()">
+            <div class="grid-container">
+
+                <!-- RESSOURCES DU JOUEUR-->
+                <div class="pierreJoueur card pierre">
+                    <input type="text" pattern="[0-9]*" class="form-control saisieRessource"
+                        formControlName="pierreJoueur" [(ngModel)]="quantitePierre" (keyup)="pierre(quantitePierre)" />
+                    <b>Maximum :
+                        {{infosJoueur.pierrePossession | number}}</b>
+                </div>
+                <div class="boisJoueur card bois">
+                    <input type="text" pattern="[0-9]*" class="form-control saisieRessource"
+                        formControlName="boisJoueur" [(ngModel)]="quantiteBois" (keyup)="bois(quantiteBois)" />
+                    <b>Maximum : {{infosJoueur.boisPossession
+                        | number}}</b>
+                </div>
+                <div class="orJoueur card or">
+                    <input type="text" pattern="[0-9]*" class="form-control saisieRessource" formControlName="orJoueur"
+                        [(ngModel)]="quantiteOr" (keyup)="or(quantiteOr)" /> <b>Maximum : {{infosJoueur.orPossession |
+                        number}}</b>
+                </div>
+                <div class="nourritureJoueur card nourriture">
+                    <input type="text" pattern="[0-9]*" class="form-control saisieRessource"
+                        formControlName="nourritureJoueur" [(ngModel)]="quantiteNourriture"
+                        (keyup)="nourriture(quantiteNourriture)" /> <b>Maximum : {{infosJoueur.nourriturePossession |
+                        number}}</b>
+                </div>
+                <!-- FLECHE -->
+                <div class="fleche"></div>
+                <!-- ECHANGE -->
+                <div class="echangePierre card pierre" [ngStyle]="{opacity:opacityPierre}">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <input type="checkbox" (click)="checkboxPierre()" [disabled]="etatCheckboxPierre">
+                            </div>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control montantTransaction" disabled
+                                    value="{{montantPierreEchange | number}}" />
+                            </div>
+                        </div>
+                    </div>
+                    <b>Maximum : {{infosJoueur.pierreMaximum-infosJoueur.pierrePossession | number}}</b>
+                </div>
+                <div class="echangeBois card bois" [ngStyle]="{opacity:opacityBois}">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <input type="checkbox" (click)="checkboxBois()" [disabled]="etatCheckboxBois">
+                            </div>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control montantTransaction" disabled
+                                    value="{{montantBoisEchange | number}}" />
+                            </div>
+                        </div>
+                    </div>
+                    <b>Maximum : {{infosJoueur.boisMaximum-infosJoueur.boisPossession | number}}</b>
+                </div>
+                <div class="echangeOr card or" [ngStyle]="{opacity:opacityOr}">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <input type="checkbox" (click)="checkboxOr()" [disabled]="etatCheckboxOr">
+                            </div>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control montantTransaction" formControlName="orEchange"
+                                    disabled value="{{montantOrEchange | number}}" />
+                            </div>
+                        </div>
+                    </div>
+                    <b>Maximum : {{infosJoueur.orMaximum-infosJoueur.orPossession | number}}</b>
+                </div>
+                <div class="echangeNourriture card nourriture" [ngStyle]="{opacity:opacityNourriture}">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <input type="checkbox" (click)="checkboxNourriture()"
+                                    [disabled]="etatCheckboxNourriture">
+                            </div>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control montantTransaction"
+                                    formControlName="nourritureEchange" disabled
+                                    value="{{montantNourritureEchange | number}}" />
+                            </div>
+                        </div>
+                    </div>
+                    <b>Maximum : {{infosJoueur.nourritureMaximum-infosJoueur.nourriturePossession | number}}</b>
+                </div>
+
+                <div class="bouton center">
+                    <button class="btn btn-danger" [disabled]="formMarche.invalid">Valider l'échange</button>
+                </div>
+            </div>
+        </form>
+    </ng-template>
 </div>
