@@ -2,11 +2,13 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { Armee } from 'src/app/models/armee';
 import { Batiment } from 'src/app/models/batiment';
+import { JoueurInfos } from 'src/app/models/joueur-infos';
 import { MesBatiments } from 'src/app/models/mes-batiments';
 import { Unitee } from 'src/app/models/unitee';
 import { ArmeeService } from 'src/app/service/armee-joueur.service';
 import { BatimentJoueurService } from 'src/app/service/batiment-joueur.service';
 import { GenerationRessourcesService } from 'src/app/service/generation-ressources.service';
+import { JoueurService } from 'src/app/service/joueur.service';
 import { UniteeService } from 'src/app/service/unitee.service';
 
 @Component({
@@ -23,12 +25,20 @@ export class MonArmeeComponent implements OnInit {
   lesBatimentsDuJoueur: MesBatiments[];
   flagPossedeBatimentNecessaireFormationUnitee: boolean = false;
   flagNiveauBatimentNecessaireFormationUniteeAssezEleve: boolean = false;
+  joueur: JoueurInfos;
 
   constructor(private uniteeService: UniteeService,
     private armeeService: ArmeeService,
-    private batimentJoueurService: BatimentJoueurService) { }
+    private batimentJoueurService: BatimentJoueurService,
+    private joueurService: JoueurService) { }
 
   ngOnInit(): void {
+    // Récupération des informations du joueur, pour indiquer le manque de ressources (colorisation)
+    this.joueurService.informationJoueurByEmail().subscribe(
+      (value) => {
+        this.joueur = value;
+      }
+    );
     // Scan des bâtiments que possède le joueur, pour indiquer un bâtiment manquant/niveau insufisant
     this.uniteesToutes();
   }
@@ -168,5 +178,63 @@ export class MonArmeeComponent implements OnInit {
       }
     );
   }
+
+  // Pierre
+  getColorRessourceManquantePierreFormationUnite(id: number) {
+    var couleur = '';
+    this.lesUnitees.forEach(element => {
+      if (id == element.id) {
+        if (this.joueur.pierrePossession < element.coutPierreFormation) {
+          couleur = 'red';
+        } else {
+          couleur = 'green';
+        }
+      }
+    });
+    return couleur;
+  }
+  // Bois
+  getColorRessourceManquanteBoisFormationUnite(id: number) {
+    var couleur = '';
+    this.lesUnitees.forEach(element => {
+      if (id == element.id) {
+        if (this.joueur.boisPossession < element.coutBoisFormation) {
+          couleur = 'red';
+        } else {
+          couleur = 'green';
+        }
+      }
+    });
+    return couleur;
+  }
+  // Or
+  getColorRessourceManquanteOrFormationUnite(id: number) {
+    var couleur = '';
+    this.lesUnitees.forEach(element => {
+      if (id == element.id) {
+        if (this.joueur.orPossession < element.coutOrFormation) {
+          couleur = 'red';
+        } else {
+          couleur = 'green';
+        }
+      }
+    });
+    return couleur;
+  }
+  // Nourriture
+  getColorRessourceManquanteNourritureFormationUnite(id: number) {
+    var couleur = '';
+    this.lesUnitees.forEach(element => {
+      if (id == element.id) {
+        if (this.joueur.nourriturePossession < element.coutNourritureFormation) {
+          couleur = 'red';
+        } else {
+          couleur = 'green';
+        }
+      }
+    });
+    return couleur;
+  }
+
 
 }

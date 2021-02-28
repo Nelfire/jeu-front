@@ -65,6 +65,8 @@
 								<span><b>Bois : </b> <b [ngStyle]="{'color':getColorRessourceManquanteBoisAmeliorationBatiment(batiment.idTypeBatiment)}">{{batiment.coutBoisAmelioration | number}}</b></span>
 								<span><b>Or : </b> <b [ngStyle]="{'color':getColorRessourceManquanteOrAmeliorationBatiment(batiment.idTypeBatiment)}">{{batiment.coutOrAmelioration | number}}</b></span>
 								<span><b>Nourriture : </b> <b [ngStyle]="{'color':getColorRessourceManquanteNourritureAmeliorationBatiment(batiment.idTypeBatiment)}">{{batiment.coutNourritureAmelioration | number}}</b></span>
+								<span><b>Temps : </b> <b>{{batiment.tempsAmelioration | minuteSecondePipe:
+									's':'hhmmss'}}</b></span>
 							</div>
 						</ng-template>
 					</div>
@@ -95,6 +97,8 @@
 								<span><b>Bois : </b> <b [ngStyle]="{'color':getColorRessourceManquanteBoisConstructionBatiment(batiment.idTypeBatiment)}">{{batiment.coutBoisConstruction | number}}</b></span>
 								<span><b>Or : </b> <b [ngStyle]="{'color':getColorRessourceManquanteOrConstructionBatiment(batiment.idTypeBatiment)}">{{batiment.coutOrConstruction | number}}</b></span>
 								<span><b>Nourriture : </b> <b [ngStyle]="{'color':getColorRessourceManquanteNourritureConstructionBatiment(batiment.idTypeBatiment)}">{{batiment.coutNourritureConstruction | number}}</b></span>
+								<span><b>Temps : </b> <b>{{batiment.tempsDeConstruction | minuteSecondePipe:
+									's':'hhmmss'}}</b></span>
 							</div>
 						</ng-template>
 					</ng-template>

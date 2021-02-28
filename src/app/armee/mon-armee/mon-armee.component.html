@@ -18,7 +18,7 @@
     <div>
         <ul class="honeycomb" lang="es">
             <li class="honeycomb-cell" *ngFor="let unitee of lesUnitees">
-                <div>
+                <div [ngbTooltip]="detailsUnite">
                     <a routerLink="../unitee/detail-unitee/{{unitee.id}}">
                         <div>
                             <!-- Quantitée d'unitées affichée si le joueur en possède -->
@@ -68,6 +68,23 @@
                         </span>
                     </a>
                 </div>
+                <ng-template #detailsUnite>
+                    <div class="d-flex flex-column">
+                        <span><b>- COÛT -</b></span>
+                        <span><b>Pierre : </b> <span> <b [ngStyle]="{'color':getColorRessourceManquantePierreFormationUnite(unitee.id)}">{{unitee.coutPierreFormation | number}}</b></span></span>
+                        <span><b>Bois : </b> <b [ngStyle]="{'color':getColorRessourceManquanteBoisFormationUnite(unitee.id)}">{{unitee.coutBoisFormation | number}}</b></span>
+                        <span><b>Or : </b> <b [ngStyle]="{'color':getColorRessourceManquanteOrFormationUnite(unitee.id)}">{{unitee.coutOrFormation | number}}</b></span>
+                        <span><b>Nourriture : </b> <b [ngStyle]="{'color':getColorRessourceManquanteNourritureFormationUnite(unitee.id)}">{{unitee.coutNourritureFormation | number}}</b></span>
+                        <span><b>Temps : </b> <b>{{unitee.tempsFormation | minuteSecondePipe: 's':'hhmmss'}}</b></span>
+
+                        <br>
+                        <span><b>- STATS -</b></span>
+                        <span><i class="fa fa-heart" aria-hidden="true"></i> <b> Vie : </b> <b>{{unitee.vie | number}}</b></span>
+                        <span><i class="fa fa-gavel" aria-hidden="true"></i> <b> Attaque : </b> <b>{{unitee.attaque | number}}</b></span>
+                        <span><i class="fa fa-crosshairs" aria-hidden="true"></i> <b> Portée : </b> <b>{{unitee.portee | number}}</b></span>
+                        <span><i class="fa fa-shield" aria-hidden="true"></i> <b> Armure : </b> <b>{{unitee.armure | number}} </b></span>
+                    </div>
+                </ng-template>
             </li>
         </ul>
     </div>

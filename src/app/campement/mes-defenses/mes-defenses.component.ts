@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { JoueurInfos } from 'src/app/models/joueur-infos';
 import { MesBatiments } from 'src/app/models/mes-batiments';
 import { MesDefenses } from 'src/app/models/mes-defenses';
 import { BatimentJoueurService } from 'src/app/service/batiment-joueur.service';
 import { DefenseJoueurService } from 'src/app/service/defense-joueur.service';
 import { DefenseService } from 'src/app/service/defense.service';
+import { JoueurService } from 'src/app/service/joueur.service';
 
 @Component({
   selector: 'app-mes-defenses',
@@ -16,14 +18,22 @@ export class MesDefensesComponent implements OnInit {
   lesDefenses = [];
   lesDefensesDuJoueur: MesDefenses[];
   lesBatimentsDuJoueur: MesBatiments[];
+  joueur: JoueurInfos;
 
   // CONSTRUCTEUR
   constructor(private defenseService: DefenseService,
     private defenseJoueurService: DefenseJoueurService,
-    private batimentJoueurService: BatimentJoueurService) { }
+    private batimentJoueurService: BatimentJoueurService,
+    private joueurService: JoueurService) { }
 
   //ngOnInit
   ngOnInit(): void {
+    // Récupération des informations du joueur, pour indiquer le manque de ressources (colorisation)
+    this.joueurService.informationJoueurByEmail().subscribe(
+      (value) => {
+        this.joueur = value;
+      }
+    );
     // Récupération liste de toutes les défenses existants
     this.defensesToutes();
   }
@@ -52,7 +62,7 @@ export class MesDefensesComponent implements OnInit {
             }
           });
         });
-        
+
         this.defenseJoueurService.listerMesDefenses().subscribe(
           (lesDefensesDuJoueur) => {
             this.lesDefensesDuJoueur = lesDefensesDuJoueur;
@@ -112,6 +122,63 @@ export class MesDefensesComponent implements OnInit {
         this.listeDesDefenses();
       }
     );
+  }
+
+  // Pierre
+  getColorRessourceManquantePierreConstructionDefense(id: number) {
+    var couleur = '';
+    this.lesDefenses.forEach(element => {
+      if (id == element.id) {
+        if (this.joueur.pierrePossession < element.coutPierreConstruction) {
+          couleur = 'red';
+        } else {
+          couleur = 'green';
+        }
+      }
+    });
+    return couleur;
+  }
+  // Bois
+  getColorRessourceManquanteBoisConstructionDefense(id: number) {
+    var couleur = '';
+    this.lesDefenses.forEach(element => {
+      if (id == element.id) {
+        if (this.joueur.boisPossession < element.coutBoisConstruction) {
+          couleur = 'red';
+        } else {
+          couleur = 'green';
+        }
+      }
+    });
+    return couleur;
+  }
+  // Or
+  getColorRessourceManquanteOrConstructionDefense(id: number) {
+    var couleur = '';
+    this.lesDefenses.forEach(element => {
+      if (id == element.id) {
+        if (this.joueur.orPossession < element.coutOrConstruction) {
+          couleur = 'red';
+        } else {
+          couleur = 'green';
+        }
+      }
+    });
+    return couleur;
+  }
+  // Nourriture
+  getColorRessourceManquanteNourritureConstructionDefense(id: number) {
+    var couleur = '';
+    this.lesDefenses.forEach(element => {
+      if (id == element.id) {
+        if (this.joueur.nourriturePossession < element.coutNourritureConstruction) {
+          couleur = 'red';
+        } else {
+          couleur = 'green';
+        }
+      }
+    });
+    return couleur;
   }
 
 }
