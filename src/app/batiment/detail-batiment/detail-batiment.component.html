@@ -422,7 +422,7 @@
           <!-- TEMPS DE CONSTRUCTION -->
           <p class="card__temps__travail">
             <b>Temps d'amélioration : </b>
-            <b>{{batimentJoueurPossede['tempsAmelioration']*batiment.multiplicateurCout | minuteSecondePipe:
+            <b>{{batimentJoueurPossede['tempsAmelioration']*(batiment.multiplicateurCout/4) | minuteSecondePipe:
               's':'hhmmss'}} </b>
           </p>
 
