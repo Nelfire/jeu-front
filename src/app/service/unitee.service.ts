@@ -15,8 +15,8 @@ export class UniteeService {
 
   // Création de nouveau type d'unitées depuis la page d'administration
   administrationCreationUnitee(idTypeUnitee:number,idBatimentProvenance:number,icone:string,libelle:string,descriptif:string,coutPierreFormation:number,coutBoisFormation:number,coutOrFormation:number,coutNourritureFormation:number,
-    coutHumain:number,tempsFormation:number,vie:number,attaque:number,portee:number,armure:number,niveauBatimentNecessaireFormation:number,apportRessourcePierreHeure:number,apportRessourceBoisHeure:number,
-    apportRessourceOrHeure:number,apportRessourceNourritureHeure:number): Observable<Unitee> {
+    coutHumain:number,tempsFormation:number,vie:number,attaque:number,portee:number,armure:number,vitesse:number,niveauBatimentNecessaireFormation:number,apportRessourcePierreHeure:number,apportRessourceBoisHeure:number,
+    apportRessourceOrHeure:number,apportRessourceNourritureHeure:number, apportExperience:number): Observable<Unitee> {
     return this.http.post<Unitee>(`${URL_BACKEND}`, 
     {
       idTypeUnitee: `${idTypeUnitee}`,
@@ -34,18 +34,20 @@ export class UniteeService {
       attaque: `${attaque}`,
       portee: `${portee}`,
       armure: `${armure}`,
+      vitesse: `${vitesse}`,
       niveauBatimentNecessaireFormation: `${niveauBatimentNecessaireFormation}`,
       apportRessourcePierreHeure: `${apportRessourcePierreHeure}`,
       apportRessourceBoisHeure: `${apportRessourceBoisHeure}`,
       apportRessourceOrHeure: `${apportRessourceOrHeure}`,
-      apportRessourceNourritureHeure: `${apportRessourceNourritureHeure}`
+      apportRessourceNourritureHeure: `${apportRessourceNourritureHeure}`,
+      apportExperience: `${apportExperience}`
     });
   }
 
    // Modification d'unitées depuis la page d'administration
    administrationModificationUnitee(id:number,idTypeUnitee:number,idBatimentProvenance:number,icone:string,libelle:string,descriptif:string,coutPierreFormation:number,coutBoisFormation:number,coutOrFormation:number,coutNourritureFormation:number,
-    coutHumain:number,tempsFormation:number,vie:number,attaque:number,portee:number,armure:number,niveauBatimentNecessaireFormation:number,apportRessourcePierreHeure:number,apportRessourceBoisHeure:number,
-    apportRessourceOrHeure:number,apportRessourceNourritureHeure:number): Observable<Unitee> {
+    coutHumain:number,tempsFormation:number,vie:number,attaque:number,portee:number,armure:number,vitesse:number, niveauBatimentNecessaireFormation:number,apportRessourcePierreHeure:number,apportRessourceBoisHeure:number,
+    apportRessourceOrHeure:number,apportRessourceNourritureHeure:number,apportExperience:number): Observable<Unitee> {
     return this.http.put<Unitee>(`${URL_BACKEND}/modificationUnitee?id=`+id, 
     {
       id:`${id}`,
@@ -64,11 +66,13 @@ export class UniteeService {
       attaque: `${attaque}`,
       portee: `${portee}`,
       armure: `${armure}`,
+      vitesse: `${vitesse}`,
       niveauBatimentNecessaireFormation: `${niveauBatimentNecessaireFormation}`,
       apportRessourcePierreHeure: `${apportRessourcePierreHeure}`,
       apportRessourceBoisHeure: `${apportRessourceBoisHeure}`,
       apportRessourceOrHeure: `${apportRessourceOrHeure}`,
-      apportRessourceNourritureHeure: `${apportRessourceNourritureHeure}`
+      apportRessourceNourritureHeure: `${apportRessourceNourritureHeure}`,
+      apportExperience: `${apportExperience}`
     });
   }
 

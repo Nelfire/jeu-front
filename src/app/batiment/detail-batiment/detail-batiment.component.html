@@ -5,7 +5,7 @@
       <div class="card">
         <!-- ICONE -->
         <img src="{{batiment['icone']}}" alt="Person" class="card__image">
-        <p class="card__name">{{batiment['libelle']}}</p>
+        <p class="card__name"><b>{{batiment['libelle']}}</b></p>
 
         <!-- NIVEAU (Si possède) -->
         <div *ngIf="modeConstructionAmelioration=='amelioration'" class="text-center">
@@ -16,6 +16,9 @@
         <p class="card__description">
           {{batiment['descriptif']}}
         </p>
+
+        <!-- GAIN EXPERIENCE -->
+        <small>Expérience +<b>{{experience | number : '.0' }}</b></small>
 
         <!-- SI BATIMENT PERMET LE STOCKAGE -->
         <ng-template [ngIf]="(idTypeBatiment==7)||(idTypeBatiment==8)||(idTypeBatiment==9)||(idTypeBatiment==10)">
@@ -31,25 +34,45 @@
         <!-- PIERRE -->
         <ng-template [ngIf]="(idTypeBatiment==7)">
           <p class="card__stockage__ressource">
-            <b><b>Augmentation limite</b></b> : + {{batiment['quantiteeStockagePierre'] | thousandSuff:2}}
+            <b>Augmentation limite</b> :
+            <span ngbTooltip="+ {{batiment['quantiteeStockagePierre'] | number}}">
+              <b>
+                + {{batiment['quantiteeStockagePierre'] | thousandSuff:2}}
+              </b>
+            </span>
           </p>
         </ng-template>
         <!-- BOIS -->
         <ng-template [ngIf]="(idTypeBatiment==8)">
           <p class="card__stockage__ressource">
-            <b><b>Augmentation limite</b></b> : + {{batiment['quantiteeStockageBois'] | thousandSuff:2}}
+            <b>Augmentation limite</b> :
+            <span ngbTooltip="+ {{batiment['quantiteeStockageBois'] | number}}">
+              <b>
+                + {{batiment['quantiteeStockageBois'] | thousandSuff:2}}
+              </b>
+            </span>
           </p>
         </ng-template>
         <!-- OR -->
         <ng-template [ngIf]="(idTypeBatiment==9)">
           <p class="card__stockage__ressource">
-            <b><b>Augmentation limite</b></b> : + {{batiment['quantiteeStockageOre'] | thousandSuff:2}}
+            <b>Augmentation limite</b> :
+            <span ngbTooltip="+ {{batiment['quantiteeStockageOre'] | number}}">
+              <b>
+                + {{batiment['quantiteeStockageOre'] | thousandSuff:2}}
+              </b>
+            </span>
           </p>
         </ng-template>
         <!-- NOURRITURE -->
         <ng-template [ngIf]="(idTypeBatiment==10)">
           <p class="card__stockage__ressource">
-            <b><b>Augmentation limite</b></b> : + {{batiment['quantiteeStockageNourriture'] | thousandSuff:2}}
+            <b>Augmentation limite</b> :
+            <span ngbTooltip="+ {{batiment['quantiteeStockageNourriture'] | number}}">
+              <b>
+                + {{batiment['quantiteeStockageNourriture'] | thousandSuff:2}}
+              </b>
+            </span>
           </p>
         </ng-template>
 
@@ -65,31 +88,61 @@
           </div>
         </ng-template>
         <!-- APPORT DE RESSOURCES  -->
-        <!-- PIERRE -->
-        <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==3)">
+        <ng-template [ngIf]="(idTypeBatiment==1)">
           <p class="card__apport__ressource">
-            <b><b>Pierre</b></b> /heure : {{batiment['apportPierreHeure'] | thousandSuff:2}}<br>
+            <b>Tout type ressource</b> /heure :
+            <span ngbTooltip="{{batiment['apportPierreHeure'] | number}}">
+              <b>
+                {{batiment['apportPierreHeure'] | thousandSuff:2}}
+              </b>
+            </span><br>
+          </p>
+        </ng-template>
+        <!-- PIERRE -->
+        <ng-template [ngIf]="(idTypeBatiment==3)">
+          <p class="card__apport__ressource">
+            <b>Pierre</b> /heure :
+            <span ngbTooltip="{{batiment['apportPierreHeure'] | number}}">
+              <b>
+                {{batiment['apportPierreHeure'] | thousandSuff:2}}
+              </b>
+            </span><br>
           </p>
         </ng-template>
 
         <!-- BOIS -->
-        <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==4)">
+        <ng-template [ngIf]="(idTypeBatiment==4)">
           <p class="card__apport__ressource">
-            <b><b>Bois</b></b> /heure : {{batiment['apportBoisHeure'] | thousandSuff:2}}<br>
+            <b>Bois</b> /heure :
+            <span ngbTooltip="{{batiment['apportBoisHeure'] | number}}">
+              <b>
+                {{batiment['apportBoisHeure'] | thousandSuff:2}}
+              </b>
+            </span><br>
           </p>
         </ng-template>
 
         <!-- OR -->
-        <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==5)">
+        <ng-template [ngIf]="(idTypeBatiment==5)">
           <p class="card__apport__ressource">
-            <b><b>Or</b></b> /heure : {{batiment['apportOreHeure'] | thousandSuff:2}}<br>
+            <b>Or</b> /heure :
+            <span ngbTooltip="{{batiment['apportOreHeure'] | number}}">
+              <b>
+                {{batiment['apportOreHeure'] | thousandSuff:2}}
+              </b>
+            </span><br>
           </p>
         </ng-template>
 
         <!-- NOURRITURE -->
-        <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==6)">
+        <ng-template [ngIf]="(idTypeBatiment==6)">
           <p class="card__apport__ressource">
-            <b><b>Nourriture</b></b> /heure : {{batiment['apportNourritureHeure'] | thousandSuff:2}}<br>
+            <b>Nourriture</b> /heure :
+            <span ngbTooltip="{{batiment['apportNourritureHeure'] | number}}">
+              <b>
+                {{batiment['apportNourritureHeure'] | thousandSuff:2}}
+              </b>
+            </span><br>
           </p>
         </ng-template>
 
@@ -105,7 +158,8 @@
           <div class="col-sm-6">
             <p class="card__cout__ressource">
               Pierre :
-              <span [ngStyle]="{color:getColorRessourceManquantePierreBatiment()}">
+              <span [ngStyle]="{color:getColorRessourceManquantePierreBatiment()}"
+                ngbTooltip="{{batiment['coutPierreConstruction'] | number}}">
                 <b>{{batiment['coutPierreConstruction'] | thousandSuff:2}}</b>
               </span>
             </p>
@@ -113,7 +167,8 @@
           <div class="col-sm-6">
             <p class="card__cout__ressource">
               Bois :
-              <span [ngStyle]="{color:getColorRessourceManquanteBoisBatiment()}">
+              <span [ngStyle]="{color:getColorRessourceManquanteBoisBatiment()}"
+                ngbTooltip="{{batiment['coutBoisConstruction'] | number}}">
                 <b>{{batiment['coutBoisConstruction'] | thousandSuff:2}}</b>
               </span>
             </p>
@@ -123,7 +178,8 @@
           <div class="col-sm-6">
             <p class="card__cout__ressource">
               Or :
-              <span [ngStyle]="{color:getColorRessourceManquanteOrBatiment()}">
+              <span [ngStyle]="{color:getColorRessourceManquanteOrBatiment()}"
+                ngbTooltip="{{batiment['coutOrConstruction'] | number}}">
                 <b>{{batiment['coutOrConstruction'] | thousandSuff:2}}</b>
               </span>
             </p>
@@ -131,7 +187,8 @@
           <div class="col-sm-6">
             <p class="card__cout__ressource">
               Nourriture :
-              <span [ngStyle]="{color:getColorRessourceManquanteNourritureBatiment()}">
+              <span [ngStyle]="{color:getColorRessourceManquanteNourritureBatiment()}"
+                ngbTooltip="{{batiment['coutNourritureConstruction'] | number}}">
                 <b>{{batiment['coutNourritureConstruction'] | thousandSuff:2}}</b>
               </span>
             </p>
@@ -192,18 +249,20 @@
       <div class="card">
         <!-- ICONE -->
         <img src="{{batiment['icone']}}" alt="Person" class="card__image">
-        <p class="card__name">{{batiment['libelle']}}</p>
+        <p class="card__name"><b>{{batiment['libelle']}}</b></p>
 
 
         <!-- NIVEAU (Si possède) -->
-        <div class="card__niveau">
-          Niveau <b>{{batimentJoueurPossede['niveau']}}</b>
-        </div>
+        <p class="card__niveau">
+          <input disabled type="text" class="niveau" value="Niveau : {{batimentJoueurPossede['niveau']}}" />
+        </p>
 
         <!-- DESCRIPTION -->
         <p class="card__description">
           {{batiment['descriptif']}}
         </p>
+
+
 
         <!-- Affichage timer si une amélioration est en cours -->
         <div *ngIf="flagEnCoursDeTravail; else pasDeTravailEnCours;">
@@ -245,6 +304,11 @@
               </div>
             </div>
 
+            <!-- ACCELERATION GEMMES -->
+            <div class="center">
+              <button class="btn draw-border" (click)="acceleration()">Accélérer <br>({{montantGemmeAcceleration}}
+                Gemmes)</button>
+            </div>
             <!-- RETOUR -->
             <div class="center">
               <a routerLink="/campement">
@@ -264,6 +328,9 @@
 
         <ng-template #pasDeTravailEnCours>
 
+          <!-- GAIN EXPERIENCE -->
+          <small>Expérience +<b>{{experience | number : '.0' }}</b></small>
+
           <!-- SI BATIMENT PERMET LE STOCKAGE -->
           <ng-template [ngIf]="(idTypeBatiment==7)||(idTypeBatiment==8)||(idTypeBatiment==9)||(idTypeBatiment==10)">
             <div class="row">
@@ -278,29 +345,54 @@
           <!-- PIERRE -->
           <ng-template [ngIf]="(idTypeBatiment==7)">
             <p class="card__stockage__ressource">
-              <b><b>Limite pierre</b></b> : {{batimentJoueurPossede['quantiteeStockagePierre'] | thousandSuff:2}} ->
-              {{batimentJoueurPossede['quantiteeStockagePierre']*batiment.multiplicateurApport | thousandSuff:2}}
+              <b>Limite pierre</b> :
+              <span ngbTooltip="{{batimentJoueurPossede['quantiteeStockagePierre'] | number}} ->
+                {{batimentJoueurPossede['quantiteeStockagePierre']*batiment.multiplicateurApport | number}}">
+                <b>
+                  {{batimentJoueurPossede['quantiteeStockagePierre'] | thousandSuff:2}} ->
+                  {{batimentJoueurPossede['quantiteeStockagePierre']*batiment.multiplicateurApport | thousandSuff:2}}
+                </b>
+              </span>
             </p>
           </ng-template>
           <!-- BOIS -->
           <ng-template [ngIf]="(idTypeBatiment==8)">
             <p class="card__stockage__ressource">
-              <b><b>Limite pierre</b></b> : {{batimentJoueurPossede['quantiteeStockageBois'] | thousandSuff:2}} ->
-              {{batimentJoueurPossede['quantiteeStockageBois']*batiment.multiplicateurApport | thousandSuff:2}}
+              <b>Limite bois</b> :
+              <span ngbTooltip="{{batimentJoueurPossede['quantiteeStockageBois'] | number}} ->
+                {{batimentJoueurPossede['quantiteeStockageBois']*batiment.multiplicateurApport | number}}">
+                <b>
+                  {{batimentJoueurPossede['quantiteeStockageBois'] | thousandSuff:2}} ->
+                  {{batimentJoueurPossede['quantiteeStockageBois']*batiment.multiplicateurApport | thousandSuff:2}}
+                </b>
+              </span>
             </p>
           </ng-template>
           <!-- OR -->
           <ng-template [ngIf]="(idTypeBatiment==9)">
             <p class="card__stockage__ressource">
-              <b><b>Limite pierre</b></b> : {{batimentJoueurPossede['quantiteeStockageOre'] | thousandSuff:2}} ->
-              {{batimentJoueurPossede['quantiteeStockageOre']*batiment.multiplicateurApport | thousandSuff:2}}
+              <b>Limite or</b> :
+              <span ngbTooltip="{{batimentJoueurPossede['quantiteeStockageOre'] | number}} ->
+                {{batimentJoueurPossede['quantiteeStockageOre']*batiment.multiplicateurApport | number}}">
+                <b>
+                  {{batimentJoueurPossede['quantiteeStockageOre'] | thousandSuff:2}} ->
+                  {{batimentJoueurPossede['quantiteeStockageOre']*batiment.multiplicateurApport | thousandSuff:2}}
+                </b>
+              </span>
             </p>
           </ng-template>
           <!-- NOURRITURE -->
           <ng-template [ngIf]="(idTypeBatiment==10)">
             <p class="card__stockage__ressource">
-              <b><b>Limite pierre</b></b> : {{batimentJoueurPossede['quantiteeStockageNourriture'] | thousandSuff:2}} ->
-              {{batimentJoueurPossede['quantiteeStockageNourriture']*batiment.multiplicateurApport | thousandSuff:2}}
+              <b>Limite nourriture</b> :
+              <span ngbTooltip="{{batimentJoueurPossede['quantiteeStockageNourriture'] | number}} ->
+                {{batimentJoueurPossede['quantiteeStockageNourriture']*batiment.multiplicateurApport | number}}">
+                <b>
+                  {{batimentJoueurPossede['quantiteeStockageNourriture'] | thousandSuff:2}} ->
+                  {{batimentJoueurPossede['quantiteeStockageNourriture']*batiment.multiplicateurApport |
+                  thousandSuff:2}}
+                </b>
+              </span>
             </p>
           </ng-template>
 
@@ -335,35 +427,72 @@
           </ng-template>
 
           <!-- APPORT DE RESSOURCES  -->
-          <!-- PIERRE -->
-          <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==3)">
+          <ng-template [ngIf]="(idTypeBatiment==1)">
             <p class="card__apport__ressource">
-              <b><b>Pierre</b></b> /heure : {{batimentJoueurPossede['apportPierreHeure'] | thousandSuff:2}} ->
-              {{batimentJoueurPossede['apportPierreHeure']*batiment.multiplicateurApport | thousandSuff:2}}
+              <b>Tout type ressource</b> /heure :
+              <span ngbTooltip="{{batimentJoueurPossede['apportPierreHeure'] | number}} ->
+                {{batimentJoueurPossede['apportPierreHeure']*batiment.multiplicateurApport | number}}">
+                <b>
+                  {{batimentJoueurPossede['apportPierreHeure'] | thousandSuff:2}} ->
+                  {{batimentJoueurPossede['apportPierreHeure']*batiment.multiplicateurApport | thousandSuff:2}}
+                </b>
+              </span><br>
+            </p>
+          </ng-template>
+          <!-- PIERRE -->
+          <ng-template [ngIf]="(idTypeBatiment==3)">
+            <p class="card__apport__ressource">
+              <b>Pierre</b> /heure :
+              <span ngbTooltip="{{batimentJoueurPossede['apportPierreHeure'] | number}} ->
+                {{batimentJoueurPossede['apportPierreHeure']*batiment.multiplicateurApport | number}}">
+                <b>
+                  {{batimentJoueurPossede['apportPierreHeure'] | thousandSuff:2}} ->
+                  {{batimentJoueurPossede['apportPierreHeure']*batiment.multiplicateurApport | thousandSuff:2}}
+                </b>
+              </span>
+
             </p>
           </ng-template>
 
           <!-- BOIS -->
-          <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==4)">
+          <ng-template [ngIf]="(idTypeBatiment==4)">
             <p class="card__apport__ressource">
-              <b><b>Bois</b></b> /heure : {{batimentJoueurPossede['apportBoisHeure'] | thousandSuff:2}} ->
-              {{batimentJoueurPossede['apportBoisHeure']*batiment.multiplicateurApport | thousandSuff:2}}
+              <b>Bois</b> /heure :
+              <span ngbTooltip="{{batimentJoueurPossede['apportBoisHeure'] | number}} ->
+                {{batimentJoueurPossede['apportBoisHeure']*batiment.multiplicateurApport | number}}">
+                <b>
+                  {{batimentJoueurPossede['apportBoisHeure'] | thousandSuff:2}} ->
+                  {{batimentJoueurPossede['apportBoisHeure']*batiment.multiplicateurApport | thousandSuff:2}}
+                </b>
+              </span>
             </p>
           </ng-template>
 
           <!-- OR -->
-          <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==5)">
+          <ng-template [ngIf]="(idTypeBatiment==5)">
             <p class="card__apport__ressource">
-              <b><b>Or</b></b> /heure : {{batimentJoueurPossede['apportOreHeure'] | thousandSuff:2}} ->
-              {{batimentJoueurPossede['apportOreHeure']*batiment.multiplicateurApport | thousandSuff:2}}
+              <b>Or</b> /heure :
+              <span ngbTooltip="{{batimentJoueurPossede['apportOreHeure'] | number}} ->
+                {{batimentJoueurPossede['apportOreHeure']*batiment.multiplicateurApport | number}}">
+                <b>
+                  {{batimentJoueurPossede['apportOreHeure'] | thousandSuff:2}} ->
+                  {{batimentJoueurPossede['apportOreHeure']*batiment.multiplicateurApport | thousandSuff:2}}
+                </b>
+              </span>
             </p>
           </ng-template>
 
           <!-- NOURRITURE -->
-          <ng-template [ngIf]="(idTypeBatiment==1)||(idTypeBatiment==6)">
+          <ng-template [ngIf]="(idTypeBatiment==6)">
             <p class="card__apport__ressource">
-              <b><b>Nourriture</b></b> /heure : {{batimentJoueurPossede['apportNourritureHeure'] | thousandSuff:2}} ->
-              {{batimentJoueurPossede['apportNourritureHeure']*batiment.multiplicateurApport | thousandSuff:2}}<br>
+              <b>Nourriture</b> /heure :
+              <span ngbTooltip="{{batimentJoueurPossede['apportNourritureHeure'] | number}} ->
+                {{batimentJoueurPossede['apportNourritureHeure']*batiment.multiplicateurApport | number}}">
+                <b>
+                  {{batimentJoueurPossede['apportNourritureHeure'] | thousandSuff:2}} ->
+                  {{batimentJoueurPossede['apportNourritureHeure']*batiment.multiplicateurApport | thousandSuff:2}}
+                </b>
+              </span><br>
             </p>
           </ng-template>
 
@@ -380,7 +509,8 @@
             <div class="col-sm-6">
               <p class="card__cout__ressource">
                 Pierre :
-                <span [ngStyle]="{color:getColorRessourceManquantePierreBatimentJoueur()}">
+                <span [ngStyle]="{color:getColorRessourceManquantePierreBatimentJoueur()}"
+                  ngbTooltip="{{batimentJoueurPossede['coutPierreAmelioration']*batiment.multiplicateurCout | number}}">
                   <b>{{batimentJoueurPossede['coutPierreAmelioration']*batiment.multiplicateurCout |
                     thousandSuff:2}}</b>
                 </span>
@@ -390,7 +520,8 @@
             <div class="col-sm-6">
               <p class="card__cout__ressource">
                 Bois :
-                <span [ngStyle]="{color:getColorRessourceManquanteBoisBatimentJoueur()}">
+                <span [ngStyle]="{color:getColorRessourceManquanteBoisBatimentJoueur()}"
+                  ngbTooltip="{{batimentJoueurPossede['coutBoisAmelioration']*batiment.multiplicateurCout | number}}">
                   <b>{{batimentJoueurPossede['coutBoisAmelioration']*batiment.multiplicateurCout | thousandSuff:2}}</b>
                 </span>
               </p>
@@ -401,7 +532,8 @@
             <div class="col-sm-6">
               <p class="card__cout__ressource">
                 Or :
-                <span [ngStyle]="{color:getColorRessourceManquanteOrBatimentJoueur()}">
+                <span [ngStyle]="{color:getColorRessourceManquanteOrBatimentJoueur()}"
+                  ngbTooltip="{{batimentJoueurPossede['coutOreAmelioration']*batiment.multiplicateurCout | number}}">
                   <b>{{batimentJoueurPossede['coutOreAmelioration']*batiment.multiplicateurCout | thousandSuff:2}}</b>
                 </span>
               </p>
@@ -410,7 +542,8 @@
             <div class="col-sm-6">
               <p class="card__cout__ressource">
                 Nourriture :
-                <span [ngStyle]="{color:getColorRessourceManquanteNourritureBatimentJoueur()}">
+                <span [ngStyle]="{color:getColorRessourceManquanteNourritureBatimentJoueur()}"
+                  ngbTooltip="{{batimentJoueurPossede['coutNourritureAmelioration']*batiment.multiplicateurCout | number}}">
                   <b>{{batimentJoueurPossede['coutNourritureAmelioration']*batiment.multiplicateurCout |
                     thousandSuff:2}}</b>
                 </span>
@@ -422,7 +555,7 @@
           <!-- TEMPS DE CONSTRUCTION -->
           <p class="card__temps__travail">
             <b>Temps d'amélioration : </b>
-            <b>{{batimentJoueurPossede['tempsAmelioration']*(batiment.multiplicateurCout/4) | minuteSecondePipe:
+            <b>{{batimentJoueurPossede['tempsAmelioration']*(batiment.multiplicateurTemps) | minuteSecondePipe:
               's':'hhmmss'}} </b>
           </p>
 

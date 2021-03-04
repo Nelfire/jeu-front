@@ -24,7 +24,6 @@ import { ListerJoueurComponent } from './lister-joueur/lister-joueur.component';
 import { MessageComponent } from './message/message.component';
 import { MessageService } from './service/message.service';
 import { MessagePriveComponent } from './message/message-prive/message-prive.component';
-import { CompetenceService } from './service/competence.service';
 import { ModifierJoueurComponent } from './joueur/modifier-joueur/modifier-joueur.component';
 import { MonCampementComponent } from './campement/mon-campement/mon-campement.component';
 import { MonArmeeComponent } from './armee/mon-armee/mon-armee.component';
@@ -78,6 +77,9 @@ import { UsineComponent } from './usine/usine.component';
 import { NouveauteComponent } from './divers/nouveaute/nouveaute.component';
 import { MarcheComponent } from './marche/marche.component';
 import { ModificationJoueurComponent } from './administration/joueur/modification-joueur/modification-joueur.component';
+import { CarteComponent } from './social/carte/carte.component';
+import { CampagneService } from './service/campagne/campagne.service';
+import { ListeCampagnesComponent } from './campagne/liste-campagnes/liste-campagnes.component';
 
 
 @NgModule({
@@ -129,7 +131,9 @@ import { ModificationJoueurComponent } from './administration/joueur/modificatio
     UsineComponent,
     NouveauteComponent,
     MarcheComponent,
-    ModificationJoueurComponent
+    ModificationJoueurComponent,
+    CarteComponent,
+    ListeCampagnesComponent
   ],
   imports: [
     BrowserModule,
@@ -147,7 +151,6 @@ import { ModificationJoueurComponent } from './administration/joueur/modificatio
     JourFermeService,
     JoueurService,
     MessageService,
-    CompetenceService,
     CampementService,
     BatimentService,
     BatimentJoueurService,
@@ -162,6 +165,7 @@ import { ModificationJoueurComponent } from './administration/joueur/modificatio
     DefenseService,
     DefenseJoueurService,
     ListeAmisService,
+    CampagneService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

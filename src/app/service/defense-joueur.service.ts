@@ -21,9 +21,17 @@ export class DefenseJoueurService {
   }
 
   construireDefense(idDefense: number, quantite: number): Observable<DefenseConstruction> {
-    return this.http.post<DefenseConstruction>(`${URL_BACKEND}`,{
+    return this.http.post<DefenseConstruction>(`${URL_BACKEND}`, {
       idDefense: `${idDefense}`,
       quantite: `${quantite}`
     });
+  }
+
+  // Accélération de la construction des défense contre gemme
+  accelerationConstructionDefense(idDefense: number): Observable<DefenseConstruction> {
+    return this.http.put<DefenseConstruction>(`${URL_BACKEND}/accelerationConstructionDefense?id=` + idDefense,
+      {
+        idDefense: `${idDefense}`
+      });
   }
 }

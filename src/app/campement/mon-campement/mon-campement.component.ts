@@ -144,7 +144,7 @@ export class MonCampementComponent implements OnInit {
               unBatiment.coutBoisAmelioration = monBatiment.coutBoisAmelioration * unBatiment.multiplicateurCout ;
               unBatiment.coutOrAmelioration = monBatiment.coutOreAmelioration * unBatiment.multiplicateurCout ;
               unBatiment.coutNourritureAmelioration = monBatiment.coutNourritureAmelioration * unBatiment.multiplicateurCout ;
-              unBatiment.tempsAmelioration = monBatiment.tempsAmelioration * unBatiment.multiplicateurCout/4 ;
+              unBatiment.tempsAmelioration = monBatiment.tempsAmelioration * unBatiment.multiplicateurTemps;
               unBatiment.niveauBatimentDuJoueur = monBatiment.niveau;
               unBatiment.dateFinConstruction = monBatiment.dateFinConstruction;
               this.flag = true;

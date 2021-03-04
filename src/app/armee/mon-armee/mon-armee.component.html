@@ -43,7 +43,7 @@
                             <ng-template #suite>
                                 <span *ngIf="!unitee.flagNiveauBatimentNecessaireFormationUniteeAssezEleve">
                                     <a routerLink="../batiment/detail-batiment/{{unitee.idBatimentProvenance}}">
-                                        <button class="btn btn-warning">Niveau bâtiment insuffisant</button>
+                                        <button class="btn btn-warning">Bâtiment lvl <b>{{unitee.niveauBatimentNecessaireFormation}}</b> necessaire</button>
                                     </a>
                                 </span>
                             </ng-template>

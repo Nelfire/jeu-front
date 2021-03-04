@@ -20,6 +20,7 @@ export class Expedition {
         public recompenseOr: number,
         public recompenseNourriture: number,
         public recompenseGemme: number,
+        public recompenseExperience: number,
         public dateParution: Date
     ) {
 

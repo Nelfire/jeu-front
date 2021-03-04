@@ -20,7 +20,8 @@
 					<!-- CAS JOUEUR POSSEDE LE BATIMENT -->
 					<div *ngIf="batiment.joueurLePossede; else nePossedePas;">
 						<!-- Données du bâtiment -->
-						<a routerLink="../batiment/detail-batiment/{{batiment.idTypeBatiment}}"  [ngbTooltip]="coutAmelioration">
+						<a routerLink="../batiment/detail-batiment/{{batiment.idTypeBatiment}}"
+							[ngbTooltip]="coutAmelioration">
 							<div>
 								<div style="text-align:center;">
 									<input disabled type="text" name="texte" class="level"
@@ -57,48 +58,66 @@
 								</button>
 							</ng-template>
 						</a>
-						
+
 						<ng-template #coutAmelioration>
 							<div class="d-flex flex-column">
 								<span><b>COÛT AMELIORATION</b></span>
-								<span><b>Pierre : </b> <span> <b [ngStyle]="{'color':getColorRessourceManquantePierreAmeliorationBatiment(batiment.idTypeBatiment)}">{{batiment.coutPierreAmelioration | number}}</b></span></span>
-								<span><b>Bois : </b> <b [ngStyle]="{'color':getColorRessourceManquanteBoisAmeliorationBatiment(batiment.idTypeBatiment)}">{{batiment.coutBoisAmelioration | number}}</b></span>
-								<span><b>Or : </b> <b [ngStyle]="{'color':getColorRessourceManquanteOrAmeliorationBatiment(batiment.idTypeBatiment)}">{{batiment.coutOrAmelioration | number}}</b></span>
-								<span><b>Nourriture : </b> <b [ngStyle]="{'color':getColorRessourceManquanteNourritureAmeliorationBatiment(batiment.idTypeBatiment)}">{{batiment.coutNourritureAmelioration | number}}</b></span>
+								<span><b>Pierre : </b> <span> <b
+											[ngStyle]="{'color':getColorRessourceManquantePierreAmeliorationBatiment(batiment.idTypeBatiment)}">{{batiment.coutPierreAmelioration
+											| number}}</b></span></span>
+								<span><b>Bois : </b> <b
+										[ngStyle]="{'color':getColorRessourceManquanteBoisAmeliorationBatiment(batiment.idTypeBatiment)}">{{batiment.coutBoisAmelioration
+										| number}}</b></span>
+								<span><b>Or : </b> <b
+										[ngStyle]="{'color':getColorRessourceManquanteOrAmeliorationBatiment(batiment.idTypeBatiment)}">{{batiment.coutOrAmelioration
+										| number}}</b></span>
+								<span><b>Nourriture : </b> <b
+										[ngStyle]="{'color':getColorRessourceManquanteNourritureAmeliorationBatiment(batiment.idTypeBatiment)}">{{batiment.coutNourritureAmelioration
+										| number}}</b></span>
 								<span><b>Temps : </b> <b>{{batiment.tempsAmelioration | minuteSecondePipe:
-									's':'hhmmss'}}</b></span>
+										's':'hhmmss'}}</b></span>
 							</div>
 						</ng-template>
 					</div>
 					<!-- CAS JOUEUR NE POSSEDE PAS LE BATIMENT -->
 					<ng-template #nePossedePas>
 						<div [ngbTooltip]="coutConstruction">
-							<img class="honeycomb-cell__image" src="{{batiment.icone}}">
-							<div class="honeycomb-cell__title">{{batiment.libelle}}</div>
-							<br>
-							<!-- CAS CONSTRUCTION IMPOSSIBLE -->
-							<div
-								*ngIf="batiment.niveauHotelDeVilleNecessaireConstruction>niveauHdvJoueur;else constructionPossible">
-								<button class="btn btn-warning">
-									Hdv <b>{{batiment.niveauHotelDeVilleNecessaireConstruction}}</b> nécessaire
-								</button>
-							</div>
-							<!-- CAS CONSTRUCTION POSSIBLE -->
-							<ng-template #constructionPossible [ngbTooltip]="coutConstruction">
-								<a routerLink="../batiment/detail-batiment/{{batiment.idTypeBatiment}}">
-									<button class="btn btn-success">Construire</button>
-								</a>
-							</ng-template>
+							<a routerLink="../batiment/detail-batiment/{{batiment.idTypeBatiment}}">
+								<img class="honeycomb-cell__image" src="{{batiment.icone}}">
+								<div class="honeycomb-cell__title">{{batiment.libelle}}</div>
+								<br>
+								<!-- CAS CONSTRUCTION IMPOSSIBLE -->
+								<div
+									*ngIf="batiment.niveauHotelDeVilleNecessaireConstruction>niveauHdvJoueur;else constructionPossible">
+									<button class="btn btn-warning">
+										Hdv <b>{{batiment.niveauHotelDeVilleNecessaireConstruction}}</b> nécessaire
+									</button>
+								</div>
+								<!-- CAS CONSTRUCTION POSSIBLE -->
+								<ng-template #constructionPossible [ngbTooltip]="coutConstruction">
+									<a routerLink="../batiment/detail-batiment/{{batiment.idTypeBatiment}}">
+										<button class="btn btn-success">Construire</button>
+									</a>
+								</ng-template>
+							</a>
 						</div>
 						<ng-template #coutConstruction>
 							<div class="d-flex flex-column">
 								<span><b>COÛT CONSTRUCTION</b></span>
-								<span><b>Pierre : </b> <span> <b [ngStyle]="{'color':getColorRessourceManquantePierreConstructionBatiment(batiment.idTypeBatiment)}">{{batiment.coutPierreConstruction | number}}</b></span></span>
-								<span><b>Bois : </b> <b [ngStyle]="{'color':getColorRessourceManquanteBoisConstructionBatiment(batiment.idTypeBatiment)}">{{batiment.coutBoisConstruction | number}}</b></span>
-								<span><b>Or : </b> <b [ngStyle]="{'color':getColorRessourceManquanteOrConstructionBatiment(batiment.idTypeBatiment)}">{{batiment.coutOrConstruction | number}}</b></span>
-								<span><b>Nourriture : </b> <b [ngStyle]="{'color':getColorRessourceManquanteNourritureConstructionBatiment(batiment.idTypeBatiment)}">{{batiment.coutNourritureConstruction | number}}</b></span>
+								<span><b>Pierre : </b> <span> <b
+											[ngStyle]="{'color':getColorRessourceManquantePierreConstructionBatiment(batiment.idTypeBatiment)}">{{batiment.coutPierreConstruction
+											| number}}</b></span></span>
+								<span><b>Bois : </b> <b
+										[ngStyle]="{'color':getColorRessourceManquanteBoisConstructionBatiment(batiment.idTypeBatiment)}">{{batiment.coutBoisConstruction
+										| number}}</b></span>
+								<span><b>Or : </b> <b
+										[ngStyle]="{'color':getColorRessourceManquanteOrConstructionBatiment(batiment.idTypeBatiment)}">{{batiment.coutOrConstruction
+										| number}}</b></span>
+								<span><b>Nourriture : </b> <b
+										[ngStyle]="{'color':getColorRessourceManquanteNourritureConstructionBatiment(batiment.idTypeBatiment)}">{{batiment.coutNourritureConstruction
+										| number}}</b></span>
 								<span><b>Temps : </b> <b>{{batiment.tempsDeConstruction | minuteSecondePipe:
-									's':'hhmmss'}}</b></span>
+										's':'hhmmss'}}</b></span>
 							</div>
 						</ng-template>
 					</ng-template>

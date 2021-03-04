@@ -53,10 +53,12 @@ export class DefenseService {
     coutNourritureConstruction: number,
     vie: number,
     attaque: number,
-    bouclier: number,
+    portee: number,
+    armure: number,
     tempsConstruction: number,
     niveauBatimentNecessaireConstruction: number,
-    idBatimentProvenance: number
+    idBatimentProvenance: number,
+    apportExperience: number
   ): Observable<Defense> {
     return this.http.put<Defense>(`${URL_BACKEND}/modificationDefense?id=` + id,
       {
@@ -72,10 +74,12 @@ export class DefenseService {
         coutNourritureConstruction: `${coutNourritureConstruction}`,
         vie: `${vie}`,
         attaque: `${attaque}`,
-        bouclier: `${bouclier}`,
+        portee: `${portee}`,
+        armure: `${armure}`,
         tempsConstruction: `${tempsConstruction}`,
         niveauBatimentNecessaireConstruction: `${niveauBatimentNecessaireConstruction}`,
-        idBatimentProvenance: `${idBatimentProvenance}`
+        idBatimentProvenance: `${idBatimentProvenance}`,
+        apportExperience: `${apportExperience}`
       });
   }
 }

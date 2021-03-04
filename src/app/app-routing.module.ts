@@ -47,6 +47,8 @@ import { UsineComponent } from './usine/usine.component';
 import { NouveauteComponent } from './divers/nouveaute/nouveaute.component';
 import { MarcheComponent } from './marche/marche.component';
 import { ModificationJoueurComponent } from './administration/joueur/modification-joueur/modification-joueur.component';
+import { CarteComponent } from './social/carte/carte.component';
+import { ListeCampagnesComponent } from './campagne/liste-campagnes/liste-campagnes.component';
 
 
 const routes: Routes = [
@@ -116,6 +118,9 @@ const routes: Routes = [
   // - Liste expéditions joueur
   { path: 'mesExpeditions', component: ListeExpeditionsJoueurComponent, canActivate: [StatutConnecteService]},
 
+  // ---------------- CAMPAGNE ---------------
+
+  { path: 'campagne', component: ListeCampagnesComponent, canActivate: [StatutConnecteService]},
   // ------------- BOUTIQUE -------------
   { path: 'boutique', component: BoutiqueComponent, canActivate: [StatutConnecteService]},
   // ------------- MARCHE -------------
@@ -126,6 +131,8 @@ const routes: Routes = [
   // ---- privée ---
   { path: 'discussionPrivee/:id', component: DiscussionPriveeComponent, canActivate: [StatutConnecteService]},
 
+  // ----------- CARTE ---------
+  { path: 'carte', component: CarteComponent, canActivate: [StatutConnecteService]},
   // ------------- JOUEUR -------------
   { path: 'detailJoueur/:id', component: DetailCompteComponent, canActivate: [StatutConnecteService]},
   { path: 'modifierJoueur', component: ModifierJoueurComponent, canActivate: [StatutConnecteService]},

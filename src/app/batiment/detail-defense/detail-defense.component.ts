@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { Defense } from 'src/app/models/defense';
 import { JoueurInfos } from 'src/app/models/joueur-infos';
@@ -36,6 +36,10 @@ export class DetailDefenseComponent implements OnInit, OnDestroy {
   joueurPossedeBatiment: boolean;
   niveauBatimentAssezEleveConstruction: boolean;
   batimentEnCoursDeTravail: boolean;
+  apportExperience: number;
+  tempsConstruction: number;
+  // Id Ligne Defense joueur
+  idDefenseJoueur: number;
 
   counterSubscription: Subscription;
   result: string;
@@ -48,6 +52,11 @@ export class DetailDefenseComponent implements OnInit, OnDestroy {
   dateLancementProduction: number;
   dateFinConstruction: number;
 
+  montantGemmeAcceleration:number;
+
+  
+
+
 
   // Constructeur
   constructor(private routerLinkActive: ActivatedRoute,
@@ -56,11 +65,12 @@ export class DetailDefenseComponent implements OnInit, OnDestroy {
     private defenseJoueurService: DefenseJoueurService,
     private joueurService: JoueurService,
     private batimentJoueurService: BatimentJoueurService,
-    private notification: NotificationService) { }
+    private notification: NotificationService,
+    private router: Router) { }
 
   ngOnInit(): void {
 
-    // Récupération des inconstructions du joueur, pour indiquer le manque de ressources (colorisation)
+    // Récupération des informations du joueur, pour indiquer le manque de ressources (colorisation)
     this.joueurService.informationJoueurByEmail().subscribe(
       (value) => {
         this.joueur = value;
@@ -79,6 +89,8 @@ export class DetailDefenseComponent implements OnInit, OnDestroy {
         this.coutBoisConstruction = value.coutBoisConstruction;
         this.coutOrConstruction = value.coutOrConstruction;
         this.coutNourritureConstruction = value.coutNourritureConstruction;
+        this.apportExperience = value.apportExperience;
+        this.tempsConstruction = value.tempsConstruction;
 
         // Vérification que le joueur possède le bâtiment pour construire la défense
         this.batimentJoueurService.listerMesBatiments().subscribe(
@@ -113,6 +125,7 @@ export class DetailDefenseComponent implements OnInit, OnDestroy {
 
           // Si le joueur possède le type de défense de la page
           if (uneDefenseJoueur.defense.idTypeDefense == this.id) {
+            this.idDefenseJoueur = uneDefenseJoueur.id;
 
             // Vérification construction en cours
             var dateMaintenantMillisecondes = new Date().getTime();
@@ -120,6 +133,7 @@ export class DetailDefenseComponent implements OnInit, OnDestroy {
             if (uneDefenseJoueur.dateFinConstruction > dateMaintenantMillisecondes) {
               // construction en cours
               this.secondesRestantesAmelioration = (uneDefenseJoueur.dateFinConstruction - dateMaintenantMillisecondes) / 1000;
+              this.montantGemmeAcceleration = Math.ceil(this.secondesRestantesAmelioration / 60);
               this.dateLancementProduction = uneDefenseJoueur.dateDebutConstruction;
               this.dateFinConstruction = uneDefenseJoueur.dateFinConstruction;
               // actualisation du timer
@@ -130,6 +144,7 @@ export class DetailDefenseComponent implements OnInit, OnDestroy {
                   () => {
                     // A chaques appel, réduction de 1 seconde le nombre de secondes présentes dans le compteur
                     this.secondesRestantesAmelioration = Math.ceil(this.secondesRestantesAmelioration - 1);
+                    this.montantGemmeAcceleration = Math.ceil(this.secondesRestantesAmelioration / 60);
                     this.defensesRestantesArrondis = Math.ceil(this.secondesRestantesAmelioration / uneDefenseJoueur.defense.tempsConstruction);
                     this.defensesRestantes = this.secondesRestantesAmelioration / uneDefenseJoueur.defense.tempsConstruction;
                     // Je défini une date, pour convertir les secondes en timer (Format hh:mm:ss)
@@ -186,6 +201,7 @@ export class DetailDefenseComponent implements OnInit, OnDestroy {
 
       }, () => {
         // Toastr
+        this.notification.showInfo("", "+"+this.defense.apportExperience*quantite+" Experience");
         quantite == 1 ? this.notification.showSuccess("Production d'une défense.", "Production lancée.") : this.notification.showSuccess("Production de " + quantite + " défenses.", "Production lancée.");
 
         this.messageValidation = "Production lancée";
@@ -221,6 +237,9 @@ export class DetailDefenseComponent implements OnInit, OnDestroy {
     this.coutBoisConstruction = this.defense.coutBoisConstruction * qt;
     this.coutOrConstruction = this.defense.coutOrConstruction * qt;
     this.coutNourritureConstruction = this.defense.coutNourritureConstruction * qt;
+    this.apportExperience = this.defense.apportExperience * qt;
+    this.tempsConstruction = this.defense.tempsConstruction * qt;
+
   }
 
 
@@ -273,6 +292,19 @@ export class DetailDefenseComponent implements OnInit, OnDestroy {
 
     return pourcentageRestante + '%';
   }
+
+  // ACCELERATION DE LA CONSTRUCTION AVEC GEMMES
+  acceleration() {
+    this.defenseJoueurService.accelerationConstructionDefense(this.idDefenseJoueur).subscribe(
+      () => {
+        this.notification.showSuccess("Construction terminée", "Succès !");
+        this.router.navigate(['/defense']);
+      }, (error) => {
+        this.notification.showError(error.error.message, "Erreur ...");
+      }
+    )
+  }
+
 
   ngOnDestroy(): void {
     if (this.counterSubscription) {

@@ -49,6 +49,9 @@ export class DetailBatimentComponent implements OnInit {
   flagEnCoursDeTravail: Boolean;
   niveauHdvJoueur: number = 0;
 
+  montantGemmeAcceleration:number;
+  experience:number = 0;
+
   batimentUniteEnCoursDeProduction: boolean = false;
 
   result: string;
@@ -81,6 +84,7 @@ export class DetailBatimentComponent implements OnInit {
     this.batimentService.detailsBatiment(this.routerLinkActive.snapshot.params['idTypeBatiment']).subscribe(
       (value) => {
         this.batiment = value;
+        this.experience = value.apportExperience;
       }
     );
 
@@ -96,6 +100,7 @@ export class DetailBatimentComponent implements OnInit {
           this.etatBoutonConstruire = "disabled";
           this.etatBoutonAmeliorer = "";
         } else {
+          this.experience = value.batiment.apportExperience * ( Math.pow(value.batiment.multiplicateurExperience,value.niveau))
           this.modeConstructionAmelioration = "amelioration";
           this.etatBoutonConstruire = "";
           this.etatBoutonAmeliorer = "disabled";
@@ -121,6 +126,7 @@ export class DetailBatimentComponent implements OnInit {
           this.result = date.toISOString().substr(11, 8);
           // J'initialise sur la page le nombre de secondes d'amélioration restantes pour le bâtiment
           this.secondesRestantesAmelioration = (value.dateFinConstruction - dateMaintenantMillisecondes) / 1000;
+          this.montantGemmeAcceleration = Math.ceil(this.secondesRestantesAmelioration/30);
 
 
           // ** Actualisation chaques secondes ** */
@@ -132,6 +138,7 @@ export class DetailBatimentComponent implements OnInit {
               (valeur: number) => {
                 // A chaques appel, je réduit de 1 seconde le nombre de secondes présentes dans le compteur
                 this.secondesRestantesAmelioration = this.secondesRestantesAmelioration - 1;
+                this.montantGemmeAcceleration = Math.ceil(this.secondesRestantesAmelioration/30);
                 // Je défini une date, pour convertir les secondes en timer (Format hh:mm:ss)
                 var date = new Date(null);
                 date.setSeconds(this.secondesRestantesAmelioration);
@@ -190,6 +197,7 @@ export class DetailBatimentComponent implements OnInit {
         this.notification.showError(error.error.message, "Erreur ...");
       }, () => {
 
+        this.notification.showInfo("", "+"+this.experience+" Experience");
         this.notification.showSuccess("", "Construction lancée.");
 
         setTimeout(() => {
@@ -211,6 +219,7 @@ export class DetailBatimentComponent implements OnInit {
           this.messageErreur = error.error.message;
           this.notification.showError(error.error.message, "Erreur ...");
         }, () => {
+          this.notification.showInfo("", "+"+this.experience+" Experience");
           this.messageValidation = "Amélioration lancée";
           this.notification.showSuccess("", "Amélioration lancée !");
           setTimeout(() => {
@@ -304,6 +313,18 @@ export class DetailBatimentComponent implements OnInit {
     if (this.counterSubscription) {
       this.counterSubscription.unsubscribe();
     }
+  }
+
+  // ACCELERATION AMELIORATION AVEC GEMMES
+  acceleration() {
+    this.batimentJoueurService.accelerationConstructionBatiment(this.batimentJoueurPossede.id).subscribe(
+      () => {
+        this.notification.showSuccess("Amélioration terminée", "Succès !");
+        this.router.navigate(['/campement']);
+      }, (error) => {
+        this.notification.showError(error.error.message, "Erreur ...");
+      }
+    );
   }
 
 }

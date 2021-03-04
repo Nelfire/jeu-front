@@ -16,9 +16,11 @@ export class Unitee{
         public attaque: number,
         public portee: number,
         public armure: number,
+        public vitesse: number,
         public niveauBatimentNecessaireFormation: number,
         public apportRessourcePierreHeure: number,
         public apportRessourceBoisHeure: number,
         public apportRessourceOrHeure: number,
-        public apportRessourceNourritureHeure: number) {}
+        public apportRessourceNourritureHeure: number,
+        public apportExperience: number) {}
 }

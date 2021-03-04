@@ -69,6 +69,9 @@ export class BatimentService {
     apportBoisHeure: number,
     apportOreHeure: number,
     apportNourritureHeure: number,
+    apportExperience: number,
+    multiplicateurExperience: number,
+    multiplicateurTemps:number,
     multiplicateurApport:number,
     multiplicateurCout:number
   ): Observable<Batiment> {
@@ -95,6 +98,9 @@ export class BatimentService {
         apportBoisHeure: `${apportBoisHeure}`,
         apportOreHeure: `${apportOreHeure}`,
         apportNourritureHeure: `${apportNourritureHeure}`,
+        apportExperience: `${apportExperience}`,
+        multiplicateurExperience: `${multiplicateurExperience}`,
+        multiplicateurTemps: `${multiplicateurTemps}`,
         multiplicateurApport: `${multiplicateurApport}`,
         multiplicateurCout: `${multiplicateurCout}`
       });

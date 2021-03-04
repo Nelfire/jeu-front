@@ -18,6 +18,8 @@ export class DetailCompteComponent implements OnInit {
   joueurConnecte: JoueurInfos;
   messageErreur: string;
   dejaAmis: boolean;
+  expRestant: number;
+  seuil: number;
   constructor(private joueurService: JoueurService, 
     private routerLinkActive: ActivatedRoute,
     private listeAmisService: ListeAmisService,
@@ -29,6 +31,7 @@ export class DetailCompteComponent implements OnInit {
     this.joueurService.informationJoueurByEmail().subscribe(
       (donnees) => {
         this.joueurConnecte = donnees;
+        this.determinerExpProchainNiveau(donnees.experience);
         this.traitement();
       }, (error) => {
         this.messageErreur = "Erreur dans le traitement : " + error;
@@ -76,6 +79,31 @@ export class DetailCompteComponent implements OnInit {
   dejaAmi() {
     this.notification.showWarning("Vous semblez déjà super ami avec cette personne ! ☺", "Déjà ami.");
   }
+
+  getExperienceJoueur() {
+    // Temps du niveau suivantle
+    let pourcentageRestant;
+    pourcentageRestant = (this.expRestant * 100) / this.seuil;
+    return pourcentageRestant + '%';
+  }
+
+
+  determinerExpProchainNiveau(experience:number) {
+    console.log(experience);
+    var fin = false;
+		var seuil = 5000;
+		while(fin!=true) {
+      console.log("Oui,",experience,"> 0")
+      if(experience-seuil > 0 ) {
+        experience = experience-seuil;
+        seuil = seuil *2;
+      } else {
+        fin = true;
+      }
+		}
+    this.expRestant = experience;
+		this.seuil = seuil;
+	}
 
 
 }

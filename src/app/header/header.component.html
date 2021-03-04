@@ -130,7 +130,7 @@
                 </li>
                 <li class="has-subnav">
                     <a routerLink="centreRecolte">
-                        <i class="fa fa-tasks" aria-hidden="true"></i>
+                        <i class="fa fa-gavel"></i>
                         <span class="nav-text">
                             Centre de récolte
                         </span>
@@ -138,7 +138,7 @@
                 </li>
                 <li class="has-subnav">
                     <a routerLink="expedition">
-                        <i class="fa fa-globe" aria-hidden="true"></i>
+                        <i class="fa fa-flag-o" aria-hidden="true"></i>
                         <span class="nav-text">
                             Expéditions Disponibles
                         </span>
@@ -171,23 +171,15 @@
 
                 <li>
                     <a routerLink="marche">
-                        <i class="fa fa-exchange" aria-hidden="true"></i>
+                        <i class="fa fa-balance-scale"></i>
                         <span class="nav-text">
                             Marché
                         </span>
                     </a>
                 </li>
                 <li>
-                    <a routerLink="boutique">
-                        <i class="fa fa-money fa-2x"></i>
-                        <span class="nav-text">
-                            Boutique
-                        </span>
-                    </a>
-                </li>
-                <li>
                     <a routerLink="discussion">
-                        <i class="fa fa-comment fa-2x"></i>
+                        <i class="fa fa-comments"></i>
                         <span class="nav-text">
                             Discussion
                         </span>
@@ -195,14 +187,48 @@
                 </li>
                 <li class="has-subnav">
                     <a routerLink="classement-joueurs">
-                        <i class="fa fa-table fa-2x"></i>
+                        <i class="fa fa-chart-bar"></i>
                         <span class="nav-text">
                             Classement Joueur
                         </span>
                     </a>
                 </li>
+                
+                <li class="has-subnav">
+                    <a routerLink="carte">
+                        <i class="fa fa-map-marked-alt"></i>
+                        <span class="nav-text">
+                            Carte du monde
+                        </span>
+                    </a>
+                </li>
+                
+                <li class="has-subnav">
+                    <a routerLink="campagne">
+                        <i class="fa fa-globe-americas"></i>
+                        <span class="nav-text">
+                            Campagne
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="boutique">
+                        <i class="fa fa-gem"></i>
+                        <span class="nav-text">
+                            Boutique
+                        </span>
+                    </a>
+                </li>
             </ul>
             <ul class="logout" *ngIf="infosJoueur">
+                <li>
+                    <a (click)="lancementTutoriel()">
+                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                        <span class="nav-text">
+                            Tutoriel
+                        </span>
+                    </a>
+                </li>
                 <li>
                     <a routerLink="nouveautes">
                         <i class="fa fa-gift" aria-hidden="true"></i>
@@ -219,17 +245,10 @@
                         </span>
                     </a>
                 </li>
-                <li>
-                    <a (click)="lancementTutoriel()">
-                        <i class="fa fa-question-circle" aria-hidden="true"></i>
-                        <span class="nav-text">
-                            Tutoriel
-                        </span>
-                    </a>
-                </li>
+
                 <li>
                     <a routerLink="listeAmis">
-                        <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                        <i class="fa fa-grin-beam"></i>
                         <span class="nav-text">
                             Liste d'amis
                         </span>
@@ -237,7 +256,7 @@
                 </li>
                 <li>
                     <a routerLink="detailJoueur/{{infosJoueur.id}}">
-                        <i class="fa fa-male fa-2x"></i>
+                        <i class="fa fa-portrait"></i>
                         <span class="nav-text">
                             Mon compte
                         </span>

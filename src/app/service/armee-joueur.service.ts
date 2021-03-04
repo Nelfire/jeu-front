@@ -14,9 +14,9 @@ const URL_BACKEND = environment.baseUrl + 'armee';
 export class ArmeeService {
 
   constructor(private http: HttpClient) { }
-  
+
   produireUnitee(idUnitee: number, quantitee: number): Observable<UniteeCreation> {
-    return this.http.post<UniteeCreation>(`${URL_BACKEND}`,{
+    return this.http.post<UniteeCreation>(`${URL_BACKEND}`, {
       idUnitee: `${idUnitee}`,
       quantitee: `${quantitee}`
     });
@@ -25,5 +25,13 @@ export class ArmeeService {
   // Récupération des différentes armées du joueur
   listerArmeesDuJoueur(): Observable<Armee[]> {
     return this.http.get<Armee[]>(`${URL_BACKEND}/listerArmeesDuJoueur`);
+  }
+
+  // Accélération de la formation des unités contre gemme
+  accelerationFormationUnite(idUnite: number): Observable<UniteeCreation> {
+    return this.http.put<UniteeCreation>(`${URL_BACKEND}/accelerationFormationUnite?id=` + idUnite,
+      {
+        idUnite: `${idUnite}`
+      });
   }
 }

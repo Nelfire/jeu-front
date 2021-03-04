@@ -11,8 +11,10 @@ export class Defense {
         public coutNourritureConstruction: number,
         public vie: number,
         public attaque: number,
-        public bouclier: number,
+        public portee: number,
+        public armure: number,
         public tempsConstruction: number,
         public niveauBatimentNecessaireConstruction: number,
-        public idBatimentProvenance: number) { }
+        public idBatimentProvenance: number,
+        public apportExperience: number) { }
 }

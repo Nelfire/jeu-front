@@ -44,11 +44,13 @@ export class CreationUniteeComponent implements OnInit {
       attaque: ['', Validators.required],
       portee: ['', Validators.required],
       armure: ['', Validators.required],
+      vitesse: ['', Validators.required],
       niveauBatimentNecessaireFormation: ['', Validators.required],
       apportRessourcePierreHeure: ['', Validators.required],
       apportRessourceBoisHeure: ['', Validators.required],
       apportRessourceOrHeure: ['', Validators.required],
-      apportRessourceNourritureHeure: ['', Validators.required]
+      apportRessourceNourritureHeure: ['', Validators.required],
+      apportExperience: ['', Validators.required]
     });
   }
   creationUnitee() {
@@ -67,11 +69,13 @@ export class CreationUniteeComponent implements OnInit {
     const attaque = this.formCreationUnitee.get('attaque').value;
     const portee = this.formCreationUnitee.get('portee').value;
     const armure = this.formCreationUnitee.get('armure').value;
+    const vitesse = this.formCreationUnitee.get('vitesse').value;
     const niveauBatimentNecessaireFormation = this.formCreationUnitee.get('niveauBatimentNecessaireFormation').value;
     const apportRessourcePierreHeure = this.formCreationUnitee.get('apportRessourcePierreHeure').value;
     const apportRessourceBoisHeure = this.formCreationUnitee.get('apportRessourceBoisHeure').value;
     const apportRessourceOrHeure = this.formCreationUnitee.get('apportRessourceOrHeure').value;
     const apportRessourceNourritureHeure = this.formCreationUnitee.get('apportRessourceNourritureHeure').value;
+    const apportExperience = this.formCreationUnitee.get('apportExperience').value;
     this.uniteeService.administrationCreationUnitee(
       idTypeUnitee,
       idBatimentProvenance,
@@ -88,10 +92,13 @@ export class CreationUniteeComponent implements OnInit {
       attaque,
       portee,
       armure,
+      vitesse,
       niveauBatimentNecessaireFormation,
       apportRessourcePierreHeure,
       apportRessourceBoisHeure,
-      apportRessourceOrHeure,apportRessourceNourritureHeure,
+      apportRessourceOrHeure,
+      apportRessourceNourritureHeure,
+      apportExperience
       ).subscribe();
     /*
       coutBoisFormation: `${unitee.coutBoisFormation}`,

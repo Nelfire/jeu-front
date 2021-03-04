@@ -113,7 +113,7 @@
                                     <!-- Récompense pas encore récupérée, bouton adéquat -->
                                     <div *ngIf="uneExpeditionJoueur.etatExpedition == 1">
                                         <button class="btn btn-success" [disabled]="clickRecuperer"
-                                            (click)="recupererRecompense(uneExpeditionJoueur.id)">
+                                            (click)="recupererRecompense(uneExpeditionJoueur.id, uneExpeditionJoueur.expedition.recompenseExperience)">
                                             Récupérer récompense
                                         </button>
                                     </div>

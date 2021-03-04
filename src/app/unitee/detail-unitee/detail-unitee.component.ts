@@ -38,6 +38,9 @@ export class DetailUniteeComponent implements OnInit, OnDestroy {
   joueurPossedeBatiment: boolean;
   niveauBatimentAssezEleveFormation: boolean;
   batimentEnCoursDeTravail: boolean;
+  montantGemmeAcceleration: number;
+  apportExperience: number;
+  tempsFormation: number;
 
   counterSubscription: Subscription;
   result: string;
@@ -45,7 +48,7 @@ export class DetailUniteeComponent implements OnInit, OnDestroy {
   // Unitées en cours de production 
   secondesRestantesAmelioration: number;
   uniteesRestantes: number;
-  uniteesRestantesArrondis:number;
+  uniteesRestantesArrondis: number;
   quantiteeUniteesPossession: number;
   dateLancementProduction: number;
   dateFinProduction: number;
@@ -58,7 +61,8 @@ export class DetailUniteeComponent implements OnInit, OnDestroy {
     private armeeService: ArmeeService,
     private joueurService: JoueurService,
     private batimentJoueurService: BatimentJoueurService,
-    private notification: NotificationService) { }
+    private notification: NotificationService,
+    private router: Router) { }
 
   ngOnInit(): void {
 
@@ -81,6 +85,8 @@ export class DetailUniteeComponent implements OnInit, OnDestroy {
         this.coutBoisFormation = value.coutBoisFormation;
         this.coutOrFormation = value.coutOrFormation;
         this.coutNourritureFormation = value.coutNourritureFormation;
+        this.apportExperience = value.apportExperience;
+        this.tempsFormation = value.tempsFormation;
 
         // Vérification que le joueur possède le bâtiment pour construire l'unitée
         this.batimentJoueurService.listerMesBatiments().subscribe(
@@ -120,6 +126,7 @@ export class DetailUniteeComponent implements OnInit, OnDestroy {
             if (armee.dateFinProduction > dateMaintenantMillisecondes) {
               // formation en cours
               this.secondesRestantesAmelioration = (armee.dateFinProduction - dateMaintenantMillisecondes) / 1000;
+              this.montantGemmeAcceleration = Math.ceil(this.secondesRestantesAmelioration / 60);
               this.dateLancementProduction = armee.dateDebutProduction;
               this.dateFinProduction = armee.dateFinProduction;
               // actualisation du timer
@@ -130,6 +137,7 @@ export class DetailUniteeComponent implements OnInit, OnDestroy {
                   () => {
                     // A chaques appel, réduction de 1 seconde le nombre de secondes présentes dans le compteur
                     this.secondesRestantesAmelioration = Math.ceil(this.secondesRestantesAmelioration - 1);
+                    this.montantGemmeAcceleration = Math.ceil(this.secondesRestantesAmelioration / 60);
                     this.uniteesRestantesArrondis = Math.ceil(this.secondesRestantesAmelioration / armee.unitee.tempsFormation);
                     this.uniteesRestantes = this.secondesRestantesAmelioration / armee.unitee.tempsFormation;
                     // Je défini une date, pour convertir les secondes en timer (Format hh:mm:ss)
@@ -186,7 +194,8 @@ export class DetailUniteeComponent implements OnInit, OnDestroy {
 
       }, () => {
         // Toastr
-        quantite == 1 ? this.notification.showSuccess("Production d'une unitée.", "Production lancée.") : this.notification.showSuccess("Production de " + quantite + " unitées.", "Production lancée.");
+        quantite == 1 ? this.notification.showSuccess("Production d'une unité.", "Production lancée.") : this.notification.showSuccess("Production de " + quantite + " unités.", "Production lancée.");
+        this.notification.showInfo("", "+"+this.unitee.apportExperience*quantite+" Experience");
 
         this.messageValidation = "Production lancée";
         this.ngOnDestroy();
@@ -221,6 +230,8 @@ export class DetailUniteeComponent implements OnInit, OnDestroy {
     this.coutBoisFormation = this.unitee.coutBoisFormation * qt;
     this.coutOrFormation = this.unitee.coutOrFormation * qt;
     this.coutNourritureFormation = this.unitee.coutNourritureFormation * qt;
+    this.apportExperience = this.unitee.apportExperience * qt;
+    this.tempsFormation = this.unitee.tempsFormation * qt;
   }
 
 
@@ -258,18 +269,30 @@ export class DetailUniteeComponent implements OnInit, OnDestroy {
   getTempsFormationUniteePourcent() {
     // Temps du niveau suivantle
     let pourcentageRestant;
-    pourcentageRestant = 100 - ((this.secondesRestantesAmelioration%this.unitee.tempsFormation) * 100) / this.unitee.tempsFormation;
+    pourcentageRestant = 100 - ((this.secondesRestantesAmelioration % this.unitee.tempsFormation) * 100) / this.unitee.tempsFormation;
     return pourcentageRestant + '%';
   }
   getTempsFormationTotalFileAttentePourcent() {
     // Temps du niveau suivantle
     let pourcentageRestante;
-    let differenceSecondes = (this.dateFinProduction-this.dateLancementProduction)/1000;
+    let differenceSecondes = (this.dateFinProduction - this.dateLancementProduction) / 1000;
 
     //pourcentageRestante = 100 - (((difference) * 100) / this.dateFinProduction);
-    pourcentageRestante = 100 - (this.secondesRestantesAmelioration*100)/(differenceSecondes);
-    
+    pourcentageRestante = 100 - (this.secondesRestantesAmelioration * 100) / (differenceSecondes);
+
     return pourcentageRestante + '%';
+  }
+
+  // ACCELERATION DE LA FORMATION AVEC GEMMES
+  acceleration() {
+    this.armeeService.accelerationFormationUnite(this.id).subscribe(
+      () => {
+        this.notification.showSuccess("Formation terminée", "Succès !");
+        this.router.navigate(['/armee']);
+      }, (error) => {
+        this.notification.showError(error.error.message, "Erreur ...");
+      }
+    )
   }
 
   ngOnDestroy(): void {

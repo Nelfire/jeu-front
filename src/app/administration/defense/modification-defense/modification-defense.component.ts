@@ -39,10 +39,12 @@ export class ModificationDefenseComponent implements OnInit {
       coutNourritureConstruction: ['', Validators.required],
       vie: ['', Validators.required],
       attaque: ['', Validators.required],
-      bouclier: ['', Validators.required],
+      portee: ['', Validators.required],
+      armure: ['', Validators.required],
       tempsConstruction: ['', Validators.required],
       niveauBatimentNecessaireConstruction: ['', Validators.required],
-      idBatimentProvenance: ['', Validators.required]
+      idBatimentProvenance: ['', Validators.required],
+      apportExperience: ['', Validators.required]
     });
     // Snapshot pour rï¿½cupï¿½rer l'id passï¿½ via l'url
     this.id = this.routerLinkActive.snapshot.params['id'];
@@ -69,10 +71,12 @@ export class ModificationDefenseComponent implements OnInit {
       coutNourritureConstruction: [this.defense.coutNourritureConstruction, Validators.required],
       vie: [this.defense.vie, Validators.required],
       attaque: [this.defense.attaque, Validators.required],
-      bouclier: [this.defense.bouclier, Validators.required],
+      portee: [this.defense.portee, Validators.required],
+      armure: [this.defense.armure, Validators.required],
       tempsConstruction: [this.defense.tempsConstruction, Validators.required],
       niveauBatimentNecessaireConstruction: [this.defense.niveauBatimentNecessaireConstruction, Validators.required],
       idBatimentProvenance: [this.defense.idBatimentProvenance, Validators.required],
+      apportExperience: [this.defense.apportExperience, Validators.required]
     });
   }
 
@@ -88,10 +92,12 @@ export class ModificationDefenseComponent implements OnInit {
     const coutNourritureConstruction = this.formModificationDefense.get('coutNourritureConstruction').value;
     const vie = this.formModificationDefense.get('vie').value;
     const attaque = this.formModificationDefense.get('attaque').value;
-    const bouclier = this.formModificationDefense.get('bouclier').value;
+    const portee = this.formModificationDefense.get('portee').value;
+    const armure = this.formModificationDefense.get('armure').value;
     const tempsConstruction = this.formModificationDefense.get('tempsConstruction').value;
     const niveauBatimentNecessaireConstruction = this.formModificationDefense.get('niveauBatimentNecessaireConstruction').value;
     const idBatimentProvenance = this.formModificationDefense.get('idBatimentProvenance').value;
+    const apportExperience = this.formModificationDefense.get('apportExperience').value;
     this.defenseService.administrationModificationDefense(
       this.id,
       idTypeDefense,
@@ -105,10 +111,12 @@ export class ModificationDefenseComponent implements OnInit {
       coutNourritureConstruction,
       vie,
       attaque,
-      bouclier,
+      portee,
+      armure,
       tempsConstruction,
       niveauBatimentNecessaireConstruction,
       idBatimentProvenance,
+      apportExperience
       ).subscribe(
         () => {
 

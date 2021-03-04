@@ -19,7 +19,7 @@
                     <tr *ngFor="let joueur of listeJoueurs">
                         <td><img src="{{joueur.icone}}" alt="" style="width: 30px;" /></td>
                         <td>
-                            <a routerLink="/detailJoueur/{{joueur.id}}">{{joueur.pseudo}}</a>
+                            <i class="fa fa-star" aria-hidden="true" ngbTooltip="Généreux donateur ♥" *ngIf="joueur.donateur==true"></i> <a routerLink="/detailJoueur/{{joueur.id}}"> {{joueur.pseudo}}</a>
                             <span *ngIf="jou.roles[0] == roleEnum.RoleAdmin"> - 
                                 <a routerLink="/modificationJoueur/{{joueur.id}}">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>

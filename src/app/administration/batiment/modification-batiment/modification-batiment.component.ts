@@ -47,6 +47,9 @@ export class ModificationBatimentComponent implements OnInit {
       apportBoisHeure: ['', Validators.required],
       apportOreHeure: ['', Validators.required],
       apportNourritureHeure: ['', Validators.required],
+      apportExperience: ['', Validators.required],
+      multiplicateurExperience: ['', Validators.required],
+      multiplicateurTemps: ['', Validators.required],
       multiplicateurApport: ['', Validators.required],
       multiplicateurCout: ['', Validators.required]
     });
@@ -84,6 +87,9 @@ export class ModificationBatimentComponent implements OnInit {
       apportBoisHeure: [this.batiment.apportBoisHeure, Validators.required],
       apportOreHeure: [this.batiment.apportOreHeure, Validators.required],
       apportNourritureHeure: [this.batiment.apportNourritureHeure, Validators.required],
+      apportExperience: [this.batiment.apportExperience, Validators.required],
+      multiplicateurExperience: [this.batiment.multiplicateurExperience, Validators.required],
+      multiplicateurTemps: [this.batiment.multiplicateurTemps, Validators.required],
       multiplicateurApport: [this.batiment.multiplicateurApport, Validators.required],
       multiplicateurCout: [this.batiment.multiplicateurCout, Validators.required]
     });
@@ -110,6 +116,9 @@ export class ModificationBatimentComponent implements OnInit {
     const apportBoisHeure = this.formModificationBatiment.get('apportBoisHeure').value;
     const apportOreHeure = this.formModificationBatiment.get('apportOreHeure').value;
     const apportNourritureHeure = this.formModificationBatiment.get('apportNourritureHeure').value;
+    const apportExperience = this.formModificationBatiment.get('apportExperience').value;
+    const multiplicateurExperience = this.formModificationBatiment.get('multiplicateurExperience').value;
+    const multiplicateurTemps = this.formModificationBatiment.get('multiplicateurTemps').value;
     const multiplicateurApport = this.formModificationBatiment.get('multiplicateurApport').value;
     const multiplicateurCout = this.formModificationBatiment.get('multiplicateurCout').value;
     this.batimentService.administrationModificationBatiment(
@@ -134,6 +143,9 @@ export class ModificationBatimentComponent implements OnInit {
       apportBoisHeure,
       apportOreHeure,
       apportNourritureHeure,
+      apportExperience,
+      multiplicateurExperience,
+      multiplicateurTemps,
       multiplicateurApport,
       multiplicateurCout
       ).subscribe(

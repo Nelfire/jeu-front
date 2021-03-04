@@ -47,7 +47,8 @@ export class ModificationJoueurComponent implements OnInit {
      orBoostProduction: ['', Validators.required],
      nourritureBoostProduction: ['', Validators.required],
      tempsDeJeu: ['', Validators.required],
-     derniereConnexion: ['']
+     derniereConnexion: [''],
+     donateur: ['', Validators.required]
    });
    // Snapshot pour rï¿½cupï¿½rer l'id passï¿½ via l'url
    this.id = this.routerLinkActive.snapshot.params['id'];
@@ -83,7 +84,8 @@ export class ModificationJoueurComponent implements OnInit {
     orBoostProduction: [this.joueur.orBoostProduction, Validators.required],
     nourritureBoostProduction: [this.joueur.nourritureBoostProduction, Validators.required],
     tempsDeJeu: [this.joueur.tempsDeJeu, Validators.required],
-    derniereConnexion: [this.joueur.derniereConnexion]
+    derniereConnexion: [this.joueur.derniereConnexion],
+    donateur: [this.joueur.donateur, Validators.required]
    });
  }
 
@@ -103,6 +105,7 @@ export class ModificationJoueurComponent implements OnInit {
    const boisBoostProduction = this.formModificationJoueur.get('boisBoostProduction').value;
    const orBoostProduction = this.formModificationJoueur.get('orBoostProduction').value;
    const nourritureBoostProduction = this.formModificationJoueur.get('nourritureBoostProduction').value;
+   const donateur = this.formModificationJoueur.get('donateur').value;
    this.joueurService.administrationModificationJoueur(
      this.id,
      icone,
@@ -119,7 +122,8 @@ export class ModificationJoueurComponent implements OnInit {
      pierreBoostProduction,
      boisBoostProduction,
      orBoostProduction,
-     nourritureBoostProduction
+     nourritureBoostProduction,
+     donateur
      ).subscribe(
        () => {
 
