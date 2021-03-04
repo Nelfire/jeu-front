@@ -11,6 +11,8 @@ import { Observable, Subscription } from 'rxjs';
 import { BoundElementProperty } from '@angular/compiler';
 import { JoueurInfos } from 'src/app/models/joueur-infos';
 import { JoueurService } from 'src/app/service/joueur.service';
+import * as introJs from 'intro.js/intro.js';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-mon-campement',
@@ -37,9 +39,15 @@ export class MonCampementComponent implements OnInit {
   // Constructeur
   constructor(private batimentService: BatimentService,
     private batimentJoueurService: BatimentJoueurService,
-    private joueurService: JoueurService) { }
+    private joueurService: JoueurService,
+    private router: Router,
+    private routerLinkActive: ActivatedRoute,) { }
 
   ngOnInit(): void {
+
+
+
+
     this.batimentJoueurService.listerMesBatiments().subscribe((value) => {
       this.listeMesBatiments = value;
     });
@@ -47,6 +55,17 @@ export class MonCampementComponent implements OnInit {
     this.joueurService.informationJoueurByEmail().subscribe(
       (value) => {
         this.joueur = value;
+
+        // Mode tuto ?
+        setTimeout(() => {
+          this.routerLinkActive.queryParams.subscribe(params => {
+            let modeTutoriel = params['tutoriel'];
+            if (modeTutoriel == "true") {
+              this.tutoriel();
+            }
+          });
+        }, 600);
+
       }
     );
 
@@ -140,10 +159,10 @@ export class MonCampementComponent implements OnInit {
             // Si l'id du batiment en cours d'analyse = a l'id du bâtiment du joueur , alors je considère qu'il le possède
             if (monBatiment.batiment.idTypeBatiment === unBatiment.idTypeBatiment) {
               unBatiment.joueurLePossede = true;
-              unBatiment.coutPierreAmelioration = monBatiment.coutPierreAmelioration * unBatiment.multiplicateurCout ;
-              unBatiment.coutBoisAmelioration = monBatiment.coutBoisAmelioration * unBatiment.multiplicateurCout ;
-              unBatiment.coutOrAmelioration = monBatiment.coutOreAmelioration * unBatiment.multiplicateurCout ;
-              unBatiment.coutNourritureAmelioration = monBatiment.coutNourritureAmelioration * unBatiment.multiplicateurCout ;
+              unBatiment.coutPierreAmelioration = monBatiment.coutPierreAmelioration * unBatiment.multiplicateurCout;
+              unBatiment.coutBoisAmelioration = monBatiment.coutBoisAmelioration * unBatiment.multiplicateurCout;
+              unBatiment.coutOrAmelioration = monBatiment.coutOreAmelioration * unBatiment.multiplicateurCout;
+              unBatiment.coutNourritureAmelioration = monBatiment.coutNourritureAmelioration * unBatiment.multiplicateurCout;
               unBatiment.tempsAmelioration = monBatiment.tempsAmelioration * unBatiment.multiplicateurTemps;
               unBatiment.niveauBatimentDuJoueur = monBatiment.niveau;
               unBatiment.dateFinConstruction = monBatiment.dateFinConstruction;
@@ -187,7 +206,7 @@ export class MonCampementComponent implements OnInit {
   getColorRessourceManquantePierreConstructionBatiment(idTypeBatiment: number) {
     var couleur = '';
     this.lesBatiments.forEach(element => {
-      if(idTypeBatiment == element.idTypeBatiment) {
+      if (idTypeBatiment == element.idTypeBatiment) {
         if (this.joueur.pierrePossession < element.coutPierreConstruction) {
           couleur = 'red';
         } else {
@@ -197,10 +216,10 @@ export class MonCampementComponent implements OnInit {
     });
     return couleur;
   }
-   getColorRessourceManquanteBoisConstructionBatiment(idTypeBatiment: number) {
+  getColorRessourceManquanteBoisConstructionBatiment(idTypeBatiment: number) {
     var couleur = '';
     this.lesBatiments.forEach(element => {
-      if(idTypeBatiment == element.idTypeBatiment) {
+      if (idTypeBatiment == element.idTypeBatiment) {
         if (this.joueur.boisPossession < element.coutBoisConstruction) {
           couleur = 'red';
         } else {
@@ -213,7 +232,7 @@ export class MonCampementComponent implements OnInit {
   getColorRessourceManquanteOrConstructionBatiment(idTypeBatiment: number) {
     var couleur = '';
     this.lesBatiments.forEach(element => {
-      if(idTypeBatiment == element.idTypeBatiment) {
+      if (idTypeBatiment == element.idTypeBatiment) {
         if (this.joueur.orPossession < element.coutOrConstruction) {
           couleur = 'red';
         } else {
@@ -226,7 +245,7 @@ export class MonCampementComponent implements OnInit {
   getColorRessourceManquanteNourritureConstructionBatiment(idTypeBatiment: number) {
     var couleur = '';
     this.lesBatiments.forEach(element => {
-      if(idTypeBatiment == element.idTypeBatiment) {
+      if (idTypeBatiment == element.idTypeBatiment) {
         if (this.joueur.nourriturePossession < element.coutNourritureConstruction) {
           couleur = 'red';
         } else {
@@ -235,14 +254,14 @@ export class MonCampementComponent implements OnInit {
       }
     });
     return couleur;
-  } 
+  }
   // -------AMELIORATION -----
   // Batiments Amélioration Colorisation ressources
   getColorRessourceManquantePierreAmeliorationBatiment(idTypeBatiment: number) {
     var couleur = '';
     this.listeMesBatiments.forEach(element => {
-      if(idTypeBatiment == element.batiment.idTypeBatiment) {
-        if (this.joueur.pierrePossession < element.coutPierreAmelioration*element.batiment.multiplicateurCout) {
+      if (idTypeBatiment == element.batiment.idTypeBatiment) {
+        if (this.joueur.pierrePossession < element.coutPierreAmelioration * element.batiment.multiplicateurCout) {
           couleur = 'red';
         } else {
           couleur = 'green';
@@ -251,11 +270,11 @@ export class MonCampementComponent implements OnInit {
     });
     return couleur;
   }
-   getColorRessourceManquanteBoisAmeliorationBatiment(idTypeBatiment: number) {
+  getColorRessourceManquanteBoisAmeliorationBatiment(idTypeBatiment: number) {
     var couleur = '';
     this.listeMesBatiments.forEach(element => {
-      if(idTypeBatiment == element.batiment.idTypeBatiment) {
-        if (this.joueur.boisPossession < element.coutBoisAmelioration*element.batiment.multiplicateurCout) {
+      if (idTypeBatiment == element.batiment.idTypeBatiment) {
+        if (this.joueur.boisPossession < element.coutBoisAmelioration * element.batiment.multiplicateurCout) {
           couleur = 'red';
         } else {
           couleur = 'green';
@@ -267,8 +286,8 @@ export class MonCampementComponent implements OnInit {
   getColorRessourceManquanteOrAmeliorationBatiment(idTypeBatiment: number) {
     var couleur = '';
     this.listeMesBatiments.forEach(element => {
-      if(idTypeBatiment == element.batiment.idTypeBatiment) {
-        if (this.joueur.orPossession < element.coutOreAmelioration*element.batiment.multiplicateurCout) {
+      if (idTypeBatiment == element.batiment.idTypeBatiment) {
+        if (this.joueur.orPossession < element.coutOreAmelioration * element.batiment.multiplicateurCout) {
           couleur = 'red';
         } else {
           couleur = 'green';
@@ -280,8 +299,8 @@ export class MonCampementComponent implements OnInit {
   getColorRessourceManquanteNourritureAmeliorationBatiment(idTypeBatiment: number) {
     var couleur = '';
     this.listeMesBatiments.forEach(element => {
-      if(idTypeBatiment == element.batiment.idTypeBatiment) {
-        if (this.joueur.nourriturePossession < element.coutNourritureAmelioration*element.batiment.multiplicateurCout) {
+      if (idTypeBatiment == element.batiment.idTypeBatiment) {
+        if (this.joueur.nourriturePossession < element.coutNourritureAmelioration * element.batiment.multiplicateurCout) {
           couleur = 'red';
         } else {
           couleur = 'green';
@@ -289,7 +308,7 @@ export class MonCampementComponent implements OnInit {
       }
     });
     return couleur;
-  } 
+  }
 
   // DESTRUCTIONS
   ngOnDestroy() {
@@ -298,6 +317,28 @@ export class MonCampementComponent implements OnInit {
         (subscription) => subscription.unsubscribe()
       )
     }
+  }
+
+  tutoriel() {
+    var intro = introJs();
+    intro.setOptions({
+      steps: [
+        {
+          element: '#etape9',
+          intro: "D'ici, vous aurez une vue globale sur tout votre campement.",
+          showStepNumber: true
+        },
+        { // Pierre
+          element: '#etape10',
+          intro: "Il est temps que vous construisiez votre premier bâtiment : <strong>L'Hôtel de ville</strong>. Il vous permettra de débloquer diverse constructions."
+        }
+      ],
+      showProgress: true
+    }).oncomplete(() => {
+      this.router.navigate(['batiment/detail-batiment/1'], { queryParams: { tutoriel: 'true' } });
+    });;
+
+    intro.start();
   }
 
 }

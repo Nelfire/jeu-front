@@ -18,6 +18,9 @@ import { NotificationService } from 'src/app/service/notification.service';
 import { HeaderComponent } from 'src/app/header/header.component';
 import { GenerationRessourcesService } from 'src/app/service/generation-ressources.service';
 import { ArmeeService } from 'src/app/service/armee-joueur.service';
+import * as introJs from 'intro.js/intro.js';
+
+
 // the second parameter 'fr' is optional
 registerLocaleData(localeFr, 'fr');
 
@@ -49,8 +52,8 @@ export class DetailBatimentComponent implements OnInit {
   flagEnCoursDeTravail: Boolean;
   niveauHdvJoueur: number = 0;
 
-  montantGemmeAcceleration:number;
-  experience:number = 0;
+  montantGemmeAcceleration: number;
+  experience: number = 0;
 
   batimentUniteEnCoursDeProduction: boolean = false;
 
@@ -75,6 +78,15 @@ export class DetailBatimentComponent implements OnInit {
     this.joueurService.informationJoueurByEmail().subscribe(
       (value) => {
         this.joueur = value;
+        // Mode tuto ?
+        setTimeout(() => {
+          this.routerLinkActive.queryParams.subscribe(params => {
+            let modeTutoriel = params['tutoriel'];
+            if (modeTutoriel == "true") {
+              this.tutoriel();
+            }
+          });
+        }, 600);
       }
     );
 
@@ -100,7 +112,7 @@ export class DetailBatimentComponent implements OnInit {
           this.etatBoutonConstruire = "disabled";
           this.etatBoutonAmeliorer = "";
         } else {
-          this.experience = value.batiment.apportExperience * ( Math.pow(value.batiment.multiplicateurExperience,value.niveau))
+          this.experience = value.batiment.apportExperience * (Math.pow(value.batiment.multiplicateurExperience, value.niveau))
           this.modeConstructionAmelioration = "amelioration";
           this.etatBoutonConstruire = "";
           this.etatBoutonAmeliorer = "disabled";
@@ -108,7 +120,7 @@ export class DetailBatimentComponent implements OnInit {
           var maintenant = new Date().getTime();
           this.armeeService.listerArmeesDuJoueur().subscribe((armee) => {
             armee.forEach((ligne) => {
-              if((ligne.unitee.idBatimentProvenance == this.routerLinkActive.snapshot.params['idTypeBatiment']) &&(ligne.dateFinProduction> maintenant)) {
+              if ((ligne.unitee.idBatimentProvenance == this.routerLinkActive.snapshot.params['idTypeBatiment']) && (ligne.dateFinProduction > maintenant)) {
                 this.batimentUniteEnCoursDeProduction = true;
               }
             })
@@ -126,7 +138,7 @@ export class DetailBatimentComponent implements OnInit {
           this.result = date.toISOString().substr(11, 8);
           // J'initialise sur la page le nombre de secondes d'amélioration restantes pour le bâtiment
           this.secondesRestantesAmelioration = (value.dateFinConstruction - dateMaintenantMillisecondes) / 1000;
-          this.montantGemmeAcceleration = Math.ceil(this.secondesRestantesAmelioration/30);
+          this.montantGemmeAcceleration = Math.ceil(this.secondesRestantesAmelioration / 30);
 
 
           // ** Actualisation chaques secondes ** */
@@ -138,7 +150,7 @@ export class DetailBatimentComponent implements OnInit {
               (valeur: number) => {
                 // A chaques appel, je réduit de 1 seconde le nombre de secondes présentes dans le compteur
                 this.secondesRestantesAmelioration = this.secondesRestantesAmelioration - 1;
-                this.montantGemmeAcceleration = Math.ceil(this.secondesRestantesAmelioration/30);
+                this.montantGemmeAcceleration = Math.ceil(this.secondesRestantesAmelioration / 30);
                 // Je défini une date, pour convertir les secondes en timer (Format hh:mm:ss)
                 var date = new Date(null);
                 date.setSeconds(this.secondesRestantesAmelioration);
@@ -197,7 +209,7 @@ export class DetailBatimentComponent implements OnInit {
         this.notification.showError(error.error.message, "Erreur ...");
       }, () => {
 
-        this.notification.showInfo("", "+"+this.experience+" Experience");
+        this.notification.showInfo("", "+" + this.experience + " Experience");
         this.notification.showSuccess("", "Construction lancée.");
 
         setTimeout(() => {
@@ -210,7 +222,7 @@ export class DetailBatimentComponent implements OnInit {
 
   // Lancement construction du bâtiment
   ameliorer() {
-    if(this.batimentUniteEnCoursDeProduction) {
+    if (this.batimentUniteEnCoursDeProduction) {
       this.notification.showWarning("L'amélioration n'est pas possible pour le moment. Vous avez des unités en cours de production.", "Patience...");
     } else {
       this.batimentJoueurService.ameliorerBatimentJoueur(this.batimentJoueurPossede.id).subscribe(
@@ -219,7 +231,7 @@ export class DetailBatimentComponent implements OnInit {
           this.messageErreur = error.error.message;
           this.notification.showError(error.error.message, "Erreur ...");
         }, () => {
-          this.notification.showInfo("", "+"+this.experience+" Experience");
+          this.notification.showInfo("", "+" + this.experience + " Experience");
           this.messageValidation = "Amélioration lancée";
           this.notification.showSuccess("", "Amélioration lancée !");
           setTimeout(() => {
@@ -233,7 +245,7 @@ export class DetailBatimentComponent implements OnInit {
   }
 
   annuler() {
-    
+
   }
 
   // Batiments Joueur Amélioration Colorisation ressources
@@ -299,7 +311,7 @@ export class DetailBatimentComponent implements OnInit {
     // Temps du niveau suivantle
     let tempsMax;
     let pourcentageRestant;
-    if(this.batimentJoueurPossede.niveau==1) {
+    if (this.batimentJoueurPossede.niveau == 1) {
       tempsMax = this.batiment.tempsDeConstruction;
     }
     else {
@@ -325,6 +337,24 @@ export class DetailBatimentComponent implements OnInit {
         this.notification.showError(error.error.message, "Erreur ...");
       }
     );
+  }
+
+  tutoriel() {
+    var intro = introJs();
+    intro.setOptions({
+      steps: [
+        {
+          element: '#etape11',
+          intro: "Voilà le bâtiment le plus important de votre campement. Il vous ....",
+          showStepNumber: true
+        }
+      ],
+      showProgress: true
+    }).oncomplete(() => {
+      this.router.navigate(['batiment/detail-batiment/1'], { queryParams: { tutoriel: 'true' } });
+    });;
+
+    intro.start();
   }
 
 }

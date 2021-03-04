@@ -278,8 +278,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
         }
       ],
       showProgress: true
+    }).oncomplete(() => {
+      this.router.navigate(['campement'] , { queryParams: { tutoriel: 'true' } });
     });
 
     intro.start();
+
+    
+
   }
 }
