@@ -41,13 +41,9 @@ export class MonCampementComponent implements OnInit {
     private batimentJoueurService: BatimentJoueurService,
     private joueurService: JoueurService,
     private router: Router,
-    private routerLinkActive: ActivatedRoute,) { }
+    private routerLinkActive: ActivatedRoute) { }
 
   ngOnInit(): void {
-
-
-
-
     this.batimentJoueurService.listerMesBatiments().subscribe((value) => {
       this.listeMesBatiments = value;
     });
@@ -56,16 +52,8 @@ export class MonCampementComponent implements OnInit {
       (value) => {
         this.joueur = value;
 
-        // Mode tuto ?
-        setTimeout(() => {
-          this.routerLinkActive.queryParams.subscribe(params => {
-            let modeTutoriel = params['tutoriel'];
-            if (modeTutoriel == "true") {
-              this.tutoriel();
-            }
-          });
-        }, 600);
-
+        // Vérification mode tutoriel.
+        this.verificationTutorielEnCours();
       }
     );
 
@@ -319,26 +307,164 @@ export class MonCampementComponent implements OnInit {
     }
   }
 
+
+  verificationTutorielEnCours() {
+    setTimeout(() => {
+      this.routerLinkActive.queryParams.subscribe(params => {
+        let modeTutoriel = params['tutoriel'];
+        if (modeTutoriel == "enCours") {
+          this.tutoriel();
+        } else if (modeTutoriel == "enCoursP2") {
+          this.tutoriel2();
+        } else if (modeTutoriel == "enCoursP4") {
+          this.tutoriel4();
+        }
+      });
+    }, 600);
+  }
+
+  // Tutoriel partie 1 (Accueil -> Campement)
   tutoriel() {
     var intro = introJs();
     intro.setOptions({
+      disableInteraction: true,
+      showProgress: true,
+      nextLabel: 'Suivant',
+      prevLabel: 'Precedent',
+      doneLabel: 'Continuer',
+      tooltipClass: 'customTooltip',
       steps: [
-        {
-          element: '#etape9',
-          intro: "D'ici, vous aurez une vue globale sur tout votre campement.",
+        { // Présentation vue
+          intro: "Voilà votre campement.<br><br> Voyez tous les bâtiments que vous allez pouvoir construire !",
           showStepNumber: true
         },
-        { // Pierre
-          element: '#etape10',
-          intro: "Il est temps que vous construisiez votre premier bâtiment : <strong>L'Hôtel de ville</strong>. Il vous permettra de débloquer diverse constructions."
+        { // Ciblage HDV. 
+          element: '#btm1',
+          intro: "Il est temps de construire votre <b>premier bâtiment</b>. Allons-y !",
+          showStepNumber: true
         }
-      ],
-      showProgress: true
+      ]
+      // Tutoriel terminé. Campement --> Détail bâtiment Hdv
     }).oncomplete(() => {
-      this.router.navigate(['batiment/detail-batiment/1'], { queryParams: { tutoriel: 'true' } });
-    });;
+      this.router.navigate(['batiment/detail-batiment/1'], { queryParams: { tutoriel: 'enCours' } });
+    });
 
+    // Lancement
     intro.start();
+  }
+
+  // Tutoriel partie 2
+  tutoriel2() {
+    var intro = introJs();
+    intro.setOptions({
+      disableInteraction: true,
+      showProgress: true,
+      nextLabel: 'Suivant',
+      prevLabel: 'Precedent',
+      doneLabel: 'Continuer',
+      tooltipClass: 'customTooltip',
+      steps: [
+        { // Focus hdv
+          element: '#etape16',
+          intro: "Regardez ! <br><br>La construction de votre <b>Hôtel de ville est terminée</b> et vous avez débloqué plein de <b>nouvelles constructions</b>.",
+          showStepNumber: true
+        },
+        {
+          // Annonce
+          intro: "Construisons ensemble les principaux bâtiments de récolte. J'ai un petit quelque chose à vous montrer par la suite."
+        },
+        {
+          // Filtra par type "Recolte"
+          element: '#typeRecolte',
+          intro: "Filtrez les bâtiments par type, pour les retrouver plus facilement."
+        }
+      ]
+      // Tutoriel terminé. Lancement tutoriel 3
+    }).oncomplete(() => {
+      this.batimentsRecolte();
+      this.tutoriel3();
+    });
+
+    // Lancement
+    intro.start();
+  }
+
+  // Tutoriel partie 3 présentation bâtiments de récolte
+  tutoriel3() {
+    setTimeout(() => {
+      var intro = introJs();
+      intro.setOptions({
+        disableInteraction: true,
+        showProgress: true,
+        nextLabel: 'Suivant',
+        prevLabel: 'Precedent',
+        doneLabel: 'Continuer',
+        tooltipClass: 'customTooltip',
+        steps: [
+          { // Focus carrière
+            element: '#btm3',
+            intro: "Voici la carrière, qui permet de récolter de la pierre.",
+            showStepNumber: true
+          },
+          { // Focus camp de bûcheron
+            element: '#btm4',
+            intro: "Là, le camp de bûcheron, pour ramasser du bois."
+          },
+          { // Focus camp de mineur
+            element: '#btm5',
+            intro: "Le camp de mineur, pour extraire les minerais rare de la terre."
+          },
+          { // Focus ferme
+            element: '#btm6',
+            intro: "Et voici la ferme qui permet de produire de la nourriture.<br><br> Profitons-en pour la construire !"
+          }
+        ]
+        // Tutoriel terminé. Campement --> Détail ferme
+      }).oncomplete(() => {
+        this.router.navigate(['batiment/detail-batiment/6'], { queryParams: { tutoriel: 'enCoursP2' } });
+      });
+
+      // Lancement
+      intro.start();
+    }, 600);
+  }
+
+  // Amélioration ferme terminée, envoi vers le centre de clic
+  tutoriel4() {
+    setTimeout(() => {
+      var intro = introJs();
+      intro.setOptions({
+        disableInteraction: true,
+        showProgress: true,
+        nextLabel: 'Suivant',
+        prevLabel: 'Precedent',
+        doneLabel: 'Continuer',
+        tooltipClass: 'customTooltip',
+        steps: [
+          { // Barre ressource nourriture
+            element: '#ressource_nourriture',
+            intro: "Génial ! Vous avez une ferme fonctionnelle qui produit maintenant de la nourriture.",
+            showStepNumber: true
+          },
+          { // Barre ressource nourriture (limite)
+            element: '#ressource_nourriture_limite',
+            intro: "Au delà d'une certaine limite, vos reserves seront pleines. Pensez à construire des structures de stockage.",
+            showStepNumber: true
+          },
+          { // Centre de récolte
+            element: '#menu_centre_recolte',
+            intro: "Une dernière chose à vous montrer ... allons jeter un oeil au centre de récolte.",
+            showStepNumber: true
+          }
+        ]
+        // Tutoriel terminé. Campement --> Centre de récolte
+      }).oncomplete(() => {
+        this.router.navigate(['centreRecolte'], { queryParams: { tutoriel: 'enCours' } });
+      });
+
+      // Lancement
+      intro.start();
+    }, 600);
   }
 
 }

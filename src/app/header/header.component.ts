@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Joueur } from '../auth/auth.domains';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../service/auth.service';
@@ -16,6 +16,7 @@ import { GenerationRessourcesService } from '../service/generation-ressources.se
 import { InformationRessourcesJoueur } from '../models/informationRessourcesJoueur';
 import { subscriptionLogsToBeFn } from 'rxjs/internal/testing/TestScheduler';
 import * as introJs from 'intro.js/intro.js';
+import { TutorielService } from '../service/tutoriel.service';
 
 
 @Component({
@@ -51,7 +52,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private authSrv: AuthService,
     private router: Router,
     private joueurService: JoueurService,
-    private generationRessourcesService: GenerationRessourcesService) { }
+    private generationRessourcesService: GenerationRessourcesService,
+    private routerLinkActive: ActivatedRoute,
+    private tutorielService: TutorielService ) { }
 
   ngOnInit() {
 
@@ -109,47 +112,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     );
     this.subscribtions.push(this.counterSubscription);
   }
-
-
-
-  ngOnDestroy() {
-    if (this.subscribtions) {
-      this.subscribtions.forEach(element => {
-        element.unsubscribe();
-      });
-    }
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   // Déconnexion
   seDeconnecter() {
@@ -233,58 +195,69 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
 
-
-
-
+  // Check routing Tutoriel
   lancementTutoriel() {
+    console.log(this.router.url);
+    // Tutoriel Accueil
+    if (this.router.url == "/accueil") {
+      this.tutorielService.tutorielAccueil();
+    }
+    // Tutoriel Campement
+    if (this.router.url == "/campement") {
+      this.tutorielService.tutorielCampement();
+    }
+    // Tutoriel Armée
+    if (this.router.url == "/armee") {
+      this.tutorielService.tutorielArmee();
+    }
+    // Tutoriel Défense
+    if (this.router.url == "/defense") {
+      this.tutorielService.tutorielDefense();
+    }
+    // Tutoriel Boutique
+    if (this.router.url == "/boutique") {
+      this.tutorielService.tutorielBoutique();
+    }
 
+    if (this.router.url == "/centreRecolte") {
+      this.tutorielService.tutorielCentreRecolte();
+    }
 
+    if (this.router.url == "/classement-joueurs") {
+      this.tutorielService.tutorielClassementJoueur();
+    }
 
-    var intro = introJs();
-    intro.setOptions({
-      steps: [
-        {
-          element: '#etape1',
-          intro: "Ici se trouvent vos ressources, elles se décomposent en 5 parties.",
-          showStepNumber: true
-        },
-        { // Pierre
-          element: '#etape2',
-          intro: 'La <strong>pierre</strong> est extraite des <strong>carrières</strong>. Elle est la principale ressource permettant la construction de bâtiments'
-        },
-        { // Bois
-          element: '#etape3',
-          intro: "Le <strong>bois</strong> provient des <strong>camps de bûcherons</strong>. Il sert à la construction de bâtiments et de diverses unitées."
-        },
-        { // Or
-          element: '#etape4',
-          intro: "L'<strong>or</strong> est extrait des <strong>mines</strong>. Il sert à la construction de bâtiments et de diverses unitées."
-        },
-        { // Nourriture
-          element: '#etape5',
-          intro: "La <strong>nourriture</strong> est produite grâce aux <strong>fermes</strong>. Elle sert à nourrir vos troupes et à la formation d'unitées."
-        },
-        { // Gemmes
-          element: '#etape6',
-          intro: 'Les <strong>gemmes</strong> sont attribuées aux valheureux aventuriers menant à bien des expéditions. Elle permettent de faire des achats dans la boutique.'
-        },
-        { // Vue gauche
-          element: '#etape7',
-          intro: "D'ici, vous aurez une vue globale sur votre <strong>village</strong>, vos <strong>troupes</strong> et bien d'autres choses !"
-        },
-        { // Cible village
-          element: '#etape8',
-          intro: "Et si nous allions construire votre premier bâtiment ?"
-        }
-      ],
-      showProgress: true
-    }).oncomplete(() => {
-      this.router.navigate(['campement'] , { queryParams: { tutoriel: 'true' } });
-    });
-
-    intro.start();
-
+    if (this.router.url == "/expedition") {
+      this.tutorielService.tutorielExpedition();
+    }
     
+    if (this.router.url == "/marche") {
+      this.tutorielService.tutorielMarche();
+    }
 
+    for (var i: number = 0; i < 25; i++) {
+      // Tutoriel détail unité
+      if (this.router.url == "/unitee/detail-unitee/" + i) {
+        this.tutorielService.tutorielDetailUnite();
+      }
+      // Tutoriel détail défense
+      if (this.router.url == "/defense/detail-defense/" + i) {
+        this.tutorielService.tutorielDetailDefense();
+      }
+    }
+    for (var i: number = 0; i < 500; i++) {
+      // Tutoriel détail expédition
+      if (this.router.url == "/expedition/detail-expedition/" + i) {
+        this.tutorielService.tutorielDetailExpedition();
+      }
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.subscribtions) {
+      this.subscribtions.forEach(element => {
+        element.unsubscribe();
+      });
+    }
   }
 }

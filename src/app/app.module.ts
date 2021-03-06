@@ -80,6 +80,7 @@ import { ModificationJoueurComponent } from './administration/joueur/modificatio
 import { CarteComponent } from './social/carte/carte.component';
 import { CampagneService } from './service/campagne/campagne.service';
 import { ListeCampagnesComponent } from './campagne/liste-campagnes/liste-campagnes.component';
+import { TutorielService } from './service/tutoriel.service';
 
 
 @NgModule({
@@ -166,6 +167,7 @@ import { ListeCampagnesComponent } from './campagne/liste-campagnes/liste-campag
     DefenseJoueurService,
     ListeAmisService,
     CampagneService,
+    TutorielService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

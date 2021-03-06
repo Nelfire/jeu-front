@@ -19,7 +19,7 @@
                 <div class="action-recolte noselect">Extraire <span class="spinner-border spinner-border-sm"
                         style="vertical-align: middle;" *ngIf="campDeMineurEnCoursDeTravail"></span></div>
             </div>
-            <div class="nourriture card" [ngStyle]="{opacity:getOpacityFerme()}" (click)="recolterNourriture()">
+            <div class="nourriture card" [ngStyle]="{opacity:getOpacityFerme()}" (click)="recolterNourriture()" id="section_recolte_nourriture">
                 <div class="action-recolte noselect">Chasser <span class="spinner-border spinner-border-sm"
                         style="vertical-align: middle;" *ngIf="fermeEnCoursDeTravail"></span></div>
             </div>
@@ -40,7 +40,7 @@
 
             </div>
             <div class="bouton">
-                <button class="btn btn-success" (click)="recupererProduction()">Récupérer la production</button>
+                <button class="btn btn-success" (click)="recupererProduction()" id="section_recuperer_production">Récupérer la production</button>
             </div>
         </div>
     </div>

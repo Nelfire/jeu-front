@@ -78,18 +78,15 @@ export class DetailBatimentComponent implements OnInit {
     this.joueurService.informationJoueurByEmail().subscribe(
       (value) => {
         this.joueur = value;
-        // Mode tuto ?
-        setTimeout(() => {
-          this.routerLinkActive.queryParams.subscribe(params => {
-            let modeTutoriel = params['tutoriel'];
-            if (modeTutoriel == "true") {
-              this.tutoriel();
-            }
-          });
-        }, 600);
+
+        // Vérification mode tutoriel.
+        this.verificationTutorielEnCours();
       }
     );
+    this.informationsBatiment();
+  }
 
+  informationsBatiment() {
     // Récupération ID batiment (URL)
     this.idTypeBatiment = this.routerLinkActive.snapshot.params['idTypeBatiment'];
     // Récupération des informations du bâtiment
@@ -212,10 +209,7 @@ export class DetailBatimentComponent implements OnInit {
         this.notification.showInfo("", "+" + this.experience + " Experience");
         this.notification.showSuccess("", "Construction lancée.");
 
-        setTimeout(() => {
-          // Redirection au bout de 1,5 secondes
-          this.router.navigate(['campement']);
-        }, 1500);
+        this.informationsBatiment();
       }
     );
   }
@@ -232,19 +226,15 @@ export class DetailBatimentComponent implements OnInit {
           this.notification.showError(error.error.message, "Erreur ...");
         }, () => {
           this.notification.showInfo("", "+" + this.experience + " Experience");
-          this.messageValidation = "Amélioration lancée";
           this.notification.showSuccess("", "Amélioration lancée !");
-          setTimeout(() => {
-            // Redirection au bout de 1,5 secondes
-            this.router.navigate(['campement']);
-          }, 1500);
+          this.informationsBatiment();
+          /*           setTimeout(() => {
+                      // Redirection au bout de 1,5 secondes
+                      this.router.navigate(['campement']);
+                    }, 1500); */
         }
       );
     }
-
-  }
-
-  annuler() {
 
   }
 
@@ -339,22 +329,168 @@ export class DetailBatimentComponent implements OnInit {
     );
   }
 
+  verificationTutorielEnCours() {
+    setTimeout(() => {
+      this.routerLinkActive.queryParams.subscribe(params => {
+        let modeTutoriel = params['tutoriel'];
+        if (modeTutoriel == "enCours") {
+          this.tutoriel();
+        } else if (modeTutoriel == "enCoursP2") {
+          this.tutoriel3();
+        }
+      });
+    }, 600);
+  }
+
+  // Tutoriel partie 1 (Campement -> Détail bâtiment HDV)
   tutoriel() {
     var intro = introJs();
     intro.setOptions({
+      disableInteraction: true,
+      showProgress: true,
+      nextLabel: 'Suivant',
+      prevLabel: 'Precedent',
+      doneLabel: 'Continuer',
+      tooltipClass: 'customTooltip',
       steps: [
         {
-          element: '#etape11',
-          intro: "Voilà le bâtiment le plus important de votre campement. Il vous ....",
+          // Présentation card
+          element: '#section_batiment',
+          intro: "Voilà le bâtiment le plus important de votre campement : <strong>L'Hôtel de ville</strong>.<br><br> Il vous permettra de débloquer diverse constructions et vous assurera un apport régulier de ressources.",
+          showStepNumber: true
+        },
+        {
+          // Coûts de construction
+          element: '#section_cout_construction',
+          intro: "Pour pouvoir lancer la construction d'un bâtiment, il vous sera necessaire d'utiliser quelques <b>ressources</b>. <br><br> Un temps de construction est également à prévoir.<br><br> Plus le <b>niveau</b> du bâtiment sera élevé, plus le <b>temps de construction</b> sera élevé lui aussi !",
+          showStepNumber: true
+        },
+        {
+          // Bouton construire
+          element: '#section_construire',
+          intro: "Lançons la constructions ensemble !",
           showStepNumber: true
         }
-      ],
-      showProgress: true
+      ]
+      // Tutoriel terminé. Détail bâtiment HDV [Construire] -> Détail bâtiment HDV [En cours]
     }).oncomplete(() => {
-      this.router.navigate(['batiment/detail-batiment/1'], { queryParams: { tutoriel: 'true' } });
-    });;
+      // Lancer la construction
+      this.construire();
 
+      // Lancer le deuxieme tutoriel de la page
+      this.tutoriel2();
+    });
+
+    // Lancement
     intro.start();
   }
 
+  // Tutoriel partie 2 (Détail bâtiment HDV [Construire] -> Détail bâtiment HDV [En cours])
+  tutoriel2() {
+    setTimeout(() => {
+      var intro = introJs();
+      intro.setOptions({
+        disableInteraction: true,
+        showProgress: true,
+        nextLabel: 'Suivant',
+        prevLabel: 'Precedent',
+        doneLabel: 'Continuer',
+        tooltipClass: 'customTooltip',
+        steps: [
+          {
+            // Temps d'attente
+            element: '#section_temps_restant',
+            intro: "Super ! Vous n'avez plus qu'à attendre <b>5 minutes</b>.",
+            showStepNumber: true
+          },
+          {
+            // Bouton acceleration avec gemmes
+            element: '#section_accelerer_construction',
+            intro: "... Ou bien vous pouvez utiliser vos <b>gemmes</b> pour achever instantanément la construction. <br><br>Je vous en ai offert quelques unes, essayez !",
+            showStepNumber: true
+          }
+        ]
+        // Tutoriel terminé. Détail bâtiment HDV [En cours] -> Campement
+      }).oncomplete(() => {
+        // Utilisation gemmes
+        this.batimentJoueurService.accelerationConstructionBatiment(this.batimentJoueurPossede.id).subscribe(
+          () => {
+            this.notification.showSuccess("Amélioration terminée", "Succès !");
+            this.router.navigate(['campement'], { queryParams: { tutoriel: 'enCoursP2' } });
+          }, (error) => {
+            this.notification.showError(error.error.message, "Erreur ...");
+          }
+        );
+      });
+      intro.start();
+    }, 600);
+  }
+
+  // Tutoriel partie 3 (Campement -> Détail bâtiment FERME [Construire])
+  tutoriel3() {
+    setTimeout(() => {
+      var intro = introJs();
+      intro.setOptions({
+        disableInteraction: true,
+        showProgress: true,
+        nextLabel: 'Suivant',
+        prevLabel: 'Precedent',
+        doneLabel: 'Feu !',
+        tooltipClass: 'customTooltip',
+        // Annonce construction
+        steps: [
+          {
+            element: '#section_construire',
+            intro: "Construction dans <br><br><b>3 ... 2 ... 1 ... <b>",
+            showStepNumber: true
+          }
+        ]
+        // Construction lancée Détail bâtiment FERME [Construire] --> Détail bâtiment FERME [En cours]
+      }).oncomplete(() => {
+        // Utilisation gemmes
+        this.construire();
+        this.tutoriel4();
+      });
+      intro.start();
+    }, 600);
+  }
+
+  // Tutoriel partie 4 (Détail bâtiment FERME [Construire] -> Détail bâtiment FERME [En cours])
+  tutoriel4() {
+    setTimeout(() => {
+      var intro = introJs();
+      intro.setOptions({
+        disableInteraction: true,
+        showProgress: true,
+        nextLabel: 'Suivant',
+        prevLabel: 'Precedent',
+        doneLabel: 'Continuer',
+        tooltipClass: 'customTooltip',
+        steps: [
+          {
+            intro: "Super !",
+            showStepNumber: true
+          },
+          // Bouton acceleration avec gemmes
+          {
+            element: '#section_accelerer_construction',
+            intro: "Lançons l'accélération maintenant. C'est cadeau !",
+            showStepNumber: true
+          }
+        ]
+        // Accélération lancée. Détail bâtiment FERME [En cours] --> Campement
+      }).oncomplete(() => {
+        // Utilisation gemmes
+        this.batimentJoueurService.accelerationConstructionBatiment(this.batimentJoueurPossede.id).subscribe(
+          () => {
+            this.notification.showSuccess("Amélioration terminée", "Succès !");
+            this.router.navigate(['campement'], { queryParams: { tutoriel: 'enCoursP4' } });
+          }, (error) => {
+            this.notification.showError(error.error.message, "Erreur ...");
+          }
+        );
+      });
+      intro.start();
+    }, 600);
+  }
 }

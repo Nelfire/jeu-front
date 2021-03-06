@@ -6,19 +6,19 @@
 		<div class="divider-custom-titre">Bâtiments</div>
 		<div class="divider-custom-line"></div>
 	</div>
-	<div class="boutons divCenter">
+	<div class="boutons divCenter" id="filtre_type_batiments">
 		<button class="btn btn-success m-3" (click)="batimentsTous()">Tous</button>
 		<button class="btn btn-success m-3" (click)="batimentsDivers()">Divers</button>
-		<button class="btn btn-success m-3" (click)="batimentsRecolte()">Récolte</button>
+		<button class="btn btn-success m-3" (click)="batimentsRecolte()" id="typeRecolte">Récolte</button>
 		<button class="btn btn-success m-3" (click)="batimentsStockage()">Stockage</button>
 		<button class="btn btn-success m-3" (click)="batimentsMillitaire()">Millitaire</button>
 	</div>
 	<div>
 		<ul class="honeycomb" lang="es">
-			<li class="honeycomb-cell" *ngFor="let batiment of lesBatiments">
-				<div *ngIf="batiment">
+			<li class="honeycomb-cell" *ngFor="let batiment of lesBatiments;">
+				<div *ngIf="batiment" id="btm{{batiment.idTypeBatiment}}">
 					<!-- CAS JOUEUR POSSEDE LE BATIMENT -->
-					<div *ngIf="batiment.joueurLePossede; else nePossedePas;" >
+					<div *ngIf="batiment.joueurLePossede; else nePossedePas;" id="etape16">
 						<!-- Données du bâtiment -->
 						<a routerLink="../batiment/detail-batiment/{{batiment.idTypeBatiment}}"
 							[ngbTooltip]="coutAmelioration">
@@ -34,7 +34,7 @@
 							<!-- Batiment en cours de construction / amélioration -->
 							<div *ngIf="batiment.flagEnCoursDeTravail; else pasDeTravailEnCours;">
 								<!-- Si bâtiment en cours d'amélioration + pas encore terminé -->
-								<div *ngIf="batiment.secondesRestantesAmelioration > 1; else travailTermine;">
+								<div *ngIf="batiment.secondesRestantesAmelioration > 1; else travailTermine;" id="etape14">
 									<button class="btn btn-info">
 										Amélioration en cours<br>
 										<span *ngIf="batiment.date"><span

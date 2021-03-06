@@ -15,7 +15,7 @@
                     </div>
 
                     <div class="col">
-                        <li id="etape2" class="pierre">
+                        <li id="ressource_pierre" class="pierre">
                             <a class="btn" [ngbTooltip]="productionPierre">
                                 <span class="nom-ressource">Pierre : </span> <b
                                     [ngStyle]="{color:getColorApprocheLimitePierre()}">{{informationRessourcesJoueur.pierrePossession | number}}<span
@@ -31,7 +31,7 @@
                         </li>
                     </div>
                     <div class="col">
-                        <li id="etape3" class="bois">
+                        <li id="ressource_bois" class="bois">
                             <a class="btn" [ngbTooltip]="productionBois">
                                 <span class="nom-ressource">Bois : </span> <b
                                     [ngStyle]="{color:getColorApprocheLimiteBois()}">{{informationRessourcesJoueur.boisPossession | number}}<span
@@ -47,7 +47,7 @@
                         </li>
                     </div>
                     <div class="col">
-                        <li id="etape4" class="or">
+                        <li id="ressource_or" class="or">
                             <a class="btn" [ngbTooltip]="productionOr">
                                 <span class="nom-ressource">Or : </span> <b
                                     [ngStyle]="{color:getColorApprocheLimiteOr()}">{{informationRessourcesJoueur.orPossession | number}}<span
@@ -63,11 +63,11 @@
                         </li>
                     </div>
                     <div class="col">
-                        <li id="etape5" class="nourriture">
+                        <li id="ressource_nourriture" class="nourriture">
                             <a class="btn" [ngbTooltip]="productionNourriture">
                                 <span class="nom-ressource">Nourriture : </span> <b
                                     [ngStyle]="{color:getColorApprocheLimiteNourriture()}">{{informationRessourcesJoueur.nourriturePossession | number}}<span
-                                        class="limite-ressource">/{{informationRessourcesJoueur.quantiteMaximaleStockageNourriture | number}}</span></b>
+                                        class="limite-ressource" id="ressource_nourriture_limite">/{{informationRessourcesJoueur.quantiteMaximaleStockageNourriture | number}}</span></b>
                             </a>
                             <ng-template #productionNourriture>
                                 <div class="d-flex flex-column">
@@ -79,7 +79,7 @@
                         </li>
                     </div>
                     <div class="col">
-                        <li id="etape6" class="gemme">
+                        <li id="ressource_gemme" class="gemme">
                             <a class="btn" ngbTooltip="Gain de gemmes en réalisant des expéditions">
                                 <span class="nom-ressource">Gemmes : </span>
                                 <b>{{informationRessourcesJoueur.gemmePossession | number}}</b>
@@ -95,7 +95,7 @@
     <body>
         <div class="area"></div>
         <nav class="main-menu">
-            <ul id="etape7">
+            <ul id="menu_navigation">
                 <li>
                     <a routerLink="accueil">
                         <i class="fa fa-gamepad" aria-hidden="true"></i>
@@ -104,9 +104,9 @@
                         </span>
                     </a>
                 </li>
-                <li id="etape8">
+                <li >
                     <a routerLink="campement">
-                        <i class="fa fa-home fa-2x"></i>
+                        <i class="fa fa-home fa-2x" id="menu_campement"></i>
                         <span class="nav-text">
                             Mon campement
                         </span>
@@ -114,7 +114,7 @@
                 </li>
                 <li>
                     <a routerLink="defense">
-                        <i class="fa fa-shield" aria-hidden="true"></i>
+                        <i class="fa fa-shield" aria-hidden="true" id="menu_defense"></i>
                         <span class="nav-text">
                             Mes défenses
                         </span>
@@ -122,15 +122,15 @@
                 </li>
                 <li class="has-subnav">
                     <a routerLink="armee">
-                        <i class="fa fa-users" aria-hidden="true"></i>
+                        <i class="fa fa-users" aria-hidden="true" id="menu_armee"></i>
                         <span class="nav-text">
                             Mon armée
                         </span>
                     </a>
                 </li>
-                <li class="has-subnav">
+                <li class="has-subnav" >
                     <a routerLink="centreRecolte">
-                        <i class="fa fa-gavel"></i>
+                        <i class="fa fa-gavel" id="menu_centre_recolte"></i>
                         <span class="nav-text">
                             Centre de récolte
                         </span>
@@ -138,7 +138,7 @@
                 </li>
                 <li class="has-subnav">
                     <a routerLink="expedition">
-                        <i class="fa fa-flag-o" aria-hidden="true"></i>
+                        <i class="fa fa-flag-o" aria-hidden="true" id="menu_expedition"></i>
                         <span class="nav-text">
                             Expéditions Disponibles
                         </span>
@@ -154,7 +154,7 @@
                 </li>
                 <li class="has-subnav">
                     <a routerLink="maGuilde">
-                        <i class="fa fa-info fa-2x"></i>
+                        <i class="fa fa-info fa-2x" id="menu_guilde"></i>
                         <span class="nav-text">
                             Guilde
                         </span>
@@ -171,7 +171,7 @@
 
                 <li>
                     <a routerLink="marche">
-                        <i class="fa fa-balance-scale"></i>
+                        <i class="fa fa-balance-scale" id="menu_marche"></i>
                         <span class="nav-text">
                             Marché
                         </span>
@@ -179,7 +179,7 @@
                 </li>
                 <li>
                     <a routerLink="discussion">
-                        <i class="fa fa-comments"></i>
+                        <i class="fa fa-comments" id="menu_discussion"></i>
                         <span class="nav-text">
                             Discussion
                         </span>
@@ -187,7 +187,7 @@
                 </li>
                 <li class="has-subnav">
                     <a routerLink="classement-joueurs">
-                        <i class="fa fa-chart-bar"></i>
+                        <i class="fa fa-chart-bar" id="menu_classement"></i>
                         <span class="nav-text">
                             Classement Joueur
                         </span>
@@ -196,7 +196,7 @@
                 
                 <li class="has-subnav">
                     <a routerLink="carte">
-                        <i class="fa fa-map-marked-alt"></i>
+                        <i class="fa fa-map-marked-alt" id="menu_carte"></i>
                         <span class="nav-text">
                             Carte du monde
                         </span>
@@ -205,7 +205,7 @@
                 
                 <li class="has-subnav">
                     <a routerLink="campagne">
-                        <i class="fa fa-globe-americas"></i>
+                        <i class="fa fa-globe-americas" id="menu_campagne"></i>
                         <span class="nav-text">
                             Campagne
                         </span>
@@ -213,7 +213,7 @@
                 </li>
                 <li>
                     <a routerLink="boutique">
-                        <i class="fa fa-gem"></i>
+                        <i class="fa fa-gem" id="menu_boutique"></i>
                         <span class="nav-text">
                             Boutique
                         </span>
@@ -223,7 +223,7 @@
             <ul class="logout" *ngIf="infosJoueur">
                 <li>
                     <a (click)="lancementTutoriel()">
-                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                        <i class="fa fa-question-circle" aria-hidden="true" id="menu_tutoriel"></i>
                         <span class="nav-text">
                             Tutoriel
                         </span>

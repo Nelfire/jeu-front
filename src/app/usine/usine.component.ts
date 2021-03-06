@@ -4,6 +4,8 @@ import { JoueurService } from '../service/joueur.service';
 import { NotificationService } from '../service/notification.service';
 import { MesBatiments } from '../models/mes-batiments';
 import { GenerationRessourcesService } from '../service/generation-ressources.service';
+import { ActivatedRoute } from '@angular/router';
+import * as introJs from 'intro.js/intro.js';
 
 @Component({
   selector: 'app-usine',
@@ -62,7 +64,8 @@ export class UsineComponent implements OnInit {
   constructor(private notification: NotificationService,
     private joueurService: JoueurService,
     private batimentJoueurService: BatimentJoueurService,
-    private generationRessourceServices : GenerationRessourcesService) { }
+    private generationRessourceServices: GenerationRessourcesService,
+    private routerLinkActive: ActivatedRoute) { }
 
   ngOnInit(): void {
 
@@ -109,6 +112,7 @@ export class UsineComponent implements OnInit {
         }
       }
     );
+    this.verificationTutorielEnCours();
   }
 
   recolterPierre() {
@@ -345,7 +349,7 @@ export class UsineComponent implements OnInit {
   getOpacityCarriere() {
     var maintenant = new Date().getTime();
 
-    if(this.carriere) {
+    if (this.carriere) {
       if (this.carriere.niveau == null || this.carriere.dateFinConstruction > maintenant) {
         return "50%";
       }
@@ -353,7 +357,7 @@ export class UsineComponent implements OnInit {
   }
   getOpacityCampDeBucheron() {
     var maintenant = new Date().getTime();
-    if(this.campDeBucheron) {
+    if (this.campDeBucheron) {
       if (this.campDeBucheron.niveau == null || this.campDeBucheron.dateFinConstruction > maintenant) {
         return "50%";
       }
@@ -361,7 +365,7 @@ export class UsineComponent implements OnInit {
   }
   getOpacityCampDeMineur() {
     var maintenant = new Date().getTime();
-    if(this.campDeMineur) {
+    if (this.campDeMineur) {
       if (this.campDeMineur.niveau == null || this.campDeMineur.dateFinConstruction > maintenant) {
         return "50%";
       }
@@ -369,12 +373,64 @@ export class UsineComponent implements OnInit {
   }
   getOpacityFerme() {
     var maintenant = new Date().getTime();
-    if(this.ferme) {
+    if (this.ferme) {
       if (this.ferme.niveau == null || this.ferme.dateFinConstruction > maintenant) {
         return "50%";
       }
     }
 
+  }
+
+  verificationTutorielEnCours() {
+    setTimeout(() => {
+      this.routerLinkActive.queryParams.subscribe(params => {
+        let modeTutoriel = params['tutoriel'];
+        if (modeTutoriel == "enCours") {
+          this.tutoriel();
+        }
+      });
+    }, 600);
+  }
+
+  // Partie 1 (Campement -> Centre de récolte)
+  tutoriel() {
+    var intro = introJs();
+    intro.setOptions({
+      disableInteraction: true,
+      showProgress: true,
+      nextLabel: 'Suivant',
+      prevLabel: 'Precedent',
+      doneLabel: 'Terminer',
+      tooltipClass: 'customTooltip',
+      steps: [
+        { // Annonce
+          intro: "Et voici le <b>centre de récolte</b> !",
+          showStepNumber: true
+        },
+        { // Bouton chasser
+          element: '#section_recolte_nourriture',
+          intro: "Votre ferme vous assure un apport régulier de nourriture.<br><br> Mais vous pouvez, de votre coté, participer activement à votre récolte depuis ce menu via un système de récolte-au-clic.",
+          showStepNumber: true
+        },
+        { // Bouton récupérer production
+          element: '#section_recuperer_production',
+          intro: "Une fois que vous aurez produit assez de ressource, vous n'aurez plus qu'a récupérer votre production.",
+          showStepNumber: true
+        },
+        { // Annonce de fin
+          intro: "À vous de jouer maintenant ! <br><br>Et pensez à construire vos bâtiments de récolte.",
+          showStepNumber: true
+        }, {
+          element: '#menu_tutoriel',
+          intro: "Oh, une dernière chose...<br><br> Si vous veniez à être perdu. Vous pourrez solociter mon aide en cliquant ici.<br><br> Je vous donnerai quelques informations concernant la page où vous vous trouverez.<br><br>Bon jeu !",
+          showStepNumber: true
+        }
+      ]
+    }).oncomplete(() => {
+
+    });
+
+    intro.start();
   }
 
 }

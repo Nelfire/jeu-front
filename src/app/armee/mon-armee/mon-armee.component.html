@@ -18,7 +18,7 @@
     <div>
         <ul class="honeycomb" lang="es">
             <li class="honeycomb-cell" *ngFor="let unitee of lesUnitees">
-                <div [ngbTooltip]="detailsUnite">
+                <div [ngbTooltip]="detailsUnite" id="unite{{unitee.id}}">
                     <a routerLink="../unitee/detail-unitee/{{unitee.id}}">
                         <div>
                             <!-- Quantitée d'unitées affichée si le joueur en possède -->

@@ -1,6 +1,6 @@
 <div class="detailExpedition" *ngIf="expedition">
     <div class="container">
-        <div class="card">
+        <div class="card" id="card_detail_expedition">
             <!-- ICONE -->
             <img src="{{expedition['icone']}}" class="card__image">
             <p class="card__name">{{expedition['libelle']}}</p>
@@ -9,8 +9,7 @@
             <p class="card__description">
                 {{expedition['descriptif']}}
             </p>
-            
-            
+
 
             <div class="row">
                 <div class="col-sm-12">
@@ -20,38 +19,43 @@
                 </div>
             </div>
             <!-- GAIN EXPERIENCE -->
-            <small>Expérience +<b>{{expedition['recompenseExperience']}}</b></small>
-            <div class="row">
-                <div class="col-sm-6">
-                    <p class="card__apport__ressource">
-                        Pierre : {{expedition['recompensePierre'] | thousandSuff:2}}
-                    </p>
-                </div>
-                <div class="col-sm-6">
-                    <p class="card__apport__ressource">
-                        Bois : {{expedition['recompenseBois'] | thousandSuff:2}}
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <p class="card__apport__ressource">
-                        Or : {{expedition['recompenseOr'] | thousandSuff:2}}
-                    </p>
-                </div>
-                <div class="col-sm-6">
-                    <p class="card__apport__ressource">
-                        Nourriture : {{expedition['recompenseNourriture'] | thousandSuff:2}}
-                    </p>
-                </div>
-            </div>
-            <p class="card__apport__ressource">
-                Gemme : {{expedition['recompenseGemme']}}
-            </p>
+            <span id="detail_expedition_experience">
+                <small>Expérience +<b>{{expedition['recompenseExperience']}}</b></small>
+            </span>
 
+            <span id="detail_expedition_recompense">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p class="card__apport__ressource">
+                            Pierre : {{expedition['recompensePierre'] | thousandSuff:2}}
+                        </p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="card__apport__ressource">
+                            Bois : {{expedition['recompenseBois'] | thousandSuff:2}}
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p class="card__apport__ressource">
+                            Or : {{expedition['recompenseOr'] | thousandSuff:2}}
+                        </p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="card__apport__ressource">
+                            Nourriture : {{expedition['recompenseNourriture'] | thousandSuff:2}}
+                        </p>
+                    </div>
+                </div>
+                <p class="card__apport__ressource">
+                    Gemme : {{expedition['recompenseGemme']}}
+                </p>
+            </span>
+            <!-- 
             <hr class="style-seven">
 
-            <!-- COUT -->
+            //COUT
             <div class="row">
                 <div class="col-sm-12">
                     <p class="card__categorie">
@@ -59,7 +63,7 @@
                     </p>
                 </div>
             </div>
-            <!-- PIERRE -->
+            //PIERRE
             <div class="row">
                 <div class="col-sm-6">
                     <p class="card__cout__ressource">
@@ -69,7 +73,7 @@
                         </span>
                     </p>
                 </div>
-                <!-- BOIS -->
+                //BOIS
                 <div class="col-sm-6">
                     <p class="card__cout__ressource">
                         Bois :
@@ -79,7 +83,7 @@
                     </p>
                 </div>
             </div>
-            <!-- OR -->
+            //OR
             <div class="row">
                 <div class="col-sm-6">
                     <p class="card__cout__ressource">
@@ -89,7 +93,7 @@
                         </span>
                     </p>
                 </div>
-                <!-- NOURRITURE -->
+                //NOURRITURE
                 <div class="col-sm-6">
                     <p class="card__cout__ressource">
                         Nourriture :
@@ -98,48 +102,51 @@
                         </span>
                     </p>
                 </div>
-            </div>
+            </div> -->
 
 
             <hr class="style-seven">
 
             <!-- STATISTIQUES DE L'EXPEDITION -->
-            <div class="row">
-                <div class="col-sm-12">
-                    <p class="card__categorie">
-                        Statistiques de l'expédition
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <p class="card__statistique">
-                        Vie : {{vieExpedition | thousandSuff:2}}
-                    </p>
-                </div>
-                <div class="col-sm-6">
-                    <p class="card__statistique">
-                        Attaque : {{degatsExpedition | thousandSuff:2}}
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <p class="card__statistique">
-                        Armure : {{armureExpedition | thousandSuff:2}}
-                    </p>
-                </div>
-                <div class="col-sm-6">
-                    <p class="card__statistique">
-                        Réussite : {{reussitePourcentage | number : '.0-2' }} %
-                    </p>
-                </div>
-            </div>
+            <span class="mb-3" id="detail_expedition_informations">
 
-            <!-- TEMPS DE L'EXPEDITION -->
-            <p class="card__temps__travail">
-                Temps Expédition : {{expedition['dureeExpedition'] | minuteSecondePipe: 's':'hhmmss'}}
-            </p>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p class="card__categorie center">
+                            Statistiques de l'expédition
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p class="card__statistique">
+                            Vie : {{vieExpedition | thousandSuff:2}}
+                        </p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="card__statistique">
+                            Attaque : {{degatsExpedition | thousandSuff:2}}
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p class="card__statistique">
+                            Armure : {{armureExpedition | thousandSuff:2}}
+                        </p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="card__statistique" id="detail_expedition_pourcentage">
+                            Réussite : {{reussitePourcentage | number : '.0-2' }} %
+                        </p>
+                    </div>
+                </div>
+
+                <!-- TEMPS DE L'EXPEDITION -->
+                <p class="card__temps__travail center">
+                    Temps Expédition : {{expedition['dureeExpedition'] | minuteSecondePipe: 's':'hhmmss'}}
+                </p>
+            </span>
 
             <!-- MESSAGES D'INFORMATION -->
             <!-- ERREUR-->
@@ -153,7 +160,7 @@
             </div>
         </div>
     </div>
-    <div class="divUnites">
+    <div class="divUnites" id="detail_expedition_unite">
 
         <!-- DIfférentes unitées du joueur -->
         <form [formGroup]="formEnvoiUniteesEnExpedition" (ngSubmit)="envoiExpedition()">
@@ -186,7 +193,7 @@
             <div *ngIf="niveauTableExpedition > compteurExpeditionJoueurEnCours; else upgadeBatimentNecessaire">
                 <div class="divCenter">
                     <button class="btn draw-border"
-                        [disabled]="formEnvoiUniteesEnExpedition.invalid ||clicked">{{messageBoutonEnvoiEnExpedition}}</button>
+                        [disabled]="formEnvoiUniteesEnExpedition.invalid ||clicked" id="detail_expedition_envoi">{{messageBoutonEnvoiEnExpedition}}</button>
                     <a routerLink="/expedition">
                         <button class="btn draw-border-error">Retour</button>
                     </a>

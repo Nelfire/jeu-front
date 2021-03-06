@@ -18,99 +18,113 @@
             </p>
 
             <!-- GAIN EXPERIENCE -->
-            <small>Expérience +<b>{{apportExperience | number}}</b></small>
+            <span id="experience_defense">
+                <small>Expérience +<b>{{apportExperience | number}}</b></small>
+            </span>
 
             <!-- STATISTIQUES  -->
             <!-- VIE -->
-            <div class="row">
-                <div class="col-sm-6">
-                    <p class="card__statistique">
-                        Vie :
-                        <span ngbTooltip="{{defense['vie'] | number}}">
-                            <b>{{defense['vie'] | thousandSuff:2}}</b>
-                        </span>
-                    </p>
+            <span id="statistiques_defense">
+
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p class="card__statistique">
+                            Vie :
+                            <span ngbTooltip="{{defense['vie'] | number}}">
+                                <b>{{defense['vie'] | thousandSuff:2}}</b>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="card__statistique">
+                            Attaque :
+                            <span ngbTooltip="{{defense['attaque'] | number}}">
+                                <b>{{defense['attaque'] | thousandSuff:2}}</b>
+                            </span>
+                        </p>
+                    </div>
                 </div>
-                <div class="col-sm-6">
-                    <p class="card__statistique">
-                        Attaque :
-                        <span ngbTooltip="{{defense['attaque'] | number}}">
-                            <b>{{defense['attaque'] | thousandSuff:2}}</b>
-                        </span>
-                    </p>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p class="card__statistique">
+                            Portée :
+                            <span ngbTooltip="{{defense['portee'] | number}}">
+                                <b>{{defense['portee'] | thousandSuff:2}}</b>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="card__statistique">
+                            Armure :
+                            <span ngbTooltip="{{defense['armure'] | number}}">
+                                <b>{{defense['armure'] | thousandSuff:2}}</b>
+                            </span>
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <p class="card__statistique">
-                        Portée :
-                        <span ngbTooltip="{{defense['portee'] | number}}">
-                            <b>{{defense['portee'] | thousandSuff:2}}</b>
-                        </span>
-                    </p>
-                </div>
-                <div class="col-sm-6">
-                    <p class="card__statistique">
-                        Armure :
-                        <span ngbTooltip="{{defense['armure'] | number}}">
-                            <b>{{defense['armure'] | thousandSuff:2}}</b>
-                        </span>
-                    </p>
-                </div>
-            </div>
+            </span>
 
             <!-- COUT -->
-            <div class="row">
-                <div class="col-sm-12">
-                    <p class="card__categorie">
-                        Coût
-                    </p>
+            <span id="cout_defense">
+
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p class="card__categorie center">
+                            Coût
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <!-- PIERRE -->
-            <div class="row">
-                <div class="col-sm-6">
-                    <p class="card__cout__ressource">
-                        Pierre :
-                        <span [ngStyle]="{color:getColorRessourceManquantePierre()}" ngbTooltip="{{coutPierreConstruction | number}}">
-                            <b>{{coutPierreConstruction | thousandSuff:2}}</b>
-                        </span>
-                    </p>
+                <!-- PIERRE -->
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p class="card__cout__ressource">
+                            Pierre :
+                            <span [ngStyle]="{color:getColorRessourceManquantePierre()}"
+                                ngbTooltip="{{coutPierreConstruction | number}}">
+                                <b>{{coutPierreConstruction | thousandSuff:2}}</b>
+                            </span>
+                        </p>
+                    </div>
+                    <!-- BOIS -->
+                    <div class="col-sm-6">
+                        <p class="card__cout__ressource">
+                            Bois :
+                            <span [ngStyle]="{color:getColorRessourceManquanteBois()}"
+                                ngbTooltip="{{coutBoisConstruction | number}}">
+                                <b>{{coutBoisConstruction | thousandSuff:2}}</b>
+                            </span>
+                        </p>
+                    </div>
                 </div>
-                <!-- BOIS -->
-                <div class="col-sm-6">
-                    <p class="card__cout__ressource">
-                        Bois :
-                        <span [ngStyle]="{color:getColorRessourceManquanteBois()}" ngbTooltip="{{coutBoisConstruction | number}}">
-                            <b>{{coutBoisConstruction | thousandSuff:2}}</b>
-                        </span>
-                    </p>
+                <!-- OR -->
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p class="card__cout__ressource">
+                            Or :
+                            <span [ngStyle]="{color:getColorRessourceManquanteOr()}"
+                                ngbTooltip="{{coutOrConstruction | number}}">
+                                <b>{{coutOrConstruction | thousandSuff:2}}</b>
+                            </span>
+                        </p>
+                    </div>
+                    <!-- NOURRITURE -->
+                    <div class="col-sm-6">
+                        <p class="card__cout__ressource">
+                            Nourriture :
+                            <span [ngStyle]="{color:getColorRessourceManquanteNourriture()}"
+                                ngbTooltip="{{coutNourritureConstruction | number}}">
+                                <b>{{coutNourritureConstruction | thousandSuff:2}}</b>
+                            </span>
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <!-- OR -->
-            <div class="row">
-                <div class="col-sm-6">
-                    <p class="card__cout__ressource">
-                        Or :
-                        <span [ngStyle]="{color:getColorRessourceManquanteOr()}" ngbTooltip="{{coutOrConstruction | number}}">
-                            <b>{{coutOrConstruction | thousandSuff:2}}</b>
-                        </span>
-                    </p>
-                </div>
-                <!-- NOURRITURE -->
-                <div class="col-sm-6">
-                    <p class="card__cout__ressource">
-                        Nourriture :
-                        <span [ngStyle]="{color:getColorRessourceManquanteNourriture()}" ngbTooltip="{{coutNourritureConstruction | number}}">
-                            <b>{{coutNourritureConstruction | thousandSuff:2}}</b>
-                        </span>
-                    </p>
-                </div>
-            </div>
-            <!-- TEMPS DE CONSTRUCTION -->
-            <p class="card__temps__travail">
-                Temps de construction : <b>{{tempsConstruction | minuteSecondePipe: 's':'hhmmss'}}</b>
-            </p>
+                <!-- TEMPS DE CONSTRUCTION -->
+                <p class="card__temps__travail center">
+                    Temps de construction : <b>{{tempsConstruction | minuteSecondePipe: 's':'hhmmss'}}</b>
+                </p>
+            </span>
 
             <!-- Si le joueur possède le bâtiment -->
             <span *ngIf="joueurPossedeBatiment; else possedePas">

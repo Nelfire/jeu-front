@@ -2,7 +2,7 @@
   <!-- Affichage mode construction -->
   <div *ngIf="modeConstructionAmelioration=='construction'">
     <div class="container">
-      <div class="card" id="etape11">
+      <div class="card" id="section_batiment">
         <!-- ICONE -->
         <img src="{{batiment['icone']}}" alt="Person" class="card__image">
         <p class="card__name"><b>{{batiment['libelle']}}</b></p>
@@ -154,52 +154,55 @@
             </p>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-6">
-            <p class="card__cout__ressource">
-              Pierre :
-              <span [ngStyle]="{color:getColorRessourceManquantePierreBatiment()}"
-                ngbTooltip="{{batiment['coutPierreConstruction'] | number}}">
-                <b>{{batiment['coutPierreConstruction'] | thousandSuff:2}}</b>
-              </span>
-            </p>
+        <span id="section_cout_construction">
+          <div class="row">
+            <div class="col-sm-6">
+              <p class="card__cout__ressource">
+                Pierre :
+                <span [ngStyle]="{color:getColorRessourceManquantePierreBatiment()}"
+                  ngbTooltip="{{batiment['coutPierreConstruction'] | number}}">
+                  <b>{{batiment['coutPierreConstruction'] | thousandSuff:2}}</b>
+                </span>
+              </p>
+            </div>
+            <div class="col-sm-6">
+              <p class="card__cout__ressource">
+                Bois :
+                <span [ngStyle]="{color:getColorRessourceManquanteBoisBatiment()}"
+                  ngbTooltip="{{batiment['coutBoisConstruction'] | number}}">
+                  <b>{{batiment['coutBoisConstruction'] | thousandSuff:2}}</b>
+                </span>
+              </p>
+            </div>
           </div>
-          <div class="col-sm-6">
-            <p class="card__cout__ressource">
-              Bois :
-              <span [ngStyle]="{color:getColorRessourceManquanteBoisBatiment()}"
-                ngbTooltip="{{batiment['coutBoisConstruction'] | number}}">
-                <b>{{batiment['coutBoisConstruction'] | thousandSuff:2}}</b>
-              </span>
-            </p>
+          <div class="row">
+            <div class="col-sm-6">
+              <p class="card__cout__ressource">
+                Or :
+                <span [ngStyle]="{color:getColorRessourceManquanteOrBatiment()}"
+                  ngbTooltip="{{batiment['coutOrConstruction'] | number}}">
+                  <b>{{batiment['coutOrConstruction'] | thousandSuff:2}}</b>
+                </span>
+              </p>
+            </div>
+            <div class="col-sm-6">
+              <p class="card__cout__ressource">
+                Nourriture :
+                <span [ngStyle]="{color:getColorRessourceManquanteNourritureBatiment()}"
+                  ngbTooltip="{{batiment['coutNourritureConstruction'] | number}}">
+                  <b>{{batiment['coutNourritureConstruction'] | thousandSuff:2}}</b>
+                </span>
+              </p>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6">
-            <p class="card__cout__ressource">
-              Or :
-              <span [ngStyle]="{color:getColorRessourceManquanteOrBatiment()}"
-                ngbTooltip="{{batiment['coutOrConstruction'] | number}}">
-                <b>{{batiment['coutOrConstruction'] | thousandSuff:2}}</b>
-              </span>
-            </p>
-          </div>
-          <div class="col-sm-6">
-            <p class="card__cout__ressource">
-              Nourriture :
-              <span [ngStyle]="{color:getColorRessourceManquanteNourritureBatiment()}"
-                ngbTooltip="{{batiment['coutNourritureConstruction'] | number}}">
-                <b>{{batiment['coutNourritureConstruction'] | thousandSuff:2}}</b>
-              </span>
-            </p>
-          </div>
-        </div>
 
-        <!-- TEMPS DE CONSTRUCTION -->
-        <p class="card__temps__travail">
-          <b>Temps de construction : </b>
-          <b>{{batiment['tempsDeConstruction'] | minuteSecondePipe: 's':'hhmmss'}}</b>
-        </p>
+
+          <!-- TEMPS DE CONSTRUCTION -->
+          <p class="card__temps__travail center">
+            <b>Temps de construction : </b>
+            <b>{{batiment['tempsDeConstruction'] | minuteSecondePipe: 's':'hhmmss'}}</b>
+          </p>
+        </span>
 
         <!-- BOUTONS -->
         <div class="row">
@@ -215,7 +218,7 @@
               </a>
             </div>
             <!-- OK : CONSTRUIRE -->
-            <ng-template #constructionPossible>
+            <ng-template #constructionPossible id="section_construire">
               <button class="btn draw-border" (click)="construire()">Construire</button>
             </ng-template>
           </div>
@@ -294,7 +297,7 @@
             </ng-template>
 
 
-            <div class="mt-3">
+            <div class="mt-3" id="section_temps_restant">
               <hr class="style-seven">
               <p class="card__progress_bar_text">Temps restant : {{result}}</p>
 
@@ -306,7 +309,7 @@
 
             <!-- ACCELERATION GEMMES -->
             <div class="center">
-              <button class="btn draw-border" (click)="acceleration()">Accélérer <br>({{montantGemmeAcceleration}}
+              <button class="btn draw-border" (click)="acceleration()" id="section_accelerer_construction">Accélérer <br>({{montantGemmeAcceleration}}
                 Gemmes)</button>
             </div>
             <!-- RETOUR -->

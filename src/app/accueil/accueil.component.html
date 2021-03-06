@@ -1,5 +1,5 @@
-<div class="accueil container">
-	<div class="divider-custom divider-light" *ngIf="infosJoueur">
+<div class="accueil container" *ngIf="infosJoueur">
+	<div class="divider-custom divider-light" >
 		<div class="divider-custom-line"></div>
 		<div class="divider-custom-titre">Bienvenue {{infosJoueur.pseudo}}</div>
 		<div class="divider-custom-line"></div>
@@ -11,7 +11,7 @@
 
 			Bienvenue aventurier. Je suis <b>Exeroth</b>, je gouverne sur le monde <b>d'Aphiaros</b> .<br><br>
 
-			J'ai besoin de votre aide. Une mystérieuse force envahis petit à petit mon monde.<br><br>
+			J'ai besoin de votre aide. Une mystérieuse force envahit petit à petit mon monde.<br><br>
 
 			Pour que vous puissiez me venir en aide, je vous octroie une parcelle de terrain en <b><a routerLink="/carte">[{{infosJoueur.positionX}},{{infosJoueur.positionY}}]</a></b> sur laquelle vous pourrez
 			construire divers <b>bâtiments</b>, <b>structures de défenses</b> et <b>unités de combat</b>.<br><br>
@@ -21,7 +21,7 @@
 			que vous cachez dans votre campement... <br><br>
 
 
-			Je vous fais dons de <b>1 000</b> unitées de <b class="pierre">Pierre</b>, de
+			Je vous fais don de <b>10 000</b> unités de <b class="pierre">Pierre</b>, de
 			<b class="bois">Bois</b>, d'<b class="or">Or</b>, de <b class="nourriture">Nourriture</b> et quelques <b
 				class="gemme">Gemmes</b>. <br><br>
 
@@ -34,10 +34,9 @@
 					routerLink="/armee">mercenaires</a></b> pour vous aider à mener à bien votre épique aventure au
 			travers <b><a routerLink="/expedition">d'expéditions</a></b>.
 			<br><br>
-			Bon courage ! Vous êtes mon seul espoir.
+			Bon courage ! Vous êtes mon seul espoir.<br><br>
+			<button class="btn btn-info" (click)="lancementTutoriel()">Lancer le tutoriel</button>
 		</p>
 		<div id="image"></div>
 	</div>
-
-
 </div>
