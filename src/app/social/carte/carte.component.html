@@ -4,4 +4,36 @@
         <div class="divider-custom-titre">Carte du monde</div>
         <div class="divider-custom-line"></div>
     </div>
+
+    <table style="background-color: rgba(168, 168, 168, 0.445);">
+        <tr *ngFor="let number of numbers;let index  = index">
+            <td class="center"><b>{{index}}</b></td>
+            <td *ngFor="let number of numbers" class="center">
+                <b *ngIf="index==0" >{{number}}</b>
+                <div *ngFor="let joueur of listeJoueurs">
+                    <b *ngIf="index==joueur.positionX && number==joueur.positionY">
+                        <span *ngIf="joueur.id==joueurConnecte.id; else autre;" style="background-color: rgba(252, 255, 88, 0.815);"  ngbTooltip="Votre position">
+                            <img src="{{joueur.icone}}" style="width: 25px;">
+                        </span>
+                        <ng-template #autre >
+                            <span style="background-color: rgba(88, 160, 255, 0.815);" [ngbTooltip]="informationJoueur">
+                                <img src="{{joueur.icone}}" style="width: 25px;">
+                            </span>
+                        </ng-template>
+                        <ng-template #informationJoueur>
+                            <div class="d-flex flex-column">
+                                <span><b><u>Informations du joueur</u></b></span><br>
+                                <span><b>Pseudo : </b> {{joueur.pseudo}}</span>
+                                <span><b>Niveau : </b> {{joueur.niveau}}</span>
+                                <span><b>Position : </b> [{{joueur.positionX}},{{joueur.positionY}}]</span><br>
+                                <span><b><u>ESPIONNER</u> | <u>ATTAQUER</u> </b></span>
+                                <span>(à venir)</span>
+                                
+                            </div>
+                        </ng-template>
+                    </b>
+                </div>
+            </td>
+        </tr>
+    </table>
 </div>

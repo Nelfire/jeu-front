@@ -1,3 +1,13 @@
 .carte {
-    margin-top: 6%;
+  margin-top: 6%;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+}
+td {
+  width: 85px;
+  height: 40px;
 }

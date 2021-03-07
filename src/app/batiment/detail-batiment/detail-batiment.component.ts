@@ -19,6 +19,7 @@ import { HeaderComponent } from 'src/app/header/header.component';
 import { GenerationRessourcesService } from 'src/app/service/generation-ressources.service';
 import { ArmeeService } from 'src/app/service/armee-joueur.service';
 import * as introJs from 'intro.js/intro.js';
+import { TutorielService } from 'src/app/service/tutoriel.service';
 
 
 // the second parameter 'fr' is optional
@@ -68,7 +69,8 @@ export class DetailBatimentComponent implements OnInit {
     private joueurService: JoueurService,
     private notification: NotificationService,
     private generationRessourcesService: GenerationRessourcesService,
-    private armeeService: ArmeeService) { }
+    private armeeService: ArmeeService,
+    private tutorielService: TutorielService) { }
 
   ngOnInit(): void {
     // Détection niveau HDV
@@ -334,16 +336,16 @@ export class DetailBatimentComponent implements OnInit {
       this.routerLinkActive.queryParams.subscribe(params => {
         let modeTutoriel = params['tutoriel'];
         if (modeTutoriel == "enCours") {
-          this.tutoriel();
+          this.tutorielPartie3();
         } else if (modeTutoriel == "enCoursP2") {
-          this.tutoriel3();
+          this.tutorielPartie7();
         }
       });
     }, 600);
   }
 
-  // Tutoriel partie 1 (Campement -> Détail bâtiment HDV)
-  tutoriel() {
+  // [TUTORIEL GUIDE] - [PARTIE 3] - (Campement -> Détail HDV)
+  tutorielPartie3() {
     var intro = introJs();
     intro.setOptions({
       disableInteraction: true,
@@ -356,19 +358,19 @@ export class DetailBatimentComponent implements OnInit {
         {
           // Présentation card
           element: '#section_batiment',
-          intro: "Voilà le bâtiment le plus important de votre campement : <strong>L'Hôtel de ville</strong>.<br><br> Il vous permettra de débloquer diverse constructions et vous assurera un apport régulier de ressources.",
+          intro: "Voilà le bâtiment le plus important de votre campement : <strong>L'Hôtel de ville</strong>.<br><br> Il vous permettra de <b>débloquer</b> diverses constructions et vous assurera un <b>apport</b> régulier de ressources.",
           showStepNumber: true
         },
         {
           // Coûts de construction
           element: '#section_cout_construction',
-          intro: "Pour pouvoir lancer la construction d'un bâtiment, il vous sera necessaire d'utiliser quelques <b>ressources</b>. <br><br> Un temps de construction est également à prévoir.<br><br> Plus le <b>niveau</b> du bâtiment sera élevé, plus le <b>temps de construction</b> sera élevé lui aussi !",
+          intro: "Pour pouvoir lancer la construction d'un bâtiment, il vous sera nécessaire d'utiliser quelques <b>ressources</b>. <br><br> Un temps de construction est également à prévoir.<br><br> Plus le <b>niveau</b> du bâtiment sera élevé, plus le <b>temps de construction</b> sera élevé lui aussi !",
           showStepNumber: true
         },
         {
           // Bouton construire
           element: '#section_construire',
-          intro: "Lançons la constructions ensemble !",
+          intro: "Lançons la construction ensemble !",
           showStepNumber: true
         }
       ]
@@ -378,15 +380,15 @@ export class DetailBatimentComponent implements OnInit {
       this.construire();
 
       // Lancer le deuxieme tutoriel de la page
-      this.tutoriel2();
+      this.tutorielPartie4();
     });
 
     // Lancement
     intro.start();
   }
 
-  // Tutoriel partie 2 (Détail bâtiment HDV [Construire] -> Détail bâtiment HDV [En cours])
-  tutoriel2() {
+  // [TUTORIEL GUIDE] - [PARTIE 4] - (Détail HDV [construction] -> Détail HDV [améllioration])
+  tutorielPartie4() {
     setTimeout(() => {
       var intro = introJs();
       intro.setOptions({
@@ -406,14 +408,15 @@ export class DetailBatimentComponent implements OnInit {
           {
             // Bouton acceleration avec gemmes
             element: '#section_accelerer_construction',
-            intro: "... Ou bien vous pouvez utiliser vos <b>gemmes</b> pour achever instantanément la construction. <br><br>Je vous en ai offert quelques unes, essayez !",
+            intro: "... Ou bien vous pouvez utiliser vos <b>gemmes</b> pour achever instantanément la construction. <br><br>Je vous en ai offert quelques-unes, essayez !",
             showStepNumber: true
           }
         ]
         // Tutoriel terminé. Détail bâtiment HDV [En cours] -> Campement
       }).oncomplete(() => {
         // Utilisation gemmes
-        this.batimentJoueurService.accelerationConstructionBatiment(this.batimentJoueurPossede.id).subscribe(
+        var idTypeBatiment = this.routerLinkActive.snapshot.params['idTypeBatiment'];
+        this.batimentJoueurService.accelerationConstructionBatiment(idTypeBatiment).subscribe(
           () => {
             this.notification.showSuccess("Amélioration terminée", "Succès !");
             this.router.navigate(['campement'], { queryParams: { tutoriel: 'enCoursP2' } });
@@ -426,8 +429,9 @@ export class DetailBatimentComponent implements OnInit {
     }, 600);
   }
 
-  // Tutoriel partie 3 (Campement -> Détail bâtiment FERME [Construire])
-  tutoriel3() {
+
+  // [TUTORIEL GUIDE] - [PARTIE 7] -  (Campement -> Détail bâtiment FERME [Construire])
+  tutorielPartie7() {
     setTimeout(() => {
       var intro = introJs();
       intro.setOptions({
@@ -449,14 +453,14 @@ export class DetailBatimentComponent implements OnInit {
       }).oncomplete(() => {
         // Utilisation gemmes
         this.construire();
-        this.tutoriel4();
+        this.tutorielPartie8();
       });
       intro.start();
     }, 600);
   }
 
-  // Tutoriel partie 4 (Détail bâtiment FERME [Construire] -> Détail bâtiment FERME [En cours])
-  tutoriel4() {
+  // [TUTORIEL GUIDE] - [PARTIE 8] -  (Détail bâtiment FERME [Construire] -> Détail bâtiment FERME [En cours])
+  tutorielPartie8() {
     setTimeout(() => {
       var intro = introJs();
       intro.setOptions({
