@@ -196,7 +196,7 @@ input[type="password"] {
 }
 
 div.wrapper {
-  min-height: 90vh;
+  min-height: 80vh;
 }
 
 input[type="password"]:focus {
@@ -349,15 +349,14 @@ input[type="password"]:placeholder {
 }
 
 .logo {
-  background: url("../../images/logo.png")
-    no-repeat center center;
+  background: url("../../images/logo.png") no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: contain;
   width: 130px;
   height: 130px;
-  
+
   margin: 0 auto;
   margin-top: 20px;
 }

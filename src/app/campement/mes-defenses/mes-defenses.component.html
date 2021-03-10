@@ -1,18 +1,21 @@
 <div class="defense">
 
-    <!-- titre page -->
+    <!-- TITRE -->
     <div class="divider-custom divider-light">
         <div class="divider-custom-line"></div>
         <div class="divider-custom-titre">DEFENSES</div>
         <div class="divider-custom-line"></div>
     </div>
-	<div class="boutons divCenter">
-		<button class="btn btn-success m-3" (click)="defensesToutes()">Toutes</button>
-		<button class="btn btn-success m-3" (click)="defensesOffensive()">Offensive</button>
-		<button class="btn btn-success m-3" (click)="defensesDefensive()">Défensive</button>
-	</div>
+
+    <!-- FILTRE TYPE DE DEFENSE -->
+    <div class="boutons divCenter">
+        <button class="btn btn-success m-3" (click)="defensesToutes()">Toutes</button>
+        <button class="btn btn-success m-3" (click)="defensesOffensive()">Offensive</button>
+        <button class="btn btn-success m-3" (click)="defensesDefensive()">Défensive</button>
+    </div>
     <div>
         <ul class="honeycomb" lang="es">
+            <!-- LISTE TOUTES LES DEFENSES-->
             <li class="honeycomb-cell" *ngFor="let defense of lesDefenses">
                 <div [ngbTooltip]="detailsDefense">
                     <a routerLink="../defense/detail-defense/{{defense.id}}">
@@ -30,9 +33,7 @@
                             <br>
                         </div>
                         <!-- Boutons -->
-                        <!---->
                         <span *ngIf="defense.flagPossedeBatimentNecessaireConstructionDefense">
-
                             <span *ngIf="defense.flagBatimentDefenseEnCoursDeConstruction; else suite;">
                                 <a routerLink="../batiment/detail-batiment/{{defense.idBatimentProvenance}}">
                                     <button class="btn btn-warning">Bâtiment en cours de travail</button>
@@ -41,16 +42,13 @@
                             <ng-template #suite>
                                 <span *ngIf="!defense.flagNiveauBatimentNecessaireConstructionDefenseAssezEleve">
                                     <a routerLink="../batiment/detail-batiment/{{defense.idBatimentProvenance}}">
-                                        <button class="btn btn-warning">Chantier <b>{{defense.niveauBatimentNecessaireConstruction}}</b> nécessaire</button>
+                                        <button class="btn btn-warning">Chantier
+                                            <b>{{defense.niveauBatimentNecessaireConstruction}}</b> nécessaire</button>
                                     </a>
                                 </span>
                             </ng-template>
-
-
-
                         </span>
                         <!-- SI NIVEAU BÂTIMENT DE PROVENCANT INSUFFISANT-->
-
                         <!-- SI BÂTIMENT PAS ENCORS ACQUIS-->
                         <span *ngIf="!defense.flagPossedeBatimentNecessaireConstructionDefense">
                             <a routerLink="../batiment/detail-batiment/{{defense.idBatimentProvenance}}">
@@ -70,21 +68,35 @@
                         </span>
                     </a>
                 </div>
+                <!-- TOOLTIP -->
                 <ng-template #detailsDefense>
                     <div class="d-flex flex-column">
                         <span><b>- COÛT -</b></span>
-                        <span><b>Pierre : </b> <span> <b [ngStyle]="{'color':getColorRessourceManquantePierreConstructionDefense(defense.id)}">{{defense.coutPierreConstruction | number}}</b></span></span>
-                        <span><b>Bois : </b> <b [ngStyle]="{'color':getColorRessourceManquanteBoisConstructionDefense(defense.id)}">{{defense.coutBoisConstruction | number}}</b></span>
-                        <span><b>Or : </b> <b [ngStyle]="{'color':getColorRessourceManquanteOrConstructionDefense(defense.id)}">{{defense.coutOrConstruction | number}}</b></span>
-                        <span><b>Nourriture : </b> <b [ngStyle]="{'color':getColorRessourceManquanteNourritureConstructionDefense(defense.id)}">{{defense.coutNourritureConstruction | number}}</b></span>
-                        <span><b>Temps : </b> <b>{{defense.tempsConstruction | minuteSecondePipe: 's':'hhmmss'}}</b></span>
+                        <span><b>Pierre : </b> <span> <b
+                                    [ngStyle]="{'color':getColorRessourceManquantePierreConstructionDefense(defense.id)}">{{defense.coutPierreConstruction
+                                    | number}}</b></span></span>
+                        <span><b>Bois : </b> <b
+                                [ngStyle]="{'color':getColorRessourceManquanteBoisConstructionDefense(defense.id)}">{{defense.coutBoisConstruction
+                                | number}}</b></span>
+                        <span><b>Or : </b> <b
+                                [ngStyle]="{'color':getColorRessourceManquanteOrConstructionDefense(defense.id)}">{{defense.coutOrConstruction
+                                | number}}</b></span>
+                        <span><b>Nourriture : </b> <b
+                                [ngStyle]="{'color':getColorRessourceManquanteNourritureConstructionDefense(defense.id)}">{{defense.coutNourritureConstruction
+                                | number}}</b></span>
+                        <span><b>Temps : </b> <b>{{defense.tempsConstruction | minuteSecondePipe:
+                                's':'hhmmss'}}</b></span>
 
                         <br>
                         <span><b>- STATS -</b></span>
-                        <span><i class="fa fa-heart" aria-hidden="true"></i> <b> Vie : </b> <b>{{defense.vie | number}}</b></span>
-                        <span><i class="fa fa-gavel" aria-hidden="true"></i> <b> Attaque : </b> <b>{{defense.attaque | number}}</b></span>
-                        <span><i class="fa fa-crosshairs" aria-hidden="true"></i> <b> Portée : </b> <b>{{defense.portee | number}}</b></span>
-                        <span><i class="fa fa-shield" aria-hidden="true"></i> <b> Armure : </b> <b>{{defense.armure | number}} </b></span>
+                        <span><i class="fa fa-heart" aria-hidden="true"></i> <b> Vie : </b> <b>{{defense.vie |
+                                number}}</b></span>
+                        <span><i class="fa fa-gavel" aria-hidden="true"></i> <b> Attaque : </b> <b>{{defense.attaque |
+                                number}}</b></span>
+                        <span><i class="fa fa-crosshairs" aria-hidden="true"></i> <b> Portée : </b> <b>{{defense.portee
+                                | number}}</b></span>
+                        <span><i class="fa fa-shield" aria-hidden="true"></i> <b> Armure : </b> <b>{{defense.armure |
+                                number}} </b></span>
                     </div>
                 </ng-template>
             </li>

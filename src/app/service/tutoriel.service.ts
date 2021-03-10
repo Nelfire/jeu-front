@@ -7,6 +7,7 @@ import * as introJs from 'intro.js/intro.js';
 })
 export class TutorielService {
 
+  // CONSTRUCTEUR
   constructor(private router: Router) { }
 
   /////////////////////
@@ -223,12 +224,12 @@ export class TutorielService {
         steps: [
           { // Barre ressource nourriture
             element: '#ressource_nourriture',
-            intro: "Vous avez désormais une <b>ferme</b> fonctionnelle qui produit maintenant de la <b class='nourriture'>nourriture</b>.",
+            intro: "Vous avez désormais une <b>ferme</b> fonctionnelle qui produit constamment de la <b class='nourriture'>nourriture</b>.",
             showStepNumber: true
           },
           { // Barre ressource nourriture (limite)
             element: '#ressource_nourriture_limite',
-            intro: "Au-delà d'une certaine limite, vos reserves seront <b>pleines</b>. Pensez à construire des <b>structures de stockage</b>.",
+            intro: "Au-delà d'une certaine limite, vos reserves seront <b>pleines</b>.<br><br> Pensez à construire des <b>structures de stockage</b>.",
             showStepNumber: true
           },
           { // Centre de récolte
@@ -275,10 +276,10 @@ export class TutorielService {
         { // Annonce de fin
           intro: "À vous de jouer maintenant ! <br><br>Et pensez à construire vos <b>bâtiments de récolte</b>.",
           showStepNumber: true
-        }, 
+        },
         {
           element: '#menu_tutoriel',
-          intro: "Oh, une dernière chose...<br><br> Si vous veniez à être perdu. Vous pourrez solociter mon <b>aide</b> en cliquant ici.<br><br> Je vous donnerai quelques <b>informations</b> concernant la page où vous vous trouverez.<br><br>Bon jeu !",
+          intro: "Oh, une dernière chose...<br><br> Si vous veniez à être perdu. Vous pourrez solociter mon <b>aide</b> en cliquant ici.<br><br> Je vous donnerai quelques <b>informations</b> concernant la page où vous vous trouvez.<br><br>Bon jeu !",
           showStepNumber: true
         }
       ]
@@ -490,6 +491,35 @@ export class TutorielService {
     intro.start();
   }
 
+  tutorielDetailBatiment() {
+    var intro = introJs();
+    intro.setOptions({
+      disableInteraction: true,
+      showProgress: true,
+      nextLabel: 'Suivant',
+      prevLabel: 'Precedent',
+      doneLabel: 'Compris !',
+      tooltipClass: 'customTooltip',
+      steps: [
+        {
+          // Présentation card
+          element: '#section_batiment',
+          intro: "Ceci est un <b>bâtiment</b> que vous pouvez construire dans votre <b>campement</b>.",
+          showStepNumber: true
+        },
+        {
+          // Coûts de construction
+          element: '#section_cout_construction',
+          intro: "Pour pouvoir lancer la construction d'un bâtiment, il vous sera nécessaire d'utiliser quelques <b>ressources</b>. <br><br> Un temps de construction est également à prévoir.<br><br> Plus le <b>niveau</b> du bâtiment sera élevé, plus le <b>temps de construction</b> sera élevé lui aussi !",
+          showStepNumber: true
+        }
+      ]
+    });
+
+    // Lancement
+    intro.start();
+  }
+
   // Tutoriel Détail Défense
   tutorielDetailDefense() {
     var intro = introJs();
@@ -684,6 +714,68 @@ export class TutorielService {
     intro.start();
   }
 
+  tutorielDetailCampagne() {
+    var intro = introJs();
+    intro.setOptions({
+      disableInteraction: true,
+      showProgress: true,
+      nextLabel: 'Suivant',
+      prevLabel: 'Precedent',
+      doneLabel: 'Compris !',
+      tooltipClass: 'customTooltip',
+      steps: [
+        { // Présentation vue
+          element: "#card_detail_campagne",
+          intro: "Ceci est une <b>campagne</b>.",
+          showStepNumber: true
+        },
+        {
+          element: "#detail_campagne_recompense",
+          intro: "Si vous menez à bien le combat, vous recevrez <b>diverses récompenses</b>.",
+          showStepNumber: true
+        },
+        {
+          element: "#detail_campagne_experience",
+          intro: "En cas de <b>succès</b>, le combat vous rapportera également beaucoup de points d'<b>expérience</b>.",
+          showStepNumber: true
+        },
+        {
+          element: "#detail_campagne_informations",
+          intro: "Vous retrouverez là les <b>informations</b> concernant le combat, ainsi que le <b>temps</b> durant lequel vos troupes partiront se battre.",
+          showStepNumber: true
+        },
+        {
+          element: "#detail_campagne_composition_adverse",
+          intro: "Ci-contre sont affichés les <b>unités adverse</b> contre lesquelles vous allez devoir vous <b>battre</b>.",
+          showStepNumber: true
+        },
+        {
+          element: "#detail_campagne_pourcentage",
+          intro: "Il s'agit là du <b>pourcentage de réussite</b> que vous avez de sortir <b>victorieux</b> du combat.<br><br>Plus vous enverrez de troupe réaliser le combat, plus vous infligerez de dégâts et le <b>taux de réussite augmentera</b>.<br><br> Votre but étant de <b>réduire à 0</b> les points de vie des troupes adverse pour avoir <b>100% de réussite</b>.",
+          showStepNumber: true
+        },
+        {
+          intro: "Prenez garde !<br><br> Un combat <b>échoué</b> entrainera la <b>perte</b> des unités que vous avez envoyées pour la réaliser.",
+          showStepNumber: true
+        },
+        {
+          element: "#detail_campagne_unite",
+          intro: "Ci-dessous, ce sont toutes les <b>unités</b> que vous possédez, que vous pouvez envoyer pour réaliser le combat.<br><br> Les points de vie restante aux unités adverses sont automatiquement recalculés lorsque vous ajoutez des unités au combat.",
+          showStepNumber: true
+        },
+        {
+          element: "#detail_campagne_envoi",
+          intro: "Lorsque vos troupes sont <b>prêtes</b>, il ne reste plus qu'à les <b>envoyer au combat</b>.",
+          showStepNumber: true
+        }
+
+      ]
+    });
+
+    // Lancement
+    intro.start();
+  }
+
   tutorielDetailExpedition() {
     var intro = introJs();
     intro.setOptions({
@@ -716,11 +808,11 @@ export class TutorielService {
         },
         {
           element: "#detail_expedition_pourcentage",
-          intro: "Il s'agit là du <b>pourcentage de réussite</b> que vous avez de sortir <b>victorieux</b> du combat.<br><br>Plus vous enverrez de troupe réaliser cette expédition, plus le <b>taux sera élevé</b>.<br><br> Votre but étant de <b>réduire à 0</b> les points de vie de l'expédition pour avoir <b>100% de réussite</b>.",
+          intro: "Il s'agit là du <b>pourcentage de réussite</b> que vous avez de sortir <b>victorieux</b> du combat.<br><br>Plus vous enverrez de troupe réaliser le combat, plus vous infligerez de dégâts et le <b>taux de réussite augmentera</b>.<br><br> Votre but étant de <b>réduire à 0</b> les points de vie de l'expédition pour avoir <b>100% de réussite</b>.",
           showStepNumber: true
         },
         {
-          intro: "Prenez garde !<br><br> Une expédition <b>échouée</b> entrainera la <b>perte</b> des unités que vous avez envoyée pour la réaliser.",
+          intro: "Prenez garde !<br><br> Une expédition <b>échouée</b> entrainera la <b>perte</b> des unités que vous avez envoyées pour la réaliser.",
           showStepNumber: true
         },
         {
@@ -730,7 +822,7 @@ export class TutorielService {
         },
         {
           element: "#detail_expedition_envoi",
-          intro: "Lorsque vos troupes sont <b>prêtes</b>, il ne reste plus qu'a les <b>envoyer au combat</b>.",
+          intro: "Lorsque vos troupes sont <b>prêtes</b>, il ne reste plus qu'à les <b>envoyer au combat</b>.",
           showStepNumber: true
         }
 
@@ -787,4 +879,55 @@ export class TutorielService {
     // Lancement
     intro.start();
   }
+
+  tutorielCampagne() {
+    var intro = introJs();
+    intro.setOptions({
+      disableInteraction: true,
+      showProgress: true,
+      nextLabel: 'Suivant',
+      prevLabel: 'Precedent',
+      doneLabel: 'Compris !',
+      tooltipClass: 'customTooltip',
+      steps: [
+        { // Présentation vue
+          intro: "Bienvenue dans le mode <b>campagne</b>.<br><br> Dans ce mode vous pourrez m'aider, au travers de multiples combats, à reprendre petit à petit le contrôle sur <b>Aphiaros</b>.",
+          showStepNumber: true
+        },
+        {
+          element: "#campagne_filtre",
+          intro: "Il existe plusieurs <b>mondes</b> dans la campagne. Vous pouvez vous aider de ce menu-là pour les <b>filtrer</b>.",
+          showStepNumber: true
+        },
+        {
+          element: "#campagne_liste",
+          intro: "Un monde est composé de <b>15 étages</b>. La difficulté croit petit à petit.<br><br>Pour débloquer l'étage suivant il faut au préalable réaliser les combats des <b>étages inférieurs</b>.",
+          showStepNumber: true
+        },
+        {
+          element: "#campagne_niveau_1",
+          intro: "Les étages comme celui-ci sont des étages de <b>difficulté normale</b>.",
+          showStepNumber: true
+        },
+        {
+          element: "#campagne_niveau_5",
+          intro: "Certains étages ont une <b>apparence différente</b>. Ils ont une difficulté accrue et de meilleures récompenses.<br><br>Ce sont des <b>boss</b>, armez-vous bien.",
+          showStepNumber: true
+        },
+        {
+          intro: "Chaque fois que vous sortirez <b>victorieux</b> d'un combat je vous en <b>récompenserai</b>.",
+          showStepNumber: true
+        },
+        {
+          intro: "Bonne chance, aventurier.",
+          showStepNumber: true
+        }
+
+      ]
+    });
+
+    // Lancement
+    intro.start();
+  }
+
 }

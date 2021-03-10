@@ -1,0 +1,52 @@
+<div class="campagne container">
+    <!-- TITRE -->
+    <div class="divider-custom divider-light">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-titre">Mode campagne</div>
+        <div class="divider-custom-line"></div>
+    </div>
+
+    <!-- FILTRE MONDE -->
+    <div class="boutons divCenter">
+        <button class="btn btn-success m-3" (click)="listerLesCampagnesMonde(1)">Monde 1</button>
+        <button class="btn btn-success m-3" (click)="listerLesCampagnesMonde(2)">Monde 2</button>
+        <button class="btn btn-success m-3" (click)="listerLesCampagnesMonde(3)">Monde 3</button>
+        <button class="btn btn-success m-3" (click)="listerLesCampagnesMonde(4)">Monde 4</button>
+        <button class="btn btn-success m-3" (click)="listerLesCampagnesMonde(5)">Monde 5</button>
+        <button class="btn btn-success m-3" (click)="listerLesCampagnesMonde(6)">Monde 6</button>
+        <button class="btn btn-success m-3" (click)="listerLesCampagnesMonde(7)">Monde 7</button>
+        <button class="btn btn-success m-3" (click)="listerLesCampagnesMonde(8)">Monde 8</button>
+        <button class="btn btn-success m-3" (click)="listerLesCampagnesMonde(9)">Monde 9</button>
+    </div>
+
+    <!-- TITRE-->
+    <div class="center">
+        <a routerLink="/creerCampagne">
+            <button class="btn btn-info">Créer une campagne</button>
+        </a>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <!-- LISTE DES CAMPAGNES-->
+                <div class="col-lg-4 col-md-6 mb-4" *ngFor="let campagne of listeCampagne">
+                    <div class="card h-100" [ngClass]="recupererBackground(campagne.isBoss)">
+                        <div class="card-body">
+                            <div class="campagne-divider-custom divider-light">
+                                <div class="campagne-divider-custom-line"></div>
+                                <div class="campagne-divider-custom-titre">étage n°{{campagne.id}}</div>
+                                <div class="campagne-divider-custom-line"></div>
+                            </div>
+                        </div>
+                        <!-- BOUTON MODIFIER -->
+                        <div class="card-footer">
+                            <a routerLink="/modificationCampagne/{{campagne.id}}">
+                                <button class="btn btn-info">Modifier</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

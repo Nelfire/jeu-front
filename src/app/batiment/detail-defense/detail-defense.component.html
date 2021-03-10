@@ -1,7 +1,6 @@
 <!-- Affichage mode construction -->
 <div *ngIf="defense && joueur">
 
-
     <div class="grid-container">
         <div class="defense card">
             <!-- ICONE -->
@@ -25,8 +24,6 @@
             <!-- STATISTIQUES  -->
             <!-- VIE -->
             <span id="statistiques_defense">
-
-
                 <div class="row">
                     <div class="col-sm-6">
                         <p class="card__statistique">
@@ -67,8 +64,6 @@
 
             <!-- COUT -->
             <span id="cout_defense">
-
-
                 <div class="row">
                     <div class="col-sm-12">
                         <p class="card__categorie center">
@@ -133,6 +128,7 @@
                     <!-- Si le bâtiment n'est pas occupé [Construction/Amélioration]-->
                     <span *ngIf="!batimentEnCoursDeTravail; else batimentOccupe">
                         <div>
+                            <!-- FORMULAIRE -->
                             <form [formGroup]="formCreationDefense" (ngSubmit)="construireDefense()">
                                 <div class="divformulaireCreation">
                                     <!-- Choix quantité -->
@@ -223,23 +219,22 @@
                 <b>{{messageValidation}}</b>
             </div>
         </div>
+
+        <!-- CADRE PRODUCTION DROITE-->
         <div class="production-en-cours card" *ngIf="secondesRestantesAmelioration">
 
             <div class="mt-3">
                 <hr class="style-seven">
-
                 <p class="card__description center"><u>Constructions en cours</u></p>
-
                 <p class="card__progress_bar_text">Temps restant : {{secondesRestantesAmelioration | minuteSecondePipe:
                     's':'hhmmss'}}</p>
+                <!-- PROGRESSBAR -->
                 <div class="progress mb-3 center" style="width: 80%;">
                     <div class="progress-bar progress-bar-striped progress-bar-animated"
                         [ngStyle]="{width:getTempsConstructionTotalFileAttentePourcent()}"></div>
                 </div>
-
+                <!-- DEFENSES RESTANTES -->
                 <p class="card__description center mb-3"><u>Défenses restantes : {{defensesRestantesArrondis}}</u></p>
-
-
                 <div class="progress mb-3 center" style="width: 80%;">
                     <div class="progress-bar progress-bar-striped progress-bar-animated"
                         [ngStyle]="{width:getTempsConstructionDefensePourcent()}"></div>
@@ -254,6 +249,4 @@
             </div>
         </div>
     </div>
-
-
 </div>

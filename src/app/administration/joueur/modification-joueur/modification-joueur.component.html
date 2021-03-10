@@ -1,4 +1,5 @@
 <div class="container" *ngIf="joueur">
+    <!-- TITRE -->
     <div class="divider-custom divider-light">
         <div class="divider-custom-line"></div>
         <div class="divider-custom-titre">Modification {{joueur.pseudo}}</div>
@@ -6,159 +7,196 @@
     </div>
     <div class="card">
         <div class="card-body ">
+            <!-- FORMULAIRE -->
             <form [formGroup]="formModificationJoueur" (ngSubmit)="modificationJoueur()">
+                <!-- ID -->
                 <div class="form-group row">
                     <label for="id" class="col-sm-2 col-form-label">ID</label>
                     <div class="col-sm-10">
                         <input disabled type="text" class="form-control" value="{{id}}" />
                     </div>
                 </div>
-
+                <!-- ICONE -->
                 <div class="form-group row">
                     <label for="icone" class="col-sm-2 col-form-label">Icone</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="icone" rows="3" formControlName="icone" />
                     </div>
                 </div>
+                <!-- PSEUDO -->
                 <div class="form-group row">
                     <label for="pseudo" class="col-sm-2 col-form-label">Pseudo</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="pseudo" rows="3" formControlName="pseudo" />
                     </div>
                 </div>
+                <!-- EMAIL -->
                 <div class="form-group row">
                     <label for="email" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="email" rows="3" formControlName="email" />
                     </div>
                 </div>
+                <!-- DESCRIPTIF -->
                 <div class="form-group row">
-                    <label for="descriptif" class="col-sm-2 col-form-label">descriptif</label>
+                    <label for="descriptif" class="col-sm-2 col-form-label">Descriptif</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="descriptif" rows="3" formControlName="descriptif" />
                     </div>
                 </div>
+                <!-- NIVEAU -->
                 <div class="form-group row">
-                    <label for="niveau" class="col-sm-2 col-form-label">niveau</label>
+                    <label for="niveau" class="col-sm-2 col-form-label">Niveau</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="niveau" rows="3" formControlName="niveau" />
                     </div>
                 </div>
+                <!-- EXPERIENCE -->
                 <div class="form-group row">
-                    <label for="experience" class="col-sm-2 col-form-label">experience</label>
+                    <label for="experience" class="col-sm-2 col-form-label">Experience</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="experience" rows="3" formControlName="experience" />
                     </div>
                 </div>
+                <!-- PIERRE POSSESSION -->
                 <div class="form-group row">
-                    <label for="pierrePossession" class="col-sm-2 col-form-label">pierrePossession</label>
+                    <label for="pierrePossession" class="col-sm-2 col-form-label">Pierre Possession</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="pierrePossession" rows="3" formControlName="pierrePossession" />
+                        <input type="text" class="form-control" id="pierrePossession" rows="3"
+                            formControlName="pierrePossession" />
                     </div>
                 </div>
+                <!-- BOIS POSSESSION -->
                 <div class="form-group row">
-                    <label for="boisPossession" class="col-sm-2 col-form-label">boisPossession</label>
+                    <label for="boisPossession" class="col-sm-2 col-form-label">Bois Possession</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="boisPossession" rows="3" formControlName="boisPossession" />
+                        <input type="text" class="form-control" id="boisPossession" rows="3"
+                            formControlName="boisPossession" />
                     </div>
                 </div>
+                <!-- OR POSSESSION -->
                 <div class="form-group row">
-                    <label for="orPossession" class="col-sm-2 col-form-label">orPossession</label>
+                    <label for="orPossession" class="col-sm-2 col-form-label">Or Possession</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="orPossession" rows="3" formControlName="orPossession" />
+                        <input type="text" class="form-control" id="orPossession" rows="3"
+                            formControlName="orPossession" />
                     </div>
                 </div>
+                <!-- NOURRITURE POSSESSION -->
                 <div class="form-group row">
-                    <label for="nourriturePossession" class="col-sm-2 col-form-label">nourriturePossession</label>
+                    <label for="nourriturePossession" class="col-sm-2 col-form-label">Nourriture Possession</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nourriturePossession" rows="3" formControlName="nourriturePossession" />
+                        <input type="text" class="form-control" id="nourriturePossession" rows="3"
+                            formControlName="nourriturePossession" />
                     </div>
                 </div>
+                <!-- GEMME POSSESSION -->
                 <div class="form-group row">
-                    <label for="gemmePossession" class="col-sm-2 col-form-label">gemmePossession</label>
+                    <label for="gemmePossession" class="col-sm-2 col-form-label">Gemme Possession</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="gemmePossession" rows="3" formControlName="gemmePossession" />
+                        <input type="text" class="form-control" id="gemmePossession" rows="3"
+                            formControlName="gemmePossession" />
                     </div>
                 </div>
+                <!-- PIERRE MAXIMUM -->
                 <div class="form-group row">
-                    <label for="pierreMaximum" class="col-sm-2 col-form-label">pierreMaximum</label>
+                    <label for="pierreMaximum" class="col-sm-2 col-form-label">Pierre Maximum</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="pierreMaximum" rows="3" formControlName="pierreMaximum" disabled />
+                        <input type="text" class="form-control" id="pierreMaximum" rows="3"
+                            formControlName="pierreMaximum" disabled />
                     </div>
                 </div>
+                <!-- BOIS MAXIMUM -->
                 <div class="form-group row">
-                    <label for="boisMaximum" class="col-sm-2 col-form-label">boisMaximum</label>
+                    <label for="boisMaximum" class="col-sm-2 col-form-label">Bois Maximum</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="boisMaximum" rows="3" formControlName="boisMaximum" disabled />
+                        <input type="text" class="form-control" id="boisMaximum" rows="3" formControlName="boisMaximum"
+                            disabled />
                     </div>
                 </div>
+                <!-- OR MAXIMUM -->
                 <div class="form-group row">
-                    <label for="orMaximum" class="col-sm-2 col-form-label">orMaximum</label>
+                    <label for="orMaximum" class="col-sm-2 col-form-label">Or Maximum</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="orMaximum" rows="3" formControlName="orMaximum" disabled />
+                        <input type="text" class="form-control" id="orMaximum" rows="3" formControlName="orMaximum"
+                            disabled />
                     </div>
                 </div>
+                <!-- NOURRITURE MAXIMUM -->
                 <div class="form-group row">
-                    <label for="nourritureMaximum" class="col-sm-2 col-form-label">nourritureMaximum</label>
+                    <label for="nourritureMaximum" class="col-sm-2 col-form-label">Nourriture Maximum</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nourritureMaximum" rows="3" formControlName="nourritureMaximum" disabled />
+                        <input type="text" class="form-control" id="nourritureMaximum" rows="3"
+                            formControlName="nourritureMaximum" disabled />
                     </div>
                 </div>
+                <!-- BOOST PIERRE -->
                 <div class="form-group row">
                     <label for="pierreBoostProduction" class="col-sm-2 col-form-label">pierreBoostProduction</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="pierreBoostProduction" rows="3" formControlName="pierreBoostProduction" />
+                        <input type="text" class="form-control" id="pierreBoostProduction" rows="3"
+                            formControlName="pierreBoostProduction" />
                     </div>
                 </div>
+                <!-- BOOST BOIS -->
                 <div class="form-group row">
-                    <label for="boisBoostProduction" class="col-sm-2 col-form-label">boisBoostProduction</label>
+                    <label for="boisBoostProduction" class="col-sm-2 col-form-label">Bois Boost Production</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="boisBoostProduction" rows="3" formControlName="boisBoostProduction" />
+                        <input type="text" class="form-control" id="boisBoostProduction" rows="3"
+                            formControlName="boisBoostProduction" />
                     </div>
                 </div>
+                <!-- BOOST OR -->
                 <div class="form-group row">
-                    <label for="orBoostProduction" class="col-sm-2 col-form-label">orBoostProduction</label>
+                    <label for="orBoostProduction" class="col-sm-2 col-form-label">Or Boost Production</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="orBoostProduction" rows="3" formControlName="orBoostProduction" />
+                        <input type="text" class="form-control" id="orBoostProduction" rows="3"
+                            formControlName="orBoostProduction" />
                     </div>
                 </div>
+                <!-- BOOST NOURRITURE -->
                 <div class="form-group row">
-                    <label for="nourritureBoostProduction" class="col-sm-2 col-form-label">nourritureBoostProduction</label>
+                    <label for="nourritureBoostProduction" class="col-sm-2 col-form-label">Nourriture Boost
+                        Production</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nourritureBoostProduction" rows="3" formControlName="nourritureBoostProduction" />
+                        <input type="text" class="form-control" id="nourritureBoostProduction" rows="3"
+                            formControlName="nourritureBoostProduction" />
                     </div>
                 </div>
+                <!-- TEMPS DE JEU -->
                 <div class="form-group row">
-                    <label for="tempsDeJeu" class="col-sm-2 col-form-label">tempsDeJeu</label>
+                    <label for="tempsDeJeu" class="col-sm-2 col-form-label">Temps De Jeu</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="tempsDeJeu" rows="3" formControlName="tempsDeJeu" disabled/>
+                        <input type="text" class="form-control" id="tempsDeJeu" rows="3" formControlName="tempsDeJeu"
+                            disabled />
                     </div>
                 </div>
+                <!-- DERNIERE CONNEXION -->
                 <div class="form-group row">
-                    <label for="derniereConnexion" class="col-sm-2 col-form-label">derniereConnexion</label>
+                    <label for="derniereConnexion" class="col-sm-2 col-form-label">Derniere Connexion</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="derniereConnexion" rows="3" formControlName="derniereConnexion" disabled />
+                        <input type="text" class="form-control" id="derniereConnexion" rows="3"
+                            formControlName="derniereConnexion" disabled />
                     </div>
-                </div>   
-                
+                </div>
+                <!-- DONATEUR (O/N) -->
                 <div class="form-group row">
                     <label for="donateur" class="col-sm-2 col-form-label">Donateur</label>
                     <div class="col-sm-10">
-                        <select class="custom-select" id="donateur" formControlName="donateur"
-                            required>
+                        <select class="custom-select" id="donateur" formControlName="donateur" required>
                             <option selected value="false">Non</option>
                             <option value="true">Oui</option>
                         </select>
                     </div>
                 </div>
-
+                <!-- MESSAGES -->
                 <div class="alert alert-danger" role="danger" *ngIf="messageErreur">
                     <b>{{messageErreur}}</b>
                 </div>
                 <div class="alert alert-success" role="success" *ngIf="messageValidation">
                     <b>{{messageValidation}}</b>
                 </div>
-
+                <!-- BOUTONS -->
                 <div class="row justify-content-md-center">
                     <div class="col-md-auto">
                         <!-- bouton valider formulaire -->

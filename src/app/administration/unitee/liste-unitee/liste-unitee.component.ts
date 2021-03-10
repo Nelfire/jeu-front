@@ -8,9 +8,13 @@ import { UniteeService } from 'src/app/service/unitee.service';
 })
 export class ListeUniteeComponent implements OnInit {
 
+  // INITIALISATIONS
   listeUnitees = [];
+
+  // CONSTRUCTEUR
   constructor(private uniteeService: UniteeService) { }
 
+  //NGONINIT
   ngOnInit(): void {
 
     // Récupération liste des batiments (Type:Tous)

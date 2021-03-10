@@ -12,13 +12,14 @@ const URL_BACKEND = environment.baseUrl + 'expeditionJoueur';
 })
 export class ExpeditionJoueurService {
 
+  // CONSTRUCTEUR
   constructor(private http: HttpClient) { }
 
   // LISTER TOUTES LES EXPEDITIONS DU JOUEUR, TOUT CONFONDU
   listerExpeditionJoueur(): Observable<ExpeditionJoueur[]> {
     return this.http.get<ExpeditionJoueur[]>(`${URL_BACKEND}`);
   }
-  
+
   // LISTER UNIQUEMENT LES EXPEDITIONS JOUEUR VICTORIEUSE + RECOMPENSE DEJA RECUPEREE = 2
   listerExpeditionJoueurTermineesVictoire(): Observable<ExpeditionJoueur[]> {
     return this.http.get<ExpeditionJoueur[]>(`${URL_BACKEND}/listerExpeditionJoueurTermineesVictoire`);
@@ -38,10 +39,8 @@ export class ExpeditionJoueurService {
   listerExpeditionJoueurEnCours(): Observable<ExpeditionJoueur[]> {
     return this.http.get<ExpeditionJoueur[]>(`${URL_BACKEND}/listerExpeditionJoueurEnCours`);
   }
-  
 
-  
-
+  // ENVOI D'UNITEES EN EXPEDITION (Création)
   envoiUniteeEnExpedition(
     idExpedition: number,
     nombreVillageois: number,
@@ -97,6 +96,7 @@ export class ExpeditionJoueurService {
       });
   }
 
+  // RECUPERATION DE LA RECOMPENSE D'EXPEDITION
   recupererRecompense(idExpedition: number): Observable<String> {
     return this.http.get<String>(`${URL_BACKEND}/recupererRecompense?idExpedition=` + idExpedition);
   }

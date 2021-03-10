@@ -1,8 +1,83 @@
-<div class="campagne container">
+<div class="campagne container" *ngIf="listeCampagne">
+    <!-- TITRE -->
     <div class="divider-custom divider-light">
         <div class="divider-custom-line"></div>
-        <div class="divider-custom-titre">Mode campagne</div>
+        <div class="divider-custom-titre">Mode campagne<br> Monde {{monde}}</div>
         <div class="divider-custom-line"></div>
     </div>
+
+    <!-- FILTRE MONDE -->
+    <div class="boutons divCenter" id="campagne_filtre">
+        <button class="btn btn-success m-3" (click)="listerLesCampagnesMonde(1)">Monde 1</button>
+        <button class="btn btn-success m-3" (click)="listerLesCampagnesMonde(2)">Monde 2</button>
+        <button class="btn btn-success m-3" (click)="listerLesCampagnesMonde(3)">Monde 3</button>
+        <button class="btn btn-success m-3" (click)="listerLesCampagnesMonde(4)">Monde 4</button>
+        <button class="btn btn-success m-3" (click)="listerLesCampagnesMonde(5)">Monde 5</button>
+        <button class="btn btn-success m-3" (click)="listerLesCampagnesMonde(6)">Monde 6</button>
+        <button class="btn btn-success m-3" (click)="listerLesCampagnesMonde(7)">Monde 7</button>
+        <button class="btn btn-success m-3" (click)="listerLesCampagnesMonde(8)">Monde 8</button>
+        <button class="btn btn-success m-3" (click)="listerLesCampagnesMonde(9)">Monde 9</button>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- LISTE DE TOUTES LES CAMPAGNES -->
+            <div class="row" id="campagne_liste">
+                <div class="col-lg-4 col-md-6 mb-4" *ngFor="let campagne of listeCampagne">
+                    <div class="card h-100" [ngClass]="recupererBackground(campagne.isBoss,campagne.niveau)"
+                        id="campagne_niveau_{{campagne.niveau}}">
+                        <!-- TITRE CAMPAGNE -->
+                        <div class="card-body">
+                            <div class="campagne-divider-custom divider-light">
+                                <div class="campagne-divider-custom-line"></div>
+                                <div class="campagne-divider-custom-titre">étage n°{{campagne.id}}</div>
+                                <div class="campagne-divider-custom-line"></div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <!-- Si campagne disponible -->
+                            <div *ngIf="campagne.niveau-1<=plusHautNiveau ; else indisponible">
+                                <a routerLink="detail-campagne/{{campagne.id}}" *ngIf="campagne.dejaRealisee !=true">
+                                    <button class="btn btn-success">Commencer <i class="fa fa-check"></i></button>
+                                </a>
+                            </div>
+                            <!-- Si campagne indisponible -->
+                            <ng-template #indisponible>
+                                <button class="btn btn-danger" (click)="pasDisponible()">Indisponible <i
+                                        class="fa fa-times-circle"></i></button>
+                            </ng-template>
+
+                            <!-- Si campagne en cours -->
+                            <div *ngIf="campagne.etat == 0">
+                                <div *ngIf="campagne.date">
+                                    <h2 class="center">{{campagne.date}} <i class="fa fa-hourglass-end"></i></h2>
+                                </div>
+                            </div>
+
+                            <!-- Si campagne succes -->
+                            <div *ngIf="campagne.etat == 1">
+                                <button class="btn btn-success" [disabled]="clickRecuperer"
+                                    (click)="recupererRecompense(campagne.campagneJoueurId, campagne.recompenseExperience)">
+                                    Récupérer récompense <i class="fa fa-coins"></i>
+                                </button>
+                            </div>
+
+                            <!-- Si campagne déjà faite -->
+                            <div *ngIf="campagne.etat == 2">
+                                <button class="btn btn-success" disabled>Déjà réalisée <i
+                                        class="fa fa-check"></i></button>
+                            </div>
+
+                            <!-- Si campagne echec -->
+                            <div *ngIf="campagne.etat == 3">
+                                <a routerLink="detail-campagne/{{campagne.id}}">
+                                    <button class="btn btn-warning">Recommencer <i
+                                            class="fas fa-skull-crossbones"></i></button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<h5>{{lesCampagnes | json}}</h5>

@@ -1,9 +1,12 @@
 <div class="listeBatiment container">
+    <!-- TITRE -->
     <div class="divider-custom divider-light">
         <div class="divider-custom-line"></div>
         <div class="divider-custom-titre">Les bâtiments</div>
         <div class="divider-custom-line"></div>
     </div>
+
+    <!-- LISTE DE TOUS LES BÂTIMENTS -->
     <div *ngIf="listeBatiments">
         <ul class="honeycomb" lang="es">
             <li class="honeycomb-cell" *ngFor="let batiment of listeBatiments">
@@ -11,6 +14,7 @@
                     <img class="honeycomb-cell__image" src="{{batiment.icone}}">
                     <div class="honeycomb-cell__title">{{batiment.libelle}}</div>
                     <br>
+                    <!-- BOUTON MODIFIER -->
                     <button class="btn btn-info">Modifier</button>
                 </a>
             </li>

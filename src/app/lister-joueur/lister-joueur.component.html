@@ -1,12 +1,15 @@
 <div class="row justify-content-center mb-3">
+  <!-- TITRE -->
   <div class="col-auto" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
-      <h2>Liste des joueurs</h2>
+    <h2>Liste des joueurs</h2>
   </div>
 </div>
+
 <div class="row no-gutters">
+  <!-- LISTE DE TOUS LES JOUEURS -->
   <div class="col-md-4" *ngFor="let joueur of listeJoueurs">
     <a routerLink='../visualisationJoueur/{{joueur.email}}'
-       class="border d-flex justify-content-center align-items-center">
+      class="border d-flex justify-content-center align-items-center">
       <img src="{{joueur.urlPhoto}}" alt="" class="rounded img-fluid" style="width: 150px;height: 150px;" />
       <div class="overlay"></div>
       <div class="text text-center">

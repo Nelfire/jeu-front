@@ -12,20 +12,22 @@ import { GenerationRessourcesService } from './service/generation-ressources.ser
 })
 export class AppComponent {
 
-  // Initialisations
+  // INITIALISATIONS
   joueurConnecte: Observable<Joueur>;
 
-  // Constructeur
+  // CONSTRUCTEUR
   constructor(private authSrv: AuthService, private router: Router,
-    private generationRessourcesService:GenerationRessourcesService) {
+    private generationRessourcesService: GenerationRessourcesService) {
   }
 
+  // BOUTON DE DECONNEXION
   seDeconnecter() {
     this.authSrv.seDeconnecter().subscribe(
       () => this.router.navigate(['/auth'])
     );
   }
 
+  // NGONINIT
   ngOnInit(): void {
     this.joueurConnecte = this.authSrv.joueurConnecteObs;
   }

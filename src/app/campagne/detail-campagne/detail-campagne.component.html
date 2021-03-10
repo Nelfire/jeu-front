@@ -1,0 +1,202 @@
+<div *ngIf="campagne">
+    <div class="grid-container">
+        <div class="campagne">
+            <div class="card" id="card_detail_campagne">
+                <!-- ICONE -->
+                <img src="{{campagne['icone']}}" class="card__image">
+                <p class="card__name">{{campagne['libelle']}}</p>
+
+                <!-- DESCRIPTION -->
+                <p class="card__description">
+                    {{campagne['descriptif']}}
+                </p>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p class="card__categorie">
+                            Récompense
+                        </p>
+                    </div>
+                </div>
+                <!-- GAIN EXPERIENCE -->
+                <span id="detail_campagne_experience">
+                    <small>Expérience +<b>{{campagne['recompenseExperience']}}</b></small>
+                </span>
+
+                <!-- RECOMPENSE RESSOURCES -->
+                <span id="detail_campagne_recompense">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="card__apport__ressource">
+                                Pierre : <b>{{campagne['recompensePierre'] | thousandSuff:2}}</b>
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="card__apport__ressource">
+                                Bois : <b>{{campagne['recompenseBois'] | thousandSuff:2}}</b>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="card__apport__ressource">
+                                Or : <b>{{campagne['recompenseOr'] | thousandSuff:2}}</b>
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="card__apport__ressource">
+                                Nourriture : <b>{{campagne['recompenseNourriture'] | thousandSuff:2}}</b>
+                            </p>
+                        </div>
+                    </div>
+                    <p class="card__apport__ressource center">
+                        Gemme : <b>{{campagne['recompenseGemme']}}</b>
+                    </p>
+                </span>
+
+                <hr class="style-seven">
+                <!-- STATISTIQUES DE L'EXPEDITION -->
+                <span class="mb-3" id="detail_campagne_informations">
+
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <p class="card__categorie center">
+                                Combat
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="card__statistique">
+                                Vie : <b>{{vieAdverse | thousandSuff:2}}</b>
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="card__statistique">
+                                Attaque : <b>{{campagne.unitee.attaque * campagne.quantitee | thousandSuff:2}}</b>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="card__statistique">
+                                Armure : <b>{{campagne.unitee.armure * campagne.quantitee | thousandSuff:2}}</b>
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="card__statistique" id="detail_campagne_pourcentage">
+                                Réussite : <b>{{reussitePourcentage | number : '.0-2' }}</b> %
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- TEMPS -->
+                    <p class="card__temps__travail center">
+                        Temps combat : <b>{{campagne['duree']}} secondes</b>
+                    </p>
+                </span>
+            </div>
+        </div>
+
+        <!-- CARD DE DROITE, COMPOSITION ADVERSE -->
+        <div class="compositionAdverse card" id="detail_campagne_composition_adverse">
+            <hr class="style-seven" style="  position: absolute; top: 0;">
+            <div style="margin-top: 20%;">
+                <h2 class="center"><u>Composition Adverse</u></h2>
+                <ul class="honeycomb" lang="es" [ngbTooltip]="statsUnite">
+                    <li class="honeycomb-cell">
+                        <div>
+                            <!-- Quantitée d'unitées -->
+                            <div style="text-align:center;">
+                                <input disabled type="text" name="texte" class="quantite"
+                                    value="Nombre : {{campagne.quantitee}}" />
+                            </div>
+                            <!-- Icone -->
+                            <img class="honeycomb-cell__image" src="{{campagne.unitee.icone}}">
+                            <!-- Libelle -->
+                            <div class="honeycomb-cell__title">{{campagne.unitee.libelle}}</div>
+                            <br>
+                        </div>
+                    </li>
+
+                </ul>
+                <!-- TOOLTIP -->
+                <ng-template #statsUnite>
+                    <div class="d-flex flex-column">
+                        <span><b>- STATS -</b></span><br>
+                        <span><i class="fa fa-heart" aria-hidden="true"></i> <b> Vie : </b> <b>{{campagne.unitee.vie |
+                                number}}</b></span>
+                        <span><i class="fa fa-gavel" aria-hidden="true"></i> <b> Attaque : </b>
+                            <b>{{campagne.unitee.attaque | number}}</b></span>
+                        <span><i class="fa fa-crosshairs" aria-hidden="true"></i> <b> Portée : </b>
+                            <b>{{campagne.unitee.portee | number}}</b></span>
+                        <span><i class="fa fa-shield" aria-hidden="true"></i> <b> Armure : </b>
+                            <b>{{campagne.unitee.armure | number}} </b></span>
+                    </div>
+                </ng-template>
+
+            </div>
+            <hr class="style-seven" style="  position: absolute; bottom: 0;">
+        </div>
+    </div>
+
+    <!-- UNITES DU JOUEUR -->
+    <div class="divUnites mt-3" id="detail_campagne_unite" *ngIf="campagne['niveau'] <= plusHautNiveauDeReussite+1">
+        <!-- FORMULAIRE -->
+        <form [formGroup]="formEnvoiUniteesEnCampagne" (ngSubmit)="envoiCampagne()">
+            <div>
+
+                <ul class="honeycomb" lang="es">
+                    <div class="divider-custom divider-light">
+                        <div class="divider-custom-line"></div>
+                        <div class="divider-custom-titre">Mes troupes</div>
+                        <div class="divider-custom-line"></div>
+                    </div>
+                    <li class="honeycomb-cell" *ngFor="let unitee of armeesDuJoueur">
+                        <div [ngbTooltip]="statsMesUnite">
+                            <div>
+                                <!-- Quantitée d'unitées -->
+                                <div style="text-align:center;">
+                                    <input disabled type="text" name="texte" class="quantite"
+                                        value="Possède : {{unitee.quantiteePossession}}" />
+                                </div>
+                                <!-- Icone -->
+                                <img class="honeycomb-cell__image" src="{{unitee.unitee.icone}}">
+                                <!-- Libelle -->
+                                <div class="honeycomb-cell__title">{{unitee.unitee.libelle}}</div>
+                                <br>
+                            </div>
+                            <!-- Selection du nombre d'unitées à envoyer -->
+                            <div style="text-align:center;">
+                                <input type="number" name="unitee{{unitee.unitee.id}}" value=""
+                                    formControlName="unitee{{unitee.unitee.id}}" (keyup)="calculVieRestanteCampagne()">
+                            </div>
+                        </div>
+                        <!-- TOOLTIP -->
+                        <ng-template #statsMesUnite>
+                            <div class="d-flex flex-column">
+                                <span><b>- STATS -</b></span><br>
+                                <span><i class="fa fa-heart" aria-hidden="true"></i> <b> Vie : </b>
+                                    <b>{{unitee.unitee.vie | number}}</b></span>
+                                <span><i class="fa fa-gavel" aria-hidden="true"></i> <b> Attaque : </b>
+                                    <b>{{unitee.unitee.attaque | number}}</b></span>
+                                <span><i class="fa fa-crosshairs" aria-hidden="true"></i> <b> Portée : </b>
+                                    <b>{{unitee.unitee.portee | number}}</b></span>
+                                <span><i class="fa fa-shield" aria-hidden="true"></i> <b> Armure : </b>
+                                    <b>{{unitee.unitee.armure | number}} </b></span>
+                            </div>
+                        </ng-template>
+                    </li>
+                </ul>
+            </div>
+            <!-- BOUTONS -->
+            <div class="divCenter">
+                <button class="btn draw-border" [disabled]="formEnvoiUniteesEnCampagne.invalid ||clicked"
+                    id="detail_campagne_envoi">Démarrer</button>
+                <a routerLink="/campagne">
+                    <button class="btn draw-border-error">Retour</button>
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

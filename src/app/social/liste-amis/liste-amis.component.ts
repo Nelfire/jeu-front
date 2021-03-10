@@ -14,15 +14,19 @@ import { NotificationService } from 'src/app/service/notification.service';
 })
 export class ListeAmisComponent implements OnInit {
 
+  // INITIALISATIONS
   faTrash = faTrash;
   listeAmis: JoueurInfos[] = [];
-  listeVide:boolean = true;
+  listeVide: boolean = true;
   messageErreur: string;
+
+  // CONSTRUCTEUR
   constructor(private joueurService: JoueurService,
     private listeAmisService: ListeAmisService,
     private modalService: NgbModal,
     private notification: NotificationService) { }
 
+  // NGONINIT
   ngOnInit(): void {
     // LISTER LES AMIS DU JOUEUR
     this.listerAmis();
@@ -33,10 +37,10 @@ export class ListeAmisComponent implements OnInit {
     this.listeAmis = [];
     this.listeAmisService.lister().subscribe(
       (value) => {
-        if(value.proprietaireListe!=null) {
+        if (value.proprietaireListe != null) {
           value.listeDAmis.forEach(element => {
             this.listeVide = false;
-  
+
             this.joueurService.informationJoueurById(element).subscribe(
               (donnees) => {
                 this.listeAmis.push(donnees);
@@ -49,19 +53,16 @@ export class ListeAmisComponent implements OnInit {
     );
   }
 
-
-
   // [DEBUT] ***** GESTION DU MODAL DE SUPPRESSION ****** //
-
   onDelete(id: number) {
     this.listeAmisService.retirerAmi(id).subscribe(() => {
-      this.listerAmis();          
+      this.listerAmis();
       this.notification.showSuccess("Ami retiré avec succès.", "Amitié brisée.");
     }, (error) => {
       this.notification.showError(error.error.message, "Erreur.");
 
-    } );
-    
+    });
+
   }
   // [FIN] ***** GESTION DU MODAL DE SUPPRESSION ****** //
 
@@ -70,7 +71,6 @@ export class ListeAmisComponent implements OnInit {
       this.onDelete(id);
     });
   }
-
 
   refresh(data) {
     this.listerAmis();

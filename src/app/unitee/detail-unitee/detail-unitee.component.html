@@ -1,13 +1,13 @@
 <!-- Affichage mode construction -->
 <div *ngIf="unitee && joueur" class="detailUnitee">
 
-
     <div class="grid-container">
         <div class="unitee card">
             <!-- ICONE -->
             <img src="{{unitee['icone']}}" class="card__image">
             <p class="card__name"><b>{{unitee['libelle']}}</b></p>
 
+            <!-- QUANTITE -->
             <p class="card__quantitee_possession" *ngIf="quantiteeUniteesPossession >=1">
                 <input disabled type="text" class="quantitePossede"
                     value="Possède : {{quantiteeUniteesPossession | number}}" />
@@ -24,9 +24,10 @@
             </span>
 
             <!-- STATISTIQUES  -->
-            <!-- VIE -->
+
             <span id="statistiques_unite">
                 <div class="row">
+                    <!-- VIE -->
                     <div class="col-sm-6">
                         <p class="card__statistique">
                             Vie :
@@ -35,6 +36,7 @@
                             </span>
                         </p>
                     </div>
+                    <!-- ATTAQUE -->
                     <div class="col-sm-6">
                         <p class="card__statistique">
                             Attaque :
@@ -45,6 +47,7 @@
                     </div>
                 </div>
                 <div class="row">
+                    <!-- PORTEE -->
                     <div class="col-sm-6">
                         <p class="card__statistique">
                             Portée :
@@ -53,6 +56,7 @@
                             </span>
                         </p>
                     </div>
+                    <!-- ARMURE -->
                     <div class="col-sm-6">
                         <p class="card__statistique">
                             Armure :
@@ -62,6 +66,7 @@
                         </p>
                     </div>
                 </div>
+                <!-- VITESSE -->
                 <div class="row">
                     <div class="col-sm-12">
                         <p class="card__statistique center">
@@ -73,9 +78,6 @@
                     </div>
                 </div>
             </span>
-
-            <!-- ATTAQUE -->
-
 
             <!-- COUT -->
             <span id="cout_unite">
@@ -144,6 +146,7 @@
                     <!-- Si le bâtiment n'est pas occupé [Construction/Amélioration]-->
                     <span *ngIf="!batimentEnCoursDeTravail; else batimentOccupe">
                         <div>
+                            <!-- FORMULAIRE -->
                             <form [formGroup]="formCreationUnitee" (ngSubmit)="produireUnitee()">
                                 <div class="divformulaireCreation">
                                     <!-- Choix quantité -->
@@ -267,6 +270,5 @@
             </div>
         </div>
     </div>
-
 
 </div>

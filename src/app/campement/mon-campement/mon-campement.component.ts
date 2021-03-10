@@ -22,7 +22,7 @@ import { TutorielService } from 'src/app/service/tutoriel.service';
 })
 export class MonCampementComponent implements OnInit {
 
-  // Initialisations
+  // INITIALISATIONS
   counterSubscription: Subscription;
   subscriptions: Subscription[] = []
   listeBatiments: Batiment[];
@@ -37,7 +37,7 @@ export class MonCampementComponent implements OnInit {
   secondesRestantesAmelioration: number;
   joueur: JoueurInfos;
 
-  // Constructeur
+  // CONSTRUCTEUR
   constructor(private batimentService: BatimentService,
     private batimentJoueurService: BatimentJoueurService,
     private joueurService: JoueurService,
@@ -45,6 +45,7 @@ export class MonCampementComponent implements OnInit {
     private routerLinkActive: ActivatedRoute,
     private tutorielService: TutorielService) { }
 
+  //NGONINIT
   ngOnInit(): void {
     this.batimentJoueurService.listerMesBatiments().subscribe((value) => {
       this.listeMesBatiments = value;
@@ -309,7 +310,7 @@ export class MonCampementComponent implements OnInit {
     }
   }
 
-
+  // VERIFICATION SI UN TUTORIEL EST EN COURS POUR LE POURSUIVRE
   verificationTutorielEnCours() {
     setTimeout(() => {
       this.routerLinkActive.queryParams.subscribe(params => {
@@ -324,8 +325,6 @@ export class MonCampementComponent implements OnInit {
       });
     }, 600);
   }
-
-
 
   // [TUTORIEL GUIDE] - [PARTIE 5] - (Détail HDV [amélioration] -> Campement)
   tutorielPartie5() {
@@ -362,9 +361,4 @@ export class MonCampementComponent implements OnInit {
     // Lancement
     intro.start();
   }
-
-  
-
-
-
 }

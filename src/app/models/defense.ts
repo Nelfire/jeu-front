@@ -1,6 +1,6 @@
 export class Defense {
     constructor(public id: number,
-        public icone: string, 
+        public icone: string,
         public idTypeDefense: number,
         public typeDefense: number,
         public libelle: string,

@@ -13,18 +13,20 @@ import { JoueurService } from 'src/app/service/joueur.service';
 })
 export class ClassementJoueursComponent implements OnInit {
 
+  // INITIALISATIONS 
   roleEnum = Role;
   listeJoueurs: JoueurInfos[];
   messageErreur: string;
   joueurConnecte: Observable<Joueur>;
+
+  // CONSTRUCTEUR
   constructor(private joueurService: JoueurService,
     private authSrv: AuthService) { }
 
+  // NGONINIT
   ngOnInit(): void {
-
-
     this.joueurConnecte = this.authSrv.joueurConnecteObs;
-    
+    // RECHERCHE DES INFORMATIONS DE TOUS LES JOUEURS
     this.joueurService.listerInfosJoueurs().subscribe(
       (joueur) => {
         this.listeJoueurs = joueur;

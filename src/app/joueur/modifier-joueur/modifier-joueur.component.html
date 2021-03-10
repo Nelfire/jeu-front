@@ -1,22 +1,20 @@
 <div class="modificationUnitee">
     <div class="container">
         <div class="card">
+            <!-- FORMULAIRE -->
             <form [formGroup]="formModificationJoueur" (ngSubmit)="validerFormulaire()">
-
+                <!-- ICONE -->
                 <img src="{{joueur.icone}}" alt="Person" class="card__image">
                 <p class="card__name">{{joueur.pseudo}}</p>
                 <label for="icone" class="col-form-label">Photo de profil</label><br>
+                <!-- ICONE -->
                 <div class="form-group">
                     <div>
                         <input type="text" class="form-control" id="icone" formControlName="icone" required>
                     </div>
                 </div>
-<!--                 <label for="email" class="col-form-label">Email</label><br>
-                <div class="form-group">
-                    <div>
-                        <input type="text" class="form-control" id="email" formControlName="email" required disabled/>
-                    </div>
-                </div> -->
+
+                <!-- DESCRIPTIF -->
                 <label for="descriptif" class="col-form-label">Descriptif</label><br>
                 <div class="form-group">
                     <div>
@@ -24,17 +22,8 @@
                             formControlName="descriptif" required> </textarea>
                     </div>
                 </div>
-                <!--             <div class="grid-container">
-                <div class="grid-child-posts">
-                    Descriptif : {{joueur.descriptif}}
-                </div>
-                <div class="grid-child-posts">
-                    Niveau : {{joueur.niveau}}
-                </div>
-                <div class="grid-child-posts">
-                    Experience : {{joueur.experience}}
-                </div>
-            </div> -->
+
+                <!-- MESSAGES -->
                 <div class="alert alert-danger divCenter mt-3" style="text-align: center;" role="danger"
                     *ngIf="messageErreur">
                     <b>{{messageErreur}}</b>
@@ -42,8 +31,16 @@
                 <div class="alert alert-success divCenter mt-3" role="success" *ngIf="messageValidation">
                     <b>{{messageValidation}}</b>
                 </div>
-                <button class="btn draw-border" [disabled]="formModificationJoueur.invalid">Valider</button>
 
+                <!-- BOUTONS -->
+                <div class="col-sm-6">
+                    <button class="btn draw-border" [disabled]="formModificationJoueur.invalid">Valider</button>
+                </div>
+                <div class="col-sm-6">
+                    <a routerLink="/classement-joueurs">
+                        <button class="btn draw-border-error">Retour</button>
+                    </a>
+                </div>
             </form>
         </div>
     </div>

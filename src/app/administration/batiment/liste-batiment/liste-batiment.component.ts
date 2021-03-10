@@ -8,9 +8,13 @@ import { BatimentService } from 'src/app/service/batiment.service';
 })
 export class ListeBatimentComponent implements OnInit {
 
+  // INITIALISATIONS
   listeBatiments = [];
+
+  // CONSTRUCTEUR
   constructor(private batimentService: BatimentService) { }
 
+  //NGONINIT
   ngOnInit(): void {
 
     // Récupération liste des batiments (Type:Tous)

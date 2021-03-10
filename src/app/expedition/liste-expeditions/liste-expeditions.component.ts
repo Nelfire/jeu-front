@@ -16,24 +16,23 @@ import { JoueurService } from 'src/app/service/joueur.service';
 })
 export class ListeExpeditionsComponent implements OnInit, OnDestroy {
 
-  // Initialisations 
+  // INITIALISATIONS 
   listeExpedition = [];
   dejaRealisee: boolean = false;
   counterSubscription: Subscription;
   niveauTableExpedition: number = 0;
   compteurExpedition: number = 0;
   joueur: JoueurInfos;
-  /* leJourSuivant: Date; */
-
   tempsRestant: string;
-  /*   secondesRestantesAvantRefresh: number;
-   */
+
+  // CONSTRUCTEUR
   constructor(private batimentService: BatimentService,
     private batimentJoueurService: BatimentJoueurService,
     private expeditionService: ExpeditionService,
     private expeditionJoueurService: ExpeditionJoueurService,
     private joueurService: JoueurService) { }
 
+  //NGONINIT
   ngOnInit(): void {
 
     this.verifierNiveauTableExpedition();
@@ -50,7 +49,6 @@ export class ListeExpeditionsComponent implements OnInit, OnDestroy {
             (lesExpeditionsJoueur) => {
               // Parcours les expéditions joueur
               lesExpeditionsJoueur.forEach((uneExpeditionJoueur) => {
-                console.log(uneExpeditionJoueur)
                 // Si l'id expedition en cours d'analyse = l'id expedition joueur, alors il l'a déjà faite
                 if (uneExpeditionJoueur.expedition.id === uneExpedition.id) {
                   uneExpedition.dejaRealisee = true;
@@ -63,17 +61,17 @@ export class ListeExpeditionsComponent implements OnInit, OnDestroy {
                 }
               });
             }
-          )
+          );
         });
       }
     );
 
-        // Récupération des informations du joueur, pour indiquer le manque de ressources (colorisation)
-        this.joueurService.informationJoueurByEmail().subscribe(
-          (value) => {
-            this.joueur = value;
-          }
-        );
+    // Récupération des informations du joueur, pour indiquer le manque de ressources (colorisation)
+    this.joueurService.informationJoueurByEmail().subscribe(
+      (value) => {
+        this.joueur = value;
+      }
+    );
   }
 
   calculerTempsRestantAvantReset() {
@@ -138,23 +136,23 @@ export class ListeExpeditionsComponent implements OnInit, OnDestroy {
   }
 
   // COLORATION COUT RESSOURCE
-  getColorRessourceManquantePierre(idExpedition : number) {
-      var couleur = '';
-      this.listeExpedition.forEach(element => {
-        if(idExpedition == element.id) {
-          if (this.joueur.pierrePossession < element.coutPierre) {
-            couleur = 'red';
-          } else {
-            couleur = 'green';
-          }
-        }
-      });
-      return couleur;
-  }
-  getColorRessourceManquanteBois(idExpedition : number) {
+  getColorRessourceManquantePierre(idExpedition: number) {
     var couleur = '';
     this.listeExpedition.forEach(element => {
-      if(idExpedition == element.id) {
+      if (idExpedition == element.id) {
+        if (this.joueur.pierrePossession < element.coutPierre) {
+          couleur = 'red';
+        } else {
+          couleur = 'green';
+        }
+      }
+    });
+    return couleur;
+  }
+  getColorRessourceManquanteBois(idExpedition: number) {
+    var couleur = '';
+    this.listeExpedition.forEach(element => {
+      if (idExpedition == element.id) {
         if (this.joueur.boisPossession < element.coutBois) {
           couleur = 'red';
         } else {
@@ -164,10 +162,10 @@ export class ListeExpeditionsComponent implements OnInit, OnDestroy {
     });
     return couleur;
   }
-  getColorRessourceManquanteOr(idExpedition : number) {
+  getColorRessourceManquanteOr(idExpedition: number) {
     var couleur = '';
     this.listeExpedition.forEach(element => {
-      if(idExpedition == element.id) {
+      if (idExpedition == element.id) {
         if (this.joueur.orPossession < element.coutOr) {
           couleur = 'red';
         } else {
@@ -177,10 +175,10 @@ export class ListeExpeditionsComponent implements OnInit, OnDestroy {
     });
     return couleur;
   }
-  getColorRessourceManquanteNourriture(idExpedition : number) {
+  getColorRessourceManquanteNourriture(idExpedition: number) {
     var couleur = '';
     this.listeExpedition.forEach(element => {
-      if(idExpedition == element.id) {
+      if (idExpedition == element.id) {
         if (this.joueur.nourriturePossession < element.coutNourriture) {
           couleur = 'red';
         } else {
@@ -190,6 +188,6 @@ export class ListeExpeditionsComponent implements OnInit, OnDestroy {
     });
     return couleur;
   }
-  
+
 
 }

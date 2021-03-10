@@ -206,7 +206,7 @@ nav.main-menu li.active > a,
             format("woff");
 }
 
- // 200px -> 1300px
+// 200px -> 1300px
 @media screen and (min-width: 100px) and (max-width: 575px) {
     .nom-ressource {
         display: none;
@@ -217,8 +217,7 @@ nav.main-menu li.active > a,
     .limite-ressource {
         display: none;
     }
-} 
-
+}
 
 // Small devices (landscape phones, 576px and up)
 @media screen and (min-width: 576px) and (max-width: 767px) {
@@ -231,7 +230,7 @@ nav.main-menu li.active > a,
     .limite-ressource {
         display: none;
     }
-} 
+}
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
     .nom-ressource {
@@ -243,7 +242,7 @@ nav.main-menu li.active > a,
     .limite-ressource {
         display: none;
     }
-} 
+}
 
 @media screen and (min-width: 992px) and (max-width: 1199px) {
     .nom-ressource {
@@ -252,13 +251,10 @@ nav.main-menu li.active > a,
     .emplacement-logo {
         display: none;
     }
-
-} 
+}
 
 @media screen and (min-width: 1200px) and (max-width: 2000px) {
     .nom-ressource {
         display: none;
     }
- }
-
-
+}

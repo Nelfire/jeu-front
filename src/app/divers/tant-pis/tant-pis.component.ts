@@ -8,13 +8,16 @@ import { NotificationService } from 'src/app/service/notification.service';
 })
 export class TantPisComponent implements OnInit {
 
+  // CONSTRUCTEUR
   constructor(private notification: NotificationService) { }
 
+  //NGONINIT
   ngOnInit(): void {
   }
 
+  // REDIRECTION (ou pas ...)
   redirection() {
-    this.notification.showWarning("Non... vraiment... il conduit nulle part","Pas si vite !");
+    this.notification.showWarning("Non... vraiment... il conduit nulle part", "Pas si vite !");
   }
 
 }

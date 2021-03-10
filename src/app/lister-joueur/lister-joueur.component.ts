@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Joueur} from '../auth/auth.domains';
-import {JoueurService} from '../service/joueur.service';
-import {JoueurInfos} from '../models/joueur-infos';
+import { Joueur } from '../auth/auth.domains';
+import { JoueurService } from '../service/joueur.service';
+import { JoueurInfos } from '../models/joueur-infos';
 
 @Component({
   selector: 'app-lister-joueur',
@@ -10,13 +10,14 @@ import {JoueurInfos} from '../models/joueur-infos';
 })
 export class ListerJoueurComponent implements OnInit {
 
-  // Initialisation
+  // INITIALISATIONS
   listeJoueurs: JoueurInfos[];
   messageErreur: string;
 
-  // Constructeur
+  // CONSTRUCTEUR
   constructor(private joueurService: JoueurService) { }
 
+  // NGONINIT
   ngOnInit(): void {
     this.joueurService.listerInfosJoueurs().subscribe(
       (joueurs) => {

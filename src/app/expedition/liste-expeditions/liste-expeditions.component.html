@@ -1,4 +1,5 @@
 <div class="expedition container">
+    <!-- CAS TABLE D'EXPEDITION MANQUANTE -->
     <div id="erreur">
         <div class="erreur" *ngIf="niveauTableExpedition==0; else possedeTableExpedition;">
             <div class="batimentManquant">
@@ -9,19 +10,16 @@
     </div>
     <ng-template #possedeTableExpedition>
         <div class="col-lg-12" *ngIf="listeExpedition">
-
-
-            <!-- titre page -->
+            <!-- TITRE -->
             <div class="divider-custom divider-light" *ngIf="tempsRestant">
                 <div class="divider-custom-line"></div>
-                <div class="divider-custom-titre" id="expedition_prochaines">Nouvelles expéditions disponnibles dans {{tempsRestant}}</div>
+                <div class="divider-custom-titre" id="expedition_prochaines">Nouvelles expéditions disponnibles dans
+                    {{tempsRestant}}</div>
                 <div class="divider-custom-line"></div>
             </div>
-            <!--             <button class="btn btn-success" (click)="refeshExpedition()">Refresh (Cron à
-                minuit)</button> -->
-
 
             <div class="row">
+                <!-- LISTE DE TOUTES LES EXPEDITIONS -->
                 <div class="col-lg-4 col-md-6 mb-4" *ngFor="let expedition of listeExpedition">
 
                     <div class="card h-100 dejaRealisee" *ngIf="expedition.dejaRealisee; else disponnible;">
@@ -30,40 +28,40 @@
                             <h4 class="card-title">
                                 <a routerLink="/mesExpeditions">{{expedition.libelle}}</a>
                             </h4>
-                            <hr>
-                            <h2>Coût :</h2>
-                            <h5>- Pierre : <b>{{expedition.coutPierre | thousandSuff:2}}</b></h5>
-                            <h5>- Bois : <b>{{expedition.coutBois | thousandSuff:2}}</b></h5>
-                            <h5>- Or : <b>{{expedition.coutOr | thousandSuff:2}}</b></h5>
-                            <h5>- Nourriture : <b>{{expedition.coutNourriture | thousandSuff:2}}</b></h5>
+                            <!-- RECOMPENSE -->
                             <hr>
                             <h2>Récompense :</h2>
                             <h5>- Pierre : <b>{{expedition.recompensePierre | thousandSuff:2}}</b></h5>
                             <h5>- Bois : <b>{{expedition.recompenseBois | thousandSuff:2}}</b></h5>
                             <h5>- Or : <b>{{expedition.recompenseOr | thousandSuff:2}}</b></h5>
                             <h5>- Nourriture : <b>{{expedition.recompenseNourriture | thousandSuff:2}}</b></h5>
-                            <h5>- Gemme : <b>{{expedition.recompenseGemme}}</b></h5>
+                            <h5>- Gemme : <b>{{expedition.recompenseGemme | thousandSuff:2}}</b></h5>
                             <hr>
+                            <!-- INFORMATIONS -->
                             <h2>Infos :</h2>
                             <h5>- Vie : <b>{{expedition.vie | thousandSuff:2}}</b></h5>
                             <h5>- Degats : <b>{{expedition.degats | thousandSuff:2}}</b></h5>
                             <h5>- Armure : <b>{{expedition.armure | thousandSuff:2}}</b></h5>
                             <h5>- Durée : <b>{{expedition.dureeExpedition | minuteSecondePipe: 's':'hhmmss'}}</b></h5>
                         </div>
+                        <!-- DIFFICULTE -->
                         <div class="card-footer">
                             Difficultée :
+                            <small class="text-muted" *ngIf="expedition.difficultee == 6">&#9733; &#9733;
+                                &#9733;
+                                &#9733; &#9733; &#9733;</small>
                             <small class="text-muted" *ngIf="expedition.difficultee == 5">&#9733; &#9733;
                                 &#9733;
-                                &#9733; &#9733;</small>
+                                &#9733; &#9733; &#9734;</small>
                             <small class="text-muted" *ngIf="expedition.difficultee == 4">&#9733; &#9733;
                                 &#9733;
-                                &#9733; &#9734;</small>
+                                &#9733; &#9734; &#9734;</small>
                             <small class="text-muted" *ngIf="expedition.difficultee == 3">&#9733; &#9733;
                                 &#9733;
-                                &#9734; &#9734;</small>
+                                &#9734; &#9734; &#9734;</small>
                             <small class="text-muted" *ngIf="expedition.difficultee == 2">&#9733; &#9733;
                                 &#9734;
-                                &#9734; &#9734;</small>
+                                &#9734; &#9734; &#9734;</small>
                             <small class="text-muted" *ngIf="expedition.difficultee == 1">&#9733; &#9734;
                                 &#9734;
                                 &#9734; &#9734;</small>
@@ -76,24 +74,20 @@
                             <div class="card-body">
                                 <h4 class="card-title">
                                     <a routerLink="detail-expedition/{{expedition.id}}">{{expedition.libelle}}</a>
-                                    <!-- <p class="card-text">{{expedition.description}}</p> -->
                                 </h4>
                                 <hr>
-                                <!--                                 <h2>Coût :</h2>
-                                <h5>- Pierre : <b [ngStyle]="{'color':getColorRessourceManquantePierre(expedition.id)}">{{expedition.coutPierre | thousandSuff:2}}</b></h5>
-                                <h5>- Bois : <b [ngStyle]="{'color':getColorRessourceManquanteBois(expedition.id)}">{{expedition.coutBois | thousandSuff:2}}</b></h5>
-                                <h5>- Or : <b [ngStyle]="{'color':getColorRessourceManquanteOr(expedition.id)}">{{expedition.coutOr | thousandSuff:2}}</b></h5>
-                                <h5>- Nourriture : <b [ngStyle]="{'color':getColorRessourceManquanteNourriture(expedition.id)}">{{expedition.coutNourriture | thousandSuff:2}}</b></h5>
-                                <hr> -->
+
+                                <!-- RECOMPENSE -->
                                 <span id="expedition_recompense">
                                     <h2>Récompense :</h2>
                                     <h5>- Pierre : <b>{{expedition.recompensePierre | thousandSuff:2}}</b></h5>
                                     <h5>- Bois : <b>{{expedition.recompenseBois | thousandSuff:2}}</b></h5>
                                     <h5>- Or : <b>{{expedition.recompenseOr | thousandSuff:2}}</b></h5>
                                     <h5>- Nourriture : <b>{{expedition.recompenseNourriture | thousandSuff:2}}</b></h5>
-                                    <h5>- Gemme : <b>{{expedition.recompenseGemme}}</b></h5>
+                                    <h5>- Gemme : <b>{{expedition.recompenseGemme | thousandSuff:2}}</b></h5>
                                 </span>
                                 <hr>
+                                <!-- INFORMATIONS -->
                                 <span id="expedition_informations">
                                     <h2>Infos :</h2>
                                     <h5>- Vie : <b>{{expedition.vie | thousandSuff:2}}</b></h5>
@@ -104,24 +98,29 @@
                                 </span>
                             </div>
                             <div class="card-footer">
+                                <!-- DIFFICULTE -->
                                 <span id="expedition_difficultee">
                                     Difficultée :
+                                    <small class="text-muted" *ngIf="expedition.difficultee == 6">&#9733; &#9733;
+                                        &#9733;
+                                        &#9733; &#9733; &#9733;</small>
                                     <small class="text-muted" *ngIf="expedition.difficultee == 5">&#9733; &#9733;
                                         &#9733;
-                                        &#9733; &#9733;</small>
+                                        &#9733; &#9733; &#9734;</small>
                                     <small class="text-muted" *ngIf="expedition.difficultee == 4">&#9733; &#9733;
                                         &#9733;
-                                        &#9733; &#9734;</small>
+                                        &#9733; &#9734; &#9734;</small>
                                     <small class="text-muted" *ngIf="expedition.difficultee == 3">&#9733; &#9733;
                                         &#9733;
-                                        &#9734; &#9734;</small>
+                                        &#9734; &#9734; &#9734;</small>
                                     <small class="text-muted" *ngIf="expedition.difficultee == 2">&#9733; &#9733;
                                         &#9734;
-                                        &#9734; &#9734;</small>
+                                        &#9734; &#9734; &#9734;</small>
                                     <small class="text-muted" *ngIf="expedition.difficultee == 1">&#9733; &#9734;
                                         &#9734;
-                                        &#9734; &#9734;</small>
+                                        &#9734; &#9734; &#9734;</small>
                                 </span>
+                                <!-- BOUTONS -->
                                 <div *ngIf="niveauTableExpedition > compteurExpedition; else upgadeBatimentNecessaire">
                                     <a routerLink="detail-expedition/{{expedition.id}}">
                                         <button class="btn btn-info">Détails</button>
@@ -129,11 +128,10 @@
                                 </div>
                                 <ng-template #upgadeBatimentNecessaire>
                                     <a routerLink="/batiment/detail-batiment/18"
-                                        ngbTooltip="Limite d'expédition simultanée atteinte. Veuillez améliorer votre chantier pour augmenter la limite d'expéditions simultanées.">
+                                        ngbTooltip="Limite d'expédition simultanée atteinte. Veuillez améliorer votre Table d'expédition pour augmenter la limite d'expéditions simultanées.">
                                         <button class="btn btn-danger">Limite atteinte</button>
                                     </a>
                                 </ng-template>
-
                             </div>
                         </div>
                     </ng-template>

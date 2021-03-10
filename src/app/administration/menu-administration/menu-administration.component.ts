@@ -7,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuAdministrationComponent implements OnInit {
 
+  // CONSTRUCTEUR
   constructor() { }
 
+  //NGONINIT
   ngOnInit(): void {
   }
 

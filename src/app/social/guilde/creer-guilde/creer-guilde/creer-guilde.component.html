@@ -1,10 +1,12 @@
 <div class="creer-guilde container">
-    <!-- titre page -->
+    <!-- TITRE -->
     <div class="divider-custom divider-light">
         <div class="divider-custom-line"></div>
         <div class="divider-custom-titre">CREER GUILDE</div>
         <div class="divider-custom-line"></div>
     </div>
+
+    <!-- BOUTONS DE NAVIGATION -->
     <div class="row center">
         <div class="col-sm-4">
             <a routerLink="/creerGuilde">
@@ -23,24 +25,27 @@
         </div>
     </div>
 
-
-
     <div class="card">
-
         <div class="card-body ">
+            <!-- FORMULAIRE -->
             <form [formGroup]="formCreationGuilde" (ngSubmit)="creationGuilde()">
+                <!-- BLASON (Icone) -->
                 <div class="form-group row">
                     <label for="icone" class="col-sm-2 col-form-label">Blason</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="icone" rows="3" formControlName="icone" />
                     </div>
                 </div>
+
+                <!-- Nom de guilde -->
                 <div class="form-group row">
                     <label for="libelle" class="col-sm-2 col-form-label">Libelle</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="libelle" rows="3" formControlName="libelle" />
                     </div>
                 </div>
+
+                <!-- Messages -->
                 <div class="alert alert-danger" role="danger" *ngIf="messageErreur">
                     <b>{{messageErreur}}</b>
                 </div>
@@ -48,6 +53,7 @@
                     <b>{{messageValidation}}</b>
                 </div>
 
+                <!-- BOUTONS -->
                 <div class="row justify-content-md-center">
                     <div class="col-md-auto">
                         <!-- bouton valider formulaire -->

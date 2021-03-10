@@ -15,23 +15,25 @@ import { NotificationService } from 'src/app/service/notification.service';
 })
 export class ModifierJoueurComponent implements OnInit {
 
-  // https://www.npmjs.com/package/ng-multiselect-dropdown
   // Icones
   faCheck = faCheck;
   faTimes = faTimes;
 
+  // INITIALISATIONS
   formModificationJoueur: FormGroup;
   joueur: JoueurInfos;
   messageValidation: string;
   messageErreur: string;
   email: string;
 
-  constructor(private activatedRoute: ActivatedRoute, 
-    private joueurService: JoueurService, 
+  // CONSTRUCTEUR
+  constructor(private activatedRoute: ActivatedRoute,
+    private joueurService: JoueurService,
     private formBuilder: FormBuilder,
     private router: Router,
     private notification: NotificationService) { }
 
+  // NGONINIT
   ngOnInit(): void {
 
     // Initialisation du formulaire vide.
@@ -51,12 +53,10 @@ export class ModifierJoueurComponent implements OnInit {
         this.messageErreur = "Erreur dans le traitement : " + error;
       }
     );
-
-
   }
 
+  // INITIALISATIONS DU FORMULAIRE AVEC DONNEES
   initForm() {
-
     this.formModificationJoueur = this.formBuilder.group({
       pseudo: [this.joueur.pseudo, Validators.required],
       icone: [this.joueur.icone, Validators.required],
@@ -65,21 +65,22 @@ export class ModifierJoueurComponent implements OnInit {
     });
   }
 
+  // BOUTON VALIDER
   validerFormulaire() {
 
     const icone = this.formModificationJoueur.get("icone").value;
     /* const email = this.formModificationJoueur.get("email").value; */
     const descriptif = this.formModificationJoueur.get("descriptif").value;
 
-    this.joueurService.modifierInformationsJoueur(icone,descriptif).subscribe(() => {
-    
+    this.joueurService.modifierInformationsJoueur(icone, descriptif).subscribe(() => {
+
     }, (error) => {
       this.notification.showError(error.error.message, "Informations modifiées.");
     }, () => {
       this.notification.showSuccess("", "Informations modifiées.");
       setTimeout(() => {
         // Redirection au bout de 1,5 secondes
-        this.router.navigate(['/detailJoueur/'+this.joueur.id]);
+        this.router.navigate(['/detailJoueur/' + this.joueur.id]);
       }, 1500);
     });
   }

@@ -232,7 +232,7 @@
 }
 
 .saisieRessource {
-    width: 40%; 
+    width: 40%;
     margin-top: 2%;
     text-align: center;
     font-weight: bold;
@@ -242,7 +242,7 @@
 }
 
 .montantTransaction {
-    width: 60%; 
+    width: 60%;
     margin-top: 2%;
     background-color: rgba(158, 158, 158, 0.534);
     text-align: center;
@@ -252,62 +252,58 @@
     font-size: 22px;
 }
 
-
-input[type=checkbox]
-{
+input[type="checkbox"] {
     margin-top: 50%;
-  /* Double-sized Checkboxes */
-  -ms-transform: scale(2); /* IE */
-  -moz-transform: scale(2); /* FF */
-  -webkit-transform: scale(2); /* Safari and Chrome */
-  -o-transform: scale(2); /* Opera */
-  transform: scale(2);
-  padding: 10px;
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(2); /* IE */
+    -moz-transform: scale(2); /* FF */
+    -webkit-transform: scale(2); /* Safari and Chrome */
+    -o-transform: scale(2); /* Opera */
+    transform: scale(2);
+    padding: 10px;
 }
 
 /* Might want to wrap a span around your checkbox text */
-.checkboxtext
-{
-  /* Checkbox text */
-  font-size: 110%;
-  display: inline;
+.checkboxtext {
+    /* Checkbox text */
+    font-size: 110%;
+    display: inline;
 }
-
 
 #erreur {
     position: relative;
     height: 40vh;
-  }
-  
-  #erreur .erreur {
+}
+
+#erreur .erreur {
     position: absolute;
     left: 50%;
     top: 50%;
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-  }
-  
-  .erreur {
+}
+
+.erreur {
     max-width: 520px;
     width: 100%;
     text-align: center;
     line-height: 1.4;
-  }
-  
-  .erreur .batimentManquant {
+}
+
+.erreur .batimentManquant {
     height: 190px;
-  }
-  
-  .erreur .batimentManquant h1 {
+}
+
+.erreur .batimentManquant h1 {
     font-family: "Montserrat", sans-serif;
     font-size: 146px;
     font-weight: 700;
     margin: 0px;
     color: #232323;
-  }
-  
-  .erreur .batimentManquant h1 > span {
+}
+
+.erreur .batimentManquant h1 > span {
     display: inline-block;
     width: 120px;
     height: 120px;
@@ -317,24 +313,24 @@ input[type=checkbox]
     -ms-transform: scale(1.4);
     transform: scale(1.4);
     z-index: -1;
-  }
-  
-  .erreur h2 {
+}
+
+.erreur h2 {
     font-family: "Montserrat", sans-serif;
     font-size: 22px;
     font-weight: 700;
     margin: 0;
     text-transform: uppercase;
     color: #232323;
-  }
-  
-  .erreur p {
+}
+
+.erreur p {
     font-family: "Montserrat", sans-serif;
     color: #787878;
     font-weight: 300;
-  }
-  
-  .erreur a {
+}
+
+.erreur a {
     font-family: "Montserrat", sans-serif;
     display: inline-block;
     padding: 12px 30px;
@@ -345,23 +341,23 @@ input[type=checkbox]
     text-decoration: none;
     -webkit-transition: 0.2s all;
     transition: 0.2s all;
-  }
-  
-  .erreur a:hover {
+}
+
+.erreur a:hover {
     opacity: 0.8;
-  }
-  
-  @media only screen and (max-width: 767px) {
+}
+
+@media only screen and (max-width: 767px) {
     .erreur .batimentManquant {
-      height: 115px;
+        height: 115px;
     }
-  
+
     .erreur .batimentManquant h1 {
-      font-size: 86px;
+        font-size: 86px;
     }
-  
+
     .erreur .batimentManquant h1 > span {
-      width: 86px;
-      height: 86px;
+        width: 86px;
+        height: 86px;
     }
-  }
+}

@@ -14,16 +14,12 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AccesRefuseComponent } from './erreurNavigation/acces-refuse/acces-refuse.component';
 import { FourOhFourComponent } from './erreurNavigation/four-oh-four/four-oh-four.component';
-import { JourFermeService } from './service/jour-ferme.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { JoueurService } from './service/joueur.service';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { AccueilComponent } from './accueil/accueil.component';
 import { ListerJoueurComponent } from './lister-joueur/lister-joueur.component';
-import { MessageComponent } from './message/message.component';
-import { MessageService } from './service/message.service';
-import { MessagePriveComponent } from './message/message-prive/message-prive.component';
 import { ModifierJoueurComponent } from './joueur/modifier-joueur/modifier-joueur.component';
 import { MonCampementComponent } from './campement/mon-campement/mon-campement.component';
 import { MonArmeeComponent } from './armee/mon-armee/mon-armee.component';
@@ -81,6 +77,10 @@ import { CarteComponent } from './social/carte/carte.component';
 import { CampagneService } from './service/campagne/campagne.service';
 import { ListeCampagnesComponent } from './campagne/liste-campagnes/liste-campagnes.component';
 import { TutorielService } from './service/tutoriel.service';
+import { DetailCampagneComponent } from './campagne/detail-campagne/detail-campagne.component';
+import { CreerCampagneComponent } from './administration/campagne/creer-campagne/creer-campagne.component';
+import { ModificationCampagneComponent } from './administration/campagne/modification-campagne/modification-campagne.component';
+import { ListeCampagneAdministrationComponent } from './administration/campagne/liste-campagne-administration/liste-campagne-administration.component';
 
 
 @NgModule({
@@ -94,8 +94,6 @@ import { TutorielService } from './service/tutoriel.service';
     FourOhFourComponent,
     AccueilComponent,
     ListerJoueurComponent,
-    MessageComponent,
-    MessagePriveComponent,
     ModifierJoueurComponent,
     MonCampementComponent,
     MonArmeeComponent,
@@ -134,7 +132,11 @@ import { TutorielService } from './service/tutoriel.service';
     MarcheComponent,
     ModificationJoueurComponent,
     CarteComponent,
-    ListeCampagnesComponent
+    ListeCampagnesComponent,
+    DetailCampagneComponent,
+    CreerCampagneComponent,
+    ModificationCampagneComponent,
+    ListeCampagneAdministrationComponent
   ],
   imports: [
     BrowserModule,
@@ -149,9 +151,7 @@ import { TutorielService } from './service/tutoriel.service';
     BrowserAnimationsModule
   ],
   providers: [
-    JourFermeService,
     JoueurService,
-    MessageService,
     CampementService,
     BatimentService,
     BatimentJoueurService,

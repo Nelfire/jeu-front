@@ -12,7 +12,6 @@ import { ListeAmisService } from 'src/app/service/social/liste-amis.service';
 })
 export class DetailCompteComponent implements OnInit {
 
-
   // INITILISATIONS
   joueur: JoueurInfos;
   joueurConnecte: JoueurInfos;
@@ -20,11 +19,14 @@ export class DetailCompteComponent implements OnInit {
   dejaAmis: boolean;
   expRestant: number;
   seuil: number;
-  constructor(private joueurService: JoueurService, 
+
+  // CONSTRUCTEUR
+  constructor(private joueurService: JoueurService,
     private routerLinkActive: ActivatedRoute,
     private listeAmisService: ListeAmisService,
     private notification: NotificationService) { }
 
+  // NGONINIT
   ngOnInit(): void {
 
     // Données du Joueur connecté
@@ -36,37 +38,32 @@ export class DetailCompteComponent implements OnInit {
       }, (error) => {
         this.messageErreur = "Erreur dans le traitement : " + error;
       }
-      
     );
-
-    
-
   }
 
   traitement() {
-        this.joueurService.informationJoueurById(this.routerLinkActive.snapshot.params['id']).subscribe(
-          (donnees) => {
-            this.joueur = donnees;
-    
-    
-            this.listeAmisService.lister().subscribe(
-              (value) => {
-                value.listeDAmis.forEach(element => {
-                  if(element == donnees.id) {
-                    this.dejaAmis = true;
-                  }
-                });
+    this.joueurService.informationJoueurById(this.routerLinkActive.snapshot.params['id']).subscribe(
+      (donnees) => {
+        this.joueur = donnees;
+        this.listeAmisService.lister().subscribe(
+          (value) => {
+            value.listeDAmis.forEach(element => {
+              if (element == donnees.id) {
+                this.dejaAmis = true;
               }
-            )
-          }, (error) => {
-            this.messageErreur = "Erreur dans le traitement : " + error;
-          }, () => {
-            // Tout est ok
+            });
           }
-        );
+        )
+      }, (error) => {
+        this.messageErreur = "Erreur dans le traitement : " + error;
+      }, () => {
+        // Tout est ok
+      }
+    );
   }
 
-  ajouterAmi(id:number) {
+  // BOUTON AJOUTER AMI
+  ajouterAmi(id: number) {
     this.listeAmisService.ajouterAmi(id).subscribe(
       () => {
         this.notification.showSuccess("Vous avez un nouvel ami !", "Ami ajouté.");
@@ -76,6 +73,7 @@ export class DetailCompteComponent implements OnInit {
     );
   }
 
+  // BOUTON DEJA AMI
   dejaAmi() {
     this.notification.showWarning("Vous semblez déjà super ami avec cette personne ! ☺", "Déjà ami.");
   }
@@ -87,23 +85,20 @@ export class DetailCompteComponent implements OnInit {
     return pourcentageRestant + '%';
   }
 
-
-  determinerExpProchainNiveau(experience:number) {
-    console.log(experience);
+  determinerExpProchainNiveau(experience: number) {
     var fin = false;
-		var seuil = 5000;
-		while(fin!=true) {
-      console.log("Oui,",experience,"> 0")
-      if(experience-seuil > 0 ) {
-        experience = experience-seuil;
-        seuil = seuil *2;
+    var seuil = 5000;
+    while (fin != true) {
+      if (experience - seuil > 0) {
+        experience = experience - seuil;
+        seuil = seuil * 2;
       } else {
         fin = true;
       }
-		}
+    }
     this.expRestant = experience;
-		this.seuil = seuil;
-	}
+    this.seuil = seuil;
+  }
 
 
 }

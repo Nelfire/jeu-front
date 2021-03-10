@@ -1,7 +1,16 @@
+<!-- MESSAGES HEROKU -->
 <div class="avertissementHeroku">
-  Un problème de connexion ? Il est possible que la base de données hébergée sur Heroku se soit mise en veille du fait de son
-  inactivité. Patientez une vingtaine de secondes ☺
+  Un problème de connexion ? Il est possible que la base de données hébergée sur Heroku se soit mise en
+  veille du fait de son
+  inactivité. Patientez une vingtaine de secondes <i class="fa fa-grin-wink"></i>
 </div>
+<div class="timerHeroku">
+  <span *ngIf="secondesRestantes>0;else herokuOk">{{tempsRestant}}</span>
+  <ng-template #herokuOk>
+    <span>Héroku démarré <i class="fa fa-grin-stars"></i></span>
+  </ng-template>
+</div>
+
 <div class=" wrapper fadeInDown align-items-center">
   <div id="formContent">
     <!-- Logo -->
@@ -15,11 +24,9 @@
       <!-- email -->
       <input type="email" name="email" [(ngModel)]="joueur.email" class="fadeIn second" id="exampleInputEmail1"
         aria-describedby="emailHelp"><br>
-<!--       <small>Email de test : test@email.com</small> -->
       <!-- password -->
       <input type="password" name="pass" [(ngModel)]="joueur.motDePasse" class="fadeIn third" id="exampleInputPassword1"
         aria-describedby="passwordHelp"><br>
-<!--       <small>Password : password</small><br> -->
       <!-- bouton de connexion -->
       <input type="submit" class="fadeIn fourth mb-3" (click)="connecter()" value="Se connecter">
       <!-- bouton création de compte -->

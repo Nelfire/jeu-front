@@ -12,19 +12,20 @@ const URL_BACKEND = environment.baseUrl + 'guilde';
 })
 export class GuildeService {
 
+  // CONSTRUCTEUR
   constructor(private http: HttpClient) { }
 
-  // lister toutes les guildes
-  listerGuildes () : Observable<Guilde[]> {
+  // LISTE TOUTES LES GUILDES
+  listerGuildes(): Observable<Guilde[]> {
     return this.http.get<Guilde[]>(`${URL_BACKEND}/listerGuildes`);
   }
 
-  creerGuilde(icone: number, libelle: number) : Observable<CreationGuilde> {
+  // CREER UNE NOUVELLE GUILDE
+  creerGuilde(icone: number, libelle: number): Observable<CreationGuilde> {
     return this.http.post<CreationGuilde>(`${URL_BACKEND}`,
-    {
-      icone: `${icone}`,
-      libelle: `${libelle}`
-    })
-    
+      {
+        icone: `${icone}`,
+        libelle: `${libelle}`
+      })
   }
 }

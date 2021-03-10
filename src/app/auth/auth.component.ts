@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Joueur} from './auth.domains';
-import {Router} from '@angular/router';
+import { Joueur } from './auth.domains';
+import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
+import { Observable, Subscription } from 'rxjs';
 
 /**
  * Formulaire d'authentification.
@@ -13,17 +14,39 @@ import { AuthService } from '../service/auth.service';
 })
 export class AuthComponent implements OnInit {
 
-  // Initisalisations
+  // INITIALISATIONS
   joueur: Joueur = new Joueur({});
   messageErreur: boolean;
+  secondesRestantes: number = 25;
+  counterSubscription: Subscription;
+  tempsRestant: String = "00:00:25";
 
-  // Constructeur
-  constructor(private authSrv: AuthService, 
+  // CONSTRUCTEUR
+  constructor(private authSrv: AuthService,
     private router: Router) { }
 
+  // NGONINIT
   ngOnInit() {
+
+    // TIMER
+    const compteur = Observable.interval(1000);
+    this.counterSubscription = compteur.subscribe(
+      (valeur: number) => {
+        // EN CAS DE FIN DE TIMER, DESTRUCTION
+        if (this.secondesRestantes < 1) {
+          this.ngOnDestroy();
+        }
+
+        // A chaques appel, je réduit de 1 seconde le nombre de secondes présentes dans le compteur
+        this.secondesRestantes--;
+        var date = new Date(null);
+        date.setSeconds(this.secondesRestantes);
+        this.tempsRestant = date.toISOString().substr(11, 8);
+      }
+    );
   }
 
+  // BOUTON CONNEXION
   connecter() {
     this.authSrv.connecter(this.joueur.email, this.joueur.motDePasse)
       .subscribe(
@@ -35,6 +58,12 @@ export class AuthComponent implements OnInit {
           this.messageErreur = true
         }
       );
+  }
+
+  ngOnDestroy() {
+    if (this.counterSubscription) {
+      this.counterSubscription.unsubscribe();
+    }
   }
 
 }

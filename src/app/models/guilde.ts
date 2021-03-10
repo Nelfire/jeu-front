@@ -1,7 +1,7 @@
 import { Joueur } from "../auth/auth.domains";
 
-export class Guilde{
-    constructor(public id:number,
+export class Guilde {
+    constructor(public id: number,
         public libelle: string,
         public icone: string,
         public messageAccueil: string,
@@ -10,5 +10,5 @@ export class Guilde{
         public niveau: number,
         public experience: number,
         public nombreMembresMaximal: number,
-        public coutOrCreation: number){}
+        public coutOrCreation: number) { }
 }

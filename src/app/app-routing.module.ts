@@ -6,11 +6,7 @@ import { StatutConnecteService } from './service/statut-connecte.service';
 import { StatutAdministrateurService } from './service/statut-administrateur.service';
 import { FourOhFourComponent } from './erreurNavigation/four-oh-four/four-oh-four.component';
 import { AccesRefuseComponent } from './erreurNavigation/acces-refuse/acces-refuse.component';
-import { StatutManagerService } from './service/statut-manager.service';
 import { AccueilComponent } from './accueil/accueil.component';
-import { ListerJoueurComponent } from './lister-joueur/lister-joueur.component';
-import { MessageComponent } from './message/message.component';
-import { MessagePriveComponent } from './message/message-prive/message-prive.component';
 import { ModifierJoueurComponent } from './joueur/modifier-joueur/modifier-joueur.component';
 import { MonCampementComponent } from './campement/mon-campement/mon-campement.component';
 import { MonArmeeComponent } from './armee/mon-armee/mon-armee.component';
@@ -49,6 +45,10 @@ import { MarcheComponent } from './marche/marche.component';
 import { ModificationJoueurComponent } from './administration/joueur/modification-joueur/modification-joueur.component';
 import { CarteComponent } from './social/carte/carte.component';
 import { ListeCampagnesComponent } from './campagne/liste-campagnes/liste-campagnes.component';
+import { DetailCampagneComponent } from './campagne/detail-campagne/detail-campagne.component';
+import { ListeCampagneAdministrationComponent } from './administration/campagne/liste-campagne-administration/liste-campagne-administration.component';
+import { ModificationCampagneComponent } from './administration/campagne/modification-campagne/modification-campagne.component';
+import { CreerCampagneComponent } from './administration/campagne/creer-campagne/creer-campagne.component';
 
 
 const routes: Routes = [
@@ -61,92 +61,94 @@ const routes: Routes = [
 
   // ------------ AUTHENTIFICATION ----------------
   { path: 'auth', component: AuthComponent },
-  // ------------ CREATION DE COMPTE ----------------
-  { path: 'creationCompte', component: CreationCompteComponent},
+  // ------------ COMPTE ----------------
+  { path: 'creationCompte', component: CreationCompteComponent },
 
 
   { path: 'modifierJoueur/:email', component: ModifierJoueurComponent, canActivate: [StatutConnecteService, StatutAdministrateurService] },
 
-  { path: 'message', component: MessageComponent, canActivate: [StatutConnecteService] },
-  { path: 'messagePrive/:email', component: MessagePriveComponent, canActivate: [StatutConnecteService] },
-  { path: 'campement', component: MonCampementComponent, canActivate: [StatutConnecteService] },
-  { path: 'defense', component: MesDefensesComponent, canActivate: [StatutConnecteService] },
 
-  { path: 'armee', component: MonArmeeComponent, canActivate: [StatutConnecteService] },
-  { path: 'classement-joueurs', component: ClassementJoueursComponent, canActivate: [StatutConnecteService] },
+
+
 
   // ------------ GUILDES ----------------
   { path: 'creerGuilde', component: CreerGuildeComponent, canActivate: [StatutConnecteService] },
   { path: 'listeGuildes', component: ListeGuildesComponent, canActivate: [StatutConnecteService] },
   { path: 'maGuilde', component: MaGuildeComponent, canActivate: [StatutConnecteService] },
   { path: 'rechercheGuilde', component: RechercherGuildeComponent, canActivate: [StatutConnecteService] },
+
   // ------------ BATIMENTS --------------
+  { path: 'campement', component: MonCampementComponent, canActivate: [StatutConnecteService] },
   { path: 'batiment/detail-batiment/:idTypeBatiment', component: DetailBatimentComponent, canActivate: [StatutConnecteService] },
 
-    // ------------ DEFENSES --------------
-
+  // ------------ DEFENSES --------------
+  { path: 'defense', component: MesDefensesComponent, canActivate: [StatutConnecteService] },
   { path: 'defense/detail-defense/:idDefense', component: DetailDefenseComponent, canActivate: [StatutConnecteService] },
 
-
+  // ------------- UNITEE ---------------
+  { path: 'armee', component: MonArmeeComponent, canActivate: [StatutConnecteService] },
+  { path: 'unitee/detail-unitee/:id', component: DetailUniteeComponent, canActivate: [StatutConnecteService] },
 
   // ------------ ADMINISTRATION --------------
   { path: 'menuAdministration', component: MenuAdministrationComponent, canActivate: [StatutAdministrateurService] },
   // - Bâtiments -
-  { path: 'listeBatiment', component: ListeBatimentComponent, canActivate: [StatutAdministrateurService]}, 
-  { path: 'modificationBatiment/:id', component: ModificationBatimentComponent, canActivate: [StatutAdministrateurService]}, 
+  { path: 'listeBatiment', component: ListeBatimentComponent, canActivate: [StatutAdministrateurService] },
+  { path: 'modificationBatiment/:id', component: ModificationBatimentComponent, canActivate: [StatutAdministrateurService] },
   // - Défenses -
-  { path: 'listeDefense', component: ListeDefenseComponent, canActivate: [StatutAdministrateurService]}, 
-  { path: 'modificationDefense/:id', component: ModificationDefenseComponent, canActivate: [StatutAdministrateurService]}, 
-  // - Unitées -
+  { path: 'listeDefense', component: ListeDefenseComponent, canActivate: [StatutAdministrateurService] },
+  { path: 'modificationDefense/:id', component: ModificationDefenseComponent, canActivate: [StatutAdministrateurService] },
+  // - Unités -
   { path: 'listeUnitee', component: ListeUniteeComponent, canActivate: [StatutAdministrateurService] },
   { path: 'creationUnitee', component: CreationUniteeComponent, canActivate: [StatutAdministrateurService] },
   { path: 'modificationUnitee/:id', component: ModificationUniteeComponent, canActivate: [StatutAdministrateurService] },
   // - Joueur -
-  { path: 'modificationJoueur/:id', component: ModificationJoueurComponent, canActivate: [StatutAdministrateurService]},
-
-  // ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥  BETTIE D'AMOUR VINCENT D'AMOUR PAPI MAMIE D'AMOUR ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥ ♥
-  // ------------- UNITEE ---------------
-
-  { path: 'unitee/detail-unitee/:id', component: DetailUniteeComponent, canActivate: [StatutConnecteService] },
+  { path: 'modificationJoueur/:id', component: ModificationJoueurComponent, canActivate: [StatutAdministrateurService] },
+  // - Campagne -
+  { path: 'listeCampagneAdministration', component: ListeCampagneAdministrationComponent, canActivate: [StatutAdministrateurService] },
+  { path: 'modificationCampagne/:id', component: ModificationCampagneComponent, canActivate: [StatutAdministrateurService] },
+  { path: 'creerCampagne', component: CreerCampagneComponent, canActivate: [StatutAdministrateurService] },
 
   // ------------- EXPEDITIONS ---------------
-
   // - Liste expéditions
   { path: 'expedition', component: ListeExpeditionsComponent, canActivate: [StatutConnecteService] },
   // - Detail expédition
-  { path: 'expedition/detail-expedition/:id', component: DetailExpeditionComponent, canActivate: [StatutConnecteService]},
+  { path: 'expedition/detail-expedition/:id', component: DetailExpeditionComponent, canActivate: [StatutConnecteService] },
   // - Liste expéditions joueur
-  { path: 'mesExpeditions', component: ListeExpeditionsJoueurComponent, canActivate: [StatutConnecteService]},
+  { path: 'mesExpeditions', component: ListeExpeditionsJoueurComponent, canActivate: [StatutConnecteService] },
 
   // ---------------- CAMPAGNE ---------------
+  { path: 'campagne', component: ListeCampagnesComponent, canActivate: [StatutConnecteService] },
+  { path: 'campagne/detail-campagne/:id', component: DetailCampagneComponent, canActivate: [StatutConnecteService] },
 
-  { path: 'campagne', component: ListeCampagnesComponent, canActivate: [StatutConnecteService]},
   // ------------- BOUTIQUE -------------
-  { path: 'boutique', component: BoutiqueComponent, canActivate: [StatutConnecteService]},
+  { path: 'boutique', component: BoutiqueComponent, canActivate: [StatutConnecteService] },
+
   // ------------- MARCHE -------------
-  { path: 'marche', component: MarcheComponent, canActivate: [StatutConnecteService]},
+  { path: 'marche', component: MarcheComponent, canActivate: [StatutConnecteService] },
 
   // ------------- DISCUSSION -------------
-  { path: 'discussion', component: DiscussionComponent, canActivate: [StatutConnecteService]},
+  { path: 'discussion', component: DiscussionComponent, canActivate: [StatutConnecteService] },
   // ---- privée ---
-  { path: 'discussionPrivee/:id', component: DiscussionPriveeComponent, canActivate: [StatutConnecteService]},
+  { path: 'discussionPrivee/:id', component: DiscussionPriveeComponent, canActivate: [StatutConnecteService] },
 
   // ----------- CARTE ---------
-  { path: 'carte', component: CarteComponent, canActivate: [StatutConnecteService]},
+  { path: 'carte', component: CarteComponent, canActivate: [StatutConnecteService] },
+
   // ------------- JOUEUR -------------
-  { path: 'detailJoueur/:id', component: DetailCompteComponent, canActivate: [StatutConnecteService]},
-  { path: 'modifierJoueur', component: ModifierJoueurComponent, canActivate: [StatutConnecteService]},
-  { path: 'listeAmis', component: ListeAmisComponent, canActivate: [StatutConnecteService]},
+  { path: 'detailJoueur/:id', component: DetailCompteComponent, canActivate: [StatutConnecteService] },
+  { path: 'modifierJoueur', component: ModifierJoueurComponent, canActivate: [StatutConnecteService] },
+  { path: 'listeAmis', component: ListeAmisComponent, canActivate: [StatutConnecteService] },
 
   // --------- USINE -----------
-  { path: 'centreRecolte', component: UsineComponent, canActivate: [StatutConnecteService]},
+  { path: 'centreRecolte', component: UsineComponent, canActivate: [StatutConnecteService] },
+
   // --------- DIVERS -----------
-  
-  { path: 'merciInfiniment', component: MerciComponent, canActivate: [StatutConnecteService]},
-  { path: 'tantPis', component: TantPisComponent, canActivate: [StatutConnecteService]},
-  { path: 'aVenir', component: AnnonceAVenirComponent, canActivate: [StatutConnecteService]},
-  { path: 'nouveautes', component: NouveauteComponent, canActivate: [StatutConnecteService]},
-  
+  { path: 'classement-joueurs', component: ClassementJoueursComponent, canActivate: [StatutConnecteService] },
+  { path: 'merciInfiniment', component: MerciComponent, canActivate: [StatutConnecteService] },
+  { path: 'tantPis', component: TantPisComponent, canActivate: [StatutConnecteService] },
+  { path: 'aVenir', component: AnnonceAVenirComponent, canActivate: [StatutConnecteService] },
+  { path: 'nouveautes', component: NouveauteComponent, canActivate: [StatutConnecteService] },
+
   // --------- REDIRECTIONS ---------
   { path: '', redirectTo: '/accueil', pathMatch: 'full' },
   { path: 'accesRefuse', component: AccesRefuseComponent, canActivate: [StatutConnecteService] },

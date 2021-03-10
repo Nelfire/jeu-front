@@ -1,4 +1,5 @@
 <div class="carte container">
+    <!-- TITRE -->
     <div class="divider-custom divider-light">
         <div class="divider-custom-line"></div>
         <div class="divider-custom-titre">Carte du monde</div>
@@ -6,20 +7,29 @@
     </div>
 
     <table style="background-color: rgba(168, 168, 168, 0.445);">
+        <!-- LISTES DE TOUTES LES CELLULES -->
         <tr *ngFor="let number of numbers;let index  = index">
             <td class="center"><b>{{index}}</b></td>
+            <!-- LISTES DE TOUTES LES CELLULES -->
             <td *ngFor="let number of numbers" class="center">
-                <b *ngIf="index==0" >{{number}}</b>
+                <b *ngIf="index==0">{{number}}</b>
+                <!-- LISTES DE TOUS LES JOUEURS -->
                 <div *ngFor="let joueur of listeJoueurs">
                     <b *ngIf="index==joueur.positionX && number==joueur.positionY">
-                        <span *ngIf="joueur.id==joueurConnecte.id; else autre;" style="background-color: rgba(252, 255, 88, 0.815);"  ngbTooltip="Votre position">
+                        <!-- JOUEUR CONNECTE -->
+                        <span *ngIf="joueur.id==joueurConnecte.id; else autre;"
+                            style="background-color: rgba(252, 255, 88, 0.815);" ngbTooltip="Votre position">
                             <img src="{{joueur.icone}}" style="width: 25px;">
                         </span>
-                        <ng-template #autre >
+
+                        <!-- AUTRES JOUEURS-->
+                        <ng-template #autre>
                             <span style="background-color: rgba(88, 160, 255, 0.815);" [ngbTooltip]="informationJoueur">
                                 <img src="{{joueur.icone}}" style="width: 25px;">
                             </span>
                         </ng-template>
+
+                        <!-- TOOLTIP -->
                         <ng-template #informationJoueur>
                             <div class="d-flex flex-column">
                                 <span><b><u>Informations du joueur</u></b></span><br>
@@ -28,7 +38,7 @@
                                 <span><b>Position : </b> [{{joueur.positionX}},{{joueur.positionY}}]</span><br>
                                 <span><b><u>ESPIONNER</u> | <u>ATTAQUER</u> </b></span>
                                 <span>(à venir)</span>
-                                
+
                             </div>
                         </ng-template>
                     </b>

@@ -1,5 +1,5 @@
 $hexagon-width: 250px;
-$hexagon-height: $hexagon-width*.55;
+$hexagon-height: $hexagon-width * 0.55;
 $hexagon-margin: 25px;
 $hexagon-title-color: #fff;
 $hexagon-border-color: #fff;
@@ -8,7 +8,7 @@ $hexagon-image-color: #3ea0eb88;
 $honeycomb-max-width: 1200px;
 $viewport-thereshold: $hexagon-width + $hexagon-margin;
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
 a:link {
   text-decoration: none;
 }
@@ -24,18 +24,20 @@ a:link {
   font-weight: 700;
   font-size: 1em;
   transition: opacity 350ms;
-  
+
   > small {
     font-weight: 300;
     margin-top: 0.25em;
   }
 }
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   background: #3ea0eb;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -61,7 +63,6 @@ body {
     text-align: center;
     z-index: 1;
 
-
     &__title {
       height: 100%;
       display: flex;
@@ -75,7 +76,7 @@ body {
       font-weight: 700;
       font-size: 1.75em;
       transition: opacity 350ms;
-      
+
       > small {
         font-weight: 300;
         margin-top: 0.25em;
@@ -86,12 +87,15 @@ body {
       object-fit: cover;
       object-position: center;
     }
-    
-    &::before, &::after {
-      content: '';
+
+    &::before,
+    &::after {
+      content: "";
     }
 
-    &::before, &::after, &__image {
+    &::before,
+    &::after,
+    &__image {
       top: -50%;
       left: 0;
       width: 100%;
@@ -114,11 +118,10 @@ body {
     }
 
     &:hover {
-      
-/*       .honeycomb-cell__title {
+      /*       .honeycomb-cell__title {
         opacity: 0;
       } */
-      
+
       &::before {
         background: $hexagon-border-color--hover;
       }
@@ -129,28 +132,28 @@ body {
     }
   }
 
-  &__placeholder{
-    display:none;
+  &__placeholder {
+    display: none;
     opacity: 0;
     width: $hexagon-width;
     margin: 0 $hexagon-margin/2;
   }
 }
 
-@media (max-width:#{2*$viewport-thereshold}){
+@media (max-width:#{2*$viewport-thereshold}) {
   .honeycomb-cell {
     margin: #{$hexagon-margin/2 + $hexagon-height/2} $hexagon-margin;
   }
 }
 
-@media (min-width: #{2*$viewport-thereshold}) and (max-width:#{3*$viewport-thereshold}){
+@media (min-width: #{2*$viewport-thereshold}) and (max-width:#{3*$viewport-thereshold}) {
   .honeycomb-cell:nth-child(3n) {
     margin-right: calc(50% - #{$hexagon-width/2});
     margin-left: calc(50% - #{$hexagon-width/2});
   }
 
   .honeycomb__placeholder:nth-child(3n + 5) {
-    display:block;
+    display: block;
   }
 }
 
@@ -163,37 +166,41 @@ body {
     margin-right: calc(50% - #{$hexagon-width + $hexagon-margin});
   }
 
-  .honeycomb__placeholder:nth-child(5n), .honeycomb__placeholder:nth-child(5n + 3) {
-    display:block;
+  .honeycomb__placeholder:nth-child(5n),
+  .honeycomb__placeholder:nth-child(5n + 3) {
+    display: block;
   }
 }
 
 @media (min-width: #{4*$viewport-thereshold}) {
-  .honeycomb-cell:nth-child(7n + 5)  {
-    margin-left: calc(50% - #{$hexagon-width*1.5 + $hexagon-margin});
+  .honeycomb-cell:nth-child(7n + 5) {
+    margin-left: calc(50% - #{$hexagon-width * 1.5 + $hexagon-margin});
   }
 
-  .honeycomb-cell:nth-child(7n + 7), .honeycomb-cell:nth-child(7n + 5):nth-last-child(2) {
-    margin-right: calc(50% - #{$hexagon-width*1.5 + $hexagon-margin});
+  .honeycomb-cell:nth-child(7n + 7),
+  .honeycomb-cell:nth-child(7n + 5):nth-last-child(2) {
+    margin-right: calc(50% - #{$hexagon-width * 1.5 + $hexagon-margin});
   }
 
-  .honeycomb__placeholder:nth-child(7n + 7), .honeycomb__placeholder:nth-child(7n + 9), .honeycomb__placeholder:nth-child(7n + 11){
-    display:block;
+  .honeycomb__placeholder:nth-child(7n + 7),
+  .honeycomb__placeholder:nth-child(7n + 9),
+  .honeycomb__placeholder:nth-child(7n + 11) {
+    display: block;
   }
 }
 
-.level{
+.level {
   color: red;
   text-align: center;
   width: 140px;
-  font-weight:bold;
+  font-weight: bold;
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.603);
   font-size: 18px;
   text-shadow: 0.1em 0.1em 0.2em black;
 }
 
-.campement{
+.campement {
   margin-top: 6%;
   margin-bottom: 20%;
 }

@@ -1,3 +1,4 @@
 export class UniteeCreation {
-    constructor(idUnitee: number, quantitee: number){}
+    constructor(idUnitee: number,
+        quantitee: number) { }
 }

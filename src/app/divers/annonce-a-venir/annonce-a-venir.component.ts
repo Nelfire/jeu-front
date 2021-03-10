@@ -7,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnnonceAVenirComponent implements OnInit {
 
+  // CONSTRUCTEUR
   constructor() { }
 
+  //NGONINIT
   ngOnInit(): void {
   }
 

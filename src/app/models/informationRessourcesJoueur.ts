@@ -1,5 +1,5 @@
 export class InformationRessourcesJoueur {
-    constructor(public apportPierreSeconde:number,
+    constructor(public apportPierreSeconde: number,
         public apportBoisSeconde: number,
         public apportOrSeconde: number,
         public apportNourritureSeconde: number,
@@ -11,5 +11,5 @@ export class InformationRessourcesJoueur {
         public boisPossession: number,
         public orPossession: number,
         public nourriturePossession: number,
-        public gemmePossession: number ) {}
+        public gemmePossession: number) { }
 }

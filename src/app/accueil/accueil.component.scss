@@ -25,13 +25,9 @@ b {
   color: rgb(90, 201, 0);
 }
 
-
-
-
 div {
   text-align: center;
 }
-
 
 #texte {
   height: 1px;
@@ -45,7 +41,6 @@ div {
   left: 88%;
   top: 5000%;
 
-
   background-image: url("../../images/exeroth.png");
   background-repeat: no-repeat;
   background-size: contain;
@@ -53,4 +48,8 @@ div {
   border-image-outset: 7px 12px 14px 5px;
   background-position: center right;
   z-index: 3;
+}
+
+.container {
+  margin-bottom: 60%;
 }

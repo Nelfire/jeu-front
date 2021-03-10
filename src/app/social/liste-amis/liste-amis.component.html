@@ -1,10 +1,12 @@
 <div class="listeAmis container">
+    <!-- TITRE -->
     <div class="divider-custom divider-light">
         <div class="divider-custom-line"></div>
         <div class="divider-custom-titre">Liste amis</div>
         <div class="divider-custom-line"></div>
     </div>
 
+    <!-- CAS SANS AMI (snif) -->
     <div id="erreur">
         <div class="erreur" *ngIf="listeVide==true; else possedeAmis;">
             <div class="sansAmis">
@@ -14,9 +16,11 @@
         </div>
     </div>
 
+    <!-- CAS POSSEDE AMIS -->
     <ng-template #possedeAmis>
         <div class="table-wrapper">
             <table class="fl-table">
+                <!-- ENTETE -->
                 <thead>
                     <tr>
                         <th>Icone</th>
@@ -27,11 +31,15 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- LISTE DE TOUS LES AMIS-->
                     <tr *ngFor="let joueur of listeAmis">
+                        <!-- INFORMATIONS AMIS -->
                         <td><img src="{{joueur.icone}}" alt="" style="width: 30px;" /></td>
                         <td><a routerLink="/detailJoueur/{{joueur.id}}">{{joueur.pseudo}}</a></td>
                         <td>{{joueur.niveau}}</td>
                         <td>{{joueur.tempsDeJeu}}</td>
+
+                        <!-- POUBELLE RETRAIT AMI -->
                         <td>
                             <button class="btn" (click)="open(mymodal, joueur.id)">
                                 <fa-icon [icon]="faTrash"></fa-icon>
@@ -63,5 +71,4 @@
             </table>
         </div>
     </ng-template>
-
 </div>

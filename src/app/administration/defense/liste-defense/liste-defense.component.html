@@ -1,9 +1,12 @@
 <div class="listeDefense container">
+    <!-- TITRE -->
     <div class="divider-custom divider-light">
         <div class="divider-custom-line"></div>
         <div class="divider-custom-titre">Les défenses</div>
         <div class="divider-custom-line"></div>
     </div>
+    
+    <!-- LISTE DE TOUTES LES DEFENSES-->
     <div *ngIf="listeDefenses">
         <ul class="honeycomb" lang="es">
             <li class="honeycomb-cell" *ngFor="let defense of listeDefenses">

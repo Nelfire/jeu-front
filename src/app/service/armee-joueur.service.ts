@@ -13,8 +13,10 @@ const URL_BACKEND = environment.baseUrl + 'armee';
 })
 export class ArmeeService {
 
+  // CONSTRUCTEUR
   constructor(private http: HttpClient) { }
 
+  // CREATION ARMEE DU JOUEUR (Nouvelles unitées)
   produireUnitee(idUnitee: number, quantitee: number): Observable<UniteeCreation> {
     return this.http.post<UniteeCreation>(`${URL_BACKEND}`, {
       idUnitee: `${idUnitee}`,
@@ -22,12 +24,12 @@ export class ArmeeService {
     });
   }
 
-  // Récupération des différentes armées du joueur
+  // LISTER LES ARMEES DU JOUEURS
   listerArmeesDuJoueur(): Observable<Armee[]> {
     return this.http.get<Armee[]>(`${URL_BACKEND}/listerArmeesDuJoueur`);
   }
 
-  // Accélération de la formation des unités contre gemme
+  // ACCELERATION FORMATION DES UNITES (Contre gemmes)
   accelerationFormationUnite(idUnite: number): Observable<UniteeCreation> {
     return this.http.put<UniteeCreation>(`${URL_BACKEND}/accelerationFormationUnite?id=` + idUnite,
       {

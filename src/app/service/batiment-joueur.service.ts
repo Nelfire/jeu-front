@@ -16,6 +16,7 @@ const URL_BACKEND = environment.baseUrl + 'batimentsJoueur';
 })
 export class BatimentJoueurService {
 
+  // CONSTRUCTEUR
   constructor(private http: HttpClient) { }
 
   // Recherche la population maximale du joueur (Recherche du bâtiment chaumiere, hdv)
@@ -23,17 +24,17 @@ export class BatimentJoueurService {
     return this.http.get<Number>(`${URL_BACKEND}/popultationMaximale`);
   }
 
-  // Lister les bâtiments que possède le joueur
+  // LISTAGE DE TOUS LES BATIMENTS QUE POSSEDE LE JOUEUR
   listerMesBatiments(): Observable<MesBatiments[]> {
     return this.http.get<MesBatiments[]>(`${URL_BACKEND}`);
   }
 
-  // Recherche d'un batiment joueur spécifique
+  // DETAILS D'UN BATIMENT JOUEUR (Via ID)
   rechercheBatimentJoueur(idTypeBatiment: number): Observable<MesBatiments> {
     return this.http.get<MesBatiments>(`${URL_BACKEND}/idTypeBatiment?idTypeBatiment=` + idTypeBatiment);
   }
 
-  // Création d'une ligne "BatimentJoueur"
+  // CREATION D'UN NOUVEAU BATIMENT JOUEUR (Construction)
   creerBatimentJoueur(idBatiment: number): Observable<BatimentCreation> {
     return this.http.post<BatimentCreation>(`${URL_BACKEND}`,
       {
@@ -41,7 +42,7 @@ export class BatimentJoueurService {
       });
   }
 
-  // Création d'une ligne "BatimentJoueur"
+  // MODIFICATION D'UN BATIMENT JOUEUR (Amélioration)
   ameliorerBatimentJoueur(idBatimentJoueur: number): Observable<BatimentAmelioration> {
     return this.http.put<BatimentAmelioration>(`${URL_BACKEND}/modification?id=` + idBatimentJoueur,
       {
@@ -49,7 +50,7 @@ export class BatimentJoueurService {
       });
   }
 
-  // Accélération de la construction du bâtiment contre gemme
+  // ACCELERATION CONSTRUCTION D'UN BATIMENT JOUEUR (Contre gemmes)
   accelerationConstructionBatiment(idBatimentJoueur: number): Observable<BatimentAmelioration> {
     return this.http.put<BatimentAmelioration>(`${URL_BACKEND}/accelerationConstructionBatiment?id=` + idBatimentJoueur,
       {

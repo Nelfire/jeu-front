@@ -7,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MaGuildeComponent implements OnInit {
 
+  // CONSTRUCTEUR
   constructor() { }
 
+  // NGONINIT
   ngOnInit(): void {
   }
 

@@ -11,19 +11,20 @@ import { UniteeService } from 'src/app/service/unitee.service';
 })
 export class ModificationUniteeComponent implements OnInit {
 
-
-  // Initialisations
+  // INITIALISATIONS
   messageValidation: string;
   messageErreur: string;
   id: number;
   unitee: Unitee;
   formModificationUnitee: FormGroup;
-  
+
+  // CONSTRUCTEUR
   constructor(private router: Router,
     private formBuilder: FormBuilder,
     private routerLinkActive: ActivatedRoute,
     private uniteeService: UniteeService) { }
 
+  //NGONINIT
   ngOnInit(): void {
 
     //Initialisation du formulaire vide
@@ -138,19 +139,19 @@ export class ModificationUniteeComponent implements OnInit {
       apportRessourceOrHeure,
       apportRessourceNourritureHeure,
       apportExperience
-      ).subscribe(
-        () => {
+    ).subscribe(
+      () => {
 
-        }, (error) => {
-          this.messageErreur = error.error.message;
-        }, () => {
-          this.messageValidation = "Modification réalisée";
-          setTimeout(() => {
-            // Redirection au bout de 1,5 secondes
-            this.router.navigate(['creationUnitee']);
-          }, 1500);
-        }
-      );
+      }, (error) => {
+        this.messageErreur = error.error.message;
+      }, () => {
+        this.messageValidation = "Modification réalisée";
+        setTimeout(() => {
+          // Redirection au bout de 1,5 secondes
+          this.router.navigate(['creationUnitee']);
+        }, 1500);
+      }
+    );
   }
 
 }

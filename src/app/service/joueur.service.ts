@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Joueur } from '../auth/auth.domains';
 import { environment } from 'src/environments/environment';
-import {JoueurInfos} from '../models/joueur-infos';
+import { JoueurInfos } from '../models/joueur-infos';
 import { Observable } from 'rxjs';
 import { ObserveOnSubscriber } from 'rxjs/internal/operators/observeOn';
 import { InformationRessourcesJoueur } from '../models/informationRessourcesJoueur';
@@ -16,36 +16,43 @@ const URL_BACKEND = environment.baseUrl + 'joueur';
 })
 export class JoueurService {
 
-  // Constructeur
+  // CONSTRUCTEUR
   constructor(private http: HttpClient) { }
 
-  // Lister tous les joueurs existant
-  listerJoueurs() : Observable<Joueur[]> {
+  // RECUPERER TOUS LES JOUEURS
+  listerJoueurs(): Observable<Joueur[]> {
     return this.http.get<Joueur[]>(`${URL_BACKEND}`);
   }
 
+  // RECUPERATION DES INFORMATIONS DES JOUEURS
   listerInfosJoueurs() {
     return this.http.get<JoueurInfos[]>(`${URL_BACKEND}/all`);
   }
 
+  // RECUPERATION INFORMATIONS JOUEUR CONNECTE
   informationJoueurByEmail() {
     return this.http.get<JoueurInfos>(`${URL_BACKEND}/infosJoueur`);
   }
-  informationJoueurById(id:number) {
-    return this.http.get<JoueurInfos>(`${URL_BACKEND}/informationJoueurById?id=`+id);
+
+  // RECUPERATION INFORMATIONS JOUEUR VIA ID
+  informationJoueurById(id: number) {
+    return this.http.get<JoueurInfos>(`${URL_BACKEND}/informationJoueurById?id=` + id);
   }
 
-  modifierInformationsJoueur(icone:string,descriptif:string): Observable<any> {
+  // MODIFICATION INFORMATIONS DU JOUEUR
+  modifierInformationsJoueur(icone: string, descriptif: string): Observable<any> {
     return this.http.put<any>(`${URL_BACKEND}/modifierInformationsJoueur`, {
       icone: `${icone}`,
       descriptif: `${descriptif}`,
     })
   }
 
+  // RECAPITULATIF DES INFORMATIONS RESSOURCE DU JOUEUR
   informationRessourcesJoueur(): Observable<InformationRessourcesJoueur> {
     return this.http.get<InformationRessourcesJoueur>(`${URL_BACKEND}/informationRessourcesJoueur`)
   }
 
+  // ATTRIBUTION DES RESSOURCES
   attributionRessources(
     gainPierre: number,
     gainBois: number,
@@ -61,69 +68,68 @@ export class JoueurService {
       });
   }
 
-  
-   // Modification joueur depuis la page d'administration
-   administrationModificationJoueur(
-    id : number,
-    icone : string,
-    pseudo : string,
-    email : string,
-    descriptif : string,
-    niveau : number,
-    experience : number,
-    pierrePossession : number,
-    boisPossession : number,
-    orPossession : number,
-    nourriturePossession : number,
-    gemmePossession : number,
-    pierreBoostProduction : number,
-    boisBoostProduction : number,
-    orBoostProduction : number,
-    nourritureBoostProduction : number,
+  // MODIFICATION D'UN JOUEUR (Menu administrateur, Via ID)
+  administrationModificationJoueur(
+    id: number,
+    icone: string,
+    pseudo: string,
+    email: string,
+    descriptif: string,
+    niveau: number,
+    experience: number,
+    pierrePossession: number,
+    boisPossession: number,
+    orPossession: number,
+    nourriturePossession: number,
+    gemmePossession: number,
+    pierreBoostProduction: number,
+    boisBoostProduction: number,
+    orBoostProduction: number,
+    nourritureBoostProduction: number,
     donateur: Boolean
   ): Observable<JoueurInfos> {
     return this.http.put<JoueurInfos>(`${URL_BACKEND}/administrationModificationJoueur?id=` + id,
       {
         id: `${id}`,
-        icone : `${icone}`,
-        pseudo :`${pseudo}`,
-        email : `${email}`,
-        descriptif : `${descriptif}`,
-        niveau : `${niveau}`,
-        experience : `${experience}`,
-        pierrePossession : `${pierrePossession}`,
-        boisPossession : `${boisPossession}`,
-        orPossession : `${orPossession}`,
-        nourriturePossession : `${nourriturePossession}`,
-        gemmePossession : `${gemmePossession}`,
-        pierreBoostProduction : `${pierreBoostProduction}`,
-        boisBoostProduction : `${boisBoostProduction}`,
-        orBoostProduction : `${orBoostProduction}`,
-        nourritureBoostProduction : `${nourritureBoostProduction}`,
-        donateur : `${donateur}`
+        icone: `${icone}`,
+        pseudo: `${pseudo}`,
+        email: `${email}`,
+        descriptif: `${descriptif}`,
+        niveau: `${niveau}`,
+        experience: `${experience}`,
+        pierrePossession: `${pierrePossession}`,
+        boisPossession: `${boisPossession}`,
+        orPossession: `${orPossession}`,
+        nourriturePossession: `${nourriturePossession}`,
+        gemmePossession: `${gemmePossession}`,
+        pierreBoostProduction: `${pierreBoostProduction}`,
+        boisBoostProduction: `${boisBoostProduction}`,
+        orBoostProduction: `${orBoostProduction}`,
+        nourritureBoostProduction: `${nourritureBoostProduction}`,
+        donateur: `${donateur}`
       });
   }
 
-
-  echangeRessource(montantPierre:number,
-    montantBois:number,
-    montantOr:number,
-    montantNourriture:number,
-    etatPierre:boolean,
-    etatBois:boolean,
-    etatOr:boolean,
-    etatNourriture:boolean
-    ): Observable<EchangeRessource> {
+  // ECHANGE DE RESSOURCES (Via marché)
+  echangeRessource(montantPierre: number,
+    montantBois: number,
+    montantOr: number,
+    montantNourriture: number,
+    etatPierre: boolean,
+    etatBois: boolean,
+    etatOr: boolean,
+    etatNourriture: boolean
+  ): Observable<EchangeRessource> {
     return this.http.post<EchangeRessource>(`${URL_BACKEND}/echangeRessource`,
-    {
-      montantPierre: `${montantPierre}`,
-      montantBois: `${montantBois}`,
-      montantOr: `${montantOr}`,
-      montantNourriture: `${montantNourriture}`,
-      etatPierre: `${etatPierre}`,
-      etatBois: `${etatBois}`,
-      etatOr: `${etatOr}`,
-      etatNourriture: `${etatNourriture}`
-    });
+      {
+        montantPierre: `${montantPierre}`,
+        montantBois: `${montantBois}`,
+        montantOr: `${montantOr}`,
+        montantNourriture: `${montantNourriture}`,
+        etatPierre: `${etatPierre}`,
+        etatBois: `${etatBois}`,
+        etatOr: `${etatOr}`,
+        etatNourriture: `${etatNourriture}`
+      });
   }
 }

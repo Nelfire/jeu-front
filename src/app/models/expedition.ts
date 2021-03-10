@@ -1,5 +1,3 @@
-import { Joueur } from "../auth/auth.domains";
-
 export class Expedition {
     constructor(
         public id: number,

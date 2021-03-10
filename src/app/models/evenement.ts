@@ -1,3 +1,3 @@
 export class Evenement {
-    constructor (public title: string, public date: string ){}
+    constructor(public title: string, public date: string) { }
 }

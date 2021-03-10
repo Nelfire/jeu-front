@@ -1,9 +1,12 @@
 <div class="marche" *ngIf="infosJoueur">
+    <!-- TITRE -->
     <div class="divider-custom divider-light">
         <div class="divider-custom-line"></div>
         <div class="divider-custom-titre">Marché<br>échangez vos ressources</div>
         <div class="divider-custom-line"></div>
     </div>
+
+    <!-- CAS BATIMENT MARCHE MANQUANT -->
     <div id="erreur">
         <div class="erreur" *ngIf="niveauMarche==0; else possedeMarche;">
             <div class="batimentManquant">
@@ -13,20 +16,25 @@
                 vos ressources</a>
         </div>
     </div>
+
+    <!-- CAS POSSEDE LA BATIMENT-->
     <ng-template #possedeMarche>
 
-
+        <!-- PRESENTATIONS DES TAUX -->
         <div class="avertissement" id="marche_taux_de_change">
             Taux de change <br>
             Or (5) : Pierre (3) : Bois (2) : Nourriture (1)
         </div>
+
+        <!-- FORMULAIRE -->
         <form [formGroup]="formMarche" (ngSubmit)="validerEchange()">
             <div class="grid-container">
 
                 <!-- RESSOURCES DU JOUEUR-->
                 <div class="pierreJoueur card pierre">
                     <input type="text" pattern="[0-9]*" class="form-control saisieRessource"
-                        formControlName="pierreJoueur" [(ngModel)]="quantitePierre" (keyup)="pierre(quantitePierre)" id="marche_ressource_joueur_pierre"/>
+                        formControlName="pierreJoueur" [(ngModel)]="quantitePierre" (keyup)="pierre(quantitePierre)"
+                        id="marche_ressource_joueur_pierre" />
                     <b>Maximum :
                         {{infosJoueur.pierrePossession | number}}</b>
                 </div>
@@ -82,11 +90,12 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-3">
-                                <input type="checkbox" (click)="checkboxOr()" [disabled]="etatCheckboxOr" id="marche_ressource_echange_or_checkbox">
+                                <input type="checkbox" (click)="checkboxOr()" [disabled]="etatCheckboxOr"
+                                    id="marche_ressource_echange_or_checkbox">
                             </div>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control montantTransaction" formControlName="orEchange"
-                                    disabled value="{{montantOrEchange | number}}" id="marche_ressource_echange_or"/>
+                                    disabled value="{{montantOrEchange | number}}" id="marche_ressource_echange_or" />
                             </div>
                         </div>
                     </div>
@@ -97,7 +106,7 @@
                         <div class="row">
                             <div class="col-sm-3">
                                 <input type="checkbox" (click)="checkboxNourriture()"
-                                    [disabled]="etatCheckboxNourriture" >
+                                    [disabled]="etatCheckboxNourriture">
                             </div>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control montantTransaction"
@@ -109,8 +118,10 @@
                     <b>Maximum : {{infosJoueur.nourritureMaximum-infosJoueur.nourriturePossession | number}}</b>
                 </div>
 
+                <!-- BOUTON -->
                 <div class="bouton center">
-                    <button class="btn btn-danger" [disabled]="formMarche.invalid" id="marche_ressource_valider">Valider l'échange</button>
+                    <button class="btn btn-danger" [disabled]="formMarche.invalid" id="marche_ressource_valider">Valider
+                        l'échange</button>
                 </div>
             </div>
         </form>

@@ -1,11 +1,13 @@
 <!-- https://codemyui.com/responsive-honeycomb-grid-layout-in-pure-css/ -->
-<div class="campement" *ngIf="lesBatiments" id="etape9">
-	<!-- titre page -->
+<div class="campement container" *ngIf="lesBatiments" id="etape9">
+	<!-- TITRE -->
 	<div class="divider-custom divider-light">
 		<div class="divider-custom-line"></div>
 		<div class="divider-custom-titre">Bâtiments</div>
 		<div class="divider-custom-line"></div>
 	</div>
+
+	<!-- FILTRE TYPE DE BATIMENT -->
 	<div class="boutons divCenter" id="filtre_type_batiments">
 		<button class="btn btn-success m-3" (click)="batimentsTous()">Tous</button>
 		<button class="btn btn-success m-3" (click)="batimentsDivers()">Divers</button>
@@ -15,6 +17,7 @@
 	</div>
 	<div>
 		<ul class="honeycomb" lang="es">
+			<!-- LISTE DE TOUS LES BATIMENTS-->
 			<li class="honeycomb-cell" *ngFor="let batiment of lesBatiments;">
 				<div *ngIf="batiment" id="btm{{batiment.idTypeBatiment}}">
 					<!-- CAS JOUEUR POSSEDE LE BATIMENT -->
@@ -34,7 +37,8 @@
 							<!-- Batiment en cours de construction / amélioration -->
 							<div *ngIf="batiment.flagEnCoursDeTravail; else pasDeTravailEnCours;">
 								<!-- Si bâtiment en cours d'amélioration + pas encore terminé -->
-								<div *ngIf="batiment.secondesRestantesAmelioration > 1; else travailTermine;" id="etape14">
+								<div *ngIf="batiment.secondesRestantesAmelioration > 1; else travailTermine;"
+									id="etape14">
 									<button class="btn btn-info">
 										Amélioration en cours<br>
 										<span *ngIf="batiment.date"><span
@@ -101,6 +105,7 @@
 								</ng-template>
 							</a>
 						</div>
+						<!-- TOOLTIP -->
 						<ng-template #coutConstruction>
 							<div class="d-flex flex-column">
 								<span><b>COÛT CONSTRUCTION</b></span>

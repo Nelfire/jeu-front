@@ -11,14 +11,16 @@ const URL_BACKEND = environment.baseUrl + 'messages';
 })
 export class DiscussionService {
 
+  // CONSTRUCTEUR
   constructor(private http: HttpClient) { }
 
+  // LISTER TOUS LES MESSAGES
   listerMessage(): Observable<Message[]> {
     return this.http.get<Message[]>(`${URL_BACKEND}`);
   }
 
+  // AJOUT D'UN MESSAGE
   publierMessage(contenu: string): Observable<Message> {
-    console.log(contenu);
     return this.http.post<Message>(`${URL_BACKEND}`,
       {
         contenu: `${contenu}`

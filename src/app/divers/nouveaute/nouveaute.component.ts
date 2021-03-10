@@ -7,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NouveauteComponent implements OnInit {
 
+  // CONSTRUCTEUR
   constructor() { }
 
+  // NGONINIT
   ngOnInit(): void {
   }
 

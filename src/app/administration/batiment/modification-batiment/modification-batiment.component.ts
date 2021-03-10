@@ -11,18 +11,20 @@ import { BatimentService } from 'src/app/service/batiment.service';
 })
 export class ModificationBatimentComponent implements OnInit {
 
-  // Initialisations
+  // INITIALISATIONS
   messageValidation: string;
   messageErreur: string;
   id: number;
   batiment: Batiment;
   formModificationBatiment: FormGroup;
 
+  // CONSTRUCTEUR
   constructor(private router: Router,
     private formBuilder: FormBuilder,
     private routerLinkActive: ActivatedRoute,
     private batimentService: BatimentService) { }
 
+  //NGONINIT
   ngOnInit(): void {
 
     //Initialisation du formulaire vide
@@ -56,6 +58,7 @@ export class ModificationBatimentComponent implements OnInit {
     // Snapshot pour rï¿½cupï¿½rer l'id passï¿½ via l'url
     this.id = this.routerLinkActive.snapshot.params['id'];
 
+    // RECUPERATION INFORMATIONS DU BÂTIMENT
     this.batimentService.detailsBatiment(this.id).subscribe(
       (value) => {
         this.batiment = value;
@@ -95,6 +98,7 @@ export class ModificationBatimentComponent implements OnInit {
     });
   }
 
+  // BOUTON MODIFICATION DU BATIMENT
   modificationBatiment() {
     const idTypeBatiment = this.formModificationBatiment.get('idTypeBatiment').value;
     const idCategorieBatiment = this.formModificationBatiment.get('idCategorieBatiment').value;
@@ -148,19 +152,18 @@ export class ModificationBatimentComponent implements OnInit {
       multiplicateurTemps,
       multiplicateurApport,
       multiplicateurCout
-      ).subscribe(
-        () => {
-
-        }, (error) => {
-          this.messageErreur = error.error.message;
-        }, () => {
-          this.messageValidation = "Modification réalisée";
-          setTimeout(() => {
-            // Redirection au bout de 1,5 secondes
-            this.router.navigate(['listeBatiment']);
-          }, 1500);
-        }
-      );
+    ).subscribe(
+      () => {
+      }, (error) => {
+        this.messageErreur = error.error.message;
+      }, () => {
+        this.messageValidation = "Modification réalisée";
+        setTimeout(() => {
+          // Redirection au bout de 1,5 secondes
+          this.router.navigate(['listeBatiment']);
+        }, 1500);
+      }
+    );
   }
 
 }

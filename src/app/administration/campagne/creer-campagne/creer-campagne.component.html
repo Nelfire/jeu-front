@@ -1,0 +1,149 @@
+<div class="modificationCampagne container">
+    <div class="card">
+        <!-- TITRE -->
+        <h2 class="card-header text-center py-3" style="background-color: #e3f2fd;">
+            Creation campagne
+        </h2>
+
+        <!-- FORMULAIRE -->
+        <div class="card-body ">
+            <form [formGroup]="formCreationCampagne" (ngSubmit)="creationCampagne()">
+                <!-- ICONE -->
+                <div class="form-group row">
+                    <label for="icone" class="col-sm-2 col-form-label">Icone</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="icone" rows="3" formControlName="icone" />
+                    </div>
+                </div>
+                <!-- LIBELLE -->
+                <div class="form-group row">
+                    <label for="libelle" class="col-sm-2 col-form-label">Libelle</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="libelle" rows="3" formControlName="libelle" />
+                    </div>
+                </div>
+                <!-- DESCRIPTION -->
+                <div class="form-group row">
+                    <label for="description" class="col-sm-2 col-form-label">Description</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" id="description" rows="3"
+                            formControlName="description"></textarea>
+                    </div>
+                </div>
+                <!-- DUREE -->
+                <div class="form-group row">
+                    <label for="duree" class="col-sm-2 col-form-label">Duree (sc)</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="duree" rows="3" formControlName="duree" />
+                    </div>
+                </div>
+                <!-- NUMERO DE MONDE -->
+                <div class="form-group row">
+                    <label for="monde" class="col-sm-2 col-form-label">Monde</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="monde" rows="3" formControlName="monde" />
+                    </div>
+                </div>
+                <!-- NIVEAU -->
+                <div class="form-group row">
+                    <label for="niveau" class="col-sm-2 col-form-label">Niveau</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="niveau" rows="3" formControlName="niveau" />
+                    </div>
+                </div>
+                <!-- UNITE -->
+                <div class="form-group row">
+                    <label for="unitee" class="col-sm-2 col-form-label">Unité</label>
+                    <div class="col-sm-10">
+                        <select class="custom-select" id="unitee" formControlName="unitee" required>
+                            <option selected value="null">- Choix -</option>
+                            <option [value]="unite.id" *ngFor="let unite of listeUnites">{{unite.libelle}}</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- QUANTITE DE TROUPES -->
+                <div class="form-group row">
+                    <label for="quantitee" class="col-sm-2 col-form-label">Quantitée</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="quantitee" rows="3" formControlName="quantitee" />
+                    </div>
+                </div>
+                <!-- BOSS (O/N) -->
+                <div class="form-group row">
+                    <label for="isBoss" class="col-sm-2 col-form-label">Boss</label>
+                    <div class="col-sm-10">
+                        <select class="custom-select" id="isBoss" formControlName="isBoss" required>
+                            <option selected value="null">- Choix -</option>
+                            <option value="true">Oui</option>
+                            <option value="false">Non</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- MONTANT RECOMPENSE PIERRE -->
+                <div class="form-group row">
+                    <label for="recompensePierre" class="col-sm-2 col-form-label">Recompense Pierre</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="recompensePierre" rows="3"
+                            formControlName="recompensePierre" />
+                    </div>
+                </div>
+                <!-- MONTANT RECOMPENSE BOIS -->
+                <div class="form-group row">
+                    <label for="recompenseBois" class="col-sm-2 col-form-label">Recompense Bois</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="recompenseBois" rows="3"
+                            formControlName="recompenseBois" />
+                    </div>
+                </div>
+                <!-- MONTANT RECOMPENSE OR -->
+                <div class="form-group row">
+                    <label for="recompenseOr" class="col-sm-2 col-form-label">Recompense Or</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="recompenseOr" rows="3"
+                            formControlName="recompenseOr" />
+                    </div>
+                </div>
+                <!-- MONTANT RECOMPENSE NOURRITURE -->
+                <div class="form-group row">
+                    <label for="recompenseNourriture" class="col-sm-2 col-form-label">Recompense Nourriture</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="recompenseNourriture" rows="3"
+                            formControlName="recompenseNourriture" />
+                    </div>
+                </div>
+                <!-- MONTANT RECOMPENSE GEMME -->
+                <div class="form-group row">
+                    <label for="recompenseGemme" class="col-sm-2 col-form-label">Recompense Gemme</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="recompenseGemme" rows="3"
+                            formControlName="recompenseGemme" />
+                    </div>
+                </div>
+                <!-- MONTANT RECOMPENSE EXPERIENCE -->
+                <div class="form-group row">
+                    <label for="recompenseExperience" class="col-sm-2 col-form-label">Recompense Experience</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="recompenseExperience" rows="3"
+                            formControlName="recompenseExperience" />
+                    </div>
+                </div>
+                <!-- BOUTONS -->
+                <div class="row justify-content-md-center">
+                    <div class="col-md-auto">
+                        <!-- bouton valider formulaire -->
+                        <button class="btn btn-success mr-2" [disabled]="formCreationCampagne.invalid">
+                            Créer
+                        </button>
+
+                        <!-- bouton annuler formulaire -->
+                        <a routerLink="/listeCampagneAdministration">
+                            <button class="btn btn-danger">
+                                Annuler
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

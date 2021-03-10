@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../service/auth.service';
 import { Joueur } from '../auth/auth.domains';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
@@ -10,14 +9,14 @@ import { Router } from '@angular/router';
 })
 export class FooterComponent implements OnInit {
 
-  // Initialisation
+  // INITIALISATIONS
   joueur: Joueur;
 
-  // Constructeur
-  constructor(private authService: AuthService, private router: Router) { }
+  // CONSTRUCTEUR
+  constructor(private authService: AuthService) { }
 
+  // NGONINIT
   ngOnInit(): void {
-
     this.authService.joueurConnecteObs
       .subscribe(col => this.joueur = col,
         err => console.log('oops'));

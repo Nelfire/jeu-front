@@ -1,12 +1,9 @@
 <ng-container *ngIf="joueurConnecte | async as jou">
-
     <header>
-
-
-
         <div class="menu" *ngIf="infosJoueur && informationRessourcesJoueur">
             <ul class="modify" id="etape1">
                 <div class="row">
+                    <!-- LOGO -->
                     <div class="col-sm-1 emplacement-logo">
                         <div class="logo">
                             <img src="https://media.discordapp.net/attachments/649978115199860766/793975291994964028/72399-icons-crown-prodigy-game-computer-math-icon.png"
@@ -14,70 +11,93 @@
                         </div>
                     </div>
 
+                    <!-- RESSOURCE DU JOUEUR -->
+                    <!-- PIERRE -->
                     <div class="col">
                         <li id="ressource_pierre" class="pierre">
                             <a class="btn" [ngbTooltip]="productionPierre">
                                 <span class="nom-ressource">Pierre : </span> <b
-                                    [ngStyle]="{color:getColorApprocheLimitePierre()}">{{informationRessourcesJoueur.pierrePossession | number}}<span
-                                        class="limite-ressource">/{{informationRessourcesJoueur.quantiteMaximaleStockagePierre | number}}</span></b>
+                                    [ngStyle]="{color:getColorApprocheLimitePierre()}">{{informationRessourcesJoueur.pierrePossession
+                                    | number}}<span
+                                        class="limite-ressource">/{{informationRessourcesJoueur.quantiteMaximaleStockagePierre
+                                        | number}}</span></b>
                             </a>
                             <ng-template #productionPierre>
                                 <div class="d-flex flex-column">
                                     <span><b>PIERRE</b></span>
-                                    <span><b>Production : </b> {{informationRessourcesJoueur.apportPierreSeconde * 3600 | number}} /h</span>
-                                  <span><b>Limite : </b> {{informationRessourcesJoueur.quantiteMaximaleStockagePierre | number}}</span>
+                                    <span><b>Production : </b> {{informationRessourcesJoueur.apportPierreSeconde * 3600
+                                        | number}} /h</span>
+                                    <span><b>Limite : </b> {{informationRessourcesJoueur.quantiteMaximaleStockagePierre
+                                        | number}}</span>
                                 </div>
                             </ng-template>
                         </li>
                     </div>
+                    <!-- BOIS -->
                     <div class="col">
                         <li id="ressource_bois" class="bois">
                             <a class="btn" [ngbTooltip]="productionBois">
                                 <span class="nom-ressource">Bois : </span> <b
-                                    [ngStyle]="{color:getColorApprocheLimiteBois()}">{{informationRessourcesJoueur.boisPossession | number}}<span
-                                        class="limite-ressource">/{{informationRessourcesJoueur.quantiteMaximaleStockageBois | number}}</span></b>
+                                    [ngStyle]="{color:getColorApprocheLimiteBois()}">{{informationRessourcesJoueur.boisPossession
+                                    | number}}<span
+                                        class="limite-ressource">/{{informationRessourcesJoueur.quantiteMaximaleStockageBois
+                                        | number}}</span></b>
                             </a>
                             <ng-template #productionBois>
                                 <div class="d-flex flex-column">
                                     <span><b>BOIS</b></span>
-                                    <span><b>Production : </b> {{informationRessourcesJoueur.apportBoisSeconde * 3600 | number}} /h</span>
-                                  <span><b>Limite : </b> {{informationRessourcesJoueur.quantiteMaximaleStockageBois | number}}</span>
+                                    <span><b>Production : </b> {{informationRessourcesJoueur.apportBoisSeconde * 3600 |
+                                        number}} /h</span>
+                                    <span><b>Limite : </b> {{informationRessourcesJoueur.quantiteMaximaleStockageBois |
+                                        number}}</span>
                                 </div>
                             </ng-template>
                         </li>
                     </div>
+                    <!-- OR -->
                     <div class="col">
                         <li id="ressource_or" class="or">
                             <a class="btn" [ngbTooltip]="productionOr">
                                 <span class="nom-ressource">Or : </span> <b
-                                    [ngStyle]="{color:getColorApprocheLimiteOr()}">{{informationRessourcesJoueur.orPossession | number}}<span
-                                        class="limite-ressource">/{{informationRessourcesJoueur.quantiteMaximaleStockageOr | number}}</span></b>
+                                    [ngStyle]="{color:getColorApprocheLimiteOr()}">{{informationRessourcesJoueur.orPossession
+                                    | number}}<span
+                                        class="limite-ressource">/{{informationRessourcesJoueur.quantiteMaximaleStockageOr
+                                        | number}}</span></b>
                             </a>
                             <ng-template #productionOr>
                                 <div class="d-flex flex-column">
                                     <span><b>OR</b></span>
-                                    <span><b>Production : </b> {{informationRessourcesJoueur.apportOrSeconde * 3600 | number}} /h</span>
-                                  <span><b>Limite : </b> {{informationRessourcesJoueur.quantiteMaximaleStockageOr | number}}</span>
+                                    <span><b>Production : </b> {{informationRessourcesJoueur.apportOrSeconde * 3600 |
+                                        number}} /h</span>
+                                    <span><b>Limite : </b> {{informationRessourcesJoueur.quantiteMaximaleStockageOr |
+                                        number}}</span>
                                 </div>
                             </ng-template>
                         </li>
                     </div>
+                    <!-- NOURRITURE -->
                     <div class="col">
                         <li id="ressource_nourriture" class="nourriture">
                             <a class="btn" [ngbTooltip]="productionNourriture">
                                 <span class="nom-ressource">Nourriture : </span> <b
-                                    [ngStyle]="{color:getColorApprocheLimiteNourriture()}">{{informationRessourcesJoueur.nourriturePossession | number}}<span
-                                        class="limite-ressource" id="ressource_nourriture_limite">/{{informationRessourcesJoueur.quantiteMaximaleStockageNourriture | number}}</span></b>
+                                    [ngStyle]="{color:getColorApprocheLimiteNourriture()}">{{informationRessourcesJoueur.nourriturePossession
+                                    | number}}<span class="limite-ressource"
+                                        id="ressource_nourriture_limite">/{{informationRessourcesJoueur.quantiteMaximaleStockageNourriture
+                                        | number}}</span></b>
                             </a>
                             <ng-template #productionNourriture>
                                 <div class="d-flex flex-column">
                                     <span><b>NOURRITURE</b></span>
-                                    <span><b>Production : </b> {{informationRessourcesJoueur.apportNourritureSeconde * 3600 | number}} /h</span>
-                                  <span><b>Limite : </b> {{informationRessourcesJoueur.quantiteMaximaleStockageNourriture | number}}</span>
+                                    <span><b>Production : </b> {{informationRessourcesJoueur.apportNourritureSeconde *
+                                        3600 | number}} /h</span>
+                                    <span><b>Limite : </b>
+                                        {{informationRessourcesJoueur.quantiteMaximaleStockageNourriture |
+                                        number}}</span>
                                 </div>
                             </ng-template>
                         </li>
                     </div>
+                    <!-- GEMMES -->
                     <div class="col">
                         <li id="ressource_gemme" class="gemme">
                             <a class="btn" ngbTooltip="Gain de gemmes en réalisant des expéditions">
@@ -94,8 +114,10 @@
 
     <body>
         <div class="area"></div>
+        <!-- MENU DE NAVIGATION DE GAUCHE-->
         <nav class="main-menu">
             <ul id="menu_navigation">
+                <!-- ACCUEIL -->
                 <li>
                     <a routerLink="accueil">
                         <i class="fa fa-gamepad" aria-hidden="true"></i>
@@ -104,7 +126,8 @@
                         </span>
                     </a>
                 </li>
-                <li >
+                <!-- CAMPEMENT -->
+                <li>
                     <a routerLink="campement">
                         <i class="fa fa-home fa-2x" id="menu_campement"></i>
                         <span class="nav-text">
@@ -112,6 +135,7 @@
                         </span>
                     </a>
                 </li>
+                <!-- DEFENSES -->
                 <li>
                     <a routerLink="defense">
                         <i class="fa fa-shield" aria-hidden="true" id="menu_defense"></i>
@@ -120,6 +144,7 @@
                         </span>
                     </a>
                 </li>
+                <!-- ARMEES -->
                 <li class="has-subnav">
                     <a routerLink="armee">
                         <i class="fa fa-users" aria-hidden="true" id="menu_armee"></i>
@@ -128,7 +153,8 @@
                         </span>
                     </a>
                 </li>
-                <li class="has-subnav" >
+                <!-- CENTRE DE RECOLTE -->
+                <li class="has-subnav">
                     <a routerLink="centreRecolte">
                         <i class="fa fa-gavel" id="menu_centre_recolte"></i>
                         <span class="nav-text">
@@ -136,6 +162,7 @@
                         </span>
                     </a>
                 </li>
+                <!-- EXPEDITIONS DISPONIBLES -->
                 <li class="has-subnav">
                     <a routerLink="expedition">
                         <i class="fa fa-flag-o" aria-hidden="true" id="menu_expedition"></i>
@@ -144,6 +171,7 @@
                         </span>
                     </a>
                 </li>
+                <!-- EXPEDITIONS REALISEES -->
                 <li class="has-subnav">
                     <a routerLink="mesExpeditions">
                         <i class="fa fa-flag-checkered" aria-hidden="true"></i>
@@ -152,6 +180,7 @@
                         </span>
                     </a>
                 </li>
+                <!-- GUILDE -->
                 <li class="has-subnav">
                     <a routerLink="maGuilde">
                         <i class="fa fa-info fa-2x" id="menu_guilde"></i>
@@ -160,6 +189,7 @@
                         </span>
                     </a>
                 </li>
+                <!-- ADMINISTRATION -->
                 <li>
                     <a routerLink="menuAdministration" *ngIf="jou.roles[0] == roleEnum.RoleAdmin">
                         <i class="fa fa-bar-chart-o fa-2x"></i>
@@ -168,7 +198,7 @@
                         </span>
                     </a>
                 </li>
-
+                <!-- MARCHE -->
                 <li>
                     <a routerLink="marche">
                         <i class="fa fa-balance-scale" id="menu_marche"></i>
@@ -177,6 +207,7 @@
                         </span>
                     </a>
                 </li>
+                <!-- DISCUSSION -->
                 <li>
                     <a routerLink="discussion">
                         <i class="fa fa-comments" id="menu_discussion"></i>
@@ -185,6 +216,7 @@
                         </span>
                     </a>
                 </li>
+                <!-- CLASSEMENT DES JOUEURS -->
                 <li class="has-subnav">
                     <a routerLink="classement-joueurs">
                         <i class="fa fa-chart-bar" id="menu_classement"></i>
@@ -193,7 +225,7 @@
                         </span>
                     </a>
                 </li>
-                
+                <!-- CARTE DU MONDE -->
                 <li class="has-subnav">
                     <a routerLink="carte">
                         <i class="fa fa-map-marked-alt" id="menu_carte"></i>
@@ -202,7 +234,7 @@
                         </span>
                     </a>
                 </li>
-                
+                <!-- CAMPAGNES -->
                 <li class="has-subnav">
                     <a routerLink="campagne">
                         <i class="fa fa-globe-americas" id="menu_campagne"></i>
@@ -211,6 +243,7 @@
                         </span>
                     </a>
                 </li>
+                <!-- BOUTIQUE -->
                 <li>
                     <a routerLink="boutique">
                         <i class="fa fa-gem" id="menu_boutique"></i>
@@ -221,6 +254,7 @@
                 </li>
             </ul>
             <ul class="logout" *ngIf="infosJoueur">
+                <!-- LANCEMENT DU TUTORIEL -->
                 <li>
                     <a (click)="lancementTutoriel()">
                         <i class="fa fa-question-circle" aria-hidden="true" id="menu_tutoriel"></i>
@@ -229,6 +263,7 @@
                         </span>
                     </a>
                 </li>
+                <!-- LES NOUVEAUTES -->
                 <li>
                     <a routerLink="nouveautes">
                         <i class="fa fa-gift" aria-hidden="true"></i>
@@ -237,6 +272,7 @@
                         </span>
                     </a>
                 </li>
+                <!-- A VENIR -->
                 <li>
                     <a routerLink="aVenir">
                         <i class="fa fa-clock-o" aria-hidden="true"></i>
@@ -245,7 +281,7 @@
                         </span>
                     </a>
                 </li>
-
+                <!-- LISTE DES AMIS -->
                 <li>
                     <a routerLink="listeAmis">
                         <i class="fa fa-grin-beam"></i>
@@ -254,6 +290,7 @@
                         </span>
                     </a>
                 </li>
+                <!-- MON COMPTE -->
                 <li>
                     <a routerLink="detailJoueur/{{infosJoueur.id}}">
                         <i class="fa fa-portrait"></i>
@@ -262,6 +299,7 @@
                         </span>
                     </a>
                 </li>
+                <!-- DECONNEXION -->
                 <li>
                     <a (click)="seDeconnecter()">
                         <i class="fa fa-power-off fa-2x"></i>

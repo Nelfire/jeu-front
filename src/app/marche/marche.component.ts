@@ -14,22 +14,19 @@ import { BatimentJoueurService } from '../service/batiment-joueur.service';
 })
 export class MarcheComponent implements OnInit {
 
+  // INITIALISATIONS
   infosJoueur: JoueurInfos;
   formMarche: FormGroup;
   quantitePierre: number = 0;
   quantiteBois: number = 0;
   quantiteOr: number = 0;
   quantiteNourriture: number = 0;
-
   niveauMarche: number = 0;
-
-
   // Partie de droite (Echange)
   montantPierreEchange: number;
   montantBoisEchange: number;
   montantOrEchange: number;
   montantNourritureEchange: number;
-
   // Etat Checkbox
   etatCheckboxPierre: string = "";
   etatCheckboxBois: string = "";
@@ -40,8 +37,7 @@ export class MarcheComponent implements OnInit {
   opacityOr: string = "100%";
   opacityNourriture: string = "100%";
 
-
-
+  // CONSTRUCTEUR
   constructor(private joueurService: JoueurService,
     private formBuilder: FormBuilder,
     private notification: NotificationService,
@@ -49,15 +45,15 @@ export class MarcheComponent implements OnInit {
     private batimentService: BatimentService,
     private batimentJoueurService: BatimentJoueurService) { }
 
+  // NGONINIT
   ngOnInit(): void {
-
     this.verifierNiveauMarche();
-    
     //Initialisation du formulaire vide
     this.initForm();
-
     this.donneesJoueur();
   }
+
+  // INITIALISATION DU FORMULAIRE VIDE
   initForm() {
     this.formMarche = this.formBuilder.group({
       pierreJoueur: [''],
@@ -71,20 +67,13 @@ export class MarcheComponent implements OnInit {
     });
   }
 
+  // BOUTON VALIDER ECHANGE
   validerEchange() {
     const pierreJoueur = this.formMarche.get('pierreJoueur').value;
     const boisJoueur = this.formMarche.get('boisJoueur').value;
     const orJoueur = this.formMarche.get('orJoueur').value;
     const nourritureJoueur = this.formMarche.get('nourritureJoueur').value;
 
-    console.log(pierreJoueur)
-    console.log(boisJoueur)
-    console.log(orJoueur)
-    console.log(nourritureJoueur)
-    console.log(this.montantPierreEchange)
-    console.log(this.montantBoisEchange)
-    console.log(this.montantOrEchange)
-    console.log(this.montantNourritureEchange)
     // Vérification saisie menue de gauche
     if (pierreJoueur == 0 && boisJoueur == 0 && orJoueur == 0 && nourritureJoueur == 0) {
       this.notification.showError("Vous n'avez renseigné aucun montant de ressource à échanger.", "Erreur...");
@@ -103,10 +92,6 @@ export class MarcheComponent implements OnInit {
         this.notification.showError("Vous manquez de nourriture pour réaliser la transaction", "Erreur");
       } else {
         // Vérification saisie checkbox menu de droite
-        console.log("this.etatCheckboxPierre" + this.etatCheckboxPierre)
-        console.log("this.etatCheckboxBois" + this.etatCheckboxBois)
-        console.log("this.etatCheckboxOr" + this.etatCheckboxOr)
-        console.log("this.etatCheckboxNourriture" + this.etatCheckboxNourriture)
         if (this.etatCheckboxPierre == "" && this.etatCheckboxBois == "" && this.etatCheckboxOr == "" && this.etatCheckboxNourriture == "") {
           this.notification.showError("Veuillez selectionner une ressource contre laquelle échange votre production", "Erreur");
         } else {
@@ -183,11 +168,8 @@ export class MarcheComponent implements OnInit {
               );
             }
           }
-
-
         }
       }
-
     }
   }
 
@@ -228,6 +210,7 @@ export class MarcheComponent implements OnInit {
     );
   }
 
+  // CALCULS EN FONCTION DU TAUX
   pierre(quantitePierre: number) {
     this.montantPierreEchange = quantitePierre;
     this.montantBoisEchange = Math.round(quantitePierre * 1.5);
@@ -237,6 +220,7 @@ export class MarcheComponent implements OnInit {
     this.quantiteOr = 0
     this.quantiteNourriture = 0
   }
+
   bois(quantiteBois: number) {
     this.montantPierreEchange = Math.round(quantiteBois * 0.66);
     this.montantBoisEchange = quantiteBois;
@@ -246,6 +230,7 @@ export class MarcheComponent implements OnInit {
     this.quantiteOr = 0
     this.quantiteNourriture = 0
   }
+
   or(quantiteOr: number) {
     this.montantPierreEchange = Math.round(quantiteOr * 1.66);
     this.montantBoisEchange = Math.round(quantiteOr * 2.5);
@@ -255,6 +240,7 @@ export class MarcheComponent implements OnInit {
     this.quantiteBois = 0
     this.quantiteNourriture = 0
   }
+
   nourriture(quantiteNourriture: number) {
     this.montantPierreEchange = Math.round(quantiteNourriture * 0.33);
     this.montantBoisEchange = Math.round(quantiteNourriture * 0.5);
@@ -266,7 +252,6 @@ export class MarcheComponent implements OnInit {
   }
 
   // CHECKBOX
-
   checkboxPierre() {
     if (this.etatCheckboxBois == "disabled") {
       this.etatCheckboxBois = "";
@@ -337,6 +322,4 @@ export class MarcheComponent implements OnInit {
       this.opacityPierre = "50%";
     }
   }
-
-
 }

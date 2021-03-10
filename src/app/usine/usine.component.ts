@@ -15,6 +15,7 @@ import { TutorielService } from '../service/tutoriel.service';
 })
 export class UsineComponent implements OnInit {
 
+  // INITIALISATIONS
   montantRecoltePierre: number = 0;
   montantRecolteBois: number = 0;
   montantRecolteOr: number = 0;
@@ -69,6 +70,7 @@ export class UsineComponent implements OnInit {
     private routerLinkActive: ActivatedRoute,
     private tutorielService: TutorielService) { }
 
+  // NGONINIT
   ngOnInit(): void {
 
     // Vérification bâtiment joueur
@@ -117,6 +119,7 @@ export class UsineComponent implements OnInit {
     this.verificationTutorielEnCours();
   }
 
+  // CLIQUE BOUTON PIERRE
   recolterPierre() {
     // Cas bâtiment manquant
     if (this.carriere.niveau == null) {
@@ -170,6 +173,8 @@ export class UsineComponent implements OnInit {
     }
 
   }
+
+  // CLIQUE BOUTON BOIS
   recolterBois() {
     // Cas bâtiment manquant
     if (this.campDeBucheron.niveau == null) {
@@ -222,6 +227,8 @@ export class UsineComponent implements OnInit {
       }
     }
   }
+
+  // CLIQUE BOUTON OR
   recolterOr() {
     // Cas bâtiment manquant
     if (this.campDeMineur.niveau == null) {
@@ -274,6 +281,8 @@ export class UsineComponent implements OnInit {
       }
     }
   }
+
+  // CLIQUE BOUTON NOURRITURE
   recolterNourriture() {
     // Cas bâtiment manquant
     if (this.ferme.niveau == null) {
@@ -327,6 +336,7 @@ export class UsineComponent implements OnInit {
     }
   }
 
+  // BOUTON RECUPERER LA PRODUCTION
   recupererProduction() {
     if (this.montantRecoltePierre != 0 || this.montantRecolteBois != 0 || this.montantRecolteOr != 0 || this.montantRecolteNourriture != 0) {
       this.joueurService.attributionRessources(this.montantRecoltePierre, this.montantRecolteBois, this.montantRecolteOr, this.montantRecolteNourriture).subscribe(
@@ -344,10 +354,9 @@ export class UsineComponent implements OnInit {
     } else {
       this.notification.showWarning("Vous n'avez pas encore produit de ressource", "Au boulot !");
     }
-
-
   }
 
+  // GERER L'OPACITEE DU BOUTON (Indisponibilitée du bouton)
   getOpacityCarriere() {
     var maintenant = new Date().getTime();
 
@@ -357,6 +366,8 @@ export class UsineComponent implements OnInit {
       }
     }
   }
+
+  // GERER L'OPACITEE DU BOUTON (Indisponibilitée du bouton)
   getOpacityCampDeBucheron() {
     var maintenant = new Date().getTime();
     if (this.campDeBucheron) {
@@ -365,6 +376,8 @@ export class UsineComponent implements OnInit {
       }
     }
   }
+
+  // GERER L'OPACITEE DU BOUTON (Indisponibilitée du bouton)
   getOpacityCampDeMineur() {
     var maintenant = new Date().getTime();
     if (this.campDeMineur) {
@@ -373,6 +386,8 @@ export class UsineComponent implements OnInit {
       }
     }
   }
+
+  // GERER L'OPACITEE DU BOUTON (Indisponibilitée du bouton)
   getOpacityFerme() {
     var maintenant = new Date().getTime();
     if (this.ferme) {
@@ -382,6 +397,7 @@ export class UsineComponent implements OnInit {
     }
   }
 
+  // CAS TUTORIEL EN COURS, SUITE
   verificationTutorielEnCours() {
     setTimeout(() => {
       this.routerLinkActive.queryParams.subscribe(params => {

@@ -18,8 +18,7 @@ import { NotificationService } from 'src/app/service/notification.service';
 })
 export class DetailDefenseComponent implements OnInit, OnDestroy {
 
-
-  // Initialisations
+  // INITIALISATIONS
   joueur: JoueurInfos;
   id: number;
   defense: Defense;
@@ -40,25 +39,19 @@ export class DetailDefenseComponent implements OnInit, OnDestroy {
   tempsConstruction: number;
   // Id Ligne Defense joueur
   idDefenseJoueur: number;
-
   counterSubscription: Subscription;
   result: string;
 
   // Defenses en cours de production 
   secondesRestantesAmelioration: number;
   defensesRestantes: number;
-  defensesRestantesArrondis:number;
+  defensesRestantesArrondis: number;
   quantiteeDefensesPossession: number;
   dateLancementProduction: number;
   dateFinConstruction: number;
+  montantGemmeAcceleration: number;
 
-  montantGemmeAcceleration:number;
-
-  
-
-
-
-  // Constructeur
+  // CONSTRUCTEUR
   constructor(private routerLinkActive: ActivatedRoute,
     private formBuilder: FormBuilder,
     private defenseService: DefenseService,
@@ -68,6 +61,7 @@ export class DetailDefenseComponent implements OnInit, OnDestroy {
     private notification: NotificationService,
     private router: Router) { }
 
+  //NGONINIT
   ngOnInit(): void {
 
     // Récupération des informations du joueur, pour indiquer le manque de ressources (colorisation)
@@ -167,9 +161,6 @@ export class DetailDefenseComponent implements OnInit, OnDestroy {
                       }, 1500);
 
                     }
-
-
-
                   }
                 );
 
@@ -184,12 +175,14 @@ export class DetailDefenseComponent implements OnInit, OnDestroy {
     )
   }
 
+  // INITIALISATIONS DU FORMULAIRE VIDE
   initForm() {
     this.formCreationDefense = this.formBuilder.group({
       quantite: ['', Validators.required],
     });
   }
 
+  // BOUTON CONSTRUIRE
   construireDefense() {
     const quantite = this.formCreationDefense.get('quantite').value;
     this.defenseJoueurService.construireDefense(this.id, quantite).subscribe(
@@ -201,9 +194,8 @@ export class DetailDefenseComponent implements OnInit, OnDestroy {
 
       }, () => {
         // Toastr
-        this.notification.showInfo("", "+"+this.defense.apportExperience*quantite+" Experience");
+        this.notification.showInfo("", "+" + this.defense.apportExperience * quantite + " Experience");
         quantite == 1 ? this.notification.showSuccess("Production d'une défense.", "Production lancée.") : this.notification.showSuccess("Production de " + quantite + " défenses.", "Production lancée.");
-
         this.messageValidation = "Production lancée";
         this.ngOnDestroy();
         this.ngOnInit();
@@ -232,6 +224,7 @@ export class DetailDefenseComponent implements OnInit, OnDestroy {
     this.recalculPrix(Math.trunc(this.quantite));
   }
 
+  // RECALCUL DU PRIX DES DEFENSES
   recalculPrix(qt: number) {
     this.coutPierreConstruction = this.defense.coutPierreConstruction * qt;
     this.coutBoisConstruction = this.defense.coutBoisConstruction * qt;
@@ -241,8 +234,6 @@ export class DetailDefenseComponent implements OnInit, OnDestroy {
     this.tempsConstruction = this.defense.tempsConstruction * qt;
 
   }
-
-
 
   // Batiments Joueur Amélioration Colorisation ressources
   getColorRessourceManquantePierre() {
@@ -277,7 +268,7 @@ export class DetailDefenseComponent implements OnInit, OnDestroy {
   getTempsConstructionDefensePourcent() {
     // Temps du niveau suivantle
     let pourcentageRestant;
-    pourcentageRestant = 100 - ((this.secondesRestantesAmelioration%this.defense.tempsConstruction) * 100) / this.defense.tempsConstruction;
+    pourcentageRestant = 100 - ((this.secondesRestantesAmelioration % this.defense.tempsConstruction) * 100) / this.defense.tempsConstruction;
     return pourcentageRestant + '%';
   }
   getTempsConstructionTotalFileAttentePourcent() {
@@ -285,10 +276,10 @@ export class DetailDefenseComponent implements OnInit, OnDestroy {
     // Temps du niveau suivantle
     let pourcentageRestante;
 
-    let differenceSecondes = (this.dateFinConstruction-this.dateLancementProduction)/1000;
-    
+    let differenceSecondes = (this.dateFinConstruction - this.dateLancementProduction) / 1000;
+
     //pourcentageRestante = 100 - (((difference) * 100) / this.dateFinConstruction);
-    pourcentageRestante = 100 - (this.secondesRestantesAmelioration*100)/(differenceSecondes);
+    pourcentageRestante = 100 - (this.secondesRestantesAmelioration * 100) / (differenceSecondes);
 
     return pourcentageRestante + '%';
   }
@@ -304,7 +295,6 @@ export class DetailDefenseComponent implements OnInit, OnDestroy {
       }
     )
   }
-
 
   ngOnDestroy(): void {
     if (this.counterSubscription) {

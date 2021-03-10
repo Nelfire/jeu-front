@@ -14,32 +14,27 @@ export class DefenseService {
 
   constructor(private http: HttpClient) { }
 
-  /*
-   * LISTE LES DIFFERENTS TYPES DE DEFENSE
-   */
+  // LISTE LES DIFFERENTS TYPES DE DEFENSE
   listerDefense(): Observable<Defense[]> {
     return this.http.get<Defense[]>(`${URL_BACKEND}/listerDefense`);
   }
 
-  /*
-  * LISTER QUE LES DEFENSES DE TYPE OFFENSIVE = 1
-  */
+  // LISTER QUE LES DEFENSES DE TYPE OFFENSIVE = 1
   listerDefensesOffensive(): Observable<Defense[]> {
     return this.http.get<Defense[]>(`${URL_BACKEND}/listerDefensesOffensive`);
   }
 
-  /*
-  * LISTER QUE LES DEFENSES DE TYPE DEFENSIVE = 2
-  */
+  // LISTER QUE LES DEFENSES DE TYPE DEFENSIVE = 2
   listerDefensesDefensive(): Observable<Defense[]> {
     return this.http.get<Defense[]>(`${URL_BACKEND}/listerDefensesDefensive`);
   }
 
+  // DETAIL D'UNE DEFENSE (Via ID)
   detailsDefense(id: number): Observable<Defense> {
     return this.http.get<Defense>(`${URL_BACKEND}/detailsDefense?id=` + id);
   }
 
-  // Modification défense depuis la page d'administration
+  // MODIFICATION D'UNE DEFENSE (Menu administrateur, Via ID)
   administrationModificationDefense(
     id: number,
     idTypeDefense: number,

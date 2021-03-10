@@ -21,7 +21,7 @@ import { UniteeService } from 'src/app/service/unitee.service';
 })
 export class DetailUniteeComponent implements OnInit, OnDestroy {
 
-  // Initialisations
+  // INITIALISATIONS
   joueur: JoueurInfos;
   id: number;
   unitee: Unitee;
@@ -41,7 +41,6 @@ export class DetailUniteeComponent implements OnInit, OnDestroy {
   montantGemmeAcceleration: number;
   apportExperience: number;
   tempsFormation: number;
-
   counterSubscription: Subscription;
   result: string;
 
@@ -53,8 +52,7 @@ export class DetailUniteeComponent implements OnInit, OnDestroy {
   dateLancementProduction: number;
   dateFinProduction: number;
 
-
-  // Constructeur
+  // CONSTRUCTEUR
   constructor(private routerLinkActive: ActivatedRoute,
     private formBuilder: FormBuilder,
     private uniteeService: UniteeService,
@@ -64,6 +62,7 @@ export class DetailUniteeComponent implements OnInit, OnDestroy {
     private notification: NotificationService,
     private router: Router) { }
 
+  // NGONINIT
   ngOnInit(): void {
 
     // Récupération des informations du joueur, pour indiquer le manque de ressources (colorisation)
@@ -177,12 +176,14 @@ export class DetailUniteeComponent implements OnInit, OnDestroy {
     )
   }
 
+  // INITIALISATION DU FORMULAIRE VIDE
   initForm() {
     this.formCreationUnitee = this.formBuilder.group({
       quantite: ['', Validators.required],
     });
   }
 
+  // BOUTON FORMER UNITES
   produireUnitee() {
     const quantite = this.formCreationUnitee.get('quantite').value;
     this.armeeService.produireUnitee(this.id, quantite).subscribe(
@@ -195,7 +196,7 @@ export class DetailUniteeComponent implements OnInit, OnDestroy {
       }, () => {
         // Toastr
         quantite == 1 ? this.notification.showSuccess("Production d'une unité.", "Production lancée.") : this.notification.showSuccess("Production de " + quantite + " unités.", "Production lancée.");
-        this.notification.showInfo("", "+"+this.unitee.apportExperience*quantite+" Experience");
+        this.notification.showInfo("", "+" + this.unitee.apportExperience * quantite + " Experience");
 
         this.messageValidation = "Production lancée";
         this.ngOnDestroy();

@@ -13,40 +13,34 @@ export class BatimentService {
 
   constructor(private http: HttpClient) { }
 
+  // LISTER TOUS LES BATIMENTS EXISTANTS
   listerBatiments(): Observable<Batiment[]> {
     return this.http.get<Batiment[]>(`${URL_BACKEND}`);
   }
 
-  /**
- * LISTER QUE LES BATIMENTS DE TYPE DIVERS = 0
- */
+  // LISTER QUE LES BATIMENTS DE TYPE DIVERS = 0
   listerBatimentsDivers(): Observable<Batiment[]> {
     return this.http.get<Batiment[]>(`${URL_BACKEND}/listerBatimentsDivers`);
   }
-  /**
-* LISTER QUE LES BATIMENTS DE TYPE RECOLTE = 1
-*/
+  //LISTER QUE LES BATIMENTS DE TYPE RECOLTE = 1
   listerBatimentsRecolte(): Observable<Batiment[]> {
     return this.http.get<Batiment[]>(`${URL_BACKEND}/listerBatimentsRecolte`);
   }
-  /**
- * LISTER QUE LES BATIMENTS DE TYPE STOCKAGE = 2
- */
+  // LISTER QUE LES BATIMENTS DE TYPE STOCKAGE = 2
   listerBatimentsStockage(): Observable<Batiment[]> {
     return this.http.get<Batiment[]>(`${URL_BACKEND}/listerBatimentsStockage`);
   }
-  /**
- * LISTER QUE LES BATIMENTS DE TYPE MILLITAIRE = 3
- */
+  // LISTER QUE LES BATIMENTS DE TYPE MILLITAIRE = 3
   listerBatimentsMillitaire(): Observable<Batiment[]> {
     return this.http.get<Batiment[]>(`${URL_BACKEND}/listerBatimentsMillitaire`);
   }
 
+  // DETAIL D'UN BATIMENT (Via ID)
   detailsBatiment(idTypeBatiment: Number): Observable<Batiment> {
     return this.http.get<Batiment>(`${URL_BACKEND}/idTypeBatiment?idTypeBatiment=` + idTypeBatiment);
   }
 
-  // Modification bâtiment depuis la page d'administration
+  // MODIFICATION D'UN BÂTIMENT (Menu administrateur, Via ID)
   administrationModificationBatiment(
     id: number,
     idTypeBatiment: number,
@@ -71,9 +65,9 @@ export class BatimentService {
     apportNourritureHeure: number,
     apportExperience: number,
     multiplicateurExperience: number,
-    multiplicateurTemps:number,
-    multiplicateurApport:number,
-    multiplicateurCout:number
+    multiplicateurTemps: number,
+    multiplicateurApport: number,
+    multiplicateurCout: number
   ): Observable<Batiment> {
     return this.http.put<Batiment>(`${URL_BACKEND}/modificationBatiment?id=` + id,
       {
@@ -105,6 +99,4 @@ export class BatimentService {
         multiplicateurCout: `${multiplicateurCout}`
       });
   }
-
-
 }

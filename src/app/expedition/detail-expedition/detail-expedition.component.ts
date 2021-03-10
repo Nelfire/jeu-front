@@ -21,7 +21,7 @@ import { UniteeService } from 'src/app/service/unitee.service';
 })
 export class DetailExpeditionComponent implements OnInit {
 
-  // Initialisations
+  // INITIALISATIONS
   i: number;
   joueur: JoueurInfos;
   messageValidation: String;
@@ -29,17 +29,14 @@ export class DetailExpeditionComponent implements OnInit {
   expedition: Expedition;
   armeesDuJoueur = [];
   flagErreurEnvoi: boolean;
-
   formEnvoiUniteesEnExpedition: FormGroup;
   toutesLesUnitees: Unitee[];
   degatsEmis: number = 0;
   reussitePourcentage: number = 0;
   messageBoutonEnvoiEnExpedition: string = "Envoyer les unitées en expéditions";
   clicked = false;
-
   niveauTableExpedition: number = 0;
   compteurExpeditionJoueurEnCours: number = 0;
-
   // Données de l'expedition
   // vie
   vieExpedition: number;
@@ -48,6 +45,7 @@ export class DetailExpeditionComponent implements OnInit {
   // degats
   degatsExpedition: number;
 
+  // CONSTRUCTEUR
   constructor(private formBuilder: FormBuilder,
     private joueurService: JoueurService,
     private expeditionService: ExpeditionService,
@@ -59,6 +57,7 @@ export class DetailExpeditionComponent implements OnInit {
     private notification: NotificationService,
     private batimentJoueurService: BatimentJoueurService) { }
 
+  // NGONINIT
   ngOnInit(): void {
     this.initForm();
     // Récupération des informations du joueur, pour indiquer le manque de ressources (colorisation)
@@ -81,12 +80,12 @@ export class DetailExpeditionComponent implements OnInit {
       (lesExpeditionsJoueur) => {
         // Parcours les expéditions joueur
         lesExpeditionsJoueur.forEach((uneExpeditionJoueur) => {
-            // Expeditions en cours ? Compteur limite atteinte. Upgade bâtiment necessaire
-            // MAINTENANT
-            var maintenant = new Date().getTime();
-            if (uneExpeditionJoueur.dateFinExpedition > maintenant && uneExpeditionJoueur.etatExpedition == 0) {
-              this.compteurExpeditionJoueurEnCours++;
-            }
+          // Expeditions en cours ? Compteur limite atteinte. Upgade bâtiment necessaire
+          // MAINTENANT
+          var maintenant = new Date().getTime();
+          if (uneExpeditionJoueur.dateFinExpedition > maintenant && uneExpeditionJoueur.etatExpedition == 0) {
+            this.compteurExpeditionJoueurEnCours++;
+          }
         });
       }
     )
@@ -134,6 +133,7 @@ export class DetailExpeditionComponent implements OnInit {
     )
   }
 
+  // INITIALISATION DU FORMULAIRE VIDE
   initForm() {
     this.formEnvoiUniteesEnExpedition = this.formBuilder.group({
       //1 - Villageois
@@ -185,54 +185,55 @@ export class DetailExpeditionComponent implements OnInit {
     });
   }
 
+  // BOUTON ENVOI
   envoiExpedition() {
     this.flagErreurEnvoi = false;
     //1 villageois 
-    const nombreVillageois = this.formEnvoiUniteesEnExpedition.get('unitee1').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee1').value;
+    const nombreVillageois = this.formEnvoiUniteesEnExpedition.get('unitee1').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee1').value == null ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee1').value;
     //2 archer 
-    const nombreArcher = this.formEnvoiUniteesEnExpedition.get('unitee2').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee2').value;
+    const nombreArcher = this.formEnvoiUniteesEnExpedition.get('unitee2').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee2').value == null ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee2').value;
     //3 archerComposite
-    const nombreArcherComposite = this.formEnvoiUniteesEnExpedition.get('unitee3').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee3').value;
+    const nombreArcherComposite = this.formEnvoiUniteesEnExpedition.get('unitee3').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee3').value == null ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee3').value;
     //4 fantassinEpee
-    const nombreFantassinEpee = this.formEnvoiUniteesEnExpedition.get('unitee4').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee4').value;
-
-    const nombreHommeDArme = this.formEnvoiUniteesEnExpedition.get('unitee5').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee5').value;
+    const nombreFantassinEpee = this.formEnvoiUniteesEnExpedition.get('unitee4').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee4').value == null ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee4').value;
+    //5 piquier 
+    const nombrePiquier = this.formEnvoiUniteesEnExpedition.get('unitee5').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee5').value == null ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee5').value;
     //6 lanceurDeHache
-    const nombreLanceurDeHache = this.formEnvoiUniteesEnExpedition.get('unitee6').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee6').value;
+    const nombreLanceurDeHache = this.formEnvoiUniteesEnExpedition.get('unitee6').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee6').value == null ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee6').value;
     //7 milicien 
-    const nombreMilicien = this.formEnvoiUniteesEnExpedition.get('unitee7').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee7').value;
-    //8 piquier 
-    const nombrePiquier = this.formEnvoiUniteesEnExpedition.get('unitee8').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee8').value;
+    const nombreMilicien = this.formEnvoiUniteesEnExpedition.get('unitee7').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee7').value == null ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee7').value;
+    //8 homme d'arme 
+    const nombreHommeDArme = this.formEnvoiUniteesEnExpedition.get('unitee8').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee8').value == null ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee8').value;
     //9 cavalierArcher
-    const nombreCavalierArcher = this.formEnvoiUniteesEnExpedition.get('unitee9').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee9').value;
+    const nombreCavalierArcher = this.formEnvoiUniteesEnExpedition.get('unitee9').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee9').value == null ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee9').value;
     //10 cavalier
-    const nombreCavalier = this.formEnvoiUniteesEnExpedition.get('unitee10').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee10').value;
+    const nombreCavalier = this.formEnvoiUniteesEnExpedition.get('unitee10').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee10').value == null ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee10').value;
     //11 champion 
-    const nombreChampion = this.formEnvoiUniteesEnExpedition.get('unitee11').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee11').value;
+    const nombreChampion = this.formEnvoiUniteesEnExpedition.get('unitee11').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee11').value == null ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee11').value;
     //12 bateauDePeche 
-    const nombreBateauDePeche = this.formEnvoiUniteesEnExpedition.get('unitee12').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee12').value;
+    const nombreBateauDePeche = this.formEnvoiUniteesEnExpedition.get('unitee12').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee12').value == null ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee12').value;
     //13 bateauIncendiaire 
-    const nombreBateauIncendiaire = this.formEnvoiUniteesEnExpedition.get('unitee13').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee13').value;
+    const nombreBateauIncendiaire = this.formEnvoiUniteesEnExpedition.get('unitee13').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee13').value == null ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee13').value;
     //14 bateauDeDestruction
-    const nombreBateauDeDestruction = this.formEnvoiUniteesEnExpedition.get('unitee14').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee14').value;
+    const nombreBateauDeDestruction = this.formEnvoiUniteesEnExpedition.get('unitee14').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee14').value == null ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee14').value;
     //15 galionACanon
-    const nombreGalionACanon = this.formEnvoiUniteesEnExpedition.get('unitee15').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee15').value;
+    const nombreGalionACanon = this.formEnvoiUniteesEnExpedition.get('unitee15').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee15').value == null ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee15').value;
     //16 galion
-    const nombreGalion = this.formEnvoiUniteesEnExpedition.get('unitee16').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee16').value;
+    const nombreGalion = this.formEnvoiUniteesEnExpedition.get('unitee16').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee16').value == null ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee16').value;
     //17 guerrierElite
-    const nombreGuerrierElite = this.formEnvoiUniteesEnExpedition.get('unitee17').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee17').value;
+    const nombreGuerrierElite = this.formEnvoiUniteesEnExpedition.get('unitee17').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee17').value == null ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee17').value;
     //18 phalange
-    const nombrePhalange = this.formEnvoiUniteesEnExpedition.get('unitee18').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee18').value;
+    const nombrePhalange = this.formEnvoiUniteesEnExpedition.get('unitee18').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee18').value == null ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee18').value;
     //19 samourail
-    const nombreSamourail = this.formEnvoiUniteesEnExpedition.get('unitee19').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee19').value;
+    const nombreSamourail = this.formEnvoiUniteesEnExpedition.get('unitee19').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee19').value == null ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee19').value;
     //20 templier
-    const nombreTemplier = this.formEnvoiUniteesEnExpedition.get('unitee20').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee20').value;
+    const nombreTemplier = this.formEnvoiUniteesEnExpedition.get('unitee20').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee20').value == null ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee20').value;
     //21 catapulte
-    const nombreCatapulte = this.formEnvoiUniteesEnExpedition.get('unitee21').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee21').value;
+    const nombreCatapulte = this.formEnvoiUniteesEnExpedition.get('unitee21').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee21').value == null ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee21').value;
     //22 elephantDeCombat
-    const nombreElephantDeCombat = this.formEnvoiUniteesEnExpedition.get('unitee22').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee22').value;
+    const nombreElephantDeCombat = this.formEnvoiUniteesEnExpedition.get('unitee22').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee22').value == null ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee22').value;
     //23 pretre
-    const nombrePretre = this.formEnvoiUniteesEnExpedition.get('unitee23').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee23').value;
+    const nombrePretre = this.formEnvoiUniteesEnExpedition.get('unitee23').value == '' ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee23').value == null ? 0 : this.formEnvoiUniteesEnExpedition.get('unitee23').value;
 
     // VERIFICATION LIMITE NON DEPASSEE
     this.armeesDuJoueur.forEach(armee => {
@@ -249,8 +250,6 @@ export class DetailExpeditionComponent implements OnInit {
       } else {
         quantiteePossession = armee.quantite;
       }
-
-
 
       if (armee.unitee.id == 1) { // Villageois
         if (nombreVillageois > quantiteePossession) {
@@ -272,10 +271,10 @@ export class DetailExpeditionComponent implements OnInit {
           this.flagErreurEnvoi = true;
           this.notification.showError("Vous manquez de fantassins épée", "Erreur de lancement.");
         }
-      } else if (armee.unitee.id == 5) { // nombreHommeDArme
-        if (nombreHommeDArme > quantiteePossession) {
+      } else if (armee.unitee.id == 5) { // piquier
+        if (nombrePiquier > quantiteePossession) {
           this.flagErreurEnvoi = true;
-          this.notification.showError("Vous manquez d'hommes d'arme", "Erreur de lancement.");
+          this.notification.showError("Vous manquez de piquiers", "Erreur de lancement.");
         }
       } else if (armee.unitee.id == 6) { // nombreLanceurDeHache
         if (nombreLanceurDeHache > quantiteePossession) {
@@ -287,10 +286,10 @@ export class DetailExpeditionComponent implements OnInit {
           this.flagErreurEnvoi = true;
           this.notification.showError("Vous manquez de miliciens", "Erreur de lancement.");
         }
-      } else if (armee.unitee.id == 8) { // nombrePiquier
-        if (nombrePiquier > quantiteePossession) {
+      } else if (armee.unitee.id == 8) { // homme d'arme
+        if (nombreHommeDArme > quantiteePossession) {
           this.flagErreurEnvoi = true;
-          this.notification.showError("Vous manquez de piquiers", "Erreur de lancement.");
+          this.notification.showError("Vous manquez d'hommes d'arme", "Erreur de lancement.");
         }
       } else if (armee.unitee.id == 9) { // nombreCavalierArcher
         if (nombreCavalierArcher > quantiteePossession) {
@@ -415,6 +414,7 @@ export class DetailExpeditionComponent implements OnInit {
     }
   }
 
+  // CALCUL DE LA VIE RESTANT A L'EXPEDITION EN FONCTION DES UNITES SELECTIONNEES
   calculVieRestanteExpedition(quantite: number) {
 
     //1 villageois 
@@ -425,14 +425,14 @@ export class DetailExpeditionComponent implements OnInit {
     const nombreArcherComposite = this.formEnvoiUniteesEnExpedition.get('unitee3').value;
     //4 fantassinEpee
     const nombreFantassinEpee = this.formEnvoiUniteesEnExpedition.get('unitee4').value;
-    //5 hommeDArme 
-    const nombreHommeDArme = this.formEnvoiUniteesEnExpedition.get('unitee5').value;
+    //5 Piquier
+    const nombrePiquier = this.formEnvoiUniteesEnExpedition.get('unitee5').value;
     //6 lanceurDeHache
     const nombreLanceurDeHache = this.formEnvoiUniteesEnExpedition.get('unitee6').value;
     //7 milicien 
     const nombreMilicien = this.formEnvoiUniteesEnExpedition.get('unitee7').value;
-    //8 piquier 
-    const nombrePiquier = this.formEnvoiUniteesEnExpedition.get('unitee8').value;
+    //8 homme d'arme 
+    const nombreHommeDArme = this.formEnvoiUniteesEnExpedition.get('unitee8').value;
     //9 cavalierArcher
     const nombreCavalierArcher = this.formEnvoiUniteesEnExpedition.get('unitee9').value;
     //10 cavalier
@@ -476,13 +476,13 @@ export class DetailExpeditionComponent implements OnInit {
       } else if (unitee.id == 4) {
         this.degatsEmis = this.degatsEmis + unitee.attaque * nombreFantassinEpee;
       } else if (unitee.id == 5) {
-        this.degatsEmis = this.degatsEmis + unitee.attaque * nombreHommeDArme;
+        this.degatsEmis = this.degatsEmis + unitee.attaque * nombrePiquier;
       } else if (unitee.id == 6) {
         this.degatsEmis = this.degatsEmis + unitee.attaque * nombreLanceurDeHache;
       } else if (unitee.id == 7) {
         this.degatsEmis = this.degatsEmis + unitee.attaque * nombreMilicien;
       } else if (unitee.id == 8) {
-        this.degatsEmis = this.degatsEmis + unitee.attaque * nombrePiquier;
+        this.degatsEmis = this.degatsEmis + unitee.attaque * nombreHommeDArme;
       } else if (unitee.id == 9) {
         this.degatsEmis = this.degatsEmis + unitee.attaque * nombreCavalierArcher;
       } else if (unitee.id == 10) {
@@ -515,6 +515,7 @@ export class DetailExpeditionComponent implements OnInit {
         this.degatsEmis = this.degatsEmis + unitee.attaque * nombrePretre;
       }
     });
+
     // Calcul dégats
     this.vieExpedition = this.expedition.vie;
     this.vieExpedition = this.vieExpedition - this.degatsEmis;
@@ -527,7 +528,7 @@ export class DetailExpeditionComponent implements OnInit {
     }
   }
 
-  // Batiments Joueur Amélioration Colorisation ressources
+  // COLORISATION RESSOURCES JOUEUR
   getColorRessourceManquantePierre() {
     if (this.joueur.pierrePossession < this.expedition.coutPierre) {
       return 'red';

@@ -1,3 +1,16 @@
+<!-- MESSAGES HEROKU -->
+<div class="avertissementHeroku">
+    Un problème pour créer votre compte ? Il est possible que la base de données hébergée sur Heroku se soit mise en
+    veille du fait de son
+    inactivité. Patientez une vingtaine de secondes <i class="fa fa-grin-wink"></i>
+</div>
+<div class="timerHeroku" >
+    <span *ngIf="secondesRestantes>0;else herokuOk">{{tempsRestant}}</span>
+    <ng-template #herokuOk>
+        <span>Héroku démarré <i class="fa fa-grin-stars"></i></span>
+    </ng-template>
+</div>
+
 <div class=" wrapper fadeInDown align-items-center">
     <div id="formContent">
         <!-- Logo -->
@@ -16,11 +29,12 @@
             <input type="email" name="email" class="fadeIn second" placeholder="Email" formControlName="email">
             <!-- password -->
             <input type="password" name="pass" class="fadeIn third" placeholder="Mot de passe"
-            formControlName="password">
+                formControlName="password">
             <input type="password" name="repeatPassword" class="fadeIn third" placeholder="Répétez le mot de passe"
                 formControlName="repeatPassword">
             <!-- bouton de connexion -->
-            <input type="submit" class="fadeIn fourth mb-3" [disabled]="formCreationCompte.invalid" value="Créer compte"><br>
+            <input type="submit" class="fadeIn fourth mb-3" [disabled]="formCreationCompte.invalid"
+                value="Créer compte"><br>
             <!-- bouton création de compte -->
             <a routerLink="/auth" class="fadeIn fourth mb-3">
                 <button type="button" class="btn btn-outline-primary">Retour</button>

@@ -11,9 +11,13 @@ export class ListeGuildesComponent implements OnInit {
 
   // INITIALISATION
   listeGuildes: Guilde[];
+
+  // CONSTRUCTEUR
   constructor(private guildeService: GuildeService) { }
 
+  // NGONINIT
   ngOnInit(): void {
+    // RECUPERATION DE TOUTES LES GUILDES
     this.guildeService.listerGuildes().subscribe(
       (listeDesGuildes) => {
         this.listeGuildes = listeDesGuildes;

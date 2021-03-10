@@ -1,4 +1,5 @@
 <div class="modificationBatiment container">
+    <!-- TITRE -->
     <div class="divider-custom divider-light">
         <div class="divider-custom-line"></div>
         <div class="divider-custom-titre">Modification {{batiment.libelle}}</div>
@@ -6,13 +7,16 @@
     </div>
     <div class="card">
         <div class="card-body ">
+            <!-- FORMULAIRE -->
             <form [formGroup]="formModificationBatiment" (ngSubmit)="modificationBatiment()">
+                <!-- ID -->
                 <div class="form-group row">
                     <label for="id" class="col-sm-2 col-form-label">ID</label>
                     <div class="col-sm-10">
                         <input disabled type="text" class="form-control" value="{{id}}" />
                     </div>
                 </div>
+                <!-- TYPE DE BATIMENT -->
                 <div class="form-group row">
                     <label for="idTypeBatiment" class="col-sm-2 col-form-label">Type de bâtiment</label>
                     <div class="col-sm-10">
@@ -20,6 +24,7 @@
                             formControlName="idTypeBatiment" disabled />
                     </div>
                 </div>
+                <!-- CATEGORIE DE BATIMENT -->
                 <div class="form-group row">
                     <label for="idCategorieBatiment" class="col-sm-2 col-form-label">Categorie batiment</label>
                     <div class="col-sm-10">
@@ -33,39 +38,46 @@
                         </select>
                     </div>
                 </div>
-
+                <!-- ICONE -->
                 <div class="form-group row">
                     <label for="icone" class="col-sm-2 col-form-label">Icone</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="icone" rows="3" formControlName="icone" />
                     </div>
                 </div>
+                <!-- LIBELLE -->
                 <div class="form-group row">
                     <label for="libelle" class="col-sm-2 col-form-label">Libelle</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="libelle" rows="3" formControlName="libelle" />
                     </div>
                 </div>
+                <!-- DESCRIPTIF -->
                 <div class="form-group row">
                     <label for="descriptif" class="col-sm-2 col-form-label">Descriptif</label>
                     <div class="col-sm-10">
                         <textarea class="form-control" id="descriptif" rows="3" formControlName="descriptif"></textarea>
                     </div>
                 </div>
+                <!-- NOMBRE OUVRIERS NECESSAIRE A LA CONSTRUCTION -->
                 <div class="form-group row">
-                    <label for="ouvrierNecessaireConstruction" class="col-sm-2 col-form-label">Ouvriers necessaire construction</label>
+                    <label for="ouvrierNecessaireConstruction" class="col-sm-2 col-form-label">Ouvriers necessaire
+                        construction</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="ouvrierNecessaireConstruction" rows="3"
                             formControlName="ouvrierNecessaireConstruction" />
                     </div>
                 </div>
+                <!-- TEMPS DE CONSTRUCTION -->
                 <div class="form-group row">
-                    <label for="tempsDeConstruction" class="col-sm-2 col-form-label">Temps de construction (en secondes)</label>
+                    <label for="tempsDeConstruction" class="col-sm-2 col-form-label">Temps de construction (en
+                        secondes)</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="tempsDeConstruction" rows="3"
                             formControlName="tempsDeConstruction" />
                     </div>
                 </div>
+                <!-- COUT EN PIERRE DE LA CONSTRUCTION -->
                 <div class="form-group row">
                     <label for="coutPierreConstruction" class="col-sm-2 col-form-label">Coût pierre construction</label>
                     <div class="col-sm-10">
@@ -73,6 +85,7 @@
                             formControlName="coutPierreConstruction" />
                     </div>
                 </div>
+                <!-- COUT EN BOIS DE LA CONSTRUCTION -->
                 <div class="form-group row">
                     <label for="coutBoisConstruction" class="col-sm-2 col-form-label">Coût bois construction</label>
                     <div class="col-sm-10">
@@ -80,6 +93,7 @@
                             formControlName="coutBoisConstruction" />
                     </div>
                 </div>
+                <!-- COUT EN OR DE LA CONSTRUCTION -->
                 <div class="form-group row">
                     <label for="coutOrConstruction" class="col-sm-2 col-form-label">Coût or construction</label>
                     <div class="col-sm-10">
@@ -87,30 +101,42 @@
                             formControlName="coutOrConstruction" />
                     </div>
                 </div>
+                <!-- COUT EN NOURRITURE DE LA CONSTRUCTION -->
                 <div class="form-group row">
-                    <label for="coutNourritureConstruction" class="col-sm-2 col-form-label">Coût nourriture construction</label>
+                    <label for="coutNourritureConstruction" class="col-sm-2 col-form-label">Coût nourriture
+                        construction</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="coutNourritureConstruction" rows="3" formControlName="coutNourritureConstruction" />
+                        <input type="text" class="form-control" id="coutNourritureConstruction" rows="3"
+                            formControlName="coutNourritureConstruction" />
                     </div>
                 </div>
+                <!-- NIVEAU HDV NECESSAIRE -->
                 <div class="form-group row">
-                    <label for="niveauHotelDeVilleNecessaireConstruction" class="col-sm-2 col-form-label">Niveau hôtel de ville necessaire construction</label>
+                    <label for="niveauHotelDeVilleNecessaireConstruction" class="col-sm-2 col-form-label">Niveau hôtel
+                        de ville necessaire construction</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="niveauHotelDeVilleNecessaireConstruction" rows="3" formControlName="niveauHotelDeVilleNecessaireConstruction" />
+                        <input type="text" class="form-control" id="niveauHotelDeVilleNecessaireConstruction" rows="3"
+                            formControlName="niveauHotelDeVilleNecessaireConstruction" />
                     </div>
                 </div>
+                <!-- QUANTITE DE STOCKAGE DE PIERRE -->
                 <div class="form-group row">
-                    <label for="quantiteeStockagePierre" class="col-sm-2 col-form-label">Quantité stôckage pierre</label>
+                    <label for="quantiteeStockagePierre" class="col-sm-2 col-form-label">Quantité stôckage
+                        pierre</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="quantiteeStockagePierre" rows="3" formControlName="quantiteeStockagePierre" />
+                        <input type="text" class="form-control" id="quantiteeStockagePierre" rows="3"
+                            formControlName="quantiteeStockagePierre" />
                     </div>
                 </div>
+                <!-- QUANTITE DE STOCKAGE DE BOIS -->
                 <div class="form-group row">
                     <label for="quantiteeStockageBois" class="col-sm-2 col-form-label">Quantité stôckage bois</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="quantiteeStockageBois" rows="3" formControlName="quantiteeStockageBois" />
+                        <input type="text" class="form-control" id="quantiteeStockageBois" rows="3"
+                            formControlName="quantiteeStockageBois" />
                     </div>
                 </div>
+                <!-- QUANTITE DE STOCKAGE D'OR -->
                 <div class="form-group row">
                     <label for="quantiteeStockageOre" class="col-sm-2 col-form-label">Quantité stôckage or</label>
                     <div class="col-sm-10">
@@ -118,13 +144,16 @@
                             formControlName="quantiteeStockageOre" />
                     </div>
                 </div>
+                <!-- QUANTITE DE STOCKAGE DE NOURRITURE -->
                 <div class="form-group row">
-                    <label for="quantiteeStockageNourriture" class="col-sm-2 col-form-label">Quantité stôckage nourriture</label>
+                    <label for="quantiteeStockageNourriture" class="col-sm-2 col-form-label">Quantité stôckage
+                        nourriture</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="quantiteeStockageNourriture" rows="3"
                             formControlName="quantiteeStockageNourriture" />
                     </div>
                 </div>
+                <!-- APPORT DE PIERRE HEURE -->
                 <div class="form-group row">
                     <label for="apportPierreHeure" class="col-sm-2 col-form-label">Apport de pierre (par heure)</label>
                     <div class="col-sm-10">
@@ -132,6 +161,7 @@
                             formControlName="apportPierreHeure" />
                     </div>
                 </div>
+                <!-- APPORT DE BOIS HEURE -->
                 <div class="form-group row">
                     <label for="apportBoisHeure" class="col-sm-2 col-form-label">Apport de bois (par heure)</label>
                     <div class="col-sm-10">
@@ -139,6 +169,7 @@
                             formControlName="apportBoisHeure" />
                     </div>
                 </div>
+                <!-- APPORT D'OR HEURE -->
                 <div class="form-group row">
                     <label for="apportOreHeure" class="col-sm-2 col-form-label">Apport d'or (par heure)</label>
                     <div class="col-sm-10">
@@ -146,14 +177,16 @@
                             formControlName="apportOreHeure" />
                     </div>
                 </div>
+                <!-- APPORT DE NOURRITURE HEURE -->
                 <div class="form-group row">
-                    <label for="apportNourritureHeure" class="col-sm-2 col-form-label">Apport de nourriture (par heure)</label>
+                    <label for="apportNourritureHeure" class="col-sm-2 col-form-label">Apport de nourriture (par
+                        heure)</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="apportNourritureHeure" rows="3"
                             formControlName="apportNourritureHeure" />
                     </div>
                 </div>
-                
+                <!-- APPORT D'EXPERIENCE -->
                 <div class="form-group row">
                     <label for="apportExperience" class="col-sm-2 col-form-label">Apport d'experience</label>
                     <div class="col-sm-10">
@@ -161,14 +194,16 @@
                             formControlName="apportExperience" />
                     </div>
                 </div>
+                <!-- MULTIPLICATEUR EXPERIENCE -->
                 <div class="form-group row">
-                    <label for="multiplicateurExperience" class="col-sm-2 col-form-label">Multiplicateur experience</label>
+                    <label for="multiplicateurExperience" class="col-sm-2 col-form-label">Multiplicateur
+                        experience</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="multiplicateurExperience" rows="3"
                             formControlName="multiplicateurExperience" />
                     </div>
                 </div>
-                
+                <!-- MULTIPLICATEUR TEMPS -->
                 <div class="form-group row">
                     <label for="multiplicateurTemps" class="col-sm-2 col-form-label">Multiplicateur temps</label>
                     <div class="col-sm-10">
@@ -176,6 +211,7 @@
                             formControlName="multiplicateurTemps" />
                     </div>
                 </div>
+                <!-- MULTIPLICATEUR APPORT -->
                 <div class="form-group row">
                     <label for="multiplicateurApport" class="col-sm-2 col-form-label">Multiplicateur apport</label>
                     <div class="col-sm-10">
@@ -183,6 +219,7 @@
                             formControlName="multiplicateurApport" />
                     </div>
                 </div>
+                <!-- MULTIPLICATEUR COUT -->
                 <div class="form-group row">
                     <label for="multiplicateurCout" class="col-sm-2 col-form-label">Multiplicateur coût</label>
                     <div class="col-sm-10">
@@ -191,8 +228,7 @@
                     </div>
                 </div>
 
-                
-
+                <!-- MESSAGES VALIDATION / ERREUR -->
                 <div class="alert alert-danger" role="danger" *ngIf="messageErreur">
                     <b>{{messageErreur}}</b>
                 </div>
@@ -200,6 +236,7 @@
                     <b>{{messageValidation}}</b>
                 </div>
 
+                <!-- BOUTONS -->
                 <div class="row justify-content-md-center">
                     <div class="col-md-auto">
                         <!-- bouton valider formulaire -->

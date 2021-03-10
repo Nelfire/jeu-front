@@ -1,4 +1,5 @@
 <div class="usines">
+    <!-- TITRE -->
     <div class="divider-custom divider-light">
         <div class="divider-custom-line"></div>
         <div class="divider-custom-titre">Centre de récolte</div>
@@ -6,25 +7,32 @@
     </div>
 
     <div>
+        <!-- BOUTONS DE FARM -->
         <div class="grid-container">
+            <!-- PIERRE -->
             <div class="pierre card" [ngStyle]="{opacity:getOpacityCarriere()}" (click)="recolterPierre()">
                 <div class="action-recolte noselect">Miner <span class="spinner-border spinner-border-sm"
                         style="vertical-align: middle;" *ngIf="carriereEnCoursDeTravail"></span></div>
             </div>
+            <!-- BOIS -->
             <div class="bois card" [ngStyle]="{opacity:getOpacityCampDeBucheron()}" (click)="recolterBois()">
                 <div class="action-recolte noselect">Couper <span class="spinner-border spinner-border-sm"
                         style="vertical-align: middle;" *ngIf="campDeBucheronEnCoursDeTravail"></span></div>
             </div>
+            <!-- OR -->
             <div class="or card" [ngStyle]="{opacity:getOpacityCampDeMineur()}" (click)="recolterOr()">
                 <div class="action-recolte noselect">Extraire <span class="spinner-border spinner-border-sm"
                         style="vertical-align: middle;" *ngIf="campDeMineurEnCoursDeTravail"></span></div>
             </div>
-            <div class="nourriture card" [ngStyle]="{opacity:getOpacityFerme()}" (click)="recolterNourriture()" id="section_recolte_nourriture">
+            <!-- NOURRITURE -->
+            <div class="nourriture card" [ngStyle]="{opacity:getOpacityFerme()}" (click)="recolterNourriture()"
+                id="section_recolte_nourriture">
                 <div class="action-recolte noselect">Chasser <span class="spinner-border spinner-border-sm"
                         style="vertical-align: middle;" *ngIf="fermeEnCoursDeTravail"></span></div>
             </div>
-            <div class="production card noselect">
 
+            <!-- RECAPITULATIF PRODUCTION -->
+            <div class="production card noselect">
                 <div class="productionPierre center">
                     {{montantRecoltePierre}} <b>Pierre</b>
                 </div>
@@ -37,13 +45,17 @@
                 <div class="productionNourriture center">
                     {{montantRecolteNourriture}} <b>Nourriture</b>
                 </div>
-
             </div>
+
+            <!-- BOUTON RECUPERER LA PRODUCTION -->
             <div class="bouton">
-                <button class="btn btn-success" (click)="recupererProduction()" id="section_recuperer_production">Récupérer la production</button>
+                <button class="btn btn-success" (click)="recupererProduction()"
+                    id="section_recuperer_production">Récupérer la production</button>
             </div>
         </div>
     </div>
+
+    <!-- AVERTISSEMENT ANTI-TRICHE -->
     <div class="avertissement noselect">
         Le système détecte les tentatives de triche (logiciels de clique automatique)<br>
         Vous êtes détecté par le système mais vous n'utilisez aucun logiciel d'automatisation ? <a

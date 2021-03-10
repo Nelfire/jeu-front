@@ -1,5 +1,6 @@
 <ng-container *ngIf="joueurConnecte | async as jou">
     <div class="classementJoueur container">
+        <!-- TITRE -->
         <div class="divider-custom divider-light">
             <div class="divider-custom-line"></div>
             <div class="divider-custom-titre">Classement joueur</div>
@@ -7,6 +8,7 @@
         </div>
         <div class="table-wrapper">
             <table class="fl-table">
+                <!-- ENTETE -->
                 <thead>
                     <tr>
                         <th>Icone</th>
@@ -16,6 +18,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- LISTE DE TOUS LES JOUEURS -->
                     <tr *ngFor="let joueur of listeJoueurs">
                         <td><img src="{{joueur.icone}}" alt="" style="width: 30px;" /></td>
                         <td>
@@ -26,7 +29,9 @@
                                 </a>
                             </span>
                         </td>
+                        <!-- NIVEAU -->
                         <td>{{joueur.niveau}}</td>
+                        <!-- TEMPS DE JEU -->
                         <td>{{joueur.tempsDeJeu | minuteSecondePipe: 's':'hhmmss'}}</td>
                     </tr>
                 <tbody>

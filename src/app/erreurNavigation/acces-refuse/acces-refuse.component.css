@@ -34,18 +34,18 @@ body {
 }
 
 .notfound .notfound-404 h1 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 146px;
   font-weight: 700;
   margin: 0px;
   color: #232323;
 }
 
-.notfound .notfound-404 h1>span {
+.notfound .notfound-404 h1 > span {
   display: inline-block;
   width: 120px;
   height: 120px;
-  background-image: url('../../../images/emoji-angry.png');
+  background-image: url("../../../images/emoji-angry.png");
   background-size: cover;
   -webkit-transform: scale(1.4);
   -ms-transform: scale(1.4);
@@ -54,7 +54,7 @@ body {
 }
 
 .notfound h2 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 22px;
   font-weight: 700;
   margin: 0;
@@ -63,13 +63,13 @@ body {
 }
 
 .notfound p {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: #787878;
   font-weight: 300;
 }
 
 .notfound a {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   display: inline-block;
   padding: 12px 30px;
   font-weight: 700;
@@ -94,7 +94,7 @@ body {
     font-size: 86px;
   }
 
-  .notfound .notfound-404 h1>span {
+  .notfound .notfound-404 h1 > span {
     width: 86px;
     height: 86px;
   }

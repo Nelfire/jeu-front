@@ -25,7 +25,7 @@ export class JoueurInfos {
     public donateur: Boolean,
     public positionX: number,
     public positionY: number
-    ) {
+  ) {
 
   }
 }

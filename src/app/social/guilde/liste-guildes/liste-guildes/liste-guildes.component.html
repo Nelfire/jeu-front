@@ -1,10 +1,12 @@
 <div class="liste-guildes container">
-    <!-- titre page -->
+    <!-- TITRE -->
     <div class="divider-custom divider-light">
         <div class="divider-custom-line"></div>
         <div class="divider-custom-titre">LISTE GUILDES</div>
         <div class="divider-custom-line"></div>
     </div>
+
+    <!-- BOUTONS DE NAVIGATION -->
     <div class="row center">
         <div class="col-sm-4">
             <a routerLink="/creerGuilde">
@@ -23,6 +25,7 @@
         </div>
     </div>
 
+    <!-- AFFICHAGE DE TOUTES LES GUILDES -->
     <ul *ngFor="let guilde of listeGuildes">
         <li> {{guilde.libelle}}</li>
     </ul>

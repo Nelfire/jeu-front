@@ -1,8 +1,8 @@
-export class Unitee{
+export class Unitee {
     constructor(
         public id: number,
-        public idTypeUnitee: number, 
-        public idBatimentProvenance: number, 
+        public idTypeUnitee: number,
+        public idBatimentProvenance: number,
         public icone: string,
         public libelle: string,
         public descriptif: string,
@@ -22,5 +22,5 @@ export class Unitee{
         public apportRessourceBoisHeure: number,
         public apportRessourceOrHeure: number,
         public apportRessourceNourritureHeure: number,
-        public apportExperience: number) {}
+        public apportExperience: number) { }
 }

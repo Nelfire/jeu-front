@@ -9,28 +9,33 @@ import { GuildeService } from 'src/app/service/guilde.service';
   styleUrls: ['./creer-guilde.component.scss']
 })
 export class CreerGuildeComponent implements OnInit {
-  // Initialisations 
+
+  // INITIALISATIONS 
   messageErreur: string;
   messageValidation: string;
   formCreationGuilde: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private guildeService: GuildeService,private router: Router) { }
+  // CONSTRUCTEUR
+  constructor(private formBuilder: FormBuilder, private guildeService: GuildeService, private router: Router) { }
 
+  // NGONINIT
   ngOnInit(): void {
     this.initForm();
   }
 
-  initForm () {
+  // INITIALISATION DU FORMULAIRE VIDE
+  initForm() {
     this.formCreationGuilde = this.formBuilder.group({
       icone: ['', Validators.required],
       libelle: ['', Validators.required]
     });
   }
 
+  // BOUTON CREER GUILDE
   creationGuilde() {
     const icone = this.formCreationGuilde.get('icone').value;
     const libelle = this.formCreationGuilde.get('libelle').value;
-    this.guildeService.creerGuilde(icone,libelle).subscribe(
+    this.guildeService.creerGuilde(icone, libelle).subscribe(
       () => {
       }, (error) => {
         this.messageErreur = error.error.message;

@@ -34,9 +34,8 @@ export class DetailBatimentComponent implements OnInit {
 
   @ViewChild(HeaderComponent) headerComponent: HeaderComponent;
 
+  // INITIALISATIONS
   joueur: JoueurInfos;
-
-  // Initialisations
   counterSubscription: Subscription;
   secondesRestantesAmelioration: number;
   idTypeBatiment: number;
@@ -52,15 +51,12 @@ export class DetailBatimentComponent implements OnInit {
   etatBoutonAmeliorer: String;
   flagEnCoursDeTravail: Boolean;
   niveauHdvJoueur: number = 0;
-
   montantGemmeAcceleration: number;
   experience: number = 0;
-
   batimentUniteEnCoursDeProduction: boolean = false;
-
   result: string;
 
-  // Constructeur
+  // CONSTRUCTEUR
   constructor(private authSrv: AuthService,
     private router: Router,
     private routerLinkActive: ActivatedRoute,
@@ -72,6 +68,7 @@ export class DetailBatimentComponent implements OnInit {
     private armeeService: ArmeeService,
     private tutorielService: TutorielService) { }
 
+  //NGONINIT
   ngOnInit(): void {
     // Détection niveau HDV
     this.verifierNiveauHdvJoueur();
@@ -169,8 +166,7 @@ export class DetailBatimentComponent implements OnInit {
     );
   }
 
-
-
+  // VERIFICATION DU NIVEAU DE L'HDV DU JOUEUR
   verifierNiveauHdvJoueur() {
     // Récupération liste des batiments
     this.batimentService.listerBatiments().subscribe(
@@ -207,10 +203,11 @@ export class DetailBatimentComponent implements OnInit {
         this.messageErreur = error.error.message;
         this.notification.showError(error.error.message, "Erreur ...");
       }, () => {
-
+        // POPUP
         this.notification.showInfo("", "+" + this.experience + " Experience");
         this.notification.showSuccess("", "Construction lancée.");
 
+        // REFRESH
         this.informationsBatiment();
       }
     );
@@ -227,13 +224,12 @@ export class DetailBatimentComponent implements OnInit {
           this.messageErreur = error.error.message;
           this.notification.showError(error.error.message, "Erreur ...");
         }, () => {
+          // POPUP
           this.notification.showInfo("", "+" + this.experience + " Experience");
           this.notification.showSuccess("", "Amélioration lancée !");
+
+          // REFRESH
           this.informationsBatiment();
-          /*           setTimeout(() => {
-                      // Redirection au bout de 1,5 secondes
-                      this.router.navigate(['campement']);
-                    }, 1500); */
         }
       );
     }

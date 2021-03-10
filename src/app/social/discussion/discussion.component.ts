@@ -15,14 +15,14 @@ import { NotificationService } from 'src/app/service/notification.service';
 export class DiscussionComponent implements OnInit {
 
   /**** AUTO SCROLL DOWN [debut] ****/
-  @ViewChild('scrollframe', {static: false}) scrollFrame: ElementRef;
+  @ViewChild('scrollframe', { static: false }) scrollFrame: ElementRef;
   @ViewChildren('item') itemElements: QueryList<any>;
   private scrollContainer: any;
   private isNearBottom = true;
 
   ngAfterViewInit() {
     this.scrollContainer = this.scrollFrame.nativeElement;
-    this.itemElements.changes.subscribe(_ => this.onItemElementsChanged());    
+    this.itemElements.changes.subscribe(_ => this.onItemElementsChanged());
   }
 
   private onItemElementsChanged(): void {
@@ -48,24 +48,24 @@ export class DiscussionComponent implements OnInit {
   scrolled(event: any): void {
     this.isNearBottom = this.isUserNearBottom();
   }
-  
+
   /**** AUTO SCROLL DOWN [fin] ****/
 
+  // INITIALISATIONS
   listeMessages = [];
   message: string;
   counterSubscription: Subscription;
   joueur: Joueur;
-  messageErreur:string;
+  messageErreur: string;
   nombreMessages: number;
-
-
-  // Initialisations
   formAjouterMessage: FormGroup;
 
-  constructor(private discussionService: DiscussionService, 
-    private formBuilder: FormBuilder,private authService: AuthService,
+  // CONSTRUCTEUR
+  constructor(private discussionService: DiscussionService,
+    private formBuilder: FormBuilder, private authService: AuthService,
     private notification: NotificationService) { }
 
+  // NGONINIT
   ngOnInit(): void {
 
     this.authService.joueurConnecteObs.subscribe(
@@ -86,7 +86,7 @@ export class DiscussionComponent implements OnInit {
           (valeur) => {
             this.listeMessages = valeur;
             this.listeMessages.forEach(unMessage => {
-              if(unMessage.joueur.email ==this.joueur.email) {
+              if (unMessage.joueur.email == this.joueur.email) {
                 unMessage.appartientAuJoueurConnecte = true;
               }
             });
@@ -98,30 +98,28 @@ export class DiscussionComponent implements OnInit {
     );
   }
 
+  // INITIALISATION DU FORMULAIRE VIDE
   initialiserFormulaire() {
     this.formAjouterMessage = this.formBuilder.group({
       contenu: ['', Validators.required]
     });
   }
 
+  // BOUTON ENVOYER MESSAGE
   validerMessage() {
-    // R�cup�ration des donn�es du formulaire
     const contenu = this.formAjouterMessage.get('contenu').value;
-    console.log(contenu);
-    if(contenu=="" || contenu==null || contenu=='\n') {
+    if (contenu == "" || contenu == null || contenu == '\n') {
       this.notification.showWarning("Erreur", "Message vide.");
-    }else {
+    } else {
       this.discussionService.publierMessage(contenu).subscribe();
       this.message = "Message validé !";
       this.formAjouterMessage.get('contenu').reset();
     }
-
-
   }
 
   ngOnDestroy() {
     this.counterSubscription.unsubscribe();
   }
-  
+
 
 }

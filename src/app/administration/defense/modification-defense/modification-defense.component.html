@@ -1,4 +1,5 @@
 <div class="modificationDefense container" *ngIf="defense">
+    <!-- TITRE -->
     <div class="divider-custom divider-light">
         <div class="divider-custom-line"></div>
         <div class="divider-custom-titre">Modification {{defense.libelle}}</div>
@@ -6,51 +7,58 @@
     </div>
     <div class="card">
         <div class="card-body ">
+            <!-- FORMULAIRE -->
             <form [formGroup]="formModificationDefense" (ngSubmit)="modificationDefense()">
+                <!-- ID -->
                 <div class="form-group row">
                     <label for="id" class="col-sm-2 col-form-label">ID</label>
                     <div class="col-sm-10">
                         <input disabled type="text" class="form-control" value="{{id}}" />
                     </div>
                 </div>
-
+                <!-- TYPE DE DEFENSE -->
                 <div class="form-group row">
                     <label for="typeDefense" class="col-sm-2 col-form-label">Type de défense</label>
                     <div class="col-sm-10">
-                        <select class="custom-select" id="typeDefense" formControlName="typeDefense"
-                            required>
+                        <select class="custom-select" id="typeDefense" formControlName="typeDefense" required>
                             <option selected value="null">- Choix -</option>
                             <option value="1">Offensif</option>
                             <option value="2">Défensif</option>
                         </select>
                     </div>
                 </div>
-
+                <!-- ICONE -->
                 <div class="form-group row">
                     <label for="icone" class="col-sm-2 col-form-label">Icone</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="icone" rows="3" formControlName="icone" />
                     </div>
                 </div>
+                <!-- LIBELLE -->
                 <div class="form-group row">
                     <label for="libelle" class="col-sm-2 col-form-label">Libelle</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="libelle" rows="3" formControlName="libelle" />
                     </div>
                 </div>
+                <!-- DESCRIPTIF -->
                 <div class="form-group row">
                     <label for="description" class="col-sm-2 col-form-label">Descriptif</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" id="description" rows="3" formControlName="description"></textarea>
+                        <textarea class="form-control" id="description" rows="3"
+                            formControlName="description"></textarea>
                     </div>
                 </div>
+                <!-- TEMPS DE CONSTRUCTION -->
                 <div class="form-group row">
-                    <label for="tempsConstruction" class="col-sm-2 col-form-label">Temps de construction (en secondes)</label>
+                    <label for="tempsConstruction" class="col-sm-2 col-form-label">Temps de construction (en
+                        secondes)</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="tempsConstruction" rows="3"
                             formControlName="tempsConstruction" />
                     </div>
                 </div>
+                <!-- COUT EN PIERRE DE CONSTRUCTION -->
                 <div class="form-group row">
                     <label for="coutPierreConstruction" class="col-sm-2 col-form-label">Coût pierre construction</label>
                     <div class="col-sm-10">
@@ -58,6 +66,7 @@
                             formControlName="coutPierreConstruction" />
                     </div>
                 </div>
+                <!-- COUT EN BOIS DE CONSTRUCTION -->
                 <div class="form-group row">
                     <label for="coutBoisConstruction" class="col-sm-2 col-form-label">Coût bois construction</label>
                     <div class="col-sm-10">
@@ -65,6 +74,7 @@
                             formControlName="coutBoisConstruction" />
                     </div>
                 </div>
+                <!-- COUT EN OR DE CONSTRUCTION -->
                 <div class="form-group row">
                     <label for="coutOrConstruction" class="col-sm-2 col-form-label">Coût or construction</label>
                     <div class="col-sm-10">
@@ -72,50 +82,61 @@
                             formControlName="coutOrConstruction" />
                     </div>
                 </div>
+                <!-- COUT EN NOURRITURE DE CONSTRUCTION -->
                 <div class="form-group row">
-                    <label for="coutNourritureConstruction" class="col-sm-2 col-form-label">Coût nourriture construction</label>
+                    <label for="coutNourritureConstruction" class="col-sm-2 col-form-label">Coût nourriture
+                        construction</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="coutNourritureConstruction" rows="3" formControlName="coutNourritureConstruction" />
+                        <input type="text" class="form-control" id="coutNourritureConstruction" rows="3"
+                            formControlName="coutNourritureConstruction" />
                     </div>
                 </div>
+                <!-- VIE -->
                 <div class="form-group row">
-                    <label for="vie" class="col-sm-2 col-form-label">vie</label>
+                    <label for="vie" class="col-sm-2 col-form-label">Vie</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="vie" rows="3" formControlName="vie" />
                     </div>
                 </div>
+                <!-- ATTAQUE -->
                 <div class="form-group row">
-                    <label for="attaque" class="col-sm-2 col-form-label">attaque</label>
+                    <label for="attaque" class="col-sm-2 col-form-label">Attaque</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="attaque" rows="3" formControlName="attaque" />
                     </div>
                 </div>
+                <!-- PORTEE -->
                 <div class="form-group row">
-                    <label for="portee" class="col-sm-2 col-form-label">portee</label>
+                    <label for="portee" class="col-sm-2 col-form-label">Portee</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="portee" rows="3" formControlName="portee" />
                     </div>
                 </div>
+                <!-- ARMURE -->
                 <div class="form-group row">
-                    <label for="armure" class="col-sm-2 col-form-label">armure</label>
+                    <label for="armure" class="col-sm-2 col-form-label">Armure</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="armure" rows="3" formControlName="armure" />
                     </div>
                 </div>
+                <!-- NIVEAU BATIMENT NECESSAIRE CONSTRUCTION -->
                 <div class="form-group row">
-                    <label for="niveauBatimentNecessaireConstruction" class="col-sm-2 col-form-label">niveauBatimentNecessaireConstruction</label>
+                    <label for="niveauBatimentNecessaireConstruction" class="col-sm-2 col-form-label">Niveau Batiment
+                        Necessaire Construction</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="niveauBatimentNecessaireConstruction" rows="3"
                             formControlName="niveauBatimentNecessaireConstruction" />
                     </div>
                 </div>
+                <!-- BATIMENT DE PROVENANCE -->
                 <div class="form-group row">
-                    <label for="idBatimentProvenance" class="col-sm-2 col-form-label">Bâtiment provencance</label>
+                    <label for="idBatimentProvenance" class="col-sm-2 col-form-label">Bâtiment provenance</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="idBatimentProvenance" rows="3"
                             formControlName="idBatimentProvenance" />
                     </div>
                 </div>
+                <!-- GAIN EXPERIENCE CONSTRUCTION -->
                 <div class="form-group row">
                     <label for="apportExperience" class="col-sm-2 col-form-label">Experience</label>
                     <div class="col-sm-10">
@@ -123,16 +144,14 @@
                             formControlName="apportExperience" />
                     </div>
                 </div>
-
-                
-
+                <!-- MESSAGES -->
                 <div class="alert alert-danger" role="danger" *ngIf="messageErreur">
                     <b>{{messageErreur}}</b>
                 </div>
                 <div class="alert alert-success" role="success" *ngIf="messageValidation">
                     <b>{{messageValidation}}</b>
                 </div>
-
+                <!-- BOUTONS -->
                 <div class="row justify-content-md-center">
                     <div class="col-md-auto">
                         <!-- bouton valider formulaire -->

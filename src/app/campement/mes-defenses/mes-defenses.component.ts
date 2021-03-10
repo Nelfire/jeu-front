@@ -97,6 +97,7 @@ export class MesDefensesComponent implements OnInit {
     );
   }
 
+  // FILTRE DEFENSE "TOUTES"
   defensesToutes() {
     this.defenseService.listerDefense().subscribe(
       (defenses) => {
@@ -106,6 +107,7 @@ export class MesDefensesComponent implements OnInit {
     );
   }
 
+  // FILTRE DEFENSE "OFFENSIVES"
   defensesOffensive() {
     this.defenseService.listerDefensesOffensive().subscribe(
       (defenses) => {
@@ -115,6 +117,7 @@ export class MesDefensesComponent implements OnInit {
     );
   }
 
+  // FILTRE DEFENSE "DEFENSIVES"
   defensesDefensive() {
     this.defenseService.listerDefensesDefensive().subscribe(
       (defenses) => {
@@ -124,6 +127,7 @@ export class MesDefensesComponent implements OnInit {
     );
   }
 
+  // COLORISATION RESSOURCES JOUEUR
   // Pierre
   getColorRessourceManquantePierreConstructionDefense(id: number) {
     var couleur = '';

@@ -11,15 +11,19 @@ import { UniteeService } from 'src/app/service/unitee.service';
 export class CreationUniteeComponent implements OnInit {
 
 
-  // Initialisations 
+  // INITIALISATIONS 
   messageErreur: string;
   messageValidation: string;
   formCreationUnitee: FormGroup;
   listeUnitees: Unitee[];
+
+  // CONSTRUCTEUR
   constructor(private formBuilder: FormBuilder, private uniteeService: UniteeService) { }
 
+  //NGONINIT
   ngOnInit(): void {
     this.initForm();
+    // RECUPERATION DE TOUTES LES UNITES
     this.uniteeService.listerDifferentesUnitees().subscribe(
       (value) => {
         this.listeUnitees = value;
@@ -27,7 +31,8 @@ export class CreationUniteeComponent implements OnInit {
     );
   }
 
-  initForm () {
+  // INITIALISATION DU FORMULAIRE VIDE
+  initForm() {
     this.formCreationUnitee = this.formBuilder.group({
       idTypeUnitee: ['', Validators.required],
       idBatimentProvenance: ['', Validators.required],
@@ -53,6 +58,8 @@ export class CreationUniteeComponent implements OnInit {
       apportExperience: ['', Validators.required]
     });
   }
+
+  // BOUTON CREATION UNITE
   creationUnitee() {
     const idTypeUnitee = this.formCreationUnitee.get('idTypeUnitee').value;
     const idBatimentProvenance = this.formCreationUnitee.get('idBatimentProvenance').value;
@@ -99,23 +106,7 @@ export class CreationUniteeComponent implements OnInit {
       apportRessourceOrHeure,
       apportRessourceNourritureHeure,
       apportExperience
-      ).subscribe();
-    /*
-      coutBoisFormation: `${unitee.coutBoisFormation}`,
-      coutOrFormation: `${unitee.coutOrFormation}`,
-      : `${unitee.coutNourritureFormation}`,
-      : `${unitee.coutHumain}`,
-      : `${unitee.tempsFormation}`,
-      : `${unitee.vie}`,
-      : `${unitee.attaque}`,
-      : `${unitee.portee}`,
-      : `${unitee.armure}`,
-      : `${unitee.niveauBatimentNecessaireFormation}`,
-      : `${unitee.apportRessourcePierreHeure}`,
-      : `${unitee.apportRessourceBoisHeure}`,
-      : `${unitee.apportRessourceOrHeure}`,
-      : `${unitee.apportRessourceNourritureHeure}` 
-    */
+    ).subscribe();
   }
 
 }

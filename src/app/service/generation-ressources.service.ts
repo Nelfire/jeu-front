@@ -8,13 +8,13 @@ import { JoueurService } from './joueur.service';
 })
 export class GenerationRessourcesService {
   // INITIALISATIONS
-  invokeFirstComponentFunction = new EventEmitter();    
-  subsVar: Subscription;  
+  invokeFirstComponentFunction = new EventEmitter();
+  subsVar: Subscription;
 
+  // CONSTRUCTEUR
+  constructor() { }
 
-  constructor() { } 
-
-  onFirstComponentButtonClick() {    
-    this.invokeFirstComponentFunction.emit();    
-  }   
+  onFirstComponentButtonClick() {
+    this.invokeFirstComponentFunction.emit();
+  }
 }

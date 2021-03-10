@@ -13,8 +13,7 @@ import { NotificationService } from 'src/app/service/notification.service';
 })
 export class ListeExpeditionsJoueurComponent implements OnInit, OnDestroy {
 
-  // https://www.itsolutionstuff.com/post/how-to-use-toaster-notification-in-angular-8example.html
-  // Initialisation
+  // INITIALISATIONS
   etat: number;
   result: string;
   counterSubscription: Subscription;
@@ -22,17 +21,19 @@ export class ListeExpeditionsJoueurComponent implements OnInit, OnDestroy {
   listeExpeditionJoueur = [];
   secondesRestantesExpedition: number;
   niveauTableExpedition: number = 0;
-  intitulePage:string = "Toutes mes expéditions"
-
+  intitulePage: string = "Toutes mes expéditions"
   // Pour désactiver le bouton une fois que le joueur à cliqué sur "Récupérer récompense"
   clickRecuperer = false;
   messageBoutonRecuperationRecompense: string = "Récupérer récompense";
 
+  // CONSTRUCTEUR
   constructor(private expeditionJoueurService: ExpeditionJoueurService,
     private batimentService: BatimentService,
     private batimentJoueurService: BatimentJoueurService,
-    private notification: NotificationService) { }
+    private notification: NotificationService,
+    private generationRessourceServices: GenerationRessourcesService) { }
 
+  // NGONINIT
   ngOnInit(): void {
     this.verifierNiveauTableExpedition();
     this.listerToutesLesExpeditionsJoueur();
@@ -196,13 +197,20 @@ export class ListeExpeditionsJoueurComponent implements OnInit, OnDestroy {
 
   // RECUPERATION DES RECOMPENSES
   recupererRecompense(idExpedition: number, experience: number) {
-    this.clickRecuperer = true;
-    this.messageBoutonRecuperationRecompense = "Compte crédité";
-    this.notification.showInfo("", "+"+experience+" Experience");
-    this.notification.showSuccess("", "Récompense récupérée ! Vos unitées rentrent au campement.");
-    this.expeditionJoueurService.recupererRecompense(idExpedition).subscribe();
+
+    this.expeditionJoueurService.recupererRecompense(idExpedition).subscribe(
+      () => {
+        this.clickRecuperer = true;
+        this.messageBoutonRecuperationRecompense = "Compte crédité";
+        this.notification.showInfo("", "+" + experience + " Experience");
+        this.notification.showSuccess("", "Récompense récupérée ! Vos unitées rentrent au campement.");
+        this.generationRessourceServices.onFirstComponentButtonClick();
+      }, (error) => {
+        this.notification.showError("", error.error.message);
+      }
+    );
     // Refresh ressources header
-    
+
 
   }
 

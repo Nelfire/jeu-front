@@ -18,6 +18,7 @@ import { UniteeService } from 'src/app/service/unitee.service';
 })
 export class MonArmeeComponent implements OnInit {
 
+  // INITIALISATIONS
   listeUnitees: Unitee[];
   lesUnitees = [];
   armeesDuJoueur: Armee[];
@@ -27,11 +28,13 @@ export class MonArmeeComponent implements OnInit {
   flagNiveauBatimentNecessaireFormationUniteeAssezEleve: boolean = false;
   joueur: JoueurInfos;
 
+  // CONSTRUCTEUR
   constructor(private uniteeService: UniteeService,
     private armeeService: ArmeeService,
     private batimentJoueurService: BatimentJoueurService,
     private joueurService: JoueurService) { }
 
+  //NGONINIT
   ngOnInit(): void {
     // Récupération des informations du joueur, pour indiquer le manque de ressources (colorisation)
     this.joueurService.informationJoueurByEmail().subscribe(
@@ -179,6 +182,7 @@ export class MonArmeeComponent implements OnInit {
     );
   }
 
+  // COLORISATION DES RESSOURCES JOUEUR
   // Pierre
   getColorRessourceManquantePierreFormationUnite(id: number) {
     var couleur = '';

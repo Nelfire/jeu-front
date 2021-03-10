@@ -7,9 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FourOhFourComponent implements OnInit {
 
-  // Constructeur
+  // CONSTRUCTEUR
   constructor() { }
 
+  // NGONINIT
   ngOnInit(): void {
   }
 

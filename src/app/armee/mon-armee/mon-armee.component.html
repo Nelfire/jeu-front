@@ -1,28 +1,31 @@
 <div class="armee">
-    
-    <!-- titre page -->
+
+    <!-- TITRE -->
     <div class="divider-custom divider-light">
         <div class="divider-custom-line"></div>
         <div class="divider-custom-titre">UNITEES</div>
         <div class="divider-custom-line"></div>
     </div>
 
+    <!-- FILTRE TYPE UNITE -->
     <div class="boutons divCenter">
-		<button class="btn btn-success m-3" (click)="uniteesToutes()">Toutes</button>
-		<button class="btn btn-success m-3" (click)="uniteesDivers()">Divers</button>
-		<button class="btn btn-success m-3" (click)="uniteesInfanterie()">Infanterie</button>
-		<button class="btn btn-success m-3" (click)="uniteesCavalerie()">Cavalerie</button>
-		<button class="btn btn-success m-3" (click)="uniteesSiege()">Siège</button>
-		<button class="btn btn-success m-3" (click)="uniteesNavale()">Navale</button>
-	</div>
+        <button class="btn btn-success m-3" (click)="uniteesToutes()">Toutes</button>
+        <button class="btn btn-success m-3" (click)="uniteesDivers()">Divers</button>
+        <button class="btn btn-success m-3" (click)="uniteesInfanterie()">Infanterie</button>
+        <button class="btn btn-success m-3" (click)="uniteesCavalerie()">Cavalerie</button>
+        <button class="btn btn-success m-3" (click)="uniteesSiege()">Siège</button>
+        <button class="btn btn-success m-3" (click)="uniteesNavale()">Navale</button>
+    </div>
     <div>
         <ul class="honeycomb" lang="es">
+            <!--LISTE DE TOUTES LES UNITES -->
             <li class="honeycomb-cell" *ngFor="let unitee of lesUnitees">
                 <div [ngbTooltip]="detailsUnite" id="unite{{unitee.id}}">
                     <a routerLink="../unitee/detail-unitee/{{unitee.id}}">
                         <div>
                             <!-- Quantitée d'unitées affichée si le joueur en possède -->
-                            <div style="text-align:center;" *ngIf="unitee.joueurLaPossede && unitee.quantiteePossession!=0">
+                            <div style="text-align:center;"
+                                *ngIf="unitee.joueurLaPossede && unitee.quantiteePossession!=0">
                                 <input disabled type="text" name="texte" class="quantite"
                                     value="Possède : {{unitee.quantiteePossession}}" />
                             </div>
@@ -43,7 +46,8 @@
                             <ng-template #suite>
                                 <span *ngIf="!unitee.flagNiveauBatimentNecessaireFormationUniteeAssezEleve">
                                     <a routerLink="../batiment/detail-batiment/{{unitee.idBatimentProvenance}}">
-                                        <button class="btn btn-warning">Bâtiment lvl <b>{{unitee.niveauBatimentNecessaireFormation}}</b> necessaire</button>
+                                        <button class="btn btn-warning">Bâtiment lvl
+                                            <b>{{unitee.niveauBatimentNecessaireFormation}}</b> necessaire</button>
                                     </a>
                                 </span>
                             </ng-template>
@@ -59,30 +63,44 @@
                         <span
                             *ngIf="unitee.flagPossedeBatimentNecessaireFormationUnitee && unitee.flagNiveauBatimentNecessaireFormationUniteeAssezEleve && !unitee.flagBatimentUniteeEnCoursDeConstruction">
                             <span *ngIf="unitee.formationEnCours; else pasDeFormationEnCours">
-                                <button class="btn btn-warning"><span class="spinner-border spinner-border-sm"></span>En cours</button>
+                                <button class="btn btn-warning"><span class="spinner-border spinner-border-sm"></span>En
+                                    cours</button>
                             </span>
                             <ng-template #pasDeFormationEnCours>
                                 <button class="btn btn-info">Créer</button>
                             </ng-template>
-                            
+
                         </span>
                     </a>
                 </div>
+                <!-- TOOLTIP -->
                 <ng-template #detailsUnite>
                     <div class="d-flex flex-column">
                         <span><b>- COÛT -</b></span>
-                        <span><b>Pierre : </b> <span> <b [ngStyle]="{'color':getColorRessourceManquantePierreFormationUnite(unitee.id)}">{{unitee.coutPierreFormation | number}}</b></span></span>
-                        <span><b>Bois : </b> <b [ngStyle]="{'color':getColorRessourceManquanteBoisFormationUnite(unitee.id)}">{{unitee.coutBoisFormation | number}}</b></span>
-                        <span><b>Or : </b> <b [ngStyle]="{'color':getColorRessourceManquanteOrFormationUnite(unitee.id)}">{{unitee.coutOrFormation | number}}</b></span>
-                        <span><b>Nourriture : </b> <b [ngStyle]="{'color':getColorRessourceManquanteNourritureFormationUnite(unitee.id)}">{{unitee.coutNourritureFormation | number}}</b></span>
+                        <span><b>Pierre : </b> <span> <b
+                                    [ngStyle]="{'color':getColorRessourceManquantePierreFormationUnite(unitee.id)}">{{unitee.coutPierreFormation
+                                    | number}}</b></span></span>
+                        <span><b>Bois : </b> <b
+                                [ngStyle]="{'color':getColorRessourceManquanteBoisFormationUnite(unitee.id)}">{{unitee.coutBoisFormation
+                                | number}}</b></span>
+                        <span><b>Or : </b> <b
+                                [ngStyle]="{'color':getColorRessourceManquanteOrFormationUnite(unitee.id)}">{{unitee.coutOrFormation
+                                | number}}</b></span>
+                        <span><b>Nourriture : </b> <b
+                                [ngStyle]="{'color':getColorRessourceManquanteNourritureFormationUnite(unitee.id)}">{{unitee.coutNourritureFormation
+                                | number}}</b></span>
                         <span><b>Temps : </b> <b>{{unitee.tempsFormation | minuteSecondePipe: 's':'hhmmss'}}</b></span>
 
                         <br>
                         <span><b>- STATS -</b></span>
-                        <span><i class="fa fa-heart" aria-hidden="true"></i> <b> Vie : </b> <b>{{unitee.vie | number}}</b></span>
-                        <span><i class="fa fa-gavel" aria-hidden="true"></i> <b> Attaque : </b> <b>{{unitee.attaque | number}}</b></span>
-                        <span><i class="fa fa-crosshairs" aria-hidden="true"></i> <b> Portée : </b> <b>{{unitee.portee | number}}</b></span>
-                        <span><i class="fa fa-shield" aria-hidden="true"></i> <b> Armure : </b> <b>{{unitee.armure | number}} </b></span>
+                        <span><i class="fa fa-heart" aria-hidden="true"></i> <b> Vie : </b> <b>{{unitee.vie |
+                                number}}</b></span>
+                        <span><i class="fa fa-gavel" aria-hidden="true"></i> <b> Attaque : </b> <b>{{unitee.attaque |
+                                number}}</b></span>
+                        <span><i class="fa fa-crosshairs" aria-hidden="true"></i> <b> Portée : </b> <b>{{unitee.portee |
+                                number}}</b></span>
+                        <span><i class="fa fa-shield" aria-hidden="true"></i> <b> Armure : </b> <b>{{unitee.armure |
+                                number}} </b></span>
                     </div>
                 </ng-template>
             </li>

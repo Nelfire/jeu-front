@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   iconeStopWatch = faStopwatch;
   iconeArbre = faTree;
 
-  // Initialisations
+  // INITIALISATIONS
   intro = introJs();
   populationMaximaleJoueur: Number;
   counterSubscription: Subscription;
@@ -47,15 +47,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
   // Mise en place de l'observable pour récupérer le role du joueur, pour l'affichage des onglets de navigation appropriés
   joueurConnecte: Observable<Joueur>;
 
-  // Constructeur
+  // CONSTRUCTEUR
   constructor(private batimentJoueurService: BatimentJoueurService,
     private authSrv: AuthService,
     private router: Router,
     private joueurService: JoueurService,
     private generationRessourcesService: GenerationRessourcesService,
     private routerLinkActive: ActivatedRoute,
-    private tutorielService: TutorielService ) { }
+    private tutorielService: TutorielService) { }
 
+  // NGONINIT
   ngOnInit() {
 
     this.joueurConnecte = this.authSrv.joueurConnecteObs;
@@ -76,9 +77,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.infosJoueur = value;
       }
     );
-    //this.actualisationRessourcesChaquesSecondes();
   }
-
 
   // Réel appel aux ressources / actualisation
   recuperationRessources() {
@@ -117,11 +116,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   seDeconnecter() {
     this.authSrv.seDeconnecter().subscribe(
       () => window.location.href = window.location.protocol + 'auth')
-    /*
-        this.authSrv.seDeconnecter().subscribe(
-    () => this.router.navigate(['/auth'])
-  );
-    */
   }
 
   // Colorisation approche limite ressource (Pierre)
@@ -140,8 +134,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       // Rouge
       return '#FF3600';
     }
-
-
   }
 
   // Colorisation approche limite ressource (Bois)
@@ -197,7 +189,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   // Check routing Tutoriel
   lancementTutoriel() {
-    console.log(this.router.url);
     // Tutoriel Accueil
     if (this.router.url == "/accueil") {
       this.tutorielService.tutorielAccueil();
@@ -219,20 +210,29 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.tutorielService.tutorielBoutique();
     }
 
+    // Tutoriel Centre de récolte 
     if (this.router.url == "/centreRecolte") {
       this.tutorielService.tutorielCentreRecolte();
     }
 
+    // Tutoriel classement des joueurs
     if (this.router.url == "/classement-joueurs") {
       this.tutorielService.tutorielClassementJoueur();
     }
 
+    // Tutoriel expéditions
     if (this.router.url == "/expedition") {
       this.tutorielService.tutorielExpedition();
     }
-    
+
+    // Tutoriel marché
     if (this.router.url == "/marche") {
       this.tutorielService.tutorielMarche();
+    }
+
+    // Tutoriel mode campagne
+    if (this.router.url == "/campagne") {
+      this.tutorielService.tutorielCampagne();
     }
 
     for (var i: number = 0; i < 25; i++) {
@@ -244,12 +244,26 @@ export class HeaderComponent implements OnInit, OnDestroy {
       if (this.router.url == "/defense/detail-defense/" + i) {
         this.tutorielService.tutorielDetailDefense();
       }
+
+      // Tutoriel détail bâtiment
+      if (this.router.url == "/batiment/detail-batiment/" + i) {
+        this.tutorielService.tutorielDetailBatiment();
+      }
     }
+
+    for (var j: number = 0; j < 151; j++) {
+      // Tutoriel détail campagne
+      if (this.router.url == "/campagne/detail-campagne/" + j) {
+        this.tutorielService.tutorielDetailCampagne();
+      }
+    }
+
     for (var i: number = 0; i < 500; i++) {
       // Tutoriel détail expédition
       if (this.router.url == "/expedition/detail-expedition/" + i) {
         this.tutorielService.tutorielDetailExpedition();
       }
+
     }
   }
 

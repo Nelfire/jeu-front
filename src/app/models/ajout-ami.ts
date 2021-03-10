@@ -1,5 +1,3 @@
-
-
 export class AjoutAmi {
-    constructor(idAmi: number){}
+    constructor(idAmi: number) { }
 }

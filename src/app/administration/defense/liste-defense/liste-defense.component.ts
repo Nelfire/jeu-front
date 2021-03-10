@@ -8,11 +8,14 @@ import { DefenseService } from 'src/app/service/defense.service';
 })
 export class ListeDefenseComponent implements OnInit {
 
+  // INITIALISATIONS
   listeDefenses = [];
+
+  // CONSTRUCTEUR
   constructor(private defenseService: DefenseService) { }
 
+  //NGONINIT
   ngOnInit(): void {
-
     // Récupération liste des batiments (Type:Tous)
     this.defenseService.listerDefense().subscribe(
       (value) => {

@@ -1,8 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "node_modules/bootstrap/scss/bootstrap";
 body {
-  background: url("https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/123740332/original/934af649631a2dc8730f0b63cfed1e63908b6f08/create-anime-background-style.jpg")
-    no-repeat center center fixed;
+  background: url("../src/images/background.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -77,7 +76,7 @@ hr.style-seven:before {
   border-radius: 20px;
 }
 
-.avertissementHeroku{
+.avertissementHeroku {
   border-radius: 10px;
   overflow: hidden;
   margin-left: 10%;
@@ -91,9 +90,23 @@ hr.style-seven:before {
   color: #ffffff;
   font-weight: bold;
   text-align: center;
-  
 }
-.avertissement{
+.timerHeroku {
+  border-radius: 10px;
+  overflow: hidden;
+  margin-left: 42%;
+  margin-top: 1%;
+  margin-right: 42%;
+  padding: 15px 15px 15px 15px;
+  background-position: 15px center;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 12px #999999;
+  background-color: #ff1b1bab;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: center;
+}
+.avertissement {
   border-radius: 10px;
   overflow: hidden;
   margin-left: 30%;
@@ -106,7 +119,6 @@ hr.style-seven:before {
   color: #ffffff;
   font-weight: bold;
   text-align: center;
-  
 }
 small {
   color: rgb(0, 153, 255);

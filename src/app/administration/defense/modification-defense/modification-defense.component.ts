@@ -12,18 +12,20 @@ import { DefenseService } from 'src/app/service/defense.service';
 export class ModificationDefenseComponent implements OnInit {
 
 
-  // Initialisations
+  // INITIALISATIONS
   messageValidation: string;
   messageErreur: string;
   id: number;
   defense: Defense;
   formModificationDefense: FormGroup;
 
+  // CONSTRUCTEUR
   constructor(private router: Router,
     private formBuilder: FormBuilder,
     private routerLinkActive: ActivatedRoute,
     private defenseService: DefenseService) { }
 
+  //NGONINIT
   ngOnInit(): void {
 
     //Initialisation du formulaire vide
@@ -49,6 +51,7 @@ export class ModificationDefenseComponent implements OnInit {
     // Snapshot pour rï¿½cupï¿½rer l'id passï¿½ via l'url
     this.id = this.routerLinkActive.snapshot.params['id'];
 
+    // DETAILS DE LA DEFENCE
     this.defenseService.detailsDefense(this.id).subscribe(
       (value) => {
         this.defense = value;
@@ -117,19 +120,19 @@ export class ModificationDefenseComponent implements OnInit {
       niveauBatimentNecessaireConstruction,
       idBatimentProvenance,
       apportExperience
-      ).subscribe(
-        () => {
+    ).subscribe(
+      () => {
 
-        }, (error) => {
-          this.messageErreur = error.error.message;
-        }, () => {
-          this.messageValidation = "Modification réalisée";
-          setTimeout(() => {
-            // Redirection au bout de 1,5 secondes
-            this.router.navigate(['listeDefense']);
-          }, 1500);
-        }
-      );
+      }, (error) => {
+        this.messageErreur = error.error.message;
+      }, () => {
+        this.messageValidation = "Modification réalisée";
+        setTimeout(() => {
+          // Redirection au bout de 1,5 secondes
+          this.router.navigate(['listeDefense']);
+        }, 1500);
+      }
+    );
   }
 
 }
