@@ -86,7 +86,9 @@ export class JoueurService {
     boisBoostProduction: number,
     orBoostProduction: number,
     nourritureBoostProduction: number,
-    donateur: Boolean
+    donateur: Boolean,
+    positionX: number,
+    positionY: number
   ): Observable<JoueurInfos> {
     return this.http.put<JoueurInfos>(`${URL_BACKEND}/administrationModificationJoueur?id=` + id,
       {
@@ -106,7 +108,9 @@ export class JoueurService {
         boisBoostProduction: `${boisBoostProduction}`,
         orBoostProduction: `${orBoostProduction}`,
         nourritureBoostProduction: `${nourritureBoostProduction}`,
-        donateur: `${donateur}`
+        donateur: `${donateur}`,
+        positionX: `${positionX}`,
+        positionY: `${positionY}`,
       });
   }
 

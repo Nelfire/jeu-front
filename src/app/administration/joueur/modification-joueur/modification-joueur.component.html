@@ -189,6 +189,22 @@
                         </select>
                     </div>
                 </div>
+                <!-- POSITION X -->
+                <div class="form-group row">
+                    <label for="positionX" class="col-sm-2 col-form-label">Position X</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="positionX" rows="3"
+                            formControlName="positionX" />
+                    </div>
+                </div>
+                <!-- POSITION Y -->
+                <div class="form-group row">
+                    <label for="positionY" class="col-sm-2 col-form-label">Position Y</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="positionY" rows="3"
+                            formControlName="positionY" />
+                    </div>
+                </div>
                 <!-- MESSAGES -->
                 <div class="alert alert-danger" role="danger" *ngIf="messageErreur">
                     <b>{{messageErreur}}</b>

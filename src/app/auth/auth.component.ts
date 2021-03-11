@@ -18,9 +18,9 @@ export class AuthComponent implements OnInit {
   // INITIALISATIONS
   joueur: Joueur = new Joueur({});
   messageErreur: boolean;
-  secondesRestantes: number = 25;
+  secondesRestantes: number = 35;
   counterSubscription: Subscription;
-  tempsRestant: String = "00:00:25";
+  tempsRestant: String = "00:00:35";
 
   // CONSTRUCTEUR
   constructor(private authSrv: AuthService,

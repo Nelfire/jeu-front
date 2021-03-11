@@ -50,7 +50,9 @@ export class ModificationJoueurComponent implements OnInit {
       nourritureBoostProduction: ['', Validators.required],
       tempsDeJeu: ['', Validators.required],
       derniereConnexion: [''],
-      donateur: ['', Validators.required]
+      donateur: ['', Validators.required],
+      positionX: ['', Validators.required],
+      positionY: ['', Validators.required]
     });
     // Snapshot pour rï¿½cupï¿½rer l'id passï¿½ via l'url
     this.id = this.routerLinkActive.snapshot.params['id'];
@@ -88,7 +90,9 @@ export class ModificationJoueurComponent implements OnInit {
       nourritureBoostProduction: [this.joueur.nourritureBoostProduction, Validators.required],
       tempsDeJeu: [this.joueur.tempsDeJeu, Validators.required],
       derniereConnexion: [this.joueur.derniereConnexion],
-      donateur: [this.joueur.donateur, Validators.required]
+      donateur: [this.joueur.donateur, Validators.required],
+      positionX: [this.joueur.positionX, Validators.required],
+      positionY: [this.joueur.positionY, Validators.required]
     });
   }
 
@@ -109,6 +113,8 @@ export class ModificationJoueurComponent implements OnInit {
     const orBoostProduction = this.formModificationJoueur.get('orBoostProduction').value;
     const nourritureBoostProduction = this.formModificationJoueur.get('nourritureBoostProduction').value;
     const donateur = this.formModificationJoueur.get('donateur').value;
+    const positionX = this.formModificationJoueur.get('positionX').value;
+    const positionY = this.formModificationJoueur.get('positionY').value;
     this.joueurService.administrationModificationJoueur(
       this.id,
       icone,
@@ -126,7 +132,9 @@ export class ModificationJoueurComponent implements OnInit {
       boisBoostProduction,
       orBoostProduction,
       nourritureBoostProduction,
-      donateur
+      donateur,
+      positionX,
+      positionY,
     ).subscribe(
       () => {
 
