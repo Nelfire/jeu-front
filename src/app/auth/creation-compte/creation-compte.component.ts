@@ -16,9 +16,9 @@ export class CreationCompteComponent implements OnInit {
   formCreationCompte: FormGroup;
   messageErreur: string;
   messageValidation: string;
-  secondesRestantes: number = 35;
+  secondesRestantes: number = 25;
   counterSubscription: Subscription;
-  tempsRestant: String = "00:00:35";
+  tempsRestant: String = "00:00:25";
 
   // CONSTRUCTEUR
   constructor(private authService: AuthService,
