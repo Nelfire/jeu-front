@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/service/auth.service';
+import { BatimentService } from 'src/app/service/batiment.service';
 import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
@@ -19,16 +20,33 @@ export class CreationCompteComponent implements OnInit {
   secondesRestantes: number = 35;
   counterSubscription: Subscription;
   tempsRestant: String = "00:00:35";
+  message: string = ""
+  demarrage:boolean = false;
 
   // CONSTRUCTEUR
   constructor(private authService: AuthService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private notification: NotificationService) { }
+    private notification: NotificationService,
+    private batimentService: BatimentService) { }
 
   // NGONINIT
   ngOnInit(): void {
     this.initForm();
+
+    // MESSAGE HEROKU
+    this.message = "Heroku en cours de démarrage";
+
+    // FAKE REQUETE POUR DEMARRER HEROKU
+    this.batimentService.detailsBatiment(1).subscribe(
+      () => {
+        // Héroku démarré, compteur retiré
+        this.message = "Heroku démarré";
+        this.demarrage = true;
+        this.secondesRestantes = 0;
+        this.ngOnDestroy();
+      }
+    );
 
     // TIMER
     const compteur = Observable.interval(1000);

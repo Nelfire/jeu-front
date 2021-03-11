@@ -5,9 +5,12 @@
   inactivité. Patientez quelques secondes <i class="fa fa-grin-wink"></i>
 </div>
 <div class="timerHeroku">
-  <span *ngIf="secondesRestantes>0;else herokuOk">{{tempsRestant}}</span>
+  <span *ngIf="!demarrage;else herokuOk">
+    {{message}}<br>
+    Estimation : <b>{{tempsRestant}}</b>
+  </span>
   <ng-template #herokuOk>
-    <span>Héroku démarré <i class="fa fa-grin-stars"></i></span>
+    <span>{{message}} <i class="fa fa-grin-beam"></i></span>
   </ng-template>
 </div>
 

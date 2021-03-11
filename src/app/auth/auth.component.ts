@@ -21,6 +21,8 @@ export class AuthComponent implements OnInit {
   secondesRestantes: number = 35;
   counterSubscription: Subscription;
   tempsRestant: String = "00:00:35";
+  message: string = ""
+  demarrage:boolean = false;
 
   // CONSTRUCTEUR
   constructor(private authSrv: AuthService,
@@ -29,11 +31,17 @@ export class AuthComponent implements OnInit {
 
   // NGONINIT
   ngOnInit() {
+    // MESSAGE HEROKU
+    this.message = "Heroku en cours de démarrage";
 
     // FAKE REQUETE POUR DEMARRER HEROKU
     this.batimentService.detailsBatiment(1).subscribe(
       () => {
-        console.log("Heroku Demarré");
+        // Héroku démarré, compteur retiré
+        this.message = "Heroku démarré";
+        this.demarrage = true;
+        this.secondesRestantes = 0;
+        this.ngOnDestroy();
       }
     );
 
