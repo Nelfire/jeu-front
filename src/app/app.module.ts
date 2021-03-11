@@ -81,6 +81,7 @@ import { DetailCampagneComponent } from './campagne/detail-campagne/detail-campa
 import { CreerCampagneComponent } from './administration/campagne/creer-campagne/creer-campagne.component';
 import { ModificationCampagneComponent } from './administration/campagne/modification-campagne/modification-campagne.component';
 import { ListeCampagneAdministrationComponent } from './administration/campagne/liste-campagne-administration/liste-campagne-administration.component';
+import { BoutiqueComponent } from './boutique/boutique.component';
 
 
 @NgModule({
@@ -127,6 +128,7 @@ import { ListeCampagneAdministrationComponent } from './administration/campagne/
     MerciComponent,
     AnnonceAVenirComponent,
     TantPisComponent,
+    BoutiqueComponent,
     UsineComponent,
     NouveauteComponent,
     MarcheComponent,

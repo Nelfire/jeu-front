@@ -21,8 +21,6 @@ import { ArmeeService } from 'src/app/service/armee-joueur.service';
 import * as introJs from 'intro.js/intro.js';
 import { TutorielService } from 'src/app/service/tutoriel.service';
 
-
-// the second parameter 'fr' is optional
 registerLocaleData(localeFr, 'fr');
 
 @Component({

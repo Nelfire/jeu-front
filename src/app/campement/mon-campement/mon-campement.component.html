@@ -57,7 +57,7 @@
 							</div>
 							<!-- Si bâtiment n'est pas en cours d'amélioration -->
 							<ng-template #pasDeTravailEnCours>
-								<button class="btn btn-info">
+								<button class="btn btn-success">
 									Améliorer
 								</button>
 							</ng-template>
@@ -68,16 +68,16 @@
 								<span><b>COÛT AMELIORATION</b></span>
 								<span><b>Pierre : </b> <span> <b
 											[ngStyle]="{'color':getColorRessourceManquantePierreAmeliorationBatiment(batiment.idTypeBatiment)}">{{batiment.coutPierreAmelioration
-											| number}}</b></span></span>
+											| number: '1.0-0'}}</b></span></span>
 								<span><b>Bois : </b> <b
 										[ngStyle]="{'color':getColorRessourceManquanteBoisAmeliorationBatiment(batiment.idTypeBatiment)}">{{batiment.coutBoisAmelioration
-										| number}}</b></span>
+										| number: '1.0-0'}}</b></span>
 								<span><b>Or : </b> <b
 										[ngStyle]="{'color':getColorRessourceManquanteOrAmeliorationBatiment(batiment.idTypeBatiment)}">{{batiment.coutOrAmelioration
-										| number}}</b></span>
+										| number: '1.0-0'}}</b></span>
 								<span><b>Nourriture : </b> <b
 										[ngStyle]="{'color':getColorRessourceManquanteNourritureAmeliorationBatiment(batiment.idTypeBatiment)}">{{batiment.coutNourritureAmelioration
-										| number}}</b></span>
+										| number: '1.0-0'}}</b></span>
 								<span><b>Temps : </b> <b>{{batiment.tempsAmelioration | minuteSecondePipe:
 										's':'hhmmss'}}</b></span>
 							</div>
@@ -111,16 +111,16 @@
 								<span><b>COÛT CONSTRUCTION</b></span>
 								<span><b>Pierre : </b> <span> <b
 											[ngStyle]="{'color':getColorRessourceManquantePierreConstructionBatiment(batiment.idTypeBatiment)}">{{batiment.coutPierreConstruction
-											| number}}</b></span></span>
+											| number: '1.0-0'}}</b></span></span>
 								<span><b>Bois : </b> <b
 										[ngStyle]="{'color':getColorRessourceManquanteBoisConstructionBatiment(batiment.idTypeBatiment)}">{{batiment.coutBoisConstruction
-										| number}}</b></span>
+										| number: '1.0-0'}}</b></span>
 								<span><b>Or : </b> <b
 										[ngStyle]="{'color':getColorRessourceManquanteOrConstructionBatiment(batiment.idTypeBatiment)}">{{batiment.coutOrConstruction
-										| number}}</b></span>
+										| number: '1.0-0'}}</b></span>
 								<span><b>Nourriture : </b> <b
 										[ngStyle]="{'color':getColorRessourceManquanteNourritureConstructionBatiment(batiment.idTypeBatiment)}">{{batiment.coutNourritureConstruction
-										| number}}</b></span>
+										| number: '1.0-0'}}</b></span>
 								<span><b>Temps : </b> <b>{{batiment.tempsDeConstruction | minuteSecondePipe:
 										's':'hhmmss'}}</b></span>
 							</div>
