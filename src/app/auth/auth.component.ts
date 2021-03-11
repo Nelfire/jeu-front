@@ -3,6 +3,7 @@ import { Joueur } from './auth.domains';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 import { Observable, Subscription } from 'rxjs';
+import { BatimentService } from '../service/batiment.service';
 
 /**
  * Formulaire d'authentification.
@@ -23,10 +24,18 @@ export class AuthComponent implements OnInit {
 
   // CONSTRUCTEUR
   constructor(private authSrv: AuthService,
-    private router: Router) { }
+    private router: Router,
+    private batimentService: BatimentService) { }
 
   // NGONINIT
   ngOnInit() {
+
+    // FAKE REQUETE POUR DEMARRER HEROKU
+    this.batimentService.detailsBatiment(1).subscribe(
+      () => {
+        console.log("Heroku Demarré");
+      }
+    );
 
     // TIMER
     const compteur = Observable.interval(1000);
