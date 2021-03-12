@@ -55,6 +55,9 @@ export class CreationCompteComponent implements OnInit {
         // EN CAS DE FIN DE TIMER, DESTRUCTION
         if (this.secondesRestantes < 1) {
           this.ngOnDestroy();
+          if(this.demarrage == false) {
+            this.message = "Oh, Heroku semble avoir du mal à démarrer... Patientez un instant ...";
+          }
         }
 
         // A chaques appel, je réduit de 1 seconde le nombre de secondes présentes dans le compteur

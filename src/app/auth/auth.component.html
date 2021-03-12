@@ -7,7 +7,9 @@
 <div class="timerHeroku">
   <span *ngIf="!demarrage;else herokuOk">
     {{message}}<br>
-    Estimation : <b>{{tempsRestant}}</b>
+    <span *ngIf="secondesRestantes>0">
+      Estimation : <b>{{tempsRestant}}</b>
+    </span>
   </span>
   <ng-template #herokuOk>
     <span>{{message}} <i class="fa fa-grin-beam"></i></span>
