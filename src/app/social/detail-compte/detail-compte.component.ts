@@ -14,11 +14,14 @@ export class DetailCompteComponent implements OnInit {
 
   // INITILISATIONS
   joueur: JoueurInfos;
+  joueurInspecte: JoueurInfos;
   joueurConnecte: JoueurInfos;
   messageErreur: string;
   dejaAmis: boolean;
   expRestant: number;
   seuil: number;
+  idJoueurInspecte: number;
+  idJoueurConnecte: number;
 
   // CONSTRUCTEUR
   constructor(private joueurService: JoueurService,
@@ -29,12 +32,24 @@ export class DetailCompteComponent implements OnInit {
   // NGONINIT
   ngOnInit(): void {
 
+    this.idJoueurInspecte = this.routerLinkActive.snapshot.params['id'];
+    // Données du Joueur inespecté
+    this.joueurService.informationJoueurById(this.routerLinkActive.snapshot.params['id']).subscribe(
+      (donneesJoueurInspecte) => {
+        this.joueurInspecte = donneesJoueurInspecte;
+        this.determinerExpProchainNiveau(donneesJoueurInspecte.experience);
+        this.traitement();
+      }, (error) => {
+        this.messageErreur = "Erreur dans le traitement : " + error;
+      }
+    );
+
+    
     // Données du Joueur connecté
     this.joueurService.informationJoueurByEmail().subscribe(
       (donnees) => {
         this.joueurConnecte = donnees;
-        this.determinerExpProchainNiveau(donnees.experience);
-        this.traitement();
+        this.idJoueurConnecte = donnees.id;
       }, (error) => {
         this.messageErreur = "Erreur dans le traitement : " + error;
       }

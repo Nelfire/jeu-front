@@ -27,7 +27,7 @@
             <!-- BOUTONS -->
             <div class="row">
                 <div class="col-sm-6">
-                    <div *ngIf="joueurConnecte.id == joueur.id; else consultationJoueur">
+                    <div *ngIf="joueurConnecte.id == joueurInspecte.id; else consultationJoueur">
                         <a routerLink="/modifierJoueur">
                             <button class="btn draw-border">Modifier mes données</button>
                         </a>

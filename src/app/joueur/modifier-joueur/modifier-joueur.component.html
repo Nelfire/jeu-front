@@ -1,4 +1,4 @@
-<div class="modificationUnitee">
+<div class="modificationCompte" *ngIf="joueur">
     <div class="container">
         <div class="card">
             <!-- FORMULAIRE -->
@@ -33,14 +33,18 @@
                 </div>
 
                 <!-- BOUTONS -->
-                <div class="col-sm-6">
-                    <button class="btn draw-border" [disabled]="formModificationJoueur.invalid">Valider</button>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <button class="btn draw-border" [disabled]="formModificationJoueur.invalid">Valider</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <a routerLink="/detailJoueur/{{joueur.id}}">
+                            <button class="btn draw-border-error">Retour</button>
+                        </a>
+                    </div>
                 </div>
-                <div class="col-sm-6">
-                    <a routerLink="/classement-joueurs">
-                        <button class="btn draw-border-error">Retour</button>
-                    </a>
-                </div>
+
+
             </form>
         </div>
     </div>
