@@ -409,8 +409,7 @@ export class DetailBatimentComponent implements OnInit {
         // Tutoriel terminé. Détail bâtiment HDV [En cours] -> Campement
       }).oncomplete(() => {
         // Utilisation gemmes
-        var idTypeBatiment = this.routerLinkActive.snapshot.params['idTypeBatiment'];
-        this.batimentJoueurService.accelerationConstructionBatiment(idTypeBatiment).subscribe(
+        this.batimentJoueurService.accelerationConstructionBatiment(this.batimentJoueurPossede.id).subscribe(
           () => {
             this.notification.showSuccess("Amélioration terminée", "Succès !");
             this.router.navigate(['campement'], { queryParams: { tutoriel: 'enCoursP2' } });
