@@ -58,7 +58,7 @@ export class ModificationJoueurComponent implements OnInit {
     this.id = this.routerLinkActive.snapshot.params['id'];
 
     // RECUPERATION INFORMATIONS DU JOUEUR
-    this.joueurService.informationJoueurById(this.id).subscribe(
+    this.joueurService.informationJoueurFullById(this.id).subscribe(
       (value) => {
         this.joueur = value;
         this.initialiserFormulaire();

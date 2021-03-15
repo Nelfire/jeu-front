@@ -34,10 +34,16 @@ export class JoueurService {
     return this.http.get<JoueurInfos>(`${URL_BACKEND}/infosJoueur`);
   }
 
-  // RECUPERATION INFORMATIONS JOUEUR VIA ID
+  // RECUPERATION INFORMATIONS JOUEUR VIA ID (Informations Réduites)
   informationJoueurById(id: number) {
     return this.http.get<JoueurInfos>(`${URL_BACKEND}/informationJoueurById?id=` + id);
   }
+
+  // RECUPERATION INFORMATIONS JOUEUR VIA ID  (Informations Completes)
+  informationJoueurFullById(id: number) {
+    return this.http.get<JoueurInfos>(`${URL_BACKEND}/informationJoueurFullById?id=` + id);
+  }
+  
 
   // MODIFICATION INFORMATIONS DU JOUEUR
   modifierInformationsJoueur(icone: string, descriptif: string): Observable<any> {
