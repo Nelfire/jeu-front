@@ -53,6 +53,7 @@ export class DetailBatimentComponent implements OnInit {
   experience: number = 0;
   batimentUniteEnCoursDeProduction: boolean = false;
   result: string;
+  tutorielDejaRealise: boolean = false;
 
   // CONSTRUCTEUR
   constructor(private authSrv: AuthService,
@@ -106,6 +107,7 @@ export class DetailBatimentComponent implements OnInit {
           this.etatBoutonConstruire = "disabled";
           this.etatBoutonAmeliorer = "";
         } else {
+          this.tutorielDejaRealise = true;
           this.experience = value.batiment.apportExperience * (Math.pow(value.batiment.multiplicateurExperience, value.niveau))
           this.modeConstructionAmelioration = "amelioration";
           this.etatBoutonConstruire = "";
@@ -329,8 +331,10 @@ export class DetailBatimentComponent implements OnInit {
     setTimeout(() => {
       this.routerLinkActive.queryParams.subscribe(params => {
         let modeTutoriel = params['tutoriel'];
-        if (modeTutoriel == "enCours") {
+        if (modeTutoriel == "enCours" && this.tutorielDejaRealise!=true) {
           this.tutorielPartie3();
+        } else if (modeTutoriel == "enCours" && this.tutorielDejaRealise==true) {
+          this.tutorielPartieDejaRealise();
         } else if (modeTutoriel == "enCoursP2") {
           this.tutorielPartie7();
         }
@@ -490,4 +494,32 @@ export class DetailBatimentComponent implements OnInit {
       intro.start();
     }, 600);
   }
+
+
+    // [TUTORIEL GUIDE] - Tutoriel déjà réalisé
+    tutorielPartieDejaRealise() {
+      var intro = introJs();
+      intro.setOptions({
+        disableInteraction: true,
+        showProgress: true,
+        nextLabel: 'Suivant',
+        prevLabel: 'Precedent',
+        doneLabel: 'Terminer',
+        tooltipClass: 'customTooltip',
+        steps: [
+          {
+            intro: "Vous semblez avoir déjà terminé le tutoriel guidé.",
+            showStepNumber: true
+          },
+          {
+            element: '#menu_tutoriel',
+            intro: "Si vous ne comprenez pas le fonctionnement de la page où vous vous trouvez, n'hésitez pas à consulter le tutoriel du menu !",
+            showStepNumber: true
+          }
+        ]
+      });
+  
+      // Lancement
+      intro.start();
+    }
 }

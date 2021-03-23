@@ -10,7 +10,7 @@
     <div *ngIf="listeBatiments">
         <ul class="honeycomb" lang="es">
             <li class="honeycomb-cell" *ngFor="let batiment of listeBatiments">
-                <a routerLink="../modificationBatiment/{{batiment.id}}">
+                <a routerLink="../modificationBatiment/{{batiment.idTypeBatiment}}">
                     <img class="honeycomb-cell__image" src="{{batiment.icone}}">
                     <div class="honeycomb-cell__title">{{batiment.libelle}}</div>
                     <br>
