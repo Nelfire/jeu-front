@@ -79,9 +79,10 @@ export class DetailBatimentComponent implements OnInit {
 
         // Vérification mode tutoriel.
         this.verificationTutorielEnCours();
+        this.informationsBatiment();
       }
     );
-    this.informationsBatiment();
+    
   }
 
   informationsBatiment() {
@@ -513,7 +514,7 @@ export class DetailBatimentComponent implements OnInit {
           },
           {
             element: '#menu_tutoriel',
-            intro: "Si vous ne comprenez pas le fonctionnement de la page où vous vous trouvez, n'hésitez pas à consulter le tutoriel du menu !",
+            intro: "Si vous ne comprenez pas le fonctionnement de la page où vous vous trouvez, n'hésitez pas à consulter l'aide du menu !",
             showStepNumber: true
           }
         ]
