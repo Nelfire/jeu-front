@@ -23,6 +23,7 @@ export class AuthComponent implements OnInit {
   tempsRestant: String = "00:00:35";
   message: string = ""
   demarrage:boolean = false;
+  messageValidation: string;
 
   // CONSTRUCTEUR
   constructor(private authSrv: AuthService,
@@ -68,13 +69,16 @@ export class AuthComponent implements OnInit {
 
   // BOUTON CONNEXION
   connecter() {
+    this.messageValidation = "Patientez un instant, Heroku est en cours de démarrage.";
     this.authSrv.connecter(this.joueur.email, this.joueur.motDePasse)
       .subscribe(
         // en cas de succès, redirection vers la page d'accueil
         (col) => {
+          this.messageValidation = "Connexion..."
           this.router.navigate(['/accueil'])
         }, (messageErreur) => {
           // en cas d'erreur, affichage d'un message d'erreur
+          this.messageValidation = "";
           this.messageErreur = true
         }
       );

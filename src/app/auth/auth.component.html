@@ -45,6 +45,9 @@
       <div *ngIf="messageErreur" class="alert alert-danger mt-1" role="alert">
         Vos informations d'authentification sont invalides.
       </div>
+      <div class="alert alert-success" role="success" *ngIf="messageValidation">
+        <b>{{messageValidation}}</b>
+    </div>
     </div>
 
   </div>

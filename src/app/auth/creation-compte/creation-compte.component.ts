@@ -90,13 +90,17 @@ export class CreationCompteComponent implements OnInit {
       this.notification.showError("Les mots de passe ne sont pas identiques. Vérifiez votre saisie.", "Erreur dans la saisie.");
 
     } else {
+      this.messageValidation = "Patientez un instant, Heroku est en cours de démarrage."
       this.authService.creationCompte(pseudo, email, password).subscribe(
         () => {
 
         }, (error) => {
+          this.messageValidation = "";
           this.messageErreur = error.error.message;
           this.notification.showError(error.error.message, "Erreur dans la saisie.");
         }, () => {
+          this.messageErreur = "";
+          this.messageValidation = "Compte créé avec succès."
           this.notification.showInfo("", "Compte créé avec succès");
           setTimeout(() => {
             // Redirection au bout de 1 seconde
