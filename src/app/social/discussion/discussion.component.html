@@ -71,6 +71,9 @@
                             </div>
                         </form>
                     </div>
+                    <div *ngIf="tempsPresentPage>900" class="alert alert-danger mt-1 center" role="alert">
+                        Vous semblez être <b>inactif</b> depuis plus de 15 minutes. L'actualisation des messages est <b>désactivée</b>.<br> Revenez sur la page lorsque vous serez de nouveau actif pour voir les nouveaux messages.
+                      </div>
                 </div>
             </div>
         </div>

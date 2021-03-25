@@ -59,6 +59,7 @@ export class DiscussionComponent implements OnInit {
   messageErreur: string;
   nombreMessages: number;
   formAjouterMessage: FormGroup;
+  tempsPresentPage: number = 0;
 
   // CONSTRUCTEUR
   constructor(private discussionService: DiscussionService,
@@ -82,18 +83,26 @@ export class DiscussionComponent implements OnInit {
     const compteur = Observable.interval(2000);
     this.counterSubscription = compteur.subscribe(
       () => {
-        this.discussionService.listerMessage().subscribe(
-          (valeur) => {
-            this.listeMessages = valeur;
-            this.listeMessages.forEach(unMessage => {
-              if (unMessage.joueur.email == this.joueur.email) {
-                unMessage.appartientAuJoueurConnecte = true;
-              }
-            });
-          }, (error) => {
-            this.message = error;
-          }
-        );
+        this.tempsPresentPage = this.tempsPresentPage + 2;
+        console.log(this.tempsPresentPage);
+        // Si inactivité détectée
+        if (this.tempsPresentPage <= 900) {
+          this.discussionService.listerMessage().subscribe(
+            (valeur) => {
+              this.listeMessages = valeur;
+              this.listeMessages.forEach(unMessage => {
+                if (unMessage.joueur.email == this.joueur.email) {
+                  unMessage.appartientAuJoueurConnecte = true;
+                }
+              });
+            }, (error) => {
+              this.message = error;
+            }
+          );
+        } else {
+          this.ngOnDestroy();
+        }
+
       }
     );
   }
