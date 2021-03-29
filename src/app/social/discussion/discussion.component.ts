@@ -77,6 +77,9 @@ export class DiscussionComponent implements OnInit {
       }
     );
 
+    // Premier listage des messages à l'initialisation
+    this.listerMessages();
+
 
     this.initialiserFormulaire();
 
@@ -87,18 +90,7 @@ export class DiscussionComponent implements OnInit {
         console.log(this.tempsPresentPage);
         // Si inactivité détectée
         if (this.tempsPresentPage <= 900) {
-          this.discussionService.listerMessage().subscribe(
-            (valeur) => {
-              this.listeMessages = valeur;
-              this.listeMessages.forEach(unMessage => {
-                if (unMessage.joueur.email == this.joueur.email) {
-                  unMessage.appartientAuJoueurConnecte = true;
-                }
-              });
-            }, (error) => {
-              this.message = error;
-            }
-          );
+          this.listerMessages();
         } else {
           this.ngOnDestroy();
         }
@@ -114,6 +106,21 @@ export class DiscussionComponent implements OnInit {
     });
   }
 
+  // SERVICE LISTER LES MESSAGES
+  listerMessages() {
+    this.discussionService.listerMessage().subscribe(
+      (valeur) => {
+        this.listeMessages = valeur;
+        this.listeMessages.forEach(unMessage => {
+          if (unMessage.joueur.email == this.joueur.email) {
+            unMessage.appartientAuJoueurConnecte = true;
+          }
+        });
+      }, (error) => {
+        this.message = error;
+      }
+    );
+  }
   // BOUTON ENVOYER MESSAGE
   validerMessage() {
     const contenu = this.formAjouterMessage.get('contenu').value;

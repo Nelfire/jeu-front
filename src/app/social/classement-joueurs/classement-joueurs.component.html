@@ -1,10 +1,11 @@
 <ng-container *ngIf="joueurConnecte | async as jou">
-    <div class="classementJoueur container">
+    <div class="classementJoueur container" *ngIf="listeJoueurs">
         <!-- TITRE -->
         <div class="divider-custom divider-light">
             <div class="divider-custom-line"></div>
-            <div class="divider-custom-titre">Classement joueur</div>
+            <div class="divider-custom-titre">Classement joueur<br><h5><i class="fa fa-hand-point-right"></i> {{listeJoueurs.length}} Joueurs <i class="fa fa-hand-point-left"></i></h5></div>
             <div class="divider-custom-line"></div>
+            
         </div>
         <div class="table-wrapper">
             <table class="fl-table">
