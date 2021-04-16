@@ -38,12 +38,29 @@
             <input type="password" name="repeatPassword" class="fadeIn third" placeholder="Répétez le mot de passe"
                 formControlName="repeatPassword">
             <!-- bouton de connexion -->
-            <input type="submit" class="fadeIn fourth mb-3" [disabled]="formCreationCompte.invalid"
-                value="Créer compte"><br>
+            <div class="mt-3">
+                <span *ngIf="!demarrage;else boutonOk">
+                    <span [ngbTooltip]="informationAttente">
+                        <button disabled class="btn btn-primary" style="width: 200px;"><span
+                                class="spinner-border spinner-border-sm"></span> Patientez un instant</button>
+                    </span>
+                </span>
+                <ng-template #boutonOk>
+                    <button class="btn btn-primary" [disabled]="formCreationCompte.invalid"
+                        style="width: 200px;">Créer compte</button>
+                </ng-template>
+            </div>
+            <ng-template #informationAttente>
+                <div class="d-flex flex-column">
+                    <span><b>La soumission du formulaire est désactivée le temps qu'Heroku se démarre.</b></span>
+                </div>
+            </ng-template>
             <!-- bouton création de compte -->
-            <a routerLink="/auth" class="fadeIn fourth mb-3">
-                <button type="button" class="btn btn-outline-primary">Retour</button>
-            </a>
+            <div class="mt-3">
+                <a routerLink="/auth" class="fadeIn fourth mb-3">
+                    <button type="button" class="btn btn-outline-primary" style="width: 200px;">Retour</button>
+                </a>
+            </div>
         </form>
 
         <!-- Message erreurs -->
